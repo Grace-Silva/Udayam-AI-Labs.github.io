@@ -255,58 +255,61 @@ window.addEventListener('scroll', function () {
   });
 });
 
-/* send emails */
+/* starts send emails function */
 // Inicialite emailJS:
 emailjs.init("9QTiwXB7EElSgyWrN");
 
-function showAlert(event) {
-    // the page won´t reload by default
-    event.preventDefault();
+  function showAlert(event) {
+      // the page won´t reload by default
+      event.preventDefault();
 
-    // Disables the button behaviour to simulate a loading animation:    
-    const submitBtn = document.getElementById("submitBtn");
-    const originalText = submitBtn.innerHTML;
-    
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-      submitBtn.disabled = true;
-      submitBtn.style.opacity="0.5";
-      submitBtn.style.pointerEvents = "none";
-      submitBtn.style.cursor = "not-allowed";
+      // Disables the button behaviour to simulate a loading animation:    
+      const submitBtn = document.getElementById("submitBtn");
+      const originalText = submitBtn.innerHTML;
+      
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+        submitBtn.classList.add('loading');
+        submitBtn.disabled = true;
+        submitBtn.style.opacity="0.5";
+        submitBtn.style.pointerEvents = "none";
+        submitBtn.style.cursor = "not-allowed";
 
-    // Send  with EmailJS:
-    emailjs.sendForm('service_hyjqhbc', 'template_z994w15', event.target)
-        .then(function(response) {
-            console.log('SUCCESS!', response.status, response.text);
-            
-            // Show alert
-            alert("Your message has been sent successfully. We'll get back to you as soon as possible.");
-            
-            // Resetear formulario
-            event.target.reset();
-            
-            // Redirect to home page
-            setTimeout(() => {
-                window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
-            }, 2000);
-            
-        }, function(error) {
-            console.log('FAILED...', error);
-            alert("Sorry, there was an error sending your message. Please try again.");
-        })
-        
-        .finally(function() {
-            // Restore orinal styles of submit button
-            setTimeout(() => {
-              submitBtn.innerHTML = originalText;
-              submitBtn.disabled = false;
-              submitBtn.style.opacity = "1";
-              submitBtn.style.pointerEvents = "auto";
-              submitBtn.style.cursor = "pointer";             
-            }, 1500);
-        });
-    
-    return false;
-}
+      // Send  with EmailJS:
+      emailjs.sendForm('service_hyjqhbc', 'template_z994w15', event.target)
+          .then(function(response) {
+              console.log('SUCCESS!', response.status, response.text);
+              
+              // Show alert
+              alert("Your message has been sent successfully. We'll get back to you as soon as possible.");
+              
+              // Resetear formulario
+              event.target.reset();
+              
+              // Redirect to home page
+              setTimeout(() => {
+                  window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
+              }, 2000);
+              
+          }, function(error) {
+              console.log('FAILED...', error);
+              alert("Sorry, there was an error sending your message. Please try again.");
+          })
+          
+          .finally(function() {
+              // Restore orinal styles of submit button
+              setTimeout(() => {
+                submitBtn.innerHTML = originalText;
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = "1";
+                submitBtn.style.pointerEvents = "auto";
+                submitBtn.style.cursor = "pointer";             
+              }, 1500);
+          });
+      
+      return false;
+  }
+  document.getElementById('contact-form').addEventListener('submit', showAlert);
+ /* ends send emails function */ 
 
 // show and hide navlink in small devices:
 const menuToggle = document.getElementById("menu-toggle");
