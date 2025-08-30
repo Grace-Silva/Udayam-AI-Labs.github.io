@@ -17,6 +17,7 @@
   --gradient-mix: radial-gradient(circle, var(--primary-color) 15%, var(--secondary-color) 100%);
   --gradient-header: linear-gradient(90deg, var(--primary-color) 0%, var(--secondary-color) 100%);
   --gradient-dark: linear-gradient(135deg, var(--dark-color) 0%, #444 100%);
+  --hero-gradient: linear-gradient(135deg, #1a1a1a 0%, #4f46e5 50%, #06b6d4 100%);
 }
 
 
