@@ -277,21 +277,20 @@ function showAlert(event) {
     emailjs.sendForm('service_hyjqhbc', 'template_z994w15', event.target)
       .then(function(response) {
         console.log('SUCCESS!', response.status, response.text);
-        // user autoreaply
-          return emailjs.sendForm('service_hyjqhbc', 'template_6x1y7fq', event.target);
-        })
-        .then(function() {
         // Show alert
-          alert("Your message will be sent. We'll get back to you as soon as possible.");
-            
+        alert("Your message will be sent. We'll get back to you as soon as possible.");
+        
         // Reset form
-          event.target.reset();
-            
+        event.target.reset();
+        
         // Redirect to home page
-          setTimeout(() => {
-            window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
-          }, 2000);
+        setTimeout(() => {
+          window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
+        }, 2000);
+
+        return response;
         })
+
         .catch(function(error) {
           console.log('FAILED...', error);
           alert("Sorry, there was an error sending your message. Please try again.");
@@ -304,6 +303,7 @@ function showAlert(event) {
             submitBtn.style.opacity = "1";
             submitBtn.style.pointerEvents = "auto";
             submitBtn.style.cursor = "pointer";
+            submitBtn.classList.remove = ("loading");
           }, 500);
         });
     
