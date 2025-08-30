@@ -256,16 +256,17 @@ window.addEventListener('scroll', function () {
 });
 
 /* starts send emails function */
+
 // Inicialite emailJS:
 emailjs.init("9QTiwXB7EElSgyWrN");
 
 function showAlert(event) {
-  event.preventDefault(); // website will not reload
+    event.preventDefault(); // website won't be reload
     
     const submitBtn = document.getElementById("submitBtn");
     const originalText = submitBtn.innerHTML;
-    
-      // sending animation:
+
+    // sending animation
       submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
       submitBtn.classList.add('loading');
       submitBtn.disabled = true;
@@ -273,44 +274,41 @@ function showAlert(event) {
       submitBtn.style.pointerEvents = "none";
       submitBtn.style.cursor = "not-allowed";
 
-    // Send with EmailJS:
+    // send emails:  
     emailjs.sendForm('service_hyjqhbc', 'template_z994w15', event.target)
-      .then(function(response) {
-        console.log('SUCCESS!', response.status, response.text);
-        // user autoreaply
-          return emailjs.sendForm('service_hyjqhbc', 'template_6x1y7fq', event.target);
-        })
-        .then(function() {
-        // Show alert
-          alert("Your message will be sent. We'll get back to you as soon as possible.");
+        .then(function(response) {
+          console.log('SUCCESS!', response.status, response.text);
             
-        // Reset form
+          alert("Your message has been sent successfully. We'll get back to you soon.");
+            
+          // Reset form
           event.target.reset();
-            
-        // Redirect to home page
-          setTimeout(() => {
-            window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
-          }, 2000);
-        })
-        .catch(function(error) {
-          console.log('FAILED...', error);
-          alert("Sorry, there was an error sending your message. Please try again.");
-        })
-        .finally(function() {
           // Restore original styles
-          setTimeout(() => {
             submitBtn.innerHTML = originalText;
             submitBtn.disabled = false;
             submitBtn.style.opacity = "1";
             submitBtn.style.pointerEvents = "auto";
             submitBtn.style.cursor = "pointer";
-          }, 500);
+              
+          setTimeout(() => {
+            window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
+          }, 1000);
+        })
+        .catch(function(error) {
+          console.log('FAILED...', error);
+          alert("Sorry, there was an error. Please try again.");
+
+            // Restore original styles
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.style.pointerEvents = "auto";
+            submitBtn.style.cursor = "pointer";
         });
     
   return false;
 }
-
-document.getElementById('contact-form').addEventListener('submit', showAlert);
+  document.getElementById('contact-form').addEventListener('submit',showAlert);
 /* ends send emails function */
 
 // show and hide navlink in small devices:
