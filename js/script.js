@@ -278,7 +278,8 @@ function showAlert(event) {
     emailjs.sendForm('service_hyjqhbc', 'template_z994w15', event.target)
         .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
-            
+          // auto-reponse
+          emailjs.sendForm('service_hyjqhbc', 'template_6x1y7fq', event.target);  
           alert("Your message has been sent successfully. We'll get back to you soon.");
             
           // Reset form
