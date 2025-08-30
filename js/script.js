@@ -286,7 +286,7 @@ function showAlert(event) {
         // Redirect to home page
         setTimeout(() => {
           window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
-        }, 2000);
+        }, 1000);
 
         return response;
         })
@@ -303,7 +303,7 @@ function showAlert(event) {
             submitBtn.style.opacity = "1";
             submitBtn.style.pointerEvents = "auto";
             submitBtn.style.cursor = "pointer";
-            submitBtn.classList.remove = ("loading");
+            submitBtn.classList.remove("loading");
           }, 500);
         });
     

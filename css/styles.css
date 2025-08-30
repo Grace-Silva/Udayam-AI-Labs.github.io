@@ -878,7 +878,6 @@ flex: 0 1 240px;
       }
         .contact-form input::placeholder,  .contact-form textarea::placeholder{
           color: rgba(255, 255, 255, 0.4);
-          border: 1px solid rgba(255, 255, 255, .1);
         }
         .contact-form input:focus,
         .contact-form textarea:focus {
