@@ -257,7 +257,7 @@ window.addEventListener('scroll', function () {
 
 /* starts send emails function */
 
-/* Inicialite emailJS:
+// Inicialite emailJS:
 emailjs.init("9QTiwXB7EElSgyWrN");
 
 function showAlert(event) {
@@ -278,9 +278,6 @@ function showAlert(event) {
     emailjs.sendForm('service_hyjqhbc', 'template_z994w15', event.target)
         .then(function(response) {
           console.log('SUCCESS!', response.status, response.text);
-          // auto-reponse
-          emailjs.sendForm('service_hyjqhbc', 'template_6x1y7fq', event.target);  
-          alert("Your message has been sent successfully. We'll get back to you soon.");
             
           // Reset form
           event.target.reset();
@@ -306,76 +303,16 @@ function showAlert(event) {
             submitBtn.style.pointerEvents = "auto";
             submitBtn.style.cursor = "pointer";
         });
+    // auto-reponse
+    emailjs.sendForm('service_hyjqhbc', 'template_6x1y7fq', event.target);  
+    alert("Your message has been sent successfully. We'll get back to you soon.");
     
   return false;
 }
-  document.getElementById('contact-form').addEventListener('submit',showAlert);*/
+  document.getElementById('contact-form').addEventListener('submit',showAlert);
 /* ends send emails function */
 
-        // Inicializar EmailJS
-        emailjs.init("9QTiwXB7EElSgyWrN");
-        
-        const form = document.getElementById('contact-form');
-        const submitBtn = document.getElementById('submitBtn');
-        const successAlert = document.getElementById('successAlert');
-        const errorAlert = document.getElementById('errorAlert');
-        
-        // Guardar el contenido original del botón
-        const originalBtnContent = submitBtn.innerHTML;
-        
-        function showAlert(event) {
-            event.preventDefault(); // Evita que la página se recargue
-            
-            
-            // Animación de envío
-            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Enviando...';
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            
-            // Enviar correo principal y luego la auto-respuesta
-            emailjs.sendForm('service_hyjqhbc', 'template_z994w15', event.target)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    
-                    // Enviar auto-respuesta y devolver la promesa
-                    return emailjs.sendForm('service_hyjqhbc', 'template_6x1y7fq', event.target);
-                })
-                .then(function(response) {
-                    console.log('Auto-respuesta enviada:', response.status, response.text);
-                    
-                    // Mostrar alerta de éxito
-                    alert("mensaje enviado con éxito")
-                    
-                    // Restablecer formulario
-                    event.target.reset();
-                    
-                    // Restaurar el botón a su estado original
-                    submitBtn.innerHTML = originalBtnContent;
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                    
-                    // Redirigir después de 3 segundos
-                    setTimeout(() => {
-                        window.location.href = "https://grace-silva.github.io/Udayam-AI-Labs.github.io/index.html#contact";
-                    }, 3000);
-                })
-                .catch(function(error) {
-                    console.log('FAILED...', error);
-                    
-                    // Mostrar alerta de error
-                    alert("mensaje no enviado")
-                    
-                    // Restaurar el botón a su estado original
-                    submitBtn.innerHTML = originalBtnContent;
-                    submitBtn.classList.remove('loading');
-                    submitBtn.disabled = false;
-                });
-        }
-        
-        // Agregar el event listener al formulario
-        form.addEventListener('submit', showAlert);
     
-
 // show and hide navlink in small devices:
 const menuToggle = document.getElementById("menu-toggle");
   const navLinks = document.getElementById("nav-links");
