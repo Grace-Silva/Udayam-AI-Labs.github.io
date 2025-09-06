@@ -1,9 +1,9 @@
 /*  unified code to avoid conflicts between events */
 document.addEventListener('DOMContentLoaded', function () {
-console.log('✅ DOM cargado en about.html');
-    console.log('🔍 Acordeones encontrados:', document.querySelectorAll('.accordion-item').length);
     // 1. Smooth scrolling function for navigation links
-    document.querySelectorAll('nav a').forEach(anchor => {
+    // vefiry if the element exist:
+    if(document.querySelector("nav a")){
+      document.querySelectorAll('nav a').forEach(anchor => {
       anchor.addEventListener('click', function (e) {
 
         const href = this.getAttribute('href');
@@ -24,18 +24,19 @@ console.log('✅ DOM cargado en about.html');
               block: "start"
             });
 
-
             history.pushState(null, null, targetId);
           }
         }
 
       });
-    });
+      });
+    }
     // Ends Smooth scrolling function for navigation links
 
 
-
     // 2. Starts to Add animation classes to elements when they come into view
+    // vefiry if the element exist:
+    if(document.querySelector(".service-card") || document.querySelector(".photo-card") || document.querySelector(".about-content p")){
     const animatedElements = document.querySelectorAll('.service-card, .photo-card, .about-content p');
 
     const observer = new IntersectionObserver((entries) => {
@@ -53,10 +54,13 @@ console.log('✅ DOM cargado en about.html');
       observer.observe(element);
       element.classList.add('pre-animation');
     });
+    }
     // Ends to Add animation classes to elements when they come into
 
 
-    // 2. Starts Training highlights card details (swipper)
+    // 3. Starts Training highlights card details (swipper)
+    // vefiry if the element exist:
+    if(document.getElementById("prevBtn") && document.getElementById(nextBtn) && document.getElementById("dotsContainer")){
     const cardData = [
     {
       image: {
@@ -184,10 +188,13 @@ console.log('✅ DOM cargado en about.html');
           renderCard(currentTrainingCardIndex);
         });
         renderCard(currentTrainingCardIndex);
+    }
     // Ends Training highlights card details (swipper)
 
 
-    // 3. Starts Accordion-toggle elements:
+    // 4. Starts Accordion-toggle elements:
+    // vefiry if the element exist:
+    if(document.querySelector(".accordion-item")){
     const firstItem = document.querySelector('.accordion-item');
     
     if(firstItem){
@@ -215,10 +222,13 @@ console.log('✅ DOM cargado en about.html');
         item.classList.add('active');
       }
     }
+    }
     // Ends Accordion-toggle elements
 
 
-    // 4. Starts go up function:
+    // 5. Starts go up function:
+    // verify if the element exist
+    if (document.getElementById("btnUp")) {
     const btnUp = document.getElementById("btnUp");
     // Show or hide the button depending on the scroll position:
       window.addEventListener('scroll', function () {
@@ -237,101 +247,103 @@ console.log('✅ DOM cargado en about.html');
           top: 0,
           behavior: 'smooth'
         });          
-        }, 500);
+        }, 100);
       });
+    }
     // Ends go up function 
 
-/* 5. Starts send emails function with EmailJS: */
-  // Inicialite emailJS:
-  emailjs.init("r8071XjnXsbmJjqpz"); // public key
+    /* 6. Starts send emails function with EmailJS: */
+      if (document.getElementById('contact-form') && document.getElementById("submitBtn")) {
+      // Inicialite emailJS:
+      emailjs.init("r8071XjnXsbmJjqpz"); // public key
 
-  // Variables to manage the number of submission attempts for the form and a delay while checking:
-  const maxRetries = 2;
-  const delay = 1000;
+      // Variables to manage the number of submission attempts for the form and a delay while checking:
+      const maxRetries = 2;
+      const delay = 1000;
 
-  // Use the above counters to assist in debugging errors:
-  async function sendEmailWithRetry(formData, retries = maxRetries) {
-    // We initially attempted to send the form (without the user noticing):
-    try{
-      // const response = await emailjs.sendForm('service_ID', 'template_ID', form data);
-      const response = await emailjs.sendForm('service_1gtj9qj', 'template_uk7gybo', formData);
-      return response;
-    }
-    // If the delivery fails, start using the retry counter (1 successful delivery + 2 additional attempts):
-    catch(error){
-      if(retries>0){
-        console.log("Reintentando envío... (${maxRetries - retries + 1} / ${maxRetries})");
-        // count 1 second before attempting another send attempt:
-        await new Promise(resolve => setTimeout(resolve, delay));
-        return sendEmailWithRetry(formData, retries - 1); 
+      // Use the above counters to assist in debugging errors:
+      async function sendEmailWithRetry(formData, retries = maxRetries) {
+        // We initially attempted to send the form (without the user noticing):
+        try{
+          // const response = await emailjs.sendForm('service_ID', 'template_ID', form data);
+          const response = await emailjs.sendForm('service_1gtj9qj', 'template_uk7gybo', formData);
+          return response;
+        }
+        // If the delivery fails, start using the retry counter (1 successful delivery + 2 additional attempts):
+        catch(error){
+          if(retries>0){
+            console.log("Reintentando envío... (${maxRetries - retries + 1} / ${maxRetries})");
+            // count 1 second before attempting another send attempt:
+            await new Promise(resolve => setTimeout(resolve, delay));
+            return sendEmailWithRetry(formData, retries - 1); 
+          }
+          //
+          throw error; // if resending attempts fail, a message is displayed to users
+        }
+        //------
       }
-      //
-      throw error; // if resending attempts fail, a message is displayed to users
-    }
-    //------
-  }
- 
-  /* send email without retries or errors */
-  async function showAlert(event) {
+    
+      /* send email without retries or errors */
+      async function showAlert(event) {
 
-  event.preventDefault(); // website will not reload, post method blocked
-      
-    const submitBtn = document.getElementById("submitBtn"); // cta button
-    const originalText = submitBtn.innerHTML; // cta inner text
-    const form = event.target; // get form data
-
-    // "sending" animation in the submit button:
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-      submitBtn.classList.add('loading');
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = "0.5";
-      submitBtn.style.pointerEvents = "none";
-      submitBtn.style.cursor = "not-allowed";
-    //
-    try{
-      const response = await sendEmailWithRetry(form); // check that there are no errors
-      console.log("success", response.status, response.text);
-      alert("Your message was sent successfully!!");
-      form.reset(); // clean all input fields
-
-      // If the email is sent successfully, redirect to the home page:
-      setTimeout(() => {
-        window.location.href = "https://udayam.co.in/index.html#contact";
-      }, 1000);
-    }
-    // show error messages
-    catch(error){
-      console.log("failed", error);
-      let errorMessage = "Sorry, there was an error sending your message. ";
+      event.preventDefault(); // website will not reload, post method blocked
           
-      if (error?.status === 0 || error?.toString().includes('Network')) {
-        errorMessage += "Please check your internet connection and try again.";
-      } else if (error?.status >= 500) {
-        errorMessage += "Our server is having issues. Please try again in a few minutes.";
-      } else {
-        errorMessage += "Please try again or contact us directly at support@udayam.co.in";
+        const submitBtn = document.getElementById("submitBtn"); // cta button
+        const originalText = submitBtn.innerHTML; // cta inner text
+        const form = event.target; // get form data
+
+        // "sending" animation in the submit button:
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+          submitBtn.classList.add('loading');
+          submitBtn.disabled = true;
+          submitBtn.style.opacity = "0.5";
+          submitBtn.style.pointerEvents = "none";
+          submitBtn.style.cursor = "not-allowed";
+        //
+        try{
+          const response = await sendEmailWithRetry(form); // check that there are no errors
+          console.log("success", response.status, response.text);
+          alert("Your message was sent successfully!!");
+          form.reset(); // clean all input fields
+
+          // If the email is sent successfully, redirect to the home page:
+          setTimeout(() => {
+            window.location.href = "https://udayam.co.in/index.html#contact";
+          }, 1000);
+        }
+        // show error messages
+        catch(error){
+          console.log("failed", error);
+          let errorMessage = "Sorry, there was an error sending your message. ";
+              
+          if (error?.status === 0 || error?.toString().includes('Network')) {
+            errorMessage += "Please check your internet connection and try again.";
+          } else if (error?.status >= 500) {
+            errorMessage += "Our server is having issues. Please try again in a few minutes.";
+          } else {
+            errorMessage += "Please try again or contact us directly at support@udayam.co.in";
+          }
+              
+          alert(errorMessage);
+        }
+        finally{
+          // Restore original styles to the button submit (in case of success or error):
+          setTimeout(() => {
+            submitBtn.innerHTML = originalText;
+            submitBtn.disabled = false;
+            submitBtn.style.opacity = "1";
+            submitBtn.style.pointerEvents = "auto";
+            submitBtn.style.cursor = "pointer";
+            submitBtn.classList.remove("loading");
+          }, 500);
+        }
+
+        return false;
       }
-          
-      alert(errorMessage);
-    }
-    finally{
-      // Restore original styles to the button submit (in case of success or error):
-      setTimeout(() => {
-        submitBtn.innerHTML = originalText;
-        submitBtn.disabled = false;
-        submitBtn.style.opacity = "1";
-        submitBtn.style.pointerEvents = "auto";
-        submitBtn.style.cursor = "pointer";
-        submitBtn.classList.remove("loading");
-      }, 500);
-    }
 
-    return false;
-  }
-
-  document.getElementById('contact-form').addEventListener('submit', showAlert);
-/* Ends send emails function */
-
+      document.getElementById('contact-form').addEventListener('submit', showAlert);
+      }
+    /* Ends send emails function */
 
 });
 
