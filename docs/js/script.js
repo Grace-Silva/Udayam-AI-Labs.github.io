@@ -1,15 +1,30 @@
 // Smooth scrolling for navigation links
 document.querySelectorAll('nav a').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
-    e.preventDefault();
 
-    const targetId = this.getAttribute('href');
-    const targetElement = document.querySelector(targetId);
+    const href = this.getAttribute('href');
+    if(!href) return;
 
-    window.scrollTo({
-      top: targetElement.offsetTop,
-      behavior: 'smooth'
-    });
+    // solo prevenir el comportamiento por defecto para los enlaces internos:
+    if(href.startsWith("#")){
+
+      const targetId = href;
+      const targetElement = document.querySelector(targetId);
+
+      if(targetElement){
+
+        e.preventDefault();
+
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start"
+        });
+
+
+        history.pushState(null, null, targetId);
+      }
+    }
+
   });
 });
 
@@ -189,24 +204,6 @@ document.addEventListener("DOMContentLoaded",()=>{
       item.classList.add('active');
     }
     }
-});
-
-// Smooth scrolling for navigation links
-document.querySelectorAll('nav a').forEach(anchor => {
-anchor.addEventListener('click', function (e) {
-e.preventDefault();
-
-const targetId = this.getAttribute('href');
-const targetElement = document.querySelector(targetId);
-
-setTimeout(() => {
-  window.scrollTo({
-    top: targetElement.offsetTop,
-    behavior: 'smooth'
-  });      
-}, 150);
-
-});
 });
 
 // Add animation classes to elements when they come into view
