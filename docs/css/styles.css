@@ -1,7 +1,7 @@
 :root {
   /* Brand Colors */
   --primary-color: #473fc5;
-  --secondary-color:#4f46e5 ;
+  --secondary-color:#4f46e5;
   --accent-color: #00c896;
   --dark-color: #222;
   --light-color: #f8f9fa;
@@ -99,7 +99,7 @@ header{
   top: 0;
   width: 100%;
   padding: 0.1rem 0;
-  background: transparent;
+  background: rgba(255, 255, 255, 0.4);
   backdrop-filter: blur(20px); 
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid rgba(185, 176, 176, 0.95);
@@ -309,17 +309,18 @@ header{
   z-index: 1000;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  justify-content: center;
   align-items: center;
-  gap: 4rem;
+  gap: 2rem;
   padding: 6rem 4rem 2rem 4rem;
 }
 
 .about-content .hero-section-text{
   text-align: left;
-  /*justify-content: flex-end;*/
+  align-items: flex-start;
   gap: .8rem;
-  flex: 2;
+  flex: 3;
 }
 
 .about-content .hero-section-text h2{
@@ -330,14 +331,10 @@ header{
   font-size: 1.1rem;
 }
 
-.hero-section-img{
-  flex: 3;
+.about-content .about-image{
   overflow: hidden;
-  border-radius: 45% 55% 75% 25% / 34% 52% 48% 66% ;
+  flex: 2;
 }
-  .hero-section-img img{
-    width: 100%;
-  }
 
 /* Services Section */
 .services {
