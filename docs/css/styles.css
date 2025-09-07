@@ -223,7 +223,79 @@ header{
   transform: rotate(0deg);
   opacity: 1;
 }
+/* dropdown menus*/
 
+.dropdown {
+  width: 100%;
+  position: relative;
+  list-style: none;
+  text-align: center;
+}
+
+  .dropdown .dropdown-toggle {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 0 1rem;
+    cursor: pointer;
+  } .dropdown .dropdown-toggle:hover{
+      background: transparent;
+    }
+
+  .dropdown-icon {
+    font-size: 1rem;
+    transition: transform 0.3s ease-in;
+  }
+
+  .dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: var(--light-color);
+    width: 100%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    border-radius: 6px;
+    padding: 0.5rem 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    list-style: none;
+  }
+
+  .dropdown-menu li {
+    margin: 0;
+  }
+
+  .dropdown-menu a {
+    display: block;
+    color: var(--text-dark);
+    text-decoration: none;
+    transition: all 0.3s ease-in;
+    white-space: nowrap;
+  }
+
+  .dropdown-menu a:hover {
+    background: none;
+    border: none;
+  }
+    .dropdown-menu a:hover::before{
+      width: 0;
+    }
+
+  /* Mostrar dropdown al hover */
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .dropdown:hover .dropdown-icon {
+    transform: rotate(180deg);
+  }
 /* Hero Section */
 .hero-section {
   margin: 0;
