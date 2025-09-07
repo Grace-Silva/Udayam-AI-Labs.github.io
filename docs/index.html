@@ -39,7 +39,7 @@
     <!-- Navbar -->
     <nav class="nav-container" aria-label="Main navigation">
       <div class="logo-container">
-        <a href="/" class="logo-link">
+        <a href="index.html" class="logo-link">
           <img src="assets/images/logo.png" alt="Udayam AI Labs logo" />
           <span class="nav-title">Udayam AI Labs</span>
         </a>
@@ -50,10 +50,18 @@
       </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="#">Training</a></li>
-        <li><a href="about.html" target="_blank">About Us</a></li>
-        <li><a href="#team">Our Team</a></li>
-        <li><a href="#partners">Partners</a></li>
+        <li><a href="#">Courses</a></li>
+        <!-- empieza menú desplegable para la página about us -->
+         <li class="dropdown">
+            <a href="about.html" target="_blank" aria-expanded="false" aria-haspopup="true" class="dropdown-toggle">About Us
+                <i class="fa-solid fa-caret-down dropdown-icon"></i>
+            </a>
+                <ul class="dropdown-menu">
+                    <li><a href="about.html#team" target="_blank">Our Team</a></li>
+                    <li><a href="about.html#partners" target="_blank">Our Partners</a></li>
+                </ul>
+         </li>
+         <!-- termina menú desplegable para la página about us-->
         <li><a href="#contact">Contact</a></li>
       </ul>
     </nav>

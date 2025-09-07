@@ -229,7 +229,6 @@ header{
   width: 100%;
   position: relative;
   list-style: none;
-  text-align: center;
 }
 
   .dropdown .dropdown-toggle {
@@ -238,10 +237,12 @@ header{
     align-items: center;
     justify-content: center;
     gap: 1rem;
-    padding: 0 1rem;
+    padding: 1rem;
     cursor: pointer;
   } .dropdown .dropdown-toggle:hover{
       background: transparent;
+    } .dropdown .dropdown-toggle:hover::before{
+      width: 0;
     }
 
   .dropdown-icon {
@@ -255,7 +256,7 @@ header{
     left: 0;
     background: var(--light-color);
     width: 100%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
     padding: 0.5rem 0;
     opacity: 0;
@@ -1143,7 +1144,7 @@ flex: 0 1 240px;
 
    /* about us section */
    .about-content{
-    padding: 4rem 2rem 4rem 2rem;
+    padding: 4rem 2rem 2rem 2rem;
    }
 
    /* footer */
@@ -1177,6 +1178,19 @@ flex: 0 1 240px;
   }
   .menu-toggle {
     display: block;
+  }
+  /* dropdown menu */
+  .dropdown .dropdown-toggle{
+    justify-content: flex-start;
+  }
+  .dropdown-menu{
+    top: 0%;
+  }
+  /* Mostrar dropdown al hover */
+  .dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    position: relative;
   }
 
   /* footer */
@@ -1242,6 +1256,14 @@ flex: 0 1 240px;
   .menu-toggle {
     display: block;
   }
+  /* dropdown menu */
+    .dropdown-menu a:hover::before{
+      width: 0;
+    }  .dropdown-menu a:hover {
+          background: none;
+          border: none;
+        }
+
   .hero-section{
     padding-top: 6rem 1rem 4rem;
   }

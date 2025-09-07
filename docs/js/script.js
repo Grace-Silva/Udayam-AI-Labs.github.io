@@ -60,7 +60,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // 3. Starts Training highlights card details (swipper)
     // vefiry if the element exist:
-    if(document.getElementById("prevBtn") && document.getElementById(nextBtn) && document.getElementById("dotsContainer")){
+    if(document.getElementById("prevBtn") && document.getElementById("nextBtn") && document.getElementById("dotsContainer")){
     const cardData = [
     {
       image: {
