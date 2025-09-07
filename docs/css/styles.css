@@ -382,7 +382,6 @@ header{
   z-index: 1000;
   display: flex;
   flex-direction: row;
-  flex-wrap: wrap;
   justify-content: center;
   align-items: center;
   gap: 2rem;
@@ -394,6 +393,8 @@ header{
   align-items: flex-start;
   gap: .8rem;
   flex: 3;
+  order: 1;
+  padding: 4rem 1rem 1rem 1rem;
 }
 
 .about-content .hero-section-text h2{
@@ -407,6 +408,7 @@ header{
 .about-content .about-image{
   overflow: hidden;
   flex: 2;
+  order: 2;
 }
 
 /* Services Section */
@@ -1146,6 +1148,13 @@ flex: 0 1 240px;
    .about-content{
     padding: 4rem 2rem 2rem 2rem;
    }
+    .about-content .hero-section-text h2{
+      font-size: 2.2rem;
+      font-weight: 600;
+    } 
+    .about-content .hero-section-text p{
+      font-size: 1.05rem;
+    }
 
    /* footer */
     /* footer content */
@@ -1192,7 +1201,13 @@ flex: 0 1 240px;
     visibility: visible;
     position: relative;
   }
-
+  /* about section */
+  .about-content .hero-section-text{
+    flex: 2;
+  }
+  .about-content .about-image{
+    max-width: 600px;
+  }
   /* footer */
   .footer-content{
     padding: 2rem 2rem 1rem 2rem;
@@ -1271,7 +1286,32 @@ flex: 0 1 240px;
     font-size: 0.8rem;
     padding: 0.04rem 1.2rem;
   }
-  
+  /* about section */
+  .about-content{
+    flex-direction: column;
+    padding: 6rem 1rem 1rem 1rem;
+  }
+  .about-content .hero-section-text{
+    flex: none;
+    order: 2; 
+    text-align: center; 
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+  }
+
+  .about-content .hero-section-text h2{
+    font-size: 2rem;
+    font-weight: 600;
+  } 
+
+  .about-content .about-image{
+    order: 1;
+    flex: none;
+    max-width: 400px;
+  }
+
+
   .service-grid {
     grid-template-columns: 1fr;
   }
@@ -1426,6 +1466,20 @@ flex: 0 1 240px;
       font-size: 1rem;
       font-weight: 600;
     }
+    /* about section */
+    .about-content{
+      flex-direction: column;
+      padding: 8rem 1rem 1rem 1rem;
+    }
+      .about-content .hero-section-text h2{
+        font-size: 1.6rem;
+      }
+      .about-content .about-image{
+        order: 1;
+        flex: none;
+        max-width: 320px;
+      }
+
   /* footer */
     /* footer contact */ 
     .footer-content{
