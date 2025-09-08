@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', function () {
         if(!href) return;
 
         // solo prevenir el comportamiento por defecto para los enlaces internos:
-        if(href.startsWith("#")){
+        if(href.startsWith("#") && href != "#"){
 
           const targetId = href;
           const targetElement = document.querySelector(targetId);
@@ -345,7 +345,33 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     /* Ends send emails function */
 
+    // 7. starts dropdown menu support
+    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
+      toggle.addEventListener('click', function(e) {
+        e.preventDefault();
+        const dropdown = this.closest('.dropdown');
+        
+        if (window.innerWidth <= 992) {
+          dropdown.classList.toggle('active');
+          
+          // close another dropdown
+          document.querySelectorAll('.dropdown').forEach(other => {
+            if (other !== dropdown) other.classList.remove('active');
+          });
+        }
+      });
+    });
+      // close if the user touch outside
+      document.addEventListener('click', function(e) {
+        if (!e.target.closest('.dropdown')) {
+          document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.classList.remove('active');
+          });
+        }
+      });
+    // ends dropdown function  
 });
+
 
 
 

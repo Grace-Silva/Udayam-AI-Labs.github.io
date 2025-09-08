@@ -57,15 +57,16 @@
       </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="#">Courses</a></li>
+        <li><a href="javascript:void(0);">Courses</a></li>
         <!-- empieza menú desplegable para la página about us -->
          <li class="dropdown">
-            <a href="about.html" target="_blank" aria-expanded="false" aria-haspopup="true" class="dropdown-toggle">About Us
+            <a href="javascript:void(0);" aria-expanded="false" aria-haspopup="true" class="dropdown-toggle">About Us
                 <i class="fa-solid fa-caret-down dropdown-icon"></i>
             </a>
                 <ul class="dropdown-menu">
-                    <li><a href="about.html#team" target="_blank">Our Team</a></li>
-                    <li><a href="about.html#partners" target="_blank">Our Partners</a></li>
+                    <li><a href="about.html#about-content">Meet Us</a></li>
+                    <li><a href="about.html#team">Our Team</a></li>
+                    <li><a href="about.html#partners">Our Partners</a></li>
                 </ul>
          </li>
          <!-- termina menú desplegable para la página about us-->
@@ -676,6 +677,7 @@
       </div>
     </footer>
 
+    <!-- chat widget -->
     <div id="chat-widget-container">
       <button
         id="chat-toggle"
@@ -717,47 +719,55 @@
       </div>
     </div>
 
-      <button id="btnUp" class="upButton" title="Go Up">
+    <!-- go up button -->
+    <button id="btnUp" class="upButton" title="Go Up">
       <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
     </button>
 
+    <!-- request callback -->
     <button id="request-callback-btn">Request a Callback</button>
 
-    <div id="callback-modal" class="callback-modal">
-      <div class="callback-modal-content">
-        <span class="callback-close-btn">&times;</span>
-        <div class="callback-modal-header">
-          <i class="fas fa-phone-volume"></i>
-          <h3>Request a Callback</h3>
-        </div>
-        <p class="modal-intro-text">
-          Let's connect! Leave your number and one of our specialists will call you back shortly.
-        </p>
-        <form id="callback-form">
-          <label for="phone-number">Your Phone Number</label>
-          <div class="phone-input-group">
-            <select id="country-code" name="country-code" required>
-              <option value="+91" selected>IN (+91)</option>
-              <option value="+1">US (+1)</option>
-              <option value="+44">UK (+44)</option>
-              <option value="+61">AU (+61)</option>
-              <option value="+971">AE (+971)</option>
-            </select>
-            <input type="tel" id="phone-number" name="phone-number" placeholder="Enter phone number" pattern="[0-9]{10,15}" required>
+      <div id="callback-modal" class="callback-modal">
+        <div class="callback-modal-content">
+          <span class="callback-close-btn">&times;</span>
+          <div class="callback-modal-header">
+            <i class="fas fa-phone-volume"></i>
+            <h3>Request a Callback</h3>
           </div>
-          <button type="submit" id="callback-submit-btn">Get a Call Back</button>
-        </form>
-        <p class="callback-disclaimer">
-          <i class="fas fa-lock"></i> Your information is safe with us.
-        </p>
+          <p class="modal-intro-text">
+            Let's connect! Leave your number and one of our specialists will call you back shortly.
+          </p>
+          <form id="callback-form">
+            <label for="phone-number">Your Phone Number</label>
+            <div class="phone-input-group">
+              <select id="country-code" name="country-code" required>
+                <option value="+91" selected>IN (+91)</option>
+                <option value="+1">US (+1)</option>
+                <option value="+44">UK (+44)</option>
+                <option value="+61">AU (+61)</option>
+                <option value="+971">AE (+971)</option>
+              </select>
+              <input type="tel" id="phone-number" name="phone-number" placeholder="Enter phone number" pattern="[0-9]{10,15}" required>
+            </div>
+            <button type="submit" id="callback-submit-btn">Get a Call Back</button>
+          </form>
+          <p class="callback-disclaimer">
+            <i class="fas fa-lock"></i> Your information is safe with us.
+          </p>
+        </div>
       </div>
-    </div>
     <div id="toast">Callback requested successfully!</div>
+    <!-- Scripts -->
+
+    <!-- main js-->
+    <script src="js/script.js" defer></script>
 
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <script src="js/script.js" defer></script>
-    <script src="js/assistant.js" defer></script>
-    <script src="js/callback.js" defer></script>
+    <!-- email js -->
+      <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+      <!-- prabha code -->
+      <script src="js/assistant.js" defer></script>
+    <!-- callback request -->
+      <script src="js/callback.js" defer></script>
   </body>
 </html>
