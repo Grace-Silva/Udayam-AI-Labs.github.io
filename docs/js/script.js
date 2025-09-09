@@ -376,56 +376,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // parteners data:
     const partners = [
-    { // kaizen engineers
-      name: "Kaizen Engineers",
-      logo: "./assets/images/partners/kaizen.png",
-      url: "https://kaizengroup.co.in/"
-    },
-    { // stempedia
-      name: "STEMpedia",
-      logo: "./assets/images/partners/stempedia.png", 
-      url: "https://thestempedia.com/"
-    },
-    { // ramaiah university
-      name: "Ramaiah University of Applied Sciences",
-      logo: "./assets/images/partners/ramaiah.png",
-      url: "https://www.msruas.ac.in/"
-    },
-    { // ambition biology academy
-      name: "Ambition Biology Academy",
-      logo: "./assets/images/partners/ambitionscience.png",
-      url: "https://www.justdial.com/Ahmednagar/Ambition-Biology-Academy-Near-Morya-Mangal-Karyalaya-Savedi/9999PX241-X241-211211124847-R1E9_BZDET"
-    },
-    { // Dr. Babasaheb Ambedkar Marathwada University
-      name: "Dr. Babasaheb Ambedkar Marathwada University",
-      logo: "./assets/images/partners/dr babasaheb.png",
-      url: "http://bamu.ac.in/"
-    },
-    { //dr vithalrao foundation
-      name: "Dr. Vithalrao Vikhe Patil Foundation's",
-      logo: "./assets/images/partners/dr vithalrao.png",
-      url: "https://www.vimscopt.edu.in/"
-    },
-    { // isbr
-      name: "ISBR Business School,",
-      logo: "./assets/images/partners/isbr.png",
-      url: "https://www.isbr.in/"
-    },
-    { // kolkata
-      name: "National Institute of Pharmaceutical Education and Research, Kolkata",
-      logo: "./assets/images/partners/kolkata.png",
-      url: "https://www.niperkolkata.edu.in/ "
-    },
-    { // pdea
-      name: "Pune District Education Association, Pune",
-      logo: "./assets/images/partners/pdea.png",
-      url: "https://www.pdeapune.org/"
-    },
-    { // swami university
-      name: "Swami Ramanand Teerth Marathwada University",
-      logo: "./assets/images/partners/swami.png",
-      url: "https://srtmun.ac.in/en/"
-    }
+      { // kaizen engineers
+        name: "Kaizen Engineers",
+        logo: "./assets/images/partners/kaizen.png",
+        url: "https://kaizengroup.co.in/"
+      },
+      { // stempedia
+        name: "STEMpedia",
+        logo: "./assets/images/partners/stempedia.png", 
+        url: "https://thestempedia.com/"
+      },
+      { // ramaiah university
+        name: "Ramaiah University of Applied Sciences",
+        logo: "./assets/images/partners/ramaiah.png",
+        url: "https://www.msruas.ac.in/"
+      },
+      { // ambition biology academy
+        name: "Ambition Biology Academy",
+        logo: "./assets/images/partners/ambitionscience.png",
+        url: "https://www.justdial.com/Ahmednagar/Ambition-Biology-Academy-Near-Morya-Mangal-Karyalaya-Savedi/9999PX241-X241-211211124847-R1E9_BZDET"
+      },
+      { // Dr. Babasaheb Ambedkar Marathwada University
+        name: "Dr. Babasaheb Ambedkar Marathwada University",
+        logo: "./assets/images/partners/dr babasaheb.png",
+        url: "http://bamu.ac.in/"
+      },
+      { //dr vithalrao foundation
+        name: "Dr. Vithalrao Vikhe Patil Foundation's",
+        logo: "./assets/images/partners/dr vithalrao.png",
+        url: "https://www.vimscopt.edu.in/"
+      },
+      { // isbr
+        name: "ISBR Business School,",
+        logo: "./assets/images/partners/isbr.png",
+        url: "https://www.isbr.in/"
+      },
+      { // kolkata
+        name: "National Institute of Pharmaceutical Education and Research, Kolkata",
+        logo: "./assets/images/partners/kolkata.png",
+        url: "https://www.niperkolkata.edu.in/ "
+      },
+      { // pdea
+        name: "Pune District Education Association, Pune",
+        logo: "./assets/images/partners/pdea.png",
+        url: "https://www.pdeapune.org/"
+      },
+      { // swami university
+        name: "Swami Ramanand Teerth Marathwada University",
+        logo: "./assets/images/partners/swami.png",
+        url: "https://srtmun.ac.in/en/"
+      }
     ];
 
     // populate elements:
@@ -439,12 +439,50 @@ document.addEventListener('DOMContentLoaded', function () {
         </a>
       `;
       }
-      // duplicate logos
+      // duplicate logos (infinite scroll)
       const logosHTML = partners.map(createLogos).join('');
       track.innerHTML = logosHTML+logosHTML; // automatic clone
 
+        // stop animation when the user touch/hover:
+        class PartnersSlider {
+          constructor() {
+            this.track = document.getElementById('partnersTrack');
+            this.isPaused = false;
+            this.init();
+          }
+          
+          init() {
+            // stop with mouse:
+            this.track.addEventListener('mouseenter', () => this.pause());
+            this.track.addEventListener('mouseleave', () => this.resume());
+            
+            // stop with touch:
+            this.track.addEventListener('touchstart', () => this.pause());
+            this.track.addEventListener('touchend', () => this.delayedResume());
+          }
+          
+          pause() {
+            if (!this.isPaused) {
+              this.track.classList.add('paused');
+              this.isPaused = true;
+            }
+          }
+          
+          resume() {
+            if (this.isPaused) {
+              this.track.classList.remove('paused');
+              this.isPaused = false;
+            }
+          }
+          // restart after 2 second if the user dont touch the section
+          delayedResume() {
+            setTimeout(() => this.resume(), 5000);
+          }
+        }
+
       // Init slider
-      new PartnersSlider(); // 
+      new PartnersSlider();
+
     /* ends partners section */
 });
 
