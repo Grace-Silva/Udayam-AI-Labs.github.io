@@ -383,7 +383,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     { // stempedia
       name: "STEMpedia",
-      logo: "./assets/partners/stempedia.png", 
+      logo: "./assets/images/partners/stempedia.png", 
       url: "https://thestempedia.com/"
     },
     { // ramaiah university
@@ -403,7 +403,7 @@ document.addEventListener('DOMContentLoaded', function () {
     },
     { //dr vithalrao foundation
       name: "Dr. Vithalrao Vikhe Patil Foundation's",
-      logo: "./assets/partners/dr vithalrao.png",
+      logo: "./assets/images/partners/dr vithalrao.png",
       url: "https://www.vimscopt.edu.in/"
     },
     { // isbr
@@ -426,8 +426,25 @@ document.addEventListener('DOMContentLoaded', function () {
       logo: "./assets/images/partners/swami.png",
       url: "https://srtmun.ac.in/en/"
     }
-  ];
+    ];
 
+    // populate elements:
+    const track = document.getElementById("partnersTrack");
+      // create logo containers
+      function createLogos(e){
+      return `
+        <a href="${e.url}" target="_blank" class="partner-logo-image" 
+         aria-label="${e.name}">
+          <img src="${e.logo}" alt="${e.name} logo">
+        </a>
+      `;
+      }
+      // duplicate logos
+      const logosHTML = partners.map(createLogos).join('');
+      track.innerHTML = logosHTML+logosHTML; // automatic clone
+
+      // Init slider
+      new PartnersSlider(); // 
     /* ends partners section */
 });
 

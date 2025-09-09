@@ -759,17 +759,48 @@ gap: 1.8rem;
 padding: 2rem;
 width: 100%;
 }
+
 .partners-contain{
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 240px));
-  align-items: center;
-  justify-items: center;
-  justify-content: center;
-  gap: 1.8rem;
+  overflow: hidden;
   padding: 2rem;
+  position: relative;
+  /* Efecto de difuminado para suavizar bordes */
+  mask: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
+  -webkit-mask: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
 }
 
+/* partners logo container */
+.partners-track{
+  display: flex;
+  /* minwidth image * elements + clones */
+  width: calc(240px*20);
+  padding: 0 1rem;
+  animation: 40s linear infinite slideLogos both;
+  will-change: transform;
+}
+  /* partners logos animation */
+  @keyframes slideLogos {
+    0%{
+      transform: translateX(0);
+    }
+    to{
+       transform: translateX(calc(-240px * 10));
+      /*transform: translateX(-50%);*/
+    }
+  }
+  /* partner logo image */
+  .partner-logo-image{
+    min-width: 240px;
+    filter: grayscale(1);
+  }
+      .partner-logo-image img{
+        object-fit: contain;
+      }
+  /* stop animation */
+  /* Pausar animación */
+.partners-track.paused {
+  animation-play-state: paused;
+}    
 .team-card {
 gap: 1.4rem;
 padding: 2rem;
