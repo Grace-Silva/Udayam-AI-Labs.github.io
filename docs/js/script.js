@@ -370,6 +370,65 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     // ends dropdown function  
+
+
+    /* starts partners section */
+
+    // parteners data:
+    const partners = [
+    { // kaizen engineers
+      name: "Kaizen Engineers",
+      logo: "./assets/images/partners/kaizen.png",
+      url: "https://kaizengroup.co.in/"
+    },
+    { // stempedia
+      name: "STEMpedia",
+      logo: "./assets/partners/stempedia.png", 
+      url: "https://thestempedia.com/"
+    },
+    { // ramaiah university
+      name: "Ramaiah University of Applied Sciences",
+      logo: "./assets/images/partners/ramaiah.png",
+      url: "https://www.msruas.ac.in/"
+    },
+    { // ambition biology academy
+      name: "Ambition Biology Academy",
+      logo: "./assets/images/partners/ambitionscience.png",
+      url: "https://www.justdial.com/Ahmednagar/Ambition-Biology-Academy-Near-Morya-Mangal-Karyalaya-Savedi/9999PX241-X241-211211124847-R1E9_BZDET"
+    },
+    { // Dr. Babasaheb Ambedkar Marathwada University
+      name: "Dr. Babasaheb Ambedkar Marathwada University",
+      logo: "./assets/images/partners/dr babasaheb.png",
+      url: "http://bamu.ac.in/"
+    },
+    { //dr vithalrao foundation
+      name: "Dr. Vithalrao Vikhe Patil Foundation's",
+      logo: "./assets/partners/dr vithalrao.png",
+      url: "https://www.vimscopt.edu.in/"
+    },
+    { // isbr
+      name: "ISBR Business School,",
+      logo: "./assets/images/partners/isbr.png",
+      url: "https://www.isbr.in/"
+    },
+    { // kolkata
+      name: "National Institute of Pharmaceutical Education and Research, Kolkata",
+      logo: "./assets/images/partners/kolkata.png",
+      url: "https://www.niperkolkata.edu.in/ "
+    },
+    { // pdea
+      name: "Pune District Education Association, Pune",
+      logo: "./assets/images/partners/pdea.png",
+      url: "https://www.pdeapune.org/"
+    },
+    { // swami university
+      name: "Swami Ramanand Teerth Marathwada University",
+      logo: "./assets/images/partners/swami.png",
+      url: "https://srtmun.ac.in/en/"
+    }
+  ];
+
+    /* ends partners section */
 });
 
 
