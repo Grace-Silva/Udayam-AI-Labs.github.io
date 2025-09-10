@@ -484,10 +484,8 @@ document.addEventListener('DOMContentLoaded', function () {
       new PartnersSlider();
 
     /* ends partners section */
-});
-
-/* starts send data and download pdf */
-  // Inicializar EmailJS (reemplaza con tus credenciales)
+    /* starts send data and download pdf */
+      // Inicializar EmailJS (reemplaza con tus credenciales)
         emailjs.init("9QTiwXB7EElSgyWrN");
         function openModal() {
             document.getElementById('modalOverlay').classList.add('active');
@@ -585,7 +583,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 closeModal();
             }
         });
-/* ends send data and download pdf */
+    /* ends send data and download pdf */
+});
+
+
 
 
 
