@@ -550,7 +550,7 @@ document.addEventListener('DOMContentLoaded', function () {
             
             // Enviar datos con EmailJS
             const templateParams = {
-                to_email: 'tu-email@empresa.com', // Reemplaza con tu email
+                to_email: 'gSDuarte2024@outlook.com', // Reemplaza con tu email
                 from_email: email,
                 phone: phone,
                 message: `Nuevo registro para descarga: Email: ${email}, Teléfono: ${phone}`
