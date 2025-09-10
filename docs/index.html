@@ -143,36 +143,57 @@
           </div>
         </div>
       </div>
-      <!-- send to google sheets -->
-        <form id="submit-to-google-sheet">
+      <!-- download brochure -->
+        <button class="download-btn" onclick="openModal()">Descargar archivo</button>
 
-          <div class="form-group">
-            <label for="email">Email:</label>
-            <input
-              class="form-control"
-              type="email"
-              name="email"
-              id="email"
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div class="form-group">
-            <label for="slip">Contact Number:</label>
-            <input
-              class="form-control"
-              type="text"
-              name="phone"
-              id="contact_number"
-              placeholder="Contact Number"
-              required
-            />
-          </div>
-
-          <button type="submit" class="btn btn-primary btn-block">
-            Submit
-          </button>
-        </form>
+        <div class="modal-overlay" id="modalOverlay">
+            <div class="modal" id="modal">
+                <button class="close-btn" onclick="closeModal()">×</button>
+                
+                <div id="formContent">
+                    <h2 class="modal-title">Datos para descarga</h2>
+                    <p class="modal-description">Completa tus datos para recibir el archivo</p>
+                    
+                    <form id="downloadForm" onsubmit="handleSubmit(event)">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input 
+                                type="email" 
+                                id="email" 
+                                placeholder="yourmail@domain.com" 
+                                required
+                            >
+                            <div class="error" id="emailError">Por favor ingresa un email válido</div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Teléfono</label>
+                            <input 
+                                type="tel" 
+                                id="phone" 
+                                placeholder="+1 234 567 8900" 
+                                required
+                            >
+                            <div class="error" id="phoneError">Por favor ingresa tu teléfono</div>
+                        </div>
+                        
+                        <div class="error" id="generalError"></div>
+                        
+                        <button type="submit" class="submit-btn" id="submitBtn">Enviar y descargar</button>
+                    </form>
+                </div>
+                
+                <div id="successContent" style="display: none;">
+                    <h2 class="modal-title">¡Gracias!</h2>
+                    <p class="modal-description">Pronto recibirás el archivo</p>
+                    
+                    <div class="success-message">¡Revisa tu bandeja de entrada!</div>
+                    <p class="info-text">Hemos recibido tus datos y pronto te enviaremos el archivo.</p>
+                    
+                    <button class="close-success-btn" onclick="closeModal()">Cerrar</button>
+                </div>
+            </div>
+        </div>
     </section>
 
     <!-- Training Highlights -->
