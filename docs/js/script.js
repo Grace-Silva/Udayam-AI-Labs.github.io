@@ -486,7 +486,23 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ends partners section */
 });
 
+/* starts send data to google sheets */
+  const scriptURL =                       
+      "https://script.google.com/macros/s/AKfycbyXbSGE4xeqH4IdHWaUPx6djTZGRYympN7pXGamM9oCg5O5EWbIBdHCf_fmtBbpjV4Y/exec";
+      const form = document.forms["submit-to-google-sheet"];
+      form.addEventListener("submit", (e) => {
+        e.preventDefault();
+        var formData = new FormData(form);
 
+        fetch(scriptURL, { method: "POST", body: formData })
+          .then((response) => {
+            swal("Done", "Submitted Successfully.", "success");
+          })
+          .catch((error) => {
+            swal("Error", "Something went wrong. please try again!", "error");
+          });
+      });
+/* ends send data to google sheets */
 
 
 
