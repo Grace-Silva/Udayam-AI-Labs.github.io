@@ -550,14 +550,15 @@ header{
       }
 
   /** if it finds invalid parameters **/
-  .error {
+  .error, #emailError, #phoneError {
     color: #F70638;
-    font-size: 18px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 400;
     margin-bottom: 12px;
+    font-style: italic;
     display: none;
     }
-    .error.active {
+    .error.active, #emailError.active, #phoneError.active {
       display: block;
     }
 
