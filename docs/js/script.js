@@ -349,36 +349,43 @@ document.addEventListener('DOMContentLoaded', function () {
 
       document.getElementById('contact-form').addEventListener('submit', showAlert);
       }
-    /* Contact Form: Ends send emails function */
+    /* Ends send emails function: Contact Form */
 
     // 7. starts dropdown menu support for mobile
-    document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        const dropdown = this.closest('.dropdown');
-        
-        if (window.innerWidth <= 992) {
-          dropdown.classList.toggle('active');
-          
-          // close another dropdown
-          document.querySelectorAll('.dropdown').forEach(other => {
-            if (other !== dropdown) other.classList.remove('active');
+    // verifica si los elementos existen:
+    const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+
+      if(dropdownToggles.length > 0){
+        dropdownToggles.forEach(toggle => {
+          toggle.addEventListener('click', function(e) {
+            e.preventDefault();
+            const dropdown = this.closest('.dropdown');
+            
+            if (window.innerWidth <= 992) {
+              dropdown.classList.toggle('active');
+              
+              // close another dropdown
+              document.querySelectorAll('.dropdown').forEach(other => {
+                if (other !== dropdown) other.classList.remove('active');
+              });
+            }
           });
-        }
-      });
-    });
-      // close if the user touch outside
-      document.addEventListener('click', function(e) {
-        if (!e.target.closest('.dropdown')) {
-          document.querySelectorAll('.dropdown').forEach(dropdown => {
-            dropdown.classList.remove('active');
-          });
-        }
-      });
+        });
+
+        // close if the user touch outside
+        document.addEventListener('click', function(e) {
+          if (!e.target.closest('.dropdown')) {
+            document.querySelectorAll('.dropdown').forEach(dropdown => {
+              dropdown.classList.remove('active');
+            });
+          }
+        });
+
+      }
     // ends dropdown function for mobile  
 
 
-    /* starts partners section */
+    /* 8. starts partners section */
 
     // parteners data:
     const partners = [
@@ -436,6 +443,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // populate elements:
     const track = document.getElementById("partnersTrack");
+    // verifica que exista:
+    if(track){
       // create logo containers
       function createLogos(e){
       return `
@@ -488,13 +497,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
       // Init slider
       new PartnersSlider();
-
+    }
     /* ends partners section */
 
 
-    /* 8. starts send data and download pdf */
-      // init emailJS
-        emailjs.init("9QTiwXB7EElSgyWrN");
+    /* 9. starts send data and download brochure */
+    // verifica si existe:
+    // init emailJS
+    emailjs.init("9QTiwXB7EElSgyWrN");
       // close modal window when the user clicks off
       document.getElementById('modalOverlay').addEventListener('click', function(event) {
         if (event.target === this) {
@@ -512,91 +522,97 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* 8. starts send data and download pdf */
     // global functions
-      function openModal() {
-        document.getElementById('modalOverlay').classList.add('active');
+    function openModal() {
+      const modalOverlay = document.getElementById('modalOverlay');
+      // verifica si existe:
+      if(modalOverlay){
+        modalOverlay.classList.add('active');
       }
-      function closeModal() {
-        document.getElementById('modalOverlay').classList.remove('active');
-        resetForm();
+    }
+    function closeModal() {
+      const modalOverlay = document.getElementById('modalOverlay');
+      if(modalOverlay){
+        modalOverlay.classList.remove('active');
       }
-        function resetForm() {
-          document.getElementById('email').value = '';
-          document.getElementById('phone').value = '';
-          document.getElementById('emailError').classList.remove('active');
-          document.getElementById('phoneError').classList.remove('active');
-          document.getElementById('generalError').classList.remove('active');
-          document.getElementById('generalError').textContent = '';
-          document.getElementById('formContent').style.display = 'block';
-          document.getElementById('successContent').style.display = 'none';
-          document.getElementById('submitBtn').disabled = false;
-          document.getElementById('submitBtn').textContent = 'Enviar y descargar';
-        }
-      function handleSubmit(event) {
-      event.preventDefault();
-        const email = document.getElementById('email').value.trim();
-        const phone = document.getElementById('phone').value.trim();
-        const emailError = document.getElementById('emailError');
-        const phoneError = document.getElementById('phoneError');
-        const generalError = document.getElementById('generalError');
-        const submitBtn = document.getElementById('submitBtn');
-      // Reset errores
-      emailError.classList.remove('active');
-      phoneError.classList.remove('active');
-      generalError.classList.remove('active');
-      // validate
-      let isValid = true;
-      if (!email) {
-        emailError.textContent = 'Please type your email';
-        emailError.classList.add('active');
-        isValid = false;
-      } else if (!email.includes('@')) {
-        emailError.textContent = 'Please enter a valid email';
-        emailError.classList.add('active');
-        isValid = false;
+      resetForm();
+    }
+    function resetForm() {
+      document.getElementById('email').value = '';
+      document.getElementById('phone').value = '';
+      document.getElementById('emailError').classList.remove('active');
+      document.getElementById('phoneError').classList.remove('active');
+      document.getElementById('generalError').classList.remove('active');
+      document.getElementById('generalError').textContent = '';
+      document.getElementById('formContent').style.display = 'block';
+      document.getElementById('successContent').style.display = 'none';
+      document.getElementById('submitBtn').disabled = false;
+      document.getElementById('submitBtn').textContent = 'Enviar y descargar';
+    }
+    function handleSubmit(event) {
+    event.preventDefault();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const emailError = document.getElementById('emailError');
+      const phoneError = document.getElementById('phoneError');
+      const generalError = document.getElementById('generalError');
+      const submitBtn = document.getElementById('submitBtn');
+    // errors reset
+    emailError.classList.remove('active');
+    phoneError.classList.remove('active');
+    generalError.classList.remove('active');
+    // validate
+    let isValid = true;
+    if (!email) {
+      emailError.textContent = 'Please type your email';
+      emailError.classList.add('active');
+      isValid = false;
+    } else if (!email.includes('@')) {
+      emailError.textContent = 'Please enter a valid email';
+      emailError.classList.add('active');
+      isValid = false;
+    }
+      /* evitar que se ingresen caracteres especiales */
+      else if (!validarSinEspeciales(email)) {
+      emailError.textContent = ' The email address contains unauthorised characters.';
+      emailError.classList.add('active');
+      isValid = false;
       }
-        /* evitar que se ingresen caracteres especiales */
-        else if (!validarSinEspeciales(email)) {
-        emailError.textContent = 'El email contiene caracteres no permitidos';
-        emailError.classList.add('active');
-        isValid = false;
-        }
 
-      if (!phone) {
-        phoneError.textContent = 'Type you phone';
+    if (!phone) {
+      phoneError.textContent = 'Type you phone';
+      phoneError.classList.add('active');
+      isValid = false;
+    } 
+      /* evitar que se ingresen caracteres especiales */
+      else if (!validarSinEspeciales(phone)) {
+        phoneError.textContent = 'This number contains unauthorised characters.';
         phoneError.classList.add('active');
         isValid = false;
-      } 
-        /* evitar que se ingresen caracteres especiales */
-        else if (!validarSinEspeciales(phone)) {
-          phoneError.textContent = 'El teléfono contiene caracteres no permitidos';
-          phoneError.classList.add('active');
-          isValid = false;
-        }
-      if (!isValid) return;
-      // Deshabilitar botón y mostrar loading
-      submitBtn.disabled = true;
-      submitBtn.textContent = 'Sending...';
-      // Enviar datos con EmailJS
-      const templateParams = {
-        email: email,
-        phone: phone,
-      };
-      emailjs.send('service_hyjqhbc', 'template_z994w15', templateParams)
-        .then(function(response) {
-          console.log('Your Email was sended sucessfully:', response);
-          // Mostrar mensaje de éxito
-          document.getElementById('formContent').style.display = 'none';
-          document.getElementById('successContent').style.display = 'block';
-
-        }, function(error) {
+      }
+    if (!isValid) return;
+    // Deshabilitar botón y mostrar loading
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    // Enviar datos con EmailJS
+    const templateParams = {
+      email: email,
+      phone: phone,
+    };
+    emailjs.send('service_hyjqhbc', 'template_z994w15', templateParams)
+      .then(function(response) {
+        console.log('Your Email was sended sucessfully:', response);
+        // show succes message
+        document.getElementById('formContent').style.display = 'none';
+        document.getElementById('successContent').style.display = 'block';
+      }, function(error) {
           console.error('Ha ocurrifo un error:', error);
           generalError.textContent = 'Error while attempting to send the information. Please try again.';
           generalError.classList.add('active');
           submitBtn.disabled = false;
           submitBtn.textContent = 'Send and Download';
-        });
-      
-      }
+      });
+    
+    }
   /* ends send data and download pdf */    
 
 
