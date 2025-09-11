@@ -144,58 +144,57 @@
         </div>
       </div>
       <!-- download brochure -->
-        <button class="download-btn" onclick="openModal()">Descargar archivo</button>
+        <button class="download-btn" onclick="openModal()">Get Brochure<i class="fa-solid fa-download"></i></button>
 
-        <div class="modal-overlay" id="modalOverlay">
+      <!-- modal window --> 
+        <div class="modal-overlay active" id="modalOverlay">
+          <!-- modal window -->
             <div class="modal" id="modal">
-                <button class="close-btn" onclick="closeModal()">×</button>
+              <!-- close window icon -->
+              <button class="close-btn" onclick="closeModal()">              
+                <i class="fa-solid fa-xmark"></i>
+              </button>
                 
-                <div id="formContent">
-                    <h2 class="modal-title">Datos para descarga</h2>
-                    <p class="modal-description">Completa tus datos para recibir el archivo</p>
+              <div id="formContent">
+                <p class="modal-description">Completa tus datos para recibir el archivo
+                </p>
                     
-                    <form id="downloadForm" onsubmit="handleSubmit(event)">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input 
-                                type="email" 
-                                id="email"
-                                name="email" 
-                                placeholder="yourmail@domain.com" 
-                                required
-                            >
-                            <div class="error" id="emailError">Por favor ingresa un email válido</div>
-                        </div>
+                <form id="downloadForm" onsubmit="handleSubmit(event)">
+                <!-- email-->
+                  <div>
+                    <label for="email"><i class="fa-solid fa-envelope"></i>Email</label>
+                    <input type="email" id="email" name="email" placeholder="youremail@domain.com" required>
+                    <!-- if it finds invalid parameters -->
+                    <div class="error" id="emailError">Por favor ingresa un email válido</div>
+                  </div>
+
+                <!-- phone -->   
+                  <div>
+                    <label for="phone"><i class="fa-solid fa-phone"></i>Phone</label>
+                    <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                    <!-- if it finds invalid parameters -->
+                    <div class="error" id="phoneError">Por favor ingresa tu teléfono</div>
+                  </div> 
+                    
+                  <div class="error" id="generalError"></div>
                         
-                        <div class="form-group">
-                            <label for="phone">Teléfono</label>
-                            <input 
-                                type="tel" 
-                                id="phone" 
-                                name="phone"
-                                placeholder="+1 234 567 8900" 
-                                required
-                            >
-                            <div class="error" id="phoneError">Por favor ingresa tu teléfono</div>
-                        </div>
-                        
-                        <div class="error" id="generalError"></div>
-                        
-                        <button type="submit" class="submit-btn" id="submitBtn">Enviar y descargar</button>
-                    </form>
-                </div>
+                  <button type="submit" class="download-btn" id="submitBtn">Send and Get Brochure</button>
+                  </form>
+              </div>
                 
-                <div id="successContent" style="display: none;">
-                    <h2 class="modal-title">¡Gracias!</h2>
-                    <p class="modal-description">Pronto recibirás el archivo</p>
+              <div id="successContent" style="display: none;">
+                <h2 class="modal-title">¡Thank You!</h2>
+
+                <p class="info-text">We have received your details and will send you the file shortly.</p>
+
+                <div class="success-message">¡Please check your inbox!<i class="fa-solid fa-inbox" style="margin: 0 4px"></i></div>
+
                     
-                    <div class="success-message">¡Revisa tu bandeja de entrada!</div>
-                    <p class="info-text">Hemos recibido tus datos y pronto te enviaremos el archivo.</p>
-                    
-                    <button class="close-success-btn" onclick="closeModal()">Cerrar</button>
+                <button class="download-btn" onclick="closeModal()">Close</button>
                 </div>
             </div>
         </div>
+
     </section>
 
     <!-- Training Highlights -->

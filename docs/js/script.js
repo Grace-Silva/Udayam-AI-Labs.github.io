@@ -1,5 +1,11 @@
+  /* !!important: we prevent special characters from being entered */
+  function validarSinEspeciales(textDemo) {
+    return /^[a-zA-Z0-9\s@.+-]*$/.test(textDemo);
+  }
+
 /*  unified code to avoid conflicts between events */
 document.addEventListener('DOMContentLoaded', function () {
+
     // 1. Smooth scrolling function for navigation links
     // vefiry if the element exist:
     if(document.querySelector("nav a")){
@@ -484,16 +490,18 @@ document.addEventListener('DOMContentLoaded', function () {
       new PartnersSlider();
 
     /* ends partners section */
+
+
     /* starts send data and download pdf */
-      // Inicializar EmailJS (reemplaza con tus credenciales)
+      // init emailJS
         emailjs.init("9QTiwXB7EElSgyWrN");
-      // Cerrar modal al hacer click fuera del contenido
+      // close modal window when the user clicks off
       document.getElementById('modalOverlay').addEventListener('click', function(event) {
         if (event.target === this) {
           closeModal();
         }
       });
-      // Cerrar modal con Escape key
+      // close modal window with ESC
       document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('active')) {
           closeModal();
@@ -501,58 +509,60 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     /* ends send data and download pdf */
 });
-// Funciones globales para que onclick las encuentre
-    function openModal() {
-      document.getElementById('modalOverlay').classList.add('active');
-    }
-    function closeModal() {
-      document.getElementById('modalOverlay').classList.remove('active');
-      resetForm();
-    }
-    function resetForm() {
-      document.getElementById('email').value = '';
-      document.getElementById('phone').value = '';
-      document.getElementById('emailError').classList.remove('active');
-      document.getElementById('phoneError').classList.remove('active');
-      document.getElementById('generalError').classList.remove('active');
-      document.getElementById('generalError').textContent = '';
-      document.getElementById('formContent').style.display = 'block';
-      document.getElementById('successContent').style.display = 'none';
-      document.getElementById('submitBtn').disabled = false;
-      document.getElementById('submitBtn').textContent = 'Enviar y descargar';
-    }
-    function handleSubmit(event) {
+
+  /* starts send data and download pdf */
+    // global functions
+      function openModal() {
+        document.getElementById('modalOverlay').classList.add('active');
+      }
+      function closeModal() {
+        document.getElementById('modalOverlay').classList.remove('active');
+        resetForm();
+      }
+        function resetForm() {
+          document.getElementById('email').value = '';
+          document.getElementById('phone').value = '';
+          document.getElementById('emailError').classList.remove('active');
+          document.getElementById('phoneError').classList.remove('active');
+          document.getElementById('generalError').classList.remove('active');
+          document.getElementById('generalError').textContent = '';
+          document.getElementById('formContent').style.display = 'block';
+          document.getElementById('successContent').style.display = 'none';
+          document.getElementById('submitBtn').disabled = false;
+          document.getElementById('submitBtn').textContent = 'Enviar y descargar';
+        }
+      function handleSubmit(event) {
       event.preventDefault();
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const emailError = document.getElementById('emailError');
-      const phoneError = document.getElementById('phoneError');
-      const generalError = document.getElementById('generalError');
-      const submitBtn = document.getElementById('submitBtn');
+        const email = document.getElementById('email').value.trim();
+        const phone = document.getElementById('phone').value.trim();
+        const emailError = document.getElementById('emailError');
+        const phoneError = document.getElementById('phoneError');
+        const generalError = document.getElementById('generalError');
+        const submitBtn = document.getElementById('submitBtn');
       // Reset errores
       emailError.classList.remove('active');
       phoneError.classList.remove('active');
       generalError.classList.remove('active');
-      // Validaciones
+      // validate
       let isValid = true;
       if (!email) {
-        emailError.textContent = 'Por favor ingresa tu email';
+        emailError.textContent = 'Please type your email';
         emailError.classList.add('active');
         isValid = false;
       } else if (!email.includes('@')) {
-        emailError.textContent = 'Por favor ingresa un email válido';
+        emailError.textContent = 'Please enter a valid email';
         emailError.classList.add('active');
         isValid = false;
       }
       if (!phone) {
-        phoneError.textContent = 'Por favor ingresa tu teléfono';
+        phoneError.textContent = 'Type you phone';
         phoneError.classList.add('active');
         isValid = false;
       }
       if (!isValid) return;
       // Deshabilitar botón y mostrar loading
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
+      submitBtn.textContent = 'Sending...';
       // Enviar datos con EmailJS
       const templateParams = {
         email: email,
@@ -560,20 +570,21 @@ document.addEventListener('DOMContentLoaded', function () {
       };
       emailjs.send('service_hyjqhbc', 'template_z994w15', templateParams)
         .then(function(response) {
-          console.log('Email enviado exitosamente:', response);
+          console.log('Your Email was sended sucessfully:', response);
           // Mostrar mensaje de éxito
           document.getElementById('formContent').style.display = 'none';
           document.getElementById('successContent').style.display = 'block';
-          // Aquí puedes agregar la descarga del archivo si es necesario
-          // window.open('URL_DEL_ARCHIVO', '_blank');
+
         }, function(error) {
-          console.error('Error al enviar email:', error);
-          generalError.textContent = 'Error al enviar la información. Por favor intenta nuevamente.';
+          console.error('Ha ocurrifo un error:', error);
+          generalError.textContent = 'Error while attempting to send the information. Please try again.';
           generalError.classList.add('active');
           submitBtn.disabled = false;
-          submitBtn.textContent = 'Enviar y descargar';
+          submitBtn.textContent = 'Send and Download';
         });
-    }
+      
+      }
+  /* ends send data and download pdf */    
 
 
 
