@@ -258,7 +258,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     // Ends go up function 
 
-    /* 6. Starts send emails function with EmailJS: */
+    /* 6. Contact Form: Starts send emails function with EmailJS: */
       if (document.getElementById('contact-form') && document.getElementById("submitBtn")) {
       // Inicialite emailJS:
       emailjs.init("r8071XjnXsbmJjqpz"); // public key
@@ -349,9 +349,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
       document.getElementById('contact-form').addEventListener('submit', showAlert);
       }
-    /* Ends send emails function */
+    /* Contact Form: Ends send emails function */
 
-    // 7. starts dropdown menu support
+    // 7. starts dropdown menu support for mobile
     document.querySelectorAll('.dropdown-toggle').forEach(toggle => {
       toggle.addEventListener('click', function(e) {
         e.preventDefault();
@@ -375,7 +375,7 @@ document.addEventListener('DOMContentLoaded', function () {
           });
         }
       });
-    // ends dropdown function  
+    // ends dropdown function for mobile  
 
 
     /* starts partners section */
@@ -492,7 +492,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ends partners section */
 
 
-    /* starts send data and download pdf */
+    /* 8. starts send data and download pdf */
       // init emailJS
         emailjs.init("9QTiwXB7EElSgyWrN");
       // close modal window when the user clicks off
@@ -510,7 +510,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ends send data and download pdf */
 });
 
-  /* starts send data and download pdf */
+  /* 8. starts send data and download pdf */
     // global functions
       function openModal() {
         document.getElementById('modalOverlay').classList.add('active');
@@ -554,11 +554,24 @@ document.addEventListener('DOMContentLoaded', function () {
         emailError.classList.add('active');
         isValid = false;
       }
+        /* evitar que se ingresen caracteres especiales */
+        else if (!validarSinEspeciales(email)) {
+        emailError.textContent = 'El email contiene caracteres no permitidos';
+        emailError.classList.add('active');
+        isValid = false;
+        }
+
       if (!phone) {
         phoneError.textContent = 'Type you phone';
         phoneError.classList.add('active');
         isValid = false;
-      }
+      } 
+        /* evitar que se ingresen caracteres especiales */
+        else if (!validarSinEspeciales(phone)) {
+          phoneError.textContent = 'El teléfono contiene caracteres no permitidos';
+          phoneError.classList.add('active');
+          isValid = false;
+        }
       if (!isValid) return;
       // Deshabilitar botón y mostrar loading
       submitBtn.disabled = true;
