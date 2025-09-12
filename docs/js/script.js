@@ -1,7 +1,11 @@
   /* !!important: we prevent special characters from being entered */
   function validarSinEspeciales(textDemo) {
-    // return caracteresVálidos && caracteres restringidos
-    return /^[a-zA-Z0-9\s@._+-]*$/.test(textDemo) && !/[<>\/\\]/.test(textDemo);
+    // 1. block code chars
+    if (/[<>\/\\{}[\]$#%^&*|~`]/.test(textDemo)) {
+      return false;
+    }
+    // 2. allow secure characters
+    return /^[\w\s@.,+–\-¡!¿?áéíóúÁÉÍÓÚñÑüÜàèìòùÀÈÌÒÙçÇ:;"'()¿¡\n\r\t]*$/.test(textDemo);
   }
   function validarTelefono(texto) {
     // Permite solo números, espacios, guiones y paréntesis
@@ -265,7 +269,8 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ends go up function 
 
 
-    /* 6. Starts send emails function with EmailJS(Contact Form) */
+      /* 6. Starts send emails function with EmailJS(Contact Form) */
+
     // verify if the element exist
     if (document.getElementById('contact-form') && document.getElementById("submitBtn")) {
     // Inicialite emailJS:
@@ -301,7 +306,26 @@ document.addEventListener('DOMContentLoaded', function () {
     async function showAlert(event) {
 
     event.preventDefault(); // website will not reload, post method blocked
-        
+
+    /* reject special char */
+      const forM = event.target;
+      let isValid = true;
+      
+      // Validar todos los campos de texto, email y textarea
+    const inputs = forM.querySelectorAll('input[type="text"],  textarea');
+      for (let Input of inputs) {
+        if (!validarSinEspeciales(Input.value)) {
+          alert(`The field "${Input.name}" contains unauthorised characters.`);
+          Input.focus();
+          isValid = false;
+          break;
+        }
+      }
+        // if validation fails, stop sending
+        if (!isValid) {
+            return false;
+        }
+
       const submitBtn = document.getElementById("submitBtn"); // cta button
       const originalText = submitBtn.innerHTML; // cta inner text
       const form = event.target; // get form data
@@ -358,7 +382,8 @@ document.addEventListener('DOMContentLoaded', function () {
     document.getElementById('contact-form').addEventListener('submit', showAlert);
     }
     /* Ends send emails function with EmailJS(Contact Form) */
-
+    
+    
     // 7. starts dropdown menu support for mobile
     // verify if the element exis
     const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
@@ -525,7 +550,11 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     /* ends send data and download pdf */
+
+
 });
+
+
 
   /* 8. starts send data and download pdf */
     // global functions
