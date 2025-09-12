@@ -273,8 +273,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // verify if the element exist
     if (document.getElementById('contact-form') && document.getElementById("submitBtn")) {
-    // Inicialite emailJS:
-    emailjs.init("r8071XjnXsbmJjqpz"); // public key
 
     // Variables to manage the number of submission attempts for the form and a delay while checking:
     const maxRetries = 2;
@@ -284,6 +282,8 @@ document.addEventListener('DOMContentLoaded', function () {
     async function sendEmailWithRetry(formData, retries = maxRetries) {
       // We initially attempted to send the form (without the user noticing):
       try{
+        // Inicialite emailJS:
+        emailjs.init("r8071XjnXsbmJjqpz"); // public key
         // const response = await emailjs.sendForm('service_ID', 'template_ID', form data);
         const response = await emailjs.sendForm('service_1gtj9qj', 'template_uk7gybo', formData);
         return response;
@@ -535,8 +535,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* 9. starts send data and download brochure with EmailJS */
     // verify if the element exist
-    // init emailJS
-    emailjs.init("9QTiwXB7EElSgyWrN");
       // close modal window when the user clicks off
       document.getElementById('modalOverlay').addEventListener('click', function(event) {
         if (event.target === this) {
@@ -550,7 +548,6 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     /* ends send data and download pdf */
-
 
 });
 
@@ -586,6 +583,10 @@ document.addEventListener('DOMContentLoaded', function () {
     }
     function handleSubmit(event) {
     event.preventDefault();
+
+      // init emailJS
+      emailjs.init("9QTiwXB7EElSgyWrN"); // cambiar esto por la id publica de la nueva cuenta
+
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
       const emailError = document.getElementById('emailError');
@@ -635,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function () {
       email: email,
       phone: phone,
     };
-    emailjs.send('service_hyjqhbc', 'template_z994w15', templateParams)
+    emailjs.send('service_hyjqhbc', 'template_z994w15', templateParams) // cambiar esto por lo ids de las plantillas de la nueva cuenta
       .then(function(response) {
         console.log('This Email was sended sucessfully:', response);
         // show succes message
