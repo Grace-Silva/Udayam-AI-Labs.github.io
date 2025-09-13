@@ -269,21 +269,25 @@ document.addEventListener('DOMContentLoaded', function () {
     // Ends go up function 
 
 
-      /* 6. Starts send emails function with EmailJS(Contact Form) */
-
+    /* 6. Starts send emails function with EmailJS(Contact Form) */
     // verify if the element exist
     if (document.getElementById('contact-form') && document.getElementById("submitBtn")) {
 
     // Variables to manage the number of submission attempts for the form and a delay while checking:
     const maxRetries = 2;
     const delay = 1000;
+    let emailjsInitialized = false;
 
     // Use the above counters to assist in debugging errors:
     async function sendEmailWithRetry(formData, retries = maxRetries) {
       // We initially attempted to send the form (without the user noticing):
       try{
-        // Inicialite emailJS:
-        emailjs.init("r8071XjnXsbmJjqpz"); // public key 
+        if(!emailjsInitialized){
+          // Inicialite emailJS:
+          emailjs.init("r8071XjnXsbmJjqpz"); // public key 
+          emailjsInitialized = true;
+        }
+
         // const response = await emailjs.sendForm('service_ID',  'template_ID, form data);
         const response = await emailjs.sendForm('service_1gtj9qj', 'template_uk7gybo', formData);
         return response;
@@ -307,12 +311,14 @@ document.addEventListener('DOMContentLoaded', function () {
 
     event.preventDefault(); // website will not reload, post method blocked
 
-    /* reject special char */
-      const forM = event.target;
+    /* reject special char and charge send btn */
+      const form = event.target; // get form data
+      const submitBtn = document.getElementById("submitBtn"); // cta button
+      const originalText = submitBtn.innerHTML; // cta inner text
       let isValid = true;
       
       // Validar todos los campos de texto, email y textarea
-    const inputs = forM.querySelectorAll('input[type="text"],  textarea');
+    const inputs = form.querySelectorAll('input[type="text"],  textarea');
       for (let Input of inputs) {
         if (!validarSinEspeciales(Input.value)) {
           alert(`The field "${Input.name}" contains unauthorised characters.`);
@@ -326,22 +332,21 @@ document.addEventListener('DOMContentLoaded', function () {
             return false;
         }
 
-      const submitBtn = document.getElementById("submitBtn"); // cta button
-      const originalText = submitBtn.innerHTML; // cta inner text
-      const form = event.target; // get form data
 
       // "sending" animation in the submit button:
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
         submitBtn.classList.add('loading');
         submitBtn.disabled = true;
         submitBtn.style.opacity = "0.5";
         submitBtn.style.pointerEvents = "none";
         submitBtn.style.cursor = "not-allowed";
+
+        await new Promise(resolve => setTimeout(resolve, 50));
+
       //
       try{
         const response = await sendEmailWithRetry(form); // check that there are no errors
         console.log("success", response.status, response.text);
-        alert("Your message was sent successfully!!");
+        alert(" Your message was sent successfully!! ");
         form.reset(); // clean all input fields
 
         // If the email is sent successfully, redirect to the home page:
@@ -352,14 +357,14 @@ document.addEventListener('DOMContentLoaded', function () {
       // show error messages
       catch(error){
         console.log("failed", error);
-        let errorMessage = "Sorry, there was an error sending your message. ";
+        let errorMessage = "Sorry, there was an error sending your message. Please try again. ";
             
         if (error?.status === 0 || error?.toString().includes('Network')) {
-          errorMessage += "Please check your internet connection and try again.";
+          errorMessage += " Please check your internet connection and try again.";
         } else if (error?.status >= 500) {
-          errorMessage += "Our server is having issues. Please try again in a few minutes.";
+          errorMessage += " Our server is having issues. Please try again in a few minutes.";
         } else {
-          errorMessage += "Please try again or contact us directly at support@udayam.co.in";
+          errorMessage += " Please try again or contact us directly at support@udayam.co.in ";
         }
             
         alert(errorMessage);
