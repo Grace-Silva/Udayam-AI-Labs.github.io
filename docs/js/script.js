@@ -585,7 +585,7 @@ document.addEventListener('DOMContentLoaded', function () {
     event.preventDefault();
 
       // init emailJS
-      emailjs.init("9QTiwXB7EElSgyWrN"); // cambiar esto por la id publica de la nueva cuenta
+      emailjs.init("ilcGOCulCPRqjQQDb"); 
 
       const email = document.getElementById('email').value.trim();
       const phone = document.getElementById('phone').value.trim();
@@ -636,7 +636,7 @@ document.addEventListener('DOMContentLoaded', function () {
       email: email,
       phone: phone,
     };
-    emailjs.send('service_hyjqhbc', 'template_z994w15', templateParams) // cambiar esto por lo ids de las plantillas de la nueva cuenta
+    emailjs.send('service_vetmuad', 'template_p70cppb', templateParams)
       .then(function(response) {
         console.log('This Email was sended sucessfully:', response);
         // show succes message
