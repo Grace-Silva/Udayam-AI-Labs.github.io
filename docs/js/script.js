@@ -283,8 +283,8 @@ document.addEventListener('DOMContentLoaded', function () {
       // We initially attempted to send the form (without the user noticing):
       try{
         // Inicialite emailJS:
-        emailjs.init("r8071XjnXsbmJjqpz"); // public key
-        // const response = await emailjs.sendForm('service_ID', 'template_ID', form data);
+        emailjs.init("r8071XjnXsbmJjqpz"); // public key 
+        // const response = await emailjs.sendForm('service_ID',  'template_ID, form data);
         const response = await emailjs.sendForm('service_1gtj9qj', 'template_uk7gybo', formData);
         return response;
       }
