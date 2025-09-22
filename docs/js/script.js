@@ -442,7 +442,7 @@ document.addEventListener('DOMContentLoaded', function () {
         url: "https://www.msruas.ac.in/"
       },
       { // ambition biology academy
-        name: "Ambition Biology Academy",
+        name: "Ambition Biology Academy Ahmednagar",
         logo: "./assets/images/partners/ambitionscience.png",
         url: "https://www.justdial.com/Ahmednagar/Ambition-Biology-Academy-Near-Morya-Mangal-Karyalaya-Savedi/9999PX241-X241-211211124847-R1E9_BZDET"
       },
@@ -486,7 +486,7 @@ document.addEventListener('DOMContentLoaded', function () {
       function createLogos(e){
       return `
         <a href="${e.url}" target="_blank" class="partner-logo-image" 
-         aria-label="${e.name}">
+         aria-label="${e.name}" title="${e.name}">
           <img src="${e.logo}" alt="${e.name} logo">
         </a>
       `;
@@ -553,6 +553,201 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       });
     /* ends send data and download pdf */
+
+    /* 10. starts previous trainings carrousel */
+    const cardData = [
+    {
+      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      title: "Introducción a Machine Learning",
+      subtitle: "Universidad Nacional",
+      category: "universidad",
+      alt: "Sesión de capacitación en machine learning"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      title: "Redes Neuronales en la Práctica",
+      subtitle: "Corporación TechSolutions",
+      category: "corporacion",
+      alt: "Sesión de redes neuronales"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      title: "Ética en IA para Educadores",
+      subtitle: "Instituto Pedagógico",
+      category: "institucion",
+      alt: "Sesión sobre ética en IA"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      title: "Computer Vision Aplicado",
+      subtitle: "Escuela Técnica Superior",
+      category: "escuela",
+      alt: "Sesión de computer vision"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      title: "NLP para Procesamiento de Textos",
+      subtitle: "Corporación Financiera Global",
+      category: "corporacion",
+      alt: "Sesión de procesamiento de lenguaje natural"
+    },
+    {
+      image: "https://images.unsplash.com/photo-1581092918056-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
+      title: "Robótica Educativa con IA",
+      subtitle: "Colegio San Andrés",
+      category: "escuela",
+      alt: "Sesión de robótica educativa"
+    }
+    ];    
+
+  // Variables globales
+    let currentFilter = 'all';
+    let currentLightboxIndex = 0;
+    let filteredData = [];
+
+    // Inicializar la galería
+    function initGallery() {
+      renderGallery();
+      setupEventListeners();
+    }
+
+    // Renderizar la galería
+    function renderGallery() {
+      const gallery = document.querySelector('.gallery');
+      gallery.innerHTML = '';
+        
+      filteredData = currentFilter === 'all' 
+          ? [...cardData] 
+          : cardData.filter(card => card.category === currentFilter);
+        
+    filteredData.forEach((card, index) => {
+      const cardElement = document.createElement('div');
+      cardElement.className = 'training-card';
+      cardElement.dataset.index = index;
+      cardElement.innerHTML = `
+          <div class="training-card-image">
+              <img src="${card.image}" alt="${card.alt}">
+              <div class="institution-badge filter-btn">${getCategoryName(card.category)}</div>
+          </div>
+          <div class="training-card-content">
+              <h3 class="training-card-title">${card.title}</h3>
+              <p class="training-card-subtitle">${card.subtitle}</p>
+          </div>
+      `;
+      gallery.appendChild(cardElement);
+    });
+    }
+
+    // Obtener nombre de categoría
+    function getCategoryName(category) {
+      const categories = {
+        'universidad': 'Universidad',
+        'escuela': 'Escuela',
+        'corporacion': 'Corporación',
+        'institucion': 'Institución'
+      };
+      return categories[category] || category;
+    }
+
+    // Configurar event listeners
+    function setupEventListeners() {
+    // Filtros
+      document.querySelectorAll('.filter-btn').forEach(button => {
+        button.addEventListener('click', () => {
+          document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+          button.classList.add('active');
+          currentFilter = button.dataset.filter;
+          renderGallery();
+        });
+      });
+
+    // Lightbox - abrir al hacer clic en una tarjeta
+      document.addEventListener('click', (e) => {
+        const card = e.target.closest('.training-card');
+        if (card) {
+          openLightbox(parseInt(card.dataset.index));
+        }
+      });
+
+    // Lightbox - cerrar
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+
+    // Lightbox - navegación
+    document.getElementById('prevBtn').addEventListener('click', () => navigateLightbox(-1));
+    document.getElementById('nextBtn').addEventListener('click', () => navigateLightbox(1));
+
+    // Lightbox - teclado
+    document.addEventListener('keydown', (e) => {
+      if (document.getElementById('lightbox').classList.contains('active')) {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+      }
+    });
+
+    // Lightbox - swipe para móviles
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    const lightbox = document.getElementById('lightbox');
+    lightbox.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    }, false);
+        
+    lightbox.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    }, false);
+        
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      if (touchEndX < touchStartX - swipeThreshold) {
+        navigateLightbox(1); // Swipe izquierda
+      }
+      if (touchEndX > touchStartX + swipeThreshold) {
+        navigateLightbox(-1); // Swipe derecha
+      }
+    }
+    }
+
+    // Abrir lightbox
+    function openLightbox(index) {
+      currentLightboxIndex = index;
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightboxImage');
+      const lightboxTitle = document.getElementById('lightboxTitle');
+      const lightboxSubtitle = document.getElementById('lightboxSubtitle');
+        
+      lightboxImage.src = filteredData[index].image;
+      lightboxImage.alt = filteredData[index].alt;
+      lightboxTitle.textContent = filteredData[index].title;
+      lightboxSubtitle.textContent = filteredData[index].subtitle;
+      
+      lightbox.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Cerrar lightbox
+    function closeLightbox() {
+      document.getElementById('lightbox').classList.remove('active');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Navegar en el lightbox
+    function navigateLightbox(direction) {
+      let newIndex = currentLightboxIndex + direction;
+      
+      if (newIndex < 0) {
+        newIndex = filteredData.length - 1;
+      } else if (newIndex >= filteredData.length) {
+        newIndex = 0;
+      }
+      
+      openLightbox(newIndex);
+    }    
+
+    initGallery();
+    /*  ends previous trainings carrousel */
 
 });
 
