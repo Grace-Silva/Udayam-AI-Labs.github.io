@@ -242,63 +242,42 @@
         ></div> -->
       <!-- starts filter -->  
       <div class="filter">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="universidad">Schools</button>
-        <button class="filter-btn" data-filter="escuela">Faculty</button>
-        <button class="filter-btn" data-filter="corporacion">Corporate</button>
-        <button class="filter-btn" data-filter="institucion">Institution</button>
+        <button class="filter-btn active" data-filter="all">View All</button>
+        <button class="filter-btn" data-filter="school">Schools</button>
+        <button class="filter-btn" data-filter="university">University</button>
+        <button class="filter-btn" data-filter="corporate">Corporate</button>
       </div>
       <!-- ends filter -->
       <!-- starts gallery -->
       <div class="gallery" id="gallery">
       <!-- starts training card 
-        <div class="training-card" data-category="university">
-          <div class="training-card-image">
-            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Sesión de capacitación">
-            <div class="institution-badge filter-btn">University</div>
-          </div>
-          <div class="training-card-content">
-            <h3 class="training-card-title">Introducción a Machine Learning</h3>
-            <p class="training-card-subtitle">Universidad Nacional (Bogotá)</p>
-          </div>
-        </div>
       <!-- ends training card -->
-
-      <!-- starts training card 
-        <div class="training-card" data-category="school">
-          <div class="training-card-image">
-            <img src="https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1740&q=80" alt="Sesión de capacitación">
-            <div class="institution-badge filter-btn">Schools</div>
-          </div>
-          <div class="training-card-content">
-            <h3 class="training-card-title">Introducing young learners to the word of artificial intelligence</h3>
-            <p class="training-card-subtitle">Baldwin Girls' High School (Bangalore)</p>
-          </div>
-        </div>
-      <!-- ends training card -->
-
       </div>
       <!-- ends gallery -->
-
-      <!-- starts previous training carrousel -->
- <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" id="lightboxClose">&times;</button>
-        <div class="lightbox-nav">
-            <button class="lightbox-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
-            <button class="lightbox-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
-        </div>
-        <div class="lightbox-content">
-            <img id="lightboxImage" src="" alt="">
-            <div class="lightbox-caption">
-                <h3 id="lightboxTitle"></h3>
-                <p id="lightboxSubtitle"></p>
-            </div>
-        </div>
-</div>      
-
+  
       </div>
 
     </section>
+    <!-- starts previous training carrousel -->
+    <div class="lightbox" id="lightbox">
+      <!-- content -->
+
+        <div class="lightbox-content">
+          <!-- close btn-->
+          <button class="lightbox-close close-btn" id="lightboxClose">&times;</button>
+        <!-- controls -->
+        <div class="lightbox-nav">
+          <button class="lightbox-btn" id="prevBtn"><i class="fas fa-chevron-left"></i></button>
+          <button class="lightbox-btn" id="nextBtn"><i class="fas fa-chevron-right"></i></button>
+        </div>  
+          <img id="lightboxImage" src="" alt="">
+          <!-- info -->
+          <div class="lightbox-caption">
+            <h3 id="lightboxTitle"></h3>
+            <p id="lightboxSubtitle"></p>
+          </div>
+        </div>
+    </div>    
 
     <!-- About section -->
     <section id="about" class="about">
@@ -795,12 +774,14 @@
             </button>
         </div>
     </div>
-</div>
+  </div>
 
     <!-- go up button -->
     <button id="btnUp" class="upButton" title="Go Up">
       <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
     </button>
+
+
 
     <!-- request callback -->
    <button id="request-callback-btn">Request a Callback</button>

@@ -557,46 +557,64 @@ document.addEventListener('DOMContentLoaded', function () {
     /* 10. starts previous trainings carrousel */
     const cardData = [
     {
-      image: "https://images.unsplash.com/photo-1555949963-aa79dcee981c?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      title: "Introducción a Machine Learning",
-      subtitle: "Universidad Nacional",
-      category: "universidad",
-      alt: "Sesión de capacitación en machine learning"
+      image: "./assets/images/gallery/1.jpg",
+      title: "Introduction to AI",
+      subtitle: "Mahesh Munot High School",
+      category: "school"
     },
     {
-      image: "https://images.unsplash.com/photo-1581091226033-d5c48150dbaa?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      title: "Redes Neuronales en la Práctica",
-      subtitle: "Corporación TechSolutions",
-      category: "corporacion",
-      alt: "Sesión de redes neuronales"
+      image: "./assets/images/gallery/5.jpg",
+      title: "Data Science",
+      subtitle: "University of Pune",
+      category: "university"
     },
     {
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      title: "Ética en IA para Educadores",
-      subtitle: "Instituto Pedagógico",
-      category: "institucion",
-      alt: "Sesión sobre ética en IA"
+      image: "./assets/images/gallery/14.jpg",
+      title: "Mathematical Techniques in Data Science",
+      subtitle: "Sardar Vallabhbhai Patel University",
+      category: "university"
     },
     {
-      image: "https://images.unsplash.com/photo-1581092580497-e0d23cbdf1dc?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      title: "Computer Vision Aplicado",
-      subtitle: "Escuela Técnica Superior",
-      category: "escuela",
-      alt: "Sesión de computer vision"
+      image: "./assets/images/gallery/30.jpg",
+      title: "Introduction to AI",
+      subtitle: "Latur Subcenter",
+      category: "university",
     },
     {
-      image: "https://images.unsplash.com/photo-1558346490-a72e53ae2d4f?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      title: "NLP para Procesamiento de Textos",
-      subtitle: "Corporación Financiera Global",
-      category: "corporacion",
-      alt: "Sesión de procesamiento de lenguaje natural"
+      image: "./assets/images/gallery/44.jpg",
+      title: "Mathematics and ML",
+      subtitle: "Ahmednagar College",
+      category: "university"
     },
     {
-      image: "https://images.unsplash.com/photo-1581092918056-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80",
-      title: "Robótica Educativa con IA",
-      subtitle: "Colegio San Andrés",
-      category: "escuela",
-      alt: "Sesión de robótica educativa"
+      image: "./assets/images/gallery/64.jpg",
+      title: "Machine Learning",
+      subtitle: "Vikhe Patil Eng. College",
+      category: "university"
+    },
+    {
+      image: "./assets/images/gallery/68.jpg",
+      title: "Mathematical Techniques in Data Science",
+      subtitle: "More College Akurdi pune",
+      category: "university"
+    },
+    {
+      image: "./assets/images/gallery/78.jpg",
+      title: "National Mathematics Day",
+      subtitle: "Annasaheb magar College,Hadapsar",
+      category: "university"
+    },
+    {
+      image: "./assets/images/gallery/81.jpg",
+      title: "MOU",
+      subtitle: "Annasaheb magar College,Hadapsar",
+      category: "university"
+    },
+    {
+      image: "./assets/images/gallery/31.jpg",
+      title: "Introduction to AI",
+      subtitle: "Latur Subcenter",
+      category: "university"
     }
     ];    
 
@@ -626,8 +644,8 @@ document.addEventListener('DOMContentLoaded', function () {
       cardElement.dataset.index = index;
       cardElement.innerHTML = `
           <div class="training-card-image">
-              <img src="${card.image}" alt="${card.alt}">
-              <div class="institution-badge filter-btn">${getCategoryName(card.category)}</div>
+              <img src="${card.image}" alt="${card.title}">
+              <div class="institution-badge">${getCategoryName(card.category)}</div>
           </div>
           <div class="training-card-content">
               <h3 class="training-card-title">${card.title}</h3>
@@ -641,10 +659,9 @@ document.addEventListener('DOMContentLoaded', function () {
     // Obtener nombre de categoría
     function getCategoryName(category) {
       const categories = {
-        'universidad': 'Universidad',
-        'escuela': 'Escuela',
-        'corporacion': 'Corporación',
-        'institucion': 'Institución'
+        'university': 'University',
+        'school': 'Schools',
+        'corporate': 'Corporate',
       };
       return categories[category] || category;
     }
@@ -682,6 +699,13 @@ document.addEventListener('DOMContentLoaded', function () {
         if (e.key === 'Escape') closeLightbox();
         if (e.key === 'ArrowLeft') navigateLightbox(-1);
         if (e.key === 'ArrowRight') navigateLightbox(1);
+      }
+    });
+
+        // Lightbox - cerrar al hacer clic en el overlay (fondo negro)
+    document.getElementById("lightbox").addEventListener('click', (i) => {
+      if (i.target === lightbox) {
+        closeLightbox();
       }
     });
 
@@ -745,8 +769,9 @@ document.addEventListener('DOMContentLoaded', function () {
       
       openLightbox(newIndex);
     }    
-
-    initGallery();
+    if(gallery){
+      initGallery();
+    }
     /*  ends previous trainings carrousel */
 
 });
