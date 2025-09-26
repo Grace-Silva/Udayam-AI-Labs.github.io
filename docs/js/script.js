@@ -615,7 +615,49 @@ document.addEventListener('DOMContentLoaded', function () {
       title: "Introduction to AI",
       subtitle: "Latur Subcenter",
       category: "university"
-    }
+    },
+    {
+      image: "./assets/images/gallery/82.jpg",
+      title: "AI for Young Innovators",
+      subtitle: "Dr. Vithalrao Vikhe Patil Foundation's",
+      category: "school"
+    },
+    {
+      image: "./assets/images/gallery/83.jpg",
+      title: "AI Bussiness Directors",
+      subtitle: "MIDC, Ahilyanagar",
+      category: "corporate"
+    },
+    {
+      image: "./assets/images/gallery/84.jpg",
+      title: "Navigating AI-Driven Opportunities",
+      subtitle: "Dr. Babasaheb Ambedkar Marathwada University",
+      category: "corporate"
+    },
+    {
+      image: "./assets/images/gallery/85.jpg",
+      title: "Industrial Training for Statistics Students",
+      subtitle: "Swami Ramanand Teerth Marathwada University",
+      category: "university"
+    },
+    {
+      image: "./assets/images/gallery/86.jpg",
+      title: "Machine Learning Training",
+      subtitle: "Dr.Ramkrushna More College Akurdi",
+      category: "university"
+    },
+    {
+      image: "./assets/images/gallery/87.jpg",
+      title: "AI Session",
+      subtitle: "Kendriya vidyalaya, AhilyaNagar",
+      category: "school"
+    }, 
+    {
+      image: "./assets/images/gallery/88.jpg",
+      title: "AI in Healthcare",
+      subtitle: "Dr. Vikhe Patil Foundation Medical college",
+      category: "corporate"
+    }, 
     ];    
 
   // Variables globales
@@ -742,11 +784,19 @@ document.addEventListener('DOMContentLoaded', function () {
       const lightboxTitle = document.getElementById('lightboxTitle');
       const lightboxSubtitle = document.getElementById('lightboxSubtitle');
         
-      lightboxImage.src = filteredData[index].image;
-      lightboxImage.alt = filteredData[index].alt;
-      lightboxTitle.textContent = filteredData[index].title;
-      lightboxSubtitle.textContent = filteredData[index].subtitle;
+      lightboxImage.classList.add("changing");
+
+      setTimeout(() =>{
+
+        lightboxImage.src = filteredData[index].image;
+        lightboxImage.alt = filteredData[index].alt;
+        lightboxTitle.textContent = filteredData[index].title;
+        lightboxSubtitle.textContent = filteredData[index].subtitle;
       
+        setTimeout(() => {
+            lightboxImage.classList.remove('changing');
+        }, 50);
+      }, 250);
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
     }
