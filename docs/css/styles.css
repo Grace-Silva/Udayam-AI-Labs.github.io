@@ -826,6 +826,7 @@ width: 24px;
   justify-content: center;
   flex-wrap: wrap;
   gap: 1em;
+  padding: 1em;
 }
   .filter-btn{
     display: inline-block;
@@ -836,6 +837,7 @@ width: 24px;
     border-radius: 40px;
     font-size: 0.8rem;
     font-weight: 600;
+    transition: all ease .3s;
   }  .filter-btn.active{
     background: rgba(79, 70, 229, 0.8);
     color: var(--light-color);
@@ -884,11 +886,12 @@ width: 24px;
     right: calc(4%);
     padding: 4px 8px;
     color: var(--light-color);
-    background: rgba(138, 92, 246, 1);
+    background: rgba(79, 70, 229, 0.85);
     pointer-events: none;
     border-radius: 40px;
     font-size: 0.8rem;
     font-weight: 500;
+    transition: all ease .3s;
   }
     .training-card-content {
       padding: 1em;
@@ -952,6 +955,7 @@ width: 24px;
     transition: opacity 0.3s ease;
     z-index: 1002;
     visibility: hidden;
+    cursor: zoom-out;
   }
   .lightbox.active {
     visibility: visible;
