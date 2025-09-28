@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", () => {
   
   // --- MODIFIED: Welcome Message & Button ---
   const showWelcomeMessage = () => {
-    const welcomeText = `👋 Hi there!\n\nI’m here to help you with any questions you may have. 💬\n\nIf you’d like, you can also share a few details with us so our team can reach out and give you more personal support. 🤝`;
+    const welcomeText = `👋 Hi there!\n\nI’m here to help you with any questions you may have. 💬\n\nIf you’d like, you can also share a few details with us so that our team can reach out and give you more personal support. 🤝`;
     addMessage("bot", welcomeText);
     chatHistory.push({ type: "ai", content: welcomeText });
 
