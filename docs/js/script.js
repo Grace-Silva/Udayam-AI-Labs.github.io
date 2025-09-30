@@ -659,19 +659,206 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ends send data and download pdf */    
 
 
+// Upcoming Events
+const eventsData = [
+    {
+        title: "AI for Young Innvators",
+        description: "An engaging program designed to introduce young learners to the fundamentals of artificial intelligence through hands-on activities, projects, and real-world examples.",
+        date: "To be announced",
+        mode: "Offline",
+        location: "To be announced",
+        instructor: "To be announced",
+        image: "./assets/images/ai_for_young-innovators.png"
+    },
+    {
+        title: "AI for Educators",
+        description: "A specialized training for teachers and educators to understand AI concepts, tools, and applications, empowering them to integrate AI knowledge into their teaching practices.",
+        date: "To be announced",
+        mode: "offline",
+        location: "To be announced",
+        instructor: "To be announced",
+        image: "./assets/images/ai_for_educators.png"
+    },
+];
 
+// Slider functionality
+let currentIndex = 0;
+let autoSlideInterval;
+let isAutoScrolling = true;
+const slider = document.getElementById('eventsSlider');
+const sliderContainer = document.querySelector('.slider-container');
+const pauseIndicator = document.querySelector('.pause-indicator');
 
+function createEventSlides() {
+    const slider = document.getElementById('eventsSlider');
+    const dotsContainer = document.querySelector('.slider-dots');
+    
+    slider.innerHTML = '';
+    dotsContainer.innerHTML = '';
+    
+    eventsData.forEach((event, index) => {
+        const slide = document.createElement('div');
+        slide.className = 'event-slide';
+        
+        slide.innerHTML = `
+            <div class="event-content">
+                <h3 class="event-title">${event.title}</h3>
+                <p class="event-description">${event.description}</p>
+                <div class="event-details">
+                    <div class="event-detail">
+                        <span class="label">Date:</span>
+                        <span class="value">${event.date}</span>
+                    </div>
+                    <div class="event-detail">
+                        <span class="label">Mode:</span>
+                        <span class="value">${event.mode}</span>
+                    </div>
+                    <div class="event-detail">
+                        <span class="label">Location:</span>
+                        <span class="value">${event.location}</span>
+                    </div>
+                    <div class="event-detail">
+                        <span class="label">Instructor:</span>
+                        <span class="value">${event.instructor}</span>
+                    </div>
+                </div>
+                <button class="register-btn">Register Now</button>
+            </div>
+            <div class="event-image">
+                <h3 class="section-title">Upcoming Events</h3>
+                <img src="${event.image}" alt="${event.title}" />
+            </div>
+        `;
+        
+        slider.appendChild(slide);
+        
+        // Create dot for navigation
+        const dot = document.createElement('div');
+        dot.className = `dot ${index === 0 ? 'active' : ''}`;
+        dot.addEventListener('click', () => {
+            stopAutoSlide();
+            currentSlide(index);
+            setTimeout(startAutoSlide, 5000);
+        });
+        dotsContainer.appendChild(dot);
+    });
+}
 
+function updateSlider() {
+    const slides = document.querySelectorAll('.event-slide');
+    const dots = document.querySelectorAll('.dot');
+    
+    const translateX = -currentIndex * 100;
+    slider.style.transform = `translateX(${translateX}%)`;
+    
+    dots.forEach((dot, index) => {
+        dot.classList.toggle('active', index === currentIndex);
+    });
+}
 
+function nextSlide() {
+    const slides = document.querySelectorAll('.event-slide');
+    currentIndex = (currentIndex + 1) % slides.length;
+    updateSlider();
+}
 
+function changeSlide(direction) {
+    const slides = document.querySelectorAll('.event-slide');
+    if (direction === 1) {
+        currentIndex = (currentIndex + 1) % slides.length;
+    } else {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    }
+    updateSlider();
+}
 
-// const menuToggle = document.getElementById("menu-toggle");
-//   const navLinks = document.getElementById("nav-links");
+function currentSlide(index) {
+    currentIndex = index;
+    updateSlider();
+}
 
-//   menuToggle.addEventListener("click", () => {
-//     navLinks.classList.toggle("active");
-//     menuToggle.innerHTML = navLinks.classList.contains("active") 
-//         ? '<i class="fa-solid fa-xmark"></i>' 
-//         : '<i class="fa-solid fa-bars"></i>';
-// });
+function startAutoSlide() {
+    if (isAutoScrolling) {
+        autoSlideInterval = setInterval(nextSlide, 3000);
+    }
+}
 
+function stopAutoSlide() {
+    clearInterval(autoSlideInterval);
+}
+
+function showPauseIndicator() {
+    pauseIndicator.classList.add('show');
+    setTimeout(() => {
+        pauseIndicator.classList.remove('show');
+    }, 2000);
+}
+
+// Event listeners
+function initializeEventListeners() {
+    // Mouse events
+    sliderContainer.addEventListener('mouseenter', () => {
+        stopAutoSlide();
+        showPauseIndicator();
+    });
+
+    sliderContainer.addEventListener('mouseleave', () => {
+        startAutoSlide();
+    });
+
+    // Navigation button event listeners
+    document.querySelector('.prev-btn').addEventListener('click', () => {
+        stopAutoSlide();
+        changeSlide(-1);
+        setTimeout(startAutoSlide, 5000);
+    });
+
+    document.querySelector('.next-btn').addEventListener('click', () => {
+        stopAutoSlide();
+        changeSlide(1);
+        setTimeout(startAutoSlide, 5000);
+    });
+
+    document.addEventListener('visibilitychange', () => {
+        if (document.hidden) {
+            stopAutoSlide();
+        } else {
+            startAutoSlide();
+        }
+      });
+    }
+async function initializeSlider() {
+    createEventSlides();
+    initializeEventListeners();
+    startAutoSlide();
+    updateSlider();
+}
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeSlider);
+} else {
+    initializeSlider();
+}
+
+function addEvent(eventData) {
+    eventsData.push(eventData);
+    createEventSlides(); 
+    updateSlider();
+}
+function removeEvent(index) {
+    if (index >= 0 && index < eventsData.length) {
+        eventsData.splice(index, 1);
+        if (currentIndex >= eventsData.length) {
+            currentIndex = Math.max(0, eventsData.length - 1);
+        }
+        createEventSlides();
+        updateSlider();
+    }
+}
+function updateEvent(index, eventData) {
+    if (index >= 0 && index < eventsData.length) {
+        eventsData[index] = { ...eventsData[index], ...eventData };
+        createEventSlides();
+        updateSlider();
+    }
+};
