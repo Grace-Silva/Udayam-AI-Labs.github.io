@@ -46,7 +46,7 @@
     <!-- Navbar -->
     <nav class="nav-container" aria-label="Main navigation">
       <div class="logo-container">
-        <a href="index.html" class="logo-link">
+        <a href="/" class="logo-link">
           <img src="assets/images/logo.png" alt="Udayam AI Labs logo" />
           <span class="nav-title">Udayam AI Labs</span>
         </a>
@@ -57,17 +57,16 @@
       </button>
       <ul class="nav-links" id="nav-links">
         <li><a href="#services">Services</a></li>
-        <li><a href="javascript:void(0);">Courses</a></li>
+        <li><a href="#training-modules">Courses</a></li>
         <!-- empieza menú desplegable para la página about us -->
          <li class="dropdown">
             <a href="javascript:void(0);" aria-expanded="false" aria-haspopup="true" class="dropdown-toggle">About Us
                 <i class="fa-solid fa-caret-down dropdown-icon"></i>
             </a>
                 <ul class="dropdown-menu">
-                    <li><a href="about.html#about-content">Meet Us</a></li>
-                    <li><a href="about.html#ourWork">Our Work</a></li>
-                    <li><a href="about.html#team">Our Team</a></li>
-                    <li><a href="about.html#partners">Our Partners</a></li>
+                    <li><a href="/about#about-content">Meet Us</a></li>
+                    <li><a href="/about#team">Our Team</a></li>
+                    <li><a href="/about#partners">Our Partners</a></li>
                 </ul>
          </li>
          <!-- termina menú desplegable para la página about us-->
@@ -84,6 +83,35 @@
         educational programs tailored for every level.</p>
     </div>
   </section>
+
+  <!-- Partners -->
+  <section id="partners" class="partners">
+    <div class="container">
+      <p class="section-subtitle">
+        Organizations we proudly collaborate with
+      </p>
+      <!-- partners logo container -->
+      <div class="partners-contain">
+      <!-- track -->
+        <div class="partners-track" id="partnersTrack"></div>
+      </div>
+    </div>
+  </section>  
+
+  <!-- Upcoming Events -->
+   <section class="upcoming-events">
+    <div class="events-container">
+      <div class="slider-container">
+        <div class="pause-indicator">Auto-scroll paused</div>
+        <div class="events-slider" id="eventsSlider">
+        </div>
+        <button class="slider-nav prev-btn"><i class="fa-solid fa-backward"></i></button>
+        <button class="slider-nav next-btn"><i class="fa-solid fa-forward"></i></button>
+        <div class="slider-dots">
+        </div>
+      </div> 
+    </div>
+  </section>  
 
     <!-- Our Services  -->
     <section id="services" class="services">
@@ -202,7 +230,69 @@
       <!-- ends download brochure section -->
 
     </section>
-
+    
+    <!-- Training Modules -->
+       
+    <section id="training-modules" class="training-modules">
+      <div class="training-modules-container">
+        <h2 class="section-title">Training Modules</h2>
+        <div class="service-underline"></div>
+         <!-- Popular courses -->
+          <div class="popular-courses">
+            <div class="course-header">
+              <h3>Explore Our Courses</h3>
+              <button>Register Now</button>
+            </div>
+            <div class="course-cards">
+              <div class="card">
+                <div class="course-stats">
+                    <span class="stat">⭐ 4.8</span>
+                    <span class="stat">👥 28</span>
+                </div>
+                <div class="course-icon">
+                  <div class="icon-bg">🤖</div>
+                </div>
+                <h3 class="card-title">AI Mastery Course 2025 for Beginners</h3>
+                <button class="learn-more-btn">LEARN MORE</button>
+              </div>
+              <div class="card">
+                <div class="course-stats">
+                    <span class="stat">⭐ 4.8</span>
+                    <span class="stat">👥 28</span>
+                </div>
+                <div class="course-icon">
+                  <div class="icon-bg">💻</div>
+                </div>
+                <h3 class="card-title">AI Mastery Course 2025 for Experts</h3>
+                <button class="learn-more-btn">LEARN MORE</button>
+              </div>
+            </div>
+          </div> 
+          <div class="live-courses">
+            <div class="course-header">
+              <h3>Live Classes</h3>
+            </div>
+             <div class="course-cards">
+              <div class="card">
+                <h3 class="card-title">Live Classes</h3>
+                <div class="course-icon">
+                  <div class="icon-bg">🧑‍💻</div>
+                </div>
+                <button class="learn-more-btn">Register Now</button>
+              </div>
+              <div class="card">
+                <h3 class="card-title">Offline Workshops</h3>
+                <div class="course-icon">
+                  <div class="icon-bg">🏢</div>
+                </div>
+                <button class="learn-more-btn">Find Locations</button>
+              </div>
+             </div>
+          </div>
+      </div>
+    </section>
+ 
+ 
     <!-- Training Highlights -->
     <section id="training-highlights" class="training-highlights">
       
@@ -584,26 +674,6 @@
             </div>
           </div>
         </div>
-      </div>
-    </section>
-
-    <!-- Partners -->
-    <section id="partners" class="team">
-      <div class="container">
-        <h2 class="section-title">Our Partners</h2>
-        <div class="service-underline"></div>
-        <p class="section-subtitle">
-          Organizations we proudly collaborate with
-        </p>
-
-      <!-- partners logo container -->
-      <div class="partners-contain">
-        <!-- track -->
-         <div class="partners-track" id="partnersTrack">
-
-         </div>
-      </div>
-      
       </div>
     </section>
 
