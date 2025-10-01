@@ -2195,3 +2195,103 @@ flex: 0 1 240px;
     display: none;
   }
 }
+
+
+    .team .horizontal-content, .intern-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 2rem;
+        justify-content: center;
+        padding: 0 1rem;
+    }
+
+    .intern-card-v2 {
+        position: relative;
+        background-color: #fff;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+    }
+
+    .intern-card-v2:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+    }
+
+    .intern-card-v2 .intern-img-v2 img {
+        width: 100%;
+        height: 200px; 
+        object-fit: cover;
+        display: block;
+        border-bottom: 3px solid var(--primary-color);
+        transition: border-color 0.3s ease;
+    }
+
+    .intern-card-v2:hover .intern-img-v2 img {
+        border-color: var(--secondary-color); 
+    }
+
+    .intern-card-v2 .intern-info-overlay-v2 {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+        color: #fff;
+        padding: 1.5rem 1rem;
+        transform: translateY(100%); 
+        transition: transform 0.4s ease-out;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        text-align: center;
+        min-height: 100%; 
+    }
+
+    .intern-card-v2:hover .intern-info-overlay-v2 {
+        transform: translateY(0);
+    }
+
+    .intern-card-v2 .intern-info-overlay-v2 h3 {
+        font-size: 1.3rem;
+        font-weight: 700;
+        margin-bottom: 0.25rem;
+        color: #fff; 
+        text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .intern-card-v2 .intern-info-overlay-v2 p {
+        font-size: 0.95rem;
+        color: #e0e0e0;
+        margin-bottom: 1rem;
+    }
+
+    .intern-card-v2 .intern-social-v2 a {
+        color: #fff;
+        font-size: 1.3rem;
+        margin: 0 0.6rem;
+        transition: color 0.3s ease, transform 0.2s ease;
+        text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+
+    .intern-card-v2 .intern-social-v2 a:hover {
+        color: var(--secondary-color);
+        transform: scale(1.1);
+    }
+
+
+    @media (max-width: 768px) {
+        .team .horizontal-content, .intern-grid {
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+    }
+    @media (max-width: 480px) {
+        .team .horizontal-content, .intern-grid {
+            grid-template-columns: 1fr;
+        }
+    }
