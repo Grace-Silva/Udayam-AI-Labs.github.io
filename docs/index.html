@@ -77,26 +77,37 @@
   <!-- Hero Section -->
   <section id="hero-section" class="hero-section" aria-labelledby="hero-heading">
     <div class="hero-section-text">
-      <span class="tagline">Udayam AI Labs - Empowering the NextGen with Cutting Edge Solutions</span>
-      <h2 id="hero-heading">AI & Technology Education for Schools, Universities & Corporates</h2>
-      <p>Transform learning with cutting-edge AI, robotics, and emerging technologies through comprehensive
-        educational programs tailored for every level.</p>
+      <!--<span class="tagline">Udayam AI Labs - Empowering the NextGen with Cutting Edge Solutions</span>-->
+      <h2 id="hero-heading">AI & Technology Services for Schools, Universities & Corporates</h2>
+      <p>
+        Transform learning with cutting-edge AI, robotics, and emerging technologies through comprehensive
+        educational programs tailored for every level.
+      </p>
+      <!-- cta -->
+      <div class="heroBtns">
+        <button class="globalBtn btnGradient">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
+        <button class="globalBtn" onclick="openModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
+      </div>
     </div>
   </section>
 
-  <!-- Partners -->
-  <section id="partners" class="partners">
+  <!-- starts Partners section -->
+  <section id="partners" class="team">
     <div class="container">
-      <p class="section-subtitle">
-        Organizations we proudly collaborate with
-      </p>
+      <h2 class="section-title">Our Partners</h2>
+      <div class="service-underline"></div>
+      <p class="section-subtitle">Organizations we proudly collaborate with</p>
+      
       <!-- partners logo container -->
       <div class="partners-contain">
-      <!-- track -->
-        <div class="partners-track" id="partnersTrack"></div>
+        <!-- track -->
+         <div class="partners-track" id="partnersTrack">
+
+         </div>
       </div>
     </div>
-  </section>  
+  </section>
+  <!-- ends partners section -->
 
   <!-- Upcoming Events -->
    <section class="upcoming-events">
@@ -173,10 +184,6 @@
         </div>
       </div>
 
-      <!-- starts download brochure section -->
-        <button class="download-btn" onclick="openModal()">Get Brochure
-          <i class="fa-solid fa-download"></i>
-        </button>
         <!-- modal window --> 
         <!-- dark cover -->
         <div class="modal-overlay" id="modalOverlay">
@@ -211,7 +218,7 @@
                     
                   <div class="error" id="generalError"></div>
                         
-                  <button type="submit" class="download-btn" id="submitBtn">Send and Get Brochure</button>
+                  <button type="submit" class="globalBtn btnGradient download-btn" id="submitBtn">Send and Get Brochure</button>
                   </form>
               </div>
                 
