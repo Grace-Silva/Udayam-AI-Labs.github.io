@@ -804,7 +804,7 @@ document.addEventListener('DOMContentLoaded', function () {
     // Cerrar lightbox
     function closeLightbox() {
       document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = 'auto';
+      document.body.style.overflow = '';
     }
 
     // Navegar en el lightbox
