@@ -348,13 +348,18 @@ header{
   -webkit-backdrop-filter: blur(10px);
 }*/
 
+.heroBtns{
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+}
+
 .globalBtn{
   display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 8px;
   cursor: pointer;
-  margin: 8px;
   border: 1px solid rgba(79, 70, 229, 0.3);
   background:  rgba(79, 70, 229, 0.1);
   color: #4f46e5;
@@ -404,33 +409,30 @@ header{
 }
 /* hero section (about.html) */
 .about-content{
-  width: 100%;
-  height: 100%;
+  max-width: calc(88vw);
+  height: 100vh;
+  min-height: 100vh;
+  margin: 0 auto;
   position: relative;
-  z-index: 1000;
+  z-index: 999;
   display: flex;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content:flex-end;
+  align-items: flex-end;
+  padding-top: calc(25vh);
+  padding-bottom: calc(15vh);
   gap: 2rem;
-  padding: 6rem 4rem 2rem 4rem;
 }
 
 .about-content .hero-section-text{
   text-align: left;
   align-items: flex-start;
-  gap: .8rem;
+  justify-content: flex-end;
   flex: 3;
   order: 1;
-  padding: 4rem 1rem 1rem 1rem;
-}
-
-.about-content .hero-section-text #hero-heading{
-  font-size: 2.8rem;
-  font-weight: 700;
-} 
-.about-content .hero-section-text p{
-  font-size: 1.1rem;
+  padding: 0;
+  width: auto;
+  height: auto;
 }
 
 .about-content .about-image{
@@ -1956,15 +1958,10 @@ footer {
    }
    /* about us section */
    .about-content{
-    padding: 4rem 2rem 2rem 2rem;
+    max-width: 100vw;
+    padding-left: 3rem;
+    padding: 3rem;
    }
-    .about-content .hero-section-text h2{
-      font-size: 2.2rem;
-      font-weight: 600;
-    } 
-    .about-content .hero-section-text p{
-      font-size: 1.05rem;
-    }
 
     /* our work section */
     .gallery{
