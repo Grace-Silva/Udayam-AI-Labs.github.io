@@ -380,7 +380,7 @@ header{
   }
 
 
-.hero-section-text #hero-heading {
+.hero-heading {
   font-size: 3.2rem;
   font-weight: 800;
   line-height: 1.12;
@@ -391,7 +391,7 @@ header{
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
   letter-spacing: -0.02em;
 }
-.hero-section-text p {
+.hero-section-text p, .about-section-text p {
   font-size: 1.2rem;
   color:var(--text-light);
   line-height: 1.6;
@@ -409,25 +409,26 @@ header{
 }
 /* hero section (about.html) */
 .about-content{
-  max-width: calc(88vw);
+  max-width: calc(80vw);
   height: 100vh;
   min-height: 100vh;
   margin: 0 auto;
   position: relative;
-  z-index: 999;
   display: flex;
   flex-direction: row;
   justify-content:flex-end;
-  align-items: flex-end;
+  align-items: center;
   padding-top: calc(25vh);
-  padding-bottom: calc(15vh);
-  gap: 2rem;
+  gap: 2.4rem;
 }
 
-.about-content .hero-section-text{
+.about-content .about-section-text{
   text-align: left;
+  display: flex;
+  flex-direction: column;
   align-items: flex-start;
   justify-content: flex-end;
+  gap: 2.4rem;
   flex: 3;
   order: 1;
   padding: 0;
@@ -1962,7 +1963,15 @@ footer {
     padding-left: 3rem;
     padding: 3rem;
    }
-
+    .about-content .about-section-text{
+      flex: 2;
+    }
+    .hero-heading{
+      font-size: 2.8rem;
+    }
+    .about-section-text p{
+      font-size: 1.1rem;
+    }
     /* our work section */
     .gallery{
       gap: 3em;
@@ -2046,12 +2055,29 @@ footer {
       }
     }
 
-  /* about section */
-  .about-content .hero-section-text{
-    flex: 2;
+  .heroBtns{
+    flex-direction: column;
+    gap: 12px;
+  }
+  /* about us section */
+  .about-content{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: calc(25vh);
+    padding-bottom: calc(20vh);
+  }  
+  .about-content .about-section-text{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    order: 2;
+    flex: none;
   }
   .about-content .about-image{
-    max-width: 600px;
+    max-width: 440px;
+    order: 1;
+    flex: none
   }
   /* our work section*/
   .work-subtitle{
@@ -2067,24 +2093,6 @@ footer {
     padding: 2rem 4rem;
     margin: 0 2rem;
   } 
-  .partners-track{
-    width: calc(200px*20);
-  }
- 
-    /* partners logos animation */
-    @keyframes slideLogos {
-      0%{
-        transform: translateX(0);
-      }
-      to{
-        transform: translateX(calc(-200px * 10));
-        /*transform: translateX(-50%);*/
-      }
-    }
-    /* partner logo image */
-    .partner-logo-image{
-      min-width: 200px;
-    }
   /* footer */
   .footer-content{
     padding: 2rem 2rem 1rem 2rem;
@@ -2156,47 +2164,18 @@ footer {
           background: none;
           border: none;
         }
-
+  /* about section */      
   .tagline{
     font-size: 0.8rem;
     padding: 0.04rem 1.2rem;
   }
-  .hero-section #hero-heading{
+  .hero-heading{
     font-size: 2.8rem;
   }
-  .hero-section-text p {
+  .hero-section-text p, .about-section-text p {
     font-size: 1rem;
   }
 
-  .heroBtns{
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* about section */
-  .about-content{
-    flex-direction: column;
-    padding: 6rem 1rem 1rem 1rem;
-  }
-  .about-content .hero-section-text{
-    flex: none;
-    order: 2; 
-    text-align: center; 
-    align-items: center;
-    justify-content: flex-end;
-    width: 100%;
-  }
-
-  .about-content .hero-section-text h2{
-    font-size: 2rem;
-    font-weight: 600;
-  } 
-
-  .about-content .about-image{
-    order: 1;
-    flex: none;
-    max-width: 400px;
-  }
   /* our work section */
   .gallery{
     gap: 2em;
@@ -2425,18 +2404,18 @@ footer {
     .nav-title {
       font-size: 1.1rem;
     }
-    
+    /*
     .hero-section-text {
       padding: 8rem 0.75rem 3rem;
       gap: 2rem;
     }
     .hero-section-text span{
       font-size: 0.7rem;
-    }
-    .hero-section-text h2{
+    }*/
+    .hero-heading{
       font-size: 2rem;
     }
-    .hero-section-text p{
+    .hero-section-text p, .about-section-text p{
       font-size: 1rem;
     }
 
