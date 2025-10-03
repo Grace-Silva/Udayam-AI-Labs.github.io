@@ -845,7 +845,50 @@
     </div>
 </div>
 <div id="toast">Callback requested successfully!</div>
-    <!-- Scripts -->
+
+<!-- Register Form -->
+<div id="registration-modal" class="registration-modal">
+  <div class="registration-modal-content">
+    <span class="registration-close-btn">&times;</span>
+    <div class="registration-modal-header">
+      <i class="fas fa-user-graduate"></i>
+      <h3>Register Now</h3>
+    </div>
+    <p class="modal-intro-text">
+      Fill in your details below to register for your preferred course.
+    </p>
+    <form id="registration-form">
+      
+      <!-- Name -->
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+      <!-- Email -->
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+      <!-- Mobile -->
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
+
+      <!-- Course Selection -->
+      <label for="course">Select Course</label>
+      <select id="course" name="course" required>
+        <option value="" disabled selected>Select a course</option>
+        <option value="web-development">Web Development</option>
+        <option value="data-science">Data Science</option>
+        <option value="ui-ux">UI/UX Design</option>
+        <option value="cyber-security">Cyber Security</option>
+        <option value="ai-ml">AI & Machine Learning</option>
+      </select>
+
+      <!-- Register Button -->
+      <button type="submit" id="register-submit-btn">Register</button>
+    </form>
+  </div>
+</div>  
+
+<!-- Scripts -->
 
     <!-- main js-->
     <script src="js/script.js" defer></script>
