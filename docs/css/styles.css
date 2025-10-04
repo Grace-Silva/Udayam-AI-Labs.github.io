@@ -759,7 +759,7 @@ header{
 /* Services Section */
 .services {
   padding: 5rem 0;
-  background-color: #f8f9fa;
+  background-color: var(--light-color);
   position: relative;
   display: flex;
   flex-direction: column;
