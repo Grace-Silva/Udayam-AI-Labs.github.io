@@ -58,7 +58,7 @@
       <ul class="nav-links" id="nav-links">
         <li><a href="#services">Services</a></li>
         <li><a href="#training-modules">Courses</a></li>
-        <!-- empieza menú desplegable para la página about us -->
+        <li><a href="/events">Events</a></li>
          <li class="dropdown">
             <a href="javascript:void(0);" aria-expanded="false" aria-haspopup="true" class="dropdown-toggle">About Us
                 <i class="fa-solid fa-caret-down dropdown-icon"></i>
@@ -71,8 +71,7 @@
                     <li><a href="/about#partners">Our Partners</a></li>
                 </ul>
          </li>
-         <!-- termina menú desplegable para la página about us-->
-        <li><a href="#contact">Contact</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
     </nav>
   </header>
@@ -87,17 +86,15 @@
       </p>
       <!-- cta -->
       <div class="heroBtns">
-        <button class="globalBtn btnGradient">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
+        <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
         <button class="globalBtn" onclick="openModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
       </div>
     </div>
   </section>
 
   <!-- starts Partners section -->
-  <section id="partners" class="team">
+  <section id="partners" class="partners">
     <div class="container">
-      <h2 class="section-title">Our Partners</h2>
-      <div class="service-underline"></div>
       <p class="section-subtitle">Organizations we proudly collaborate with</p>
       
       <!-- partners logo container -->
@@ -110,21 +107,6 @@
     </div>
   </section>
   <!-- ends partners section -->
-
-  <!-- Upcoming Events -->
-   <section class="upcoming-events">
-    <div class="events-container">
-      <div class="slider-container">
-        <div class="pause-indicator">Auto-scroll paused</div>
-        <div class="events-slider" id="eventsSlider">
-        </div>
-        <button class="slider-nav prev-btn"><i class="fa-solid fa-backward"></i></button>
-        <button class="slider-nav next-btn"><i class="fa-solid fa-forward"></i></button>
-        <div class="slider-dots">
-        </div>
-      </div> 
-    </div>
-  </section>  
 
     <!-- Our Services  -->
     <section id="services" class="services">
@@ -250,7 +232,7 @@
           <div class="popular-courses">
             <div class="course-header">
               <h3>Explore Our Courses</h3>
-              <button>Register Now</button>
+              <button id="course-btn">Register Now</button>
             </div>
             <div class="course-cards">
               <div class="card">
@@ -287,7 +269,7 @@
                 <div class="course-icon">
                   <div class="icon-bg">🧑‍💻</div>
                 </div>
-                <button class="learn-more-btn">Register Now</button>
+                <button class="learn-more-btn" id="course-btn" data-course="Live Classes">Register Now</button>
               </div>
               <div class="card">
                 <h3 class="card-title">Offline Workshops</h3>
@@ -865,7 +847,83 @@
     </div>
 </div>
 <div id="toast">Callback requested successfully!</div>
-    <!-- Scripts -->
+
+<!-- Register Form -->
+<div id="course-registration-modal" class="course-registration-modal">
+  <div class="course-registration-modal-content">
+    <span class="course-registration-close-btn">&times;</span>
+    <div class="course-registration-modal-header">
+      <i class="fas fa-user-graduate"></i>
+      <h3>Register Now</h3>
+    </div>
+    <p class="course-modal-intro-text">
+      Fill in your details below to register for your preferred course.
+    </p>
+    <form id="course-registration-form" class="course-registration-form">
+      
+      <!-- Name -->
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+      <!-- Email -->
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+      <!-- Mobile -->
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
+
+      <!-- Course Selection -->
+      <label for="course">Select Course</label>
+      <select id="course" name="course" required>
+        <option value="" disabled selected>Select a course</option>
+        <option value="AI for Beginners">AI for Beginners</option>
+        <option value="AI for Experts">AI for Experts</option>
+      </select>
+
+      <!-- Register Button -->
+      <button type="submit" id="course-submit-btn">Register</button>
+    </form>
+  </div>
+</div>  
+
+
+
+<!-- Book A Demo -->
+<div id="demo-modal" class="demo-modal">
+  <div class="demo-modal-content">
+    <span class="demo-close-btn">&times;</span>
+    <div class="demo-modal-header">
+      <i class="fas fa-user-graduate"></i>
+      <h3>Book Demo Now</h3>
+    </div>
+    <p class="demo-modal-intro-text">
+      Fill in your details below to register for the demo.
+    </p>
+    <form id="demo-registration-form" class="demo-registration-form">
+      
+      <!-- Name -->
+      <label for="name">Full Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+      <!-- Email -->
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+      <!-- Mobile -->
+      <label for="mobile">Mobile Number</label>
+      <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
+  
+      <!-- University/Institute Name -->
+      <label for="university">University/Institute</label>
+      <input type="text" id="university" name="university" placeholder="Enter your University/Institute Name" required />
+      
+      <!-- Register Button -->
+      <button type="submit" id="demo-submit-btn">Book Demo</button>
+    </form>
+  </div>
+</div> 
+<!-- Scripts -->
 
     <!-- main js-->
     <script src="js/script.js" defer></script>

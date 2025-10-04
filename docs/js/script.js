@@ -400,11 +400,15 @@ document.addEventListener('DOMContentLoaded', function () {
             const dropdown = this.closest('.dropdown');
             
             if (window.innerWidth <= 992) {
-              dropdown.classList.toggle('active');
-              
+              const isActive = dropdown.classList.toggle('active');
+              this.setAttribute('aria-expanded', isActive) 
               // close another dropdown
-              document.querySelectorAll('.dropdown').forEach(other => {
-                if (other !== dropdown) other.classList.remove('active');
+              dropdownToggles.forEach(otherToggle => {
+                const otherDropDown = otherToggle.closest('.dropdown');
+                if(otherDropDown !== dropdown){
+                  otherDropDown.classList.remove('active');
+                  otherToggle.setAttribute('aria-expanded',false)
+                }
               });
             }
           });
@@ -413,12 +417,22 @@ document.addEventListener('DOMContentLoaded', function () {
         // close if the user touch outside
         document.addEventListener('click', function(e) {
           if (!e.target.closest('.dropdown')) {
-            document.querySelectorAll('.dropdown').forEach(dropdown => {
-              dropdown.classList.remove('active');
+            dropdownToggles.forEach(dropdown => {
+              const dropdownElement = toggle.closest('.dropdown')
+              dropdownElement.classList.remove('active');
+              toggle.setAttribute('aria-expanded', false)
             });
           }
         });
-
+        // keyboard accessibility
+        dropdownToggles.forEach(toggle => {
+          toggle.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+              e.preventDefault();
+              this.click();
+            }
+          });
+        });
       }
     // ends dropdown menu support for mobile 
 
@@ -541,17 +555,23 @@ document.addEventListener('DOMContentLoaded', function () {
     /* 9. starts send data and download brochure with EmailJS */
     // verify if the element exist
       // close modal window when the user clicks off
-      document.getElementById('modalOverlay').addEventListener('click', function(event) {
-        if (event.target === this) {
-          closeModal();
-        }
+    document.addEventListener("DOMContentLoaded", function() {
+     const overlay = document.getElementById('modalOverlay');
+     if (overlay) {
+       overlay.addEventListener('click', function(event) {
+       if (event.target === this) {
+        closeModal();
+       }
       });
-      // close modal window with ESC
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && document.getElementById('modalOverlay').classList.contains('active')) {
-          closeModal();
-        }
-      });
+     }
+
+     document.addEventListener('keydown', function(event) {
+     if (event.key === 'Escape' && overlay && overlay.classList.contains('active')) {
+       closeModal();
+     }
+    });
+});
+
     /* ends send data and download pdf */
 
     /* 10. starts previous trainings carrousel */
@@ -929,206 +949,90 @@ document.addEventListener('DOMContentLoaded', function () {
   /* ends send data and download pdf */    
 
 
-// Upcoming Events
-const eventsData = [
-    {
-        title: "AI for Young Innvators",
-        description: "An engaging program designed to introduce young learners to the fundamentals of artificial intelligence through hands-on activities, projects, and real-world examples.",
-        date: "To be announced",
-        mode: "Offline",
-        location: "To be announced",
-        instructor: "To be announced",
-        image: "./assets/images/ai_for_young-innovators.png"
-    },
-    {
-        title: "AI for Educators",
-        description: "A specialized training for teachers and educators to understand AI concepts, tools, and applications, empowering them to integrate AI knowledge into their teaching practices.",
-        date: "To be announced",
-        mode: "offline",
-        location: "To be announced",
-        instructor: "To be announced",
-        image: "./assets/images/ai_for_educators.png"
-    },
-];
 
-// Slider functionality
-let currentIndex = 0;
-let autoSlideInterval;
-let isAutoScrolling = true;
-const slider = document.getElementById('eventsSlider');
-const sliderContainer = document.querySelector('.slider-container');
-const pauseIndicator = document.querySelector('.pause-indicator');
+// Event Registration Form
+const eventModal = document.getElementById('event-registration-modal');
+const eventCloseBtn = document.querySelector('.event-registration-close-btn');
+const eventRegisterBtns = document.querySelectorAll('.event-btn');
+const eventSelect = document.getElementById('event');
 
-function createEventSlides() {
-    const slider = document.getElementById('eventsSlider');
-    const dotsContainer = document.querySelector('.slider-dots');
-    
-    slider.innerHTML = '';
-    dotsContainer.innerHTML = '';
-    
-    eventsData.forEach((event, index) => {
-        const slide = document.createElement('div');
-        slide.className = 'event-slide';
-        
-        slide.innerHTML = `
-            <div class="event-content">
-                <h3 class="event-title">${event.title}</h3>
-                <p class="event-description">${event.description}</p>
-                <div class="event-details">
-                    <div class="event-detail">
-                        <span class="label">Date:</span>
-                        <span class="value">${event.date}</span>
-                    </div>
-                    <div class="event-detail">
-                        <span class="label">Mode:</span>
-                        <span class="value">${event.mode}</span>
-                    </div>
-                    <div class="event-detail">
-                        <span class="label">Location:</span>
-                        <span class="value">${event.location}</span>
-                    </div>
-                    <div class="event-detail">
-                        <span class="label">Instructor:</span>
-                        <span class="value">${event.instructor}</span>
-                    </div>
-                </div>
-                <button class="register-btn">Register Now</button>
-            </div>
-            <div class="event-image">
-                <h3 class="section-title">Upcoming Events</h3>
-                <img src="${event.image}" alt="${event.title}" />
-            </div>
-        `;
-        
-        slider.appendChild(slide);
-        
-        // Create dot for navigation
-        const dot = document.createElement('div');
-        dot.className = `dot ${index === 0 ? 'active' : ''}`;
-        dot.addEventListener('click', () => {
-            stopAutoSlide();
-            currentSlide(index);
-            setTimeout(startAutoSlide, 5000);
-        });
-        dotsContainer.appendChild(dot);
+// Open modal 
+
+  if(eventModal && eventCloseBtn && eventRegisterBtns.length > 0){
+
+  eventRegisterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const course = btn.getAttribute('data-event');
+      eventModal.style.display = 'flex';
+      
+      if(eventSelect) {
+        eventSelect.value = course;
+      }
     });
-}
+  });
+  // Close modal
+  eventCloseBtn.addEventListener('click', () => {
+    eventModal.style.display = 'none';
+  });
 
-function updateSlider() {
-    const slides = document.querySelectorAll('.event-slide');
-    const dots = document.querySelectorAll('.dot');
-    
-    const translateX = -currentIndex * 100;
-    slider.style.transform = `translateX(${translateX}%)`;
-    
-    dots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentIndex);
-    });
-}
-
-function nextSlide() {
-    const slides = document.querySelectorAll('.event-slide');
-    currentIndex = (currentIndex + 1) % slides.length;
-    updateSlider();
-}
-
-function changeSlide(direction) {
-    const slides = document.querySelectorAll('.event-slide');
-    if (direction === 1) {
-        currentIndex = (currentIndex + 1) % slides.length;
-    } else {
-        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+  window.addEventListener('click', (e) => {
+    if(e.target === eventModal) {
+      eventModal.style.display = 'none';
     }
-    updateSlider();
-}
+  });
+  }
 
-function currentSlide(index) {
-    currentIndex = index;
-    updateSlider();
-}
 
-function startAutoSlide() {
-    if (isAutoScrolling) {
-        autoSlideInterval = setInterval(nextSlide, 3000);
+
+
+// Course Registration Form
+const courseModal = document.getElementById('course-registration-modal');
+const courseCloseBtn = document.querySelector('.course-registration-close-btn');
+const courseRegisterBtns = document.querySelectorAll('#course-btn');
+const courseSelect = document.getElementById('course');
+
+// Open modal 
+
+if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
+  courseRegisterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+     const course = btn.getAttribute('data-course');
+     courseModal.style.display = 'flex';
+     if(eventSelect) {
+      eventSelect.value = course;
+     }
+   });
+  });
+
+// Close modal
+ courseCloseBtn.addEventListener('click', () => {
+   courseModal.style.display = 'none';
+  });
+
+  window.addEventListener('click', (e) => {
+   if(e.target === modal) {
+    courseModal.style.display = 'none';
     }
+  });
 }
 
-function stopAutoSlide() {
-    clearInterval(autoSlideInterval);
-}
+  // Book A Demo
+  const bookDemoBtn = document.getElementById('book-demo');
+  const bookModal = document.getElementById('demo-modal');
+  const demoCloseBtn = document.querySelector('.demo-close-btn');
 
-function showPauseIndicator() {
-    pauseIndicator.classList.add('show');
-    setTimeout(() => {
-        pauseIndicator.classList.remove('show');
-    }, 2000);
-}
-
-// Event listeners
-function initializeEventListeners() {
-    // Mouse events
-    sliderContainer.addEventListener('mouseenter', () => {
-        stopAutoSlide();
-        showPauseIndicator();
+  if (bookDemoBtn && bookModal && demoCloseBtn) {
+    bookDemoBtn.addEventListener('click', () => {
+      bookModal.style.display = 'flex';
     });
 
-    sliderContainer.addEventListener('mouseleave', () => {
-        startAutoSlide();
+    demoCloseBtn.addEventListener('click', () => {
+      bookModal.style.display = 'none';
     });
 
-    // Navigation button event listeners
-    document.querySelector('.prev-btn').addEventListener('click', () => {
-        stopAutoSlide();
-        changeSlide(-1);
-        setTimeout(startAutoSlide, 5000);
+    window.addEventListener('click', (e) => {
+      if(e.target === bookModal) {
+        bookModal.style.display = 'none';
+      }
     });
-
-    document.querySelector('.next-btn').addEventListener('click', () => {
-        stopAutoSlide();
-        changeSlide(1);
-        setTimeout(startAutoSlide, 5000);
-    });
-
-    document.addEventListener('visibilitychange', () => {
-        if (document.hidden) {
-            stopAutoSlide();
-        } else {
-            startAutoSlide();
-        }
-      });
-    }
-async function initializeSlider() {
-    createEventSlides();
-    initializeEventListeners();
-    startAutoSlide();
-    updateSlider();
-}
-
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initializeSlider);
-} else {
-    initializeSlider();
-}
-
-function addEvent(eventData) {
-    eventsData.push(eventData);
-    createEventSlides(); 
-    updateSlider();
-}
-function removeEvent(index) {
-    if (index >= 0 && index < eventsData.length) {
-        eventsData.splice(index, 1);
-        if (currentIndex >= eventsData.length) {
-            currentIndex = Math.max(0, eventsData.length - 1);
-        }
-        createEventSlides();
-        updateSlider();
-    }
-}
-function updateEvent(index, eventData) {
-    if (index >= 0 && index < eventsData.length) {
-        eventsData[index] = { ...eventsData[index], ...eventData };
-        createEventSlides();
-        updateSlider();
-    }
-};
+  }
