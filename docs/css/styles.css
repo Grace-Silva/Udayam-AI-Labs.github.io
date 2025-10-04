@@ -1655,6 +1655,7 @@ background-color: var(--light-color);
   object-fit: cover;
 }
 
+
 .team-info{
   display: flex;
   flex-direction: column;
@@ -2546,4 +2547,101 @@ footer {
   .curved-line .live-curved-line{
     display: none;
   }
+}
+/* Paste this into your CSS file */
+
+.intern-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); 
+    gap: 2.5rem;
+    justify-content: center;
+    padding: 0 1rem;
+}
+
+.intern-card-v2 {
+    position: relative;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.intern-card-v2:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.12);
+}
+
+.intern-card-v2 .intern-img-v2 img {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    border-bottom: 3px solid var(--primary-color); 
+    transition: border-color 0.3s ease;
+}
+
+.intern-card-v2:hover .intern-img-v2 img {
+    border-color: var(--secondary-color); 
+}
+
+.intern-card-v2 .intern-info-overlay-v2 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.2));
+    color: #fff;
+    /* MODIFIED: Reduced bottom padding to move text down */
+    padding: 2rem 0.8rem 0.5rem; 
+    transform: translateY(100%); 
+    transition: transform 0.4s ease-out;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    text-align: center;
+    min-height: 100%; 
+}
+
+.intern-card-v2:hover .intern-info-overlay-v2 {
+    transform: translateY(0);
+}
+
+.intern-card-v2 .intern-info-overlay-v2 h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+    color: #fff; 
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.intern-card-v2 .intern-info-overlay-v2 p {
+    font-size: 0.85rem;
+    color: #e0e0e0;
+    margin-bottom: 0.8rem;
+}
+
+.intern-card-v2 .intern-social-v2 a {
+    color: #fff;
+    font-size: 1.1rem;
+    margin: 0 0.4rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.4);
+}
+
+.intern-card-v2 .intern-social-v2 a:hover {
+    color: var(--secondary-color);
+    transform: scale(1.1);
+}
+
+
+/* Rule for mobile devices */
+@media (max-width: 768px) {
+    .intern-card-v2 .intern-info-overlay-v2 {
+        transform: translateY(0);
+    }
 }
