@@ -195,6 +195,8 @@ header{
 .nav-links a:active {
    transform: translateY(0);
 }
+
+
 /* Hamburger Button */
 .menu-toggle {
   display: none;
@@ -318,7 +320,6 @@ header{
   inset: 0;
   background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.25), transparent 60%),
   radial-gradient(circle at 70% 70%, rgba(139,92,246,0.25), transparent 60%);
-  pointer-events: none;
 }
 .hero-section-text {
   max-width: calc(80vw);
@@ -592,169 +593,6 @@ header{
     }
 /* ends download brochure section */
 
-/* Upcoming Events Section */
-.upcoming-events {
-  background: #ffffff;
-  width: 100%;
-}
-.event-image .section-title{
-  color: var(--secondary-color);
-}
-.slider-container {
-  position: relative;
-  padding: 0 2rem;
-  overflow:hidden;
-}
-/* Slider Wrapper */
-.events-slider {
-  display: flex;
-  gap: 0.4rem;
-  scroll-behavior: smooth;
-  -webkit-overflow-scrolling: touch;
-  transition: transform 1.5s ease-in-out;
-  scrollbar-width: none;
-}
-.event-slider::-webkit-scrollbar{
-  display: none;
-}
-/* Slide */
-.event-slide {
-  min-width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 60px;
-  padding: 40px;
-}
-/* Text Content */
-.event-content {
-  flex: 1;
-  width: 100%;
-}
-.event-title {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 15px;
-  color: #222;
-}
-.event-description {
-  font-size: 1rem;
-  color: #555;
-  line-height: 1.6;
-  margin-bottom: 20px;
-}
-.event-details {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 12px 20px;
-  margin-bottom: 25px;
-}
-.event-detail {
-  font-size: 0.95rem;
-  color: #333;
-}
-.event-detail .label {
-  font-weight: 600;
-  color: #764ba2;
-}
-
-/* Button */
-.register-btn {
-  background: var(--gradient-header);
-  border: none;
-  color: white;
-  padding: 12px 28px;
-  font-size: 1rem;
-  font-weight: 600;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-.register-btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 16px rgba(102, 126, 234, 0.3);
-}
-
-/* Image */
-.event-image {
-  flex: 1;
-  max-width: 420px;
-}
-
-.event-image img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-  border-radius: 12px;
-  transition: transform 0.3s ease;
-}
-
-.event-image img:hover {
-  transform: scale(1.04);
-}
-
-/* Navigation Arrows */
-.slider-nav {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0,0,0,0.45);
-  border: none;
-  color: white;
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  font-size: 1.4rem;
-  cursor: pointer;
-  transition: background 3s;
-  z-index: 10;
-}
-
-.slider-nav:hover {
-  background: rgba(0,0,0,0.7);
-}
-
-.prev-btn { left: 12px; }
-.next-btn { right: 12px; }
-
-/* Dots */
-.slider-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin: 20px 0;
-}
-
-.dot {
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: #ccc;
-  cursor: pointer;
-  transition: transform 0.2s, background 0.3s;
-}
-
-.dot.active {
-  background: #764ba2;
-  transform: scale(1.2);
-}
-
-/* Pause Indicator */
-.pause-indicator {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  background: rgba(0,0,0,0.7);
-  color: white;
-  padding: 6px 12px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.pause-indicator.show { opacity: 1; }
 
 /* Services Section */
 .services {
@@ -1041,8 +879,9 @@ header{
   font-weight: 600;
 }
 
-/* Modal Background */
-.registration-modal {
+
+/* Demo Modal */
+.demo-modal {
   display: none;
   position: fixed;
   z-index: 1000;
@@ -1057,7 +896,7 @@ header{
 }
 
 /* Modal Content */
-.registration-modal-content {
+.demo-modal-content {
   background: #fff;
   padding: 25px;
   border-radius: 12px;
@@ -1068,48 +907,49 @@ header{
 }
 
 /* Header */
-.registration-modal-header {
+.demo-modal-header {
   display: flex;
   align-items: center;
   gap: 10px;
   margin-bottom: 15px;
 }
-.registration-modal-header i {
+.demo-modal-header i {
   color: #007BFF;
   font-size: 20px;
 }
-.registration-modal-header h3 {
+.demo-modal-header h3 {
   margin: 0;
   font-size: 20px;
-  color: #333;
+  color: var(--secondary-color);
+  font-weight: 600;
 }
 
 /* Close Button */
-.registration-close-btn {
+.demo-close-btn {
   float: right;
   font-size: 22px;
   cursor: pointer;
   color: #555;
 }
-.registration-close-btn:hover {
+.demo-close-btn:hover {
   color: #000;
 }
 
 /* Text */
-.modal-intro-text {
+.demo-modal-intro-text {
   font-size: 14px;
   color: #666;
   margin-bottom: 15px;
 }
 
 /* Form Elements */
-form label {
+.demo-registration-form label {
   font-weight: 600;
   display: block;
   margin: 10px 0 5px;
   color: #333;
 }
-form input, form select {
+.demo-registration-form input, select {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
@@ -1118,14 +958,13 @@ form input, form select {
   font-size: 14px;
   transition: border 0.3s;
 }
-form input:focus, form select:focus {
+.demo-registration-form input:focus, select:focus {
   border-color: #007BFF;
 }
-
 /* Submit Button */
-#register-submit-btn {
+#demo-submit-btn {
   width: 100%;
-  background: #007BFF;
+  background: var(--gradient-mix);
   color: #fff;
   padding: 12px;
   font-size: 16px;
@@ -1135,8 +974,8 @@ form input:focus, form select:focus {
   margin-top: 15px;
   transition: background 0.3s;
 }
-#register-submit-btn:hover {
-  background: #0056b3;
+#demo-submit-btn:hover {
+  background: var(--gradient-secondary);
 }
 
 /* Fade-in animation */
@@ -1145,6 +984,111 @@ form input:focus, form select:focus {
   to {opacity: 1; transform: scale(1);}
 }
 
+
+/* Course Modal */
+.course-registration-modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal Content */
+.course-registration-modal-content {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  width: 400px;
+  max-width: 90%;
+  box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease;
+}
+
+/* Header */
+.course-registration-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+.course-registration-modal-header i {
+  color: #007BFF;
+  font-size: 20px;
+}
+.course-registration-modal-header h3 {
+  margin: 0;
+  font-size: 20px;
+  color: var(--secondary-color);
+  font-weight: 600;
+}
+
+/* Close Button */
+.course-registration-close-btn {
+  float: right;
+  font-size: 22px;
+  cursor: pointer;
+  color: #555;
+}
+.course-registration-close-btn:hover {
+  color: #000;
+}
+
+/* Text */
+.course-modal-intro-text {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+/* Form Elements */
+.course-registration-form label {
+  font-weight: 600;
+  display: block;
+  margin: 10px 0 5px;
+  color: #333;
+}
+.course-registration-form input, select {
+  width: 100%;
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  outline: none;
+  font-size: 14px;
+  transition: border 0.3s;
+}
+.course-registration-form input:focus,select:focus {
+  border-color: #007BFF;
+}
+
+/* Submit Button */
+#course-submit-btn {
+  width: 100%;
+  background: var(--gradient-mix);
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: background 0.3s;
+}
+#course-submit-btn:hover {
+  background: var(--gradient-secondary);
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+  from {opacity: 0; transform: scale(0.95);}
+  to {opacity: 1; transform: scale(1);}
+}
 
 
 
@@ -1374,7 +1318,6 @@ width: 24px;
     padding: 4px 8px;
     color: var(--light-color);
     background: rgba(79, 70, 229, 0.85);
-    pointer-events: none;
     border-radius: 40px;
     font-size: 0.8rem;
     font-weight: 500;
@@ -1491,7 +1434,6 @@ width: 24px;
     justify-content: space-between;
     padding: 0 .4rem;    
     z-index: 1000;
-    pointer-events: none;
   }
 
   .lightbox-btn {
@@ -1507,7 +1449,6 @@ width: 24px;
     align-items: center;
     justify-content: center;
     transition: background 0.3s ease;
-    pointer-events: auto;
   }.lightbox-btn:hover {
     background: rgba(0, 0, 0, 0.8);
   }
@@ -1633,7 +1574,10 @@ margin: 15px auto;
   mask: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
   -webkit-mask: linear-gradient(90deg, transparent 0%, white 10%, white 90%, transparent 100%);
 }
-
+#partners{
+   background-color: #ffff;
+   padding: 2rem 0px
+}
 /* partners logo container */
 .partners-track{
   display: flex;
@@ -1670,7 +1614,7 @@ margin: 15px auto;
 
 /* Team section */
 .team {
-padding: 4rem 0;
+padding: 4rem 0 0 0;
 background-color: var(--light-color);
 }
 
@@ -1754,11 +1698,13 @@ footer {
   width: 100vw;
   height: auto;
   text-align: center;
+  background-color: #fff;
+  padding: 3rem 0 0 0;
 } 
 
   .footer-content{
     width: 100%;
-    padding: 1rem 4rem 1rem 4rem;
+    padding: 2rem 4rem;
     display: grid;
     grid-template-columns: auto 1fr;
     grid-template-rows: auto auto;
@@ -2197,6 +2143,7 @@ footer {
   }
 
   /* partners infinte slider */
+  
   .partners-contain{
     padding: 2rem 4rem;
     margin: 0 2rem;
@@ -2298,47 +2245,6 @@ footer {
     height: 40px;
     font-size: 1rem;
   }
-
- /* Upcoming section */
-
-.event-slide{
-  gap: 10px;
-}
-.slider-container{
-  padding: 0;
-}
-.event-content{
-  position: relative;
-  margin-top: 5px;
-}
-.event-content h3{
-  font-size: 1.2rem; 
-}
-.event-content p{
-  font-size: 0.8rem;
-}
-.event-details{
-  display: flex;
-  flex-direction: column;
-}
-.event-detail{
- display: flex;
- gap: 5px;
-}
-.event-image h3{
-   position: absolute;
-   top: 1rem;
-   left: 2rem;
-   font-size: 1.5rem;
-}
-
-.events-container .slider-nav{
-  visibility: hidden;    
-}
-.event-content button{
-   font-size: 0.8rem;
-   padding: 10px 20px;
-}
 
 /* Service section */
   .service-grid {
@@ -2527,36 +2433,6 @@ footer {
       font-size: 1rem;
     }
 
-    /* Upcoming section */
-   
-    .event-slider{
-      display: flex;
-      gap: 1rem;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      -webkit-overflow-scrolling: touch;
-    }
-    .event-slide{
-      gap:0px;
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      scroll-snap-align: start;
-    }
-    .event-details{
-      width: 100%;
-    }
-    .event-detail{
-      width: 100%;
-    }
-    .event-image{
-      width: 100%;
-    }
-    .event-image img{
-      width: 100%;
-      height: 150px;
-     }
-
       /* About Section */
     .accordion-content .content-text {
       font-size: 0.8rem;
@@ -2569,7 +2445,7 @@ footer {
     /* about section */
     .about-content{
       flex-direction: column;
-      padding: 8rem 1rem 1rem 1rem;
+      padding: 8rem 1rem 4rem 1rem;
     }
       .about-content .hero-section-text h2{
         font-size: 1.6rem;
