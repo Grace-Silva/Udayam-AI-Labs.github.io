@@ -1036,3 +1036,14 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
       }
     });
   }
+
+
+
+
+// offline-workshop-location
+document.getElementById('find-location-btn').addEventListener('click', function(){
+    this.classList.add('hidden');
+    
+    const dropdown = document.getElementById('workshop-location');
+    dropdown.classList.remove('hidden');
+});
