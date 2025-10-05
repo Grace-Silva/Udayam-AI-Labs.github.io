@@ -202,7 +202,7 @@
                     
                   <div class="error" id="generalError"></div>
                         
-                  <button type="submit" class="globalBtn btnGradient download-btn" id="submitBtn">Send and Get Brochure</button>
+                  <button type="submit" class="globalBtn btnGradient download-btn" id="submitBtn">Submit</button>
                   </form>
               </div>
                 
@@ -244,7 +244,7 @@
                   <div class="icon-bg">🤖</div>
                 </div>
                 <h3 class="card-title">AI Mastery Course 2025 for Beginners</h3>
-                <button class="learn-more-btn">LEARN MORE</button>
+                <button class="learn-more-btn"  onclick="window.open('https://www.udemy.com/course/ai-mastery-course/?referralCode=27D3E13D47A9B864723B&couponCode=KEEPLEARNING','_blank')">LEARN MORE</button>
               </div>
               <div class="card">
                 <div class="course-stats">
@@ -266,17 +266,25 @@
              <div class="course-cards">
               <div class="card">
                 <h3 class="card-title">Live Classes</h3>
-                <div class="course-icon">
-                  <div class="icon-bg">🧑‍💻</div>
+                <div class="course-img">
+                  <img id="lived-classes-img" src="./assets/images/live-classes.jpg" alt="live-classes-img"/>
                 </div>
                 <button class="learn-more-btn" id="course-btn" data-course="Live Classes">Register Now</button>
               </div>
               <div class="card">
                 <h3 class="card-title">Offline Workshops</h3>
-                <div class="course-icon">
-                  <div class="icon-bg">🏢</div>
+                <div class="course-img">
+                  <img id="offline-workshops" src="./assets/images/offline-workshops.jpg" alt="offline-workshops-img"/>
                 </div>
-                <button class="learn-more-btn">Find Locations</button>
+                <button class="learn-more-btn" id="find-location-btn">Find Locations</button>
+                <select class="learn-more-btn hidden" id="workshop-location" name="workshops-location">
+                  <option value="" disabled selected>Click to see locations</option>
+                  <option value="Bengaluru" >Bengaluru</option>
+                  <option value="Mumbai"  >Mumbai</option>
+                  <option value="Kolkata"  >Kolkata</option>
+                  <option value="Pune"  >Pune</option>
+                  <option value="Puducherry">Puducherry</option>
+              </select>
               </div>
              </div>
           </div>
@@ -879,6 +887,9 @@
         <option value="" disabled selected>Select a course</option>
         <option value="AI for Beginners">AI for Beginners</option>
         <option value="AI for Experts">AI for Experts</option>
+        <option value="Robotics">Robotics</option>
+        <option value="Drones Technology">Drones Technology</option>
+        <option value="Cybersecurity">Cybersecurity</option>
       </select>
 
       <!-- Register Button -->
@@ -915,8 +926,8 @@
       <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
   
       <!-- University/Institute Name -->
-      <label for="university">University/Institute</label>
-      <input type="text" id="university" name="university" placeholder="Enter your University/Institute Name" required />
+      <label for="university">Institute/Organisation Name</label>
+      <input type="text" id="university" name="university" placeholder="Enter your Institute/Organisation Name" required />
       
       <!-- Register Button -->
       <button type="submit" id="demo-submit-btn">Book Demo</button>
