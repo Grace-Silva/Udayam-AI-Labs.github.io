@@ -1149,7 +1149,6 @@ header{
   align-items: center;
   justify-content: center;
   gap: 2rem;
-  border: solid 1px red;
 }
 .training-highlights .card-wrapper{
   display: flex;
@@ -1294,7 +1293,6 @@ width: 24px;
 
 /* results section */
 .results-container{
-  border: solid 1px green;
   padding: 4rem;
   display: flex;
   flex-direction: column;
@@ -1304,29 +1302,46 @@ width: 24px;
   text-align: center;
 }
   .results-container .results{
-    border: solid 1px blue;
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
     flex-wrap: wrap;
   }
-  .results-container .result{
+  .results-container .results .result{
     display: inline-flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 12px;
+  } 
+    .results-container .results .result h4{
+      font-weight: 800;
+      font-size: 1.8rem;
+      background: linear-gradient(135deg, #1a1a1a 0%, #4f46e5 50%, #06b6d4 100%);
+      background-clip: border-box;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+      .results-container .results .result span{
+        color: #666;
+        font-size: 1rem;
+      }
+  .results-container .resultTexts{
+    padding: 0 2rem;
   }
-  .results-container .resultTexts h3{
-    font-size: 1.6rem;
-    font-weight: 600;
-    color: var(--text-dark);
-    margin-bottom: 1rem;
-  }   
-  .results-container .resultTexts p{
-    margin-bottom: 1rem;
-  }
+    .results-container .resultTexts h3{
+      font-size: 1.6rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }   
+    .results-container .resultTexts p{
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: #666;
+    }
 
 /* our work section gallery */
 .work-subtitle{
@@ -2130,6 +2145,11 @@ footer {
       }
     /* ends services section */
 
+    /* results section */
+    .results-container{
+      padding: 4rem 3rem;
+    }      
+
    /* footer */
     /* footer content */
     .footer-content{
@@ -2238,6 +2258,10 @@ footer {
     padding: 1em 2em;
     gap: 2em;
   }
+  /* results */
+  .results-container{
+    padding: 4rem 2rem;
+  } 
 
   /* partners infinte slider */
   
@@ -2393,6 +2417,10 @@ footer {
   .training-highlights .commenter-name {
     font-size: 0.7rem;
   }
+  /* resuls section */
+    .results-container .results{
+      gap: 3rem;
+    }
 
   /* About Section */
   .accordion-container{
@@ -2567,7 +2595,18 @@ footer {
    .partners-contain{
      padding: 1rem;
    }
-   
+
+  /* results */
+  .results-container{
+    padding: 4rem 1rem;
+  }
+    .results-container .results{
+      flex-direction: column;
+      gap: 3rem;
+    }
+    .results-container .resultTexts h3{
+      font-size: 1.2rem;
+    }
   /* footer */
     /* footer contact */ 
     .footer-content{
