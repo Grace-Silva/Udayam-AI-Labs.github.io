@@ -1149,6 +1149,7 @@ header{
   align-items: center;
   justify-content: center;
   gap: 2rem;
+  border: solid 1px red;
 }
 .training-highlights .card-wrapper{
   display: flex;
@@ -1290,6 +1291,42 @@ header{
 background: var(--primary-color);
 width: 24px;
 }
+
+/* results section */
+.results-container{
+  border: solid 1px green;
+  padding: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem 2rem;
+  text-align: center;
+}
+  .results-container .results{
+    border: solid 1px blue;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+  }
+  .results-container .result{
+    display: inline-flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+  }
+  .results-container .resultTexts h3{
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 1rem;
+  }   
+  .results-container .resultTexts p{
+    margin-bottom: 1rem;
+  }
 
 /* our work section gallery */
 .work-subtitle{
