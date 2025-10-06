@@ -417,7 +417,7 @@ document.addEventListener('DOMContentLoaded', function () {
         // close if the user touch outside
         document.addEventListener('click', function(e) {
           if (!e.target.closest('.dropdown')) {
-            dropdownToggles.forEach(dropdown => {
+            dropdownToggles.forEach(toggle => {
               const dropdownElement = toggle.closest('.dropdown')
               dropdownElement.classList.remove('active');
               toggle.setAttribute('aria-expanded', false)
@@ -575,274 +575,298 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ends send data and download pdf */
 
     /* 10. starts previous trainings carrousel */
-    const cardData = [
-    {
-      image: "./assets/images/gallery/1.jpg",
-      title: "Introduction to AI",
-      subtitle: "Mahesh Munot High School",
-      category: "school"
-    },
-    {
-      image: "./assets/images/gallery/5.jpg",
-      title: "Data Science",
-      subtitle: "University of Pune",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/14.jpg",
-      title: "Mathematical Techniques in Data Science",
-      subtitle: "Sardar Vallabhbhai Patel University",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/30.jpg",
-      title: "Introduction to AI",
-      subtitle: "Latur Subcenter",
-      category: "university",
-    },
-    {
-      image: "./assets/images/gallery/44.jpg",
-      title: "Mathematics and ML",
-      subtitle: "Ahmednagar College",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/64.jpg",
-      title: "Machine Learning",
-      subtitle: "Vikhe Patil Eng. College",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/68.jpg",
-      title: "Mathematical Techniques in Data Science",
-      subtitle: "More College Akurdi pune",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/78.jpg",
-      title: "National Mathematics Day",
-      subtitle: "Annasaheb magar College,Hadapsar",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/81.jpg",
-      title: "MOU",
-      subtitle: "Annasaheb magar College,Hadapsar",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/31.jpg",
-      title: "Introduction to AI",
-      subtitle: "Latur Subcenter",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/82.jpg",
-      title: "AI for Young Innovators",
-      subtitle: "Dr. Vithalrao Vikhe Patil Foundation's",
-      category: "school"
-    },
-    {
-      image: "./assets/images/gallery/83.jpg",
-      title: "AI Bussiness Directors",
-      subtitle: "MIDC, Ahilyanagar",
-      category: "corporate"
-    },
-    {
-      image: "./assets/images/gallery/84.jpg",
-      title: "Navigating AI-Driven Opportunities",
-      subtitle: "Dr. Babasaheb Ambedkar Marathwada University",
-      category: "corporate"
-    },
-    {
-      image: "./assets/images/gallery/85.jpg",
-      title: "Industrial Training for Statistics Students",
-      subtitle: "Swami Ramanand Teerth Marathwada University",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/86.jpg",
-      title: "Machine Learning Training",
-      subtitle: "Dr.Ramkrushna More College Akurdi",
-      category: "university"
-    },
-    {
-      image: "./assets/images/gallery/87.jpg",
-      title: "AI Session",
-      subtitle: "Kendriya vidyalaya, AhilyaNagar",
-      category: "school"
-    }, 
-    {
-      image: "./assets/images/gallery/88.jpg",
-      title: "AI in Healthcare",
-      subtitle: "Dr. Vikhe Patil Foundation Medical college",
-      category: "corporate"
-    }, 
-    ];    
+    const galleryElement = document.querySelector('.gallery');
+    // verify if the element exists:
+    if(galleryElement){
 
-  // Variables globales
-    let currentFilter = 'all';
-    let currentLightboxIndex = 0;
-    let filteredData = [];
+      const cardData = [
+      {
+        image: "./assets/images/gallery/1.jpg",
+        title: "Introduction to AI",
+        subtitle: "Mahesh Munot High School",
+        category: "school"
+      },
+      {
+        image: "./assets/images/gallery/5.jpg",
+        title: "Data Science",
+        subtitle: "University of Pune",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/14.jpg",
+        title: "Mathematical Techniques in Data Science",
+        subtitle: "Sardar Vallabhbhai Patel University",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/30.jpg",
+        title: "Introduction to AI",
+        subtitle: "Latur Subcenter",
+        category: "university",
+      },
+      {
+        image: "./assets/images/gallery/44.jpg",
+        title: "Mathematics and ML",
+        subtitle: "Ahmednagar College",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/64.jpg",
+        title: "Machine Learning",
+        subtitle: "Vikhe Patil Eng. College",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/68.jpg",
+        title: "Mathematical Techniques in Data Science",
+        subtitle: "More College Akurdi pune",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/78.jpg",
+        title: "National Mathematics Day",
+        subtitle: "Annasaheb magar College,Hadapsar",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/81.jpg",
+        title: "MOU",
+        subtitle: "Annasaheb magar College,Hadapsar",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/31.jpg",
+        title: "Introduction to AI",
+        subtitle: "Latur Subcenter",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/82.jpg",
+        title: "AI for Young Innovators",
+        subtitle: "Dr. Vithalrao Vikhe Patil Foundation's",
+        category: "school"
+      },
+      {
+        image: "./assets/images/gallery/83.jpg",
+        title: "AI Bussiness Directors",
+        subtitle: "MIDC, Ahilyanagar",
+        category: "corporate"
+      },
+      {
+        image: "./assets/images/gallery/84.jpg",
+        title: "Navigating AI-Driven Opportunities",
+        subtitle: "Dr. Babasaheb Ambedkar Marathwada University",
+        category: "corporate"
+      },
+      {
+        image: "./assets/images/gallery/85.jpg",
+        title: "Industrial Training for Statistics Students",
+        subtitle: "Swami Ramanand Teerth Marathwada University",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/86.jpg",
+        title: "Machine Learning Training",
+        subtitle: "Dr.Ramkrushna More College Akurdi",
+        category: "university"
+      },
+      {
+        image: "./assets/images/gallery/87.jpg",
+        title: "AI Session",
+        subtitle: "Kendriya vidyalaya, AhilyaNagar",
+        category: "school"
+      }, 
+      {
+        image: "./assets/images/gallery/88.jpg",
+        title: "AI in Healthcare",
+        subtitle: "Dr. Vikhe Patil Foundation Medical college",
+        category: "corporate"
+      }, 
+      ];    
 
-    // Inicializar la galería
-    function initGallery() {
-      renderGallery();
-      setupEventListeners();
-    }
+    // Variables globales
+      let currentFilter = 'all';
+      let currentLightboxIndex = 0;
+      let filteredData = [];
 
-    // Renderizar la galería
-    function renderGallery() {
-      const gallery = document.querySelector('.gallery');
-      gallery.innerHTML = '';
-        
-      filteredData = currentFilter === 'all' 
-          ? [...cardData] 
-          : cardData.filter(card => card.category === currentFilter);
-        
-    filteredData.forEach((card, index) => {
-      const cardElement = document.createElement('div');
-      cardElement.className = 'training-card';
-      cardElement.dataset.index = index;
-      cardElement.innerHTML = `
-          <div class="training-card-image">
-              <img src="${card.image}" alt="${card.title}">
-              <div class="institution-badge">${getCategoryName(card.category)}</div>
-          </div>
-          <div class="training-card-content">
-              <h3 class="training-card-title">${card.title}</h3>
-              <p class="training-card-subtitle">${card.subtitle}</p>
-          </div>
-      `;
-      gallery.appendChild(cardElement);
-    });
-    }
+      // initialize gallery
+      function initGallery() {
+        renderGallery();
+        setupEventListeners();
+      }
 
-    // Obtener nombre de categoría
-    function getCategoryName(category) {
-      const categories = {
-        'university': 'University',
-        'school': 'Schools',
-        'corporate': 'Corporate',
-      };
-      return categories[category] || category;
-    }
-
-    // Configurar event listeners
-    function setupEventListeners() {
-    // Filtros
-      document.querySelectorAll('.filter-btn').forEach(button => {
-        button.addEventListener('click', () => {
-          document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-          currentFilter = button.dataset.filter;
-          renderGallery();
-        });
+      // gallery renders
+      function renderGallery() {
+        const gallery = document.querySelector('.gallery');
+        gallery.innerHTML = '';
+          
+        filteredData = currentFilter === 'all' 
+            ? [...cardData] 
+            : cardData.filter(card => card.category === currentFilter);
+          
+      filteredData.forEach((card, index) => {
+        const cardElement = document.createElement('div');
+        cardElement.className = 'training-card';
+        cardElement.dataset.index = index;
+        cardElement.innerHTML = `
+            <div class="training-card-image">
+                <img src="${card.image}" alt="${card.title}">
+                <div class="institution-badge">${getCategoryName(card.category)}</div>
+            </div>
+            <div class="training-card-content">
+                <h3 class="training-card-title">${card.title}</h3>
+                <p class="training-card-subtitle">${card.subtitle}</p>
+            </div>
+        `;
+        gallery.appendChild(cardElement);
       });
+      }
 
-    // Lightbox - abrir al hacer clic en una tarjeta
-      document.addEventListener('click', (e) => {
-        const card = e.target.closest('.training-card');
-        if (card) {
-          openLightbox(parseInt(card.dataset.index));
+      // get category
+      function getCategoryName(category) {
+        const categories = {
+          'university': 'University',
+          'school': 'Schools',
+          'corporate': 'Corporate',
+        };
+        return categories[category] || category;
+      }
+
+      // event listener
+      function setupEventListeners() {
+      // Filtros
+        document.querySelectorAll('.filter-btn').forEach(button => {
+          button.addEventListener('click', () => {
+            document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+            button.classList.add('active');
+            currentFilter = button.dataset.filter;
+            renderGallery();
+          });
+        });
+
+      // Lightbox - abrir al hacer clic en una tarjeta
+        document.addEventListener('click', (e) => {
+          const card = e.target.closest('.training-card');
+          if (card) {
+            openLightbox(parseInt(card.dataset.index));
+          }
+        });
+
+      // Lightbox - cerrar
+      document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+
+      // Lightbox - navegación
+      document.getElementById('prevBtn').addEventListener('click', () => navigateLightbox(-1));
+      document.getElementById('nextBtn').addEventListener('click', () => navigateLightbox(1));
+
+      // Lightbox - teclado
+      document.addEventListener('keydown', (e) => {
+        if (document.getElementById('lightbox').classList.contains('active')) {
+          if (e.key === 'Escape') closeLightbox();
+          if (e.key === 'ArrowLeft') navigateLightbox(-1);
+          if (e.key === 'ArrowRight') navigateLightbox(1);
         }
       });
 
-    // Lightbox - cerrar
-    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+          // Lightbox - cerrar al hacer clic en el overlay (fondo negro)
+      document.getElementById("lightbox").addEventListener('click', (i) => {
+        if (i.target === lightbox) {
+          closeLightbox();
+        }
+      });
 
-    // Lightbox - navegación
-    document.getElementById('prevBtn').addEventListener('click', () => navigateLightbox(-1));
-    document.getElementById('nextBtn').addEventListener('click', () => navigateLightbox(1));
-
-    // Lightbox - teclado
-    document.addEventListener('keydown', (e) => {
-      if (document.getElementById('lightbox').classList.contains('active')) {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowLeft') navigateLightbox(-1);
-        if (e.key === 'ArrowRight') navigateLightbox(1);
-      }
-    });
-
-        // Lightbox - cerrar al hacer clic en el overlay (fondo negro)
-    document.getElementById("lightbox").addEventListener('click', (i) => {
-      if (i.target === lightbox) {
-        closeLightbox();
-      }
-    });
-
-    // Lightbox - swipe para móviles
-    let touchStartX = 0;
-    let touchEndX = 0;
-    
-    const lightbox = document.getElementById('lightbox');
-    lightbox.addEventListener('touchstart', (e) => {
-      touchStartX = e.changedTouches[0].screenX;
-    }, false);
-        
-    lightbox.addEventListener('touchend', (e) => {
-      touchEndX = e.changedTouches[0].screenX;
-      handleSwipe();
-    }, false);
-        
-    function handleSwipe() {
-      const swipeThreshold = 50;
-      if (touchEndX < touchStartX - swipeThreshold) {
-        navigateLightbox(1); // Swipe izquierda
-      }
-      if (touchEndX > touchStartX + swipeThreshold) {
-        navigateLightbox(-1); // Swipe derecha
-      }
-    }
-    }
-
-    // Abrir lightbox
-    function openLightbox(index) {
-      currentLightboxIndex = index;
+      // Lightbox - swipe para móviles
+      let touchStartX = 0;
+      let touchEndX = 0;
+      
       const lightbox = document.getElementById('lightbox');
-      const lightboxImage = document.getElementById('lightboxImage');
-      const lightboxTitle = document.getElementById('lightboxTitle');
-      const lightboxSubtitle = document.getElementById('lightboxSubtitle');
-        
-      lightboxImage.classList.add("changing");
-
-      setTimeout(() =>{
-
-        lightboxImage.src = filteredData[index].image;
-        lightboxImage.alt = filteredData[index].alt;
-        lightboxTitle.textContent = filteredData[index].title;
-        lightboxSubtitle.textContent = filteredData[index].subtitle;
-      
-        setTimeout(() => {
-            lightboxImage.classList.remove('changing');
-        }, 50);
-      }, 250);
-      lightbox.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    // Cerrar lightbox
-    function closeLightbox() {
-      document.getElementById('lightbox').classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    // Navegar en el lightbox
-    function navigateLightbox(direction) {
-      let newIndex = currentLightboxIndex + direction;
-      
-      if (newIndex < 0) {
-        newIndex = filteredData.length - 1;
-      } else if (newIndex >= filteredData.length) {
-        newIndex = 0;
+      lightbox.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].screenX;
+      }, false);
+          
+      lightbox.addEventListener('touchend', (e) => {
+        touchEndX = e.changedTouches[0].screenX;
+        handleSwipe();
+      }, false);
+          
+      function handleSwipe() {
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) {
+          navigateLightbox(1); // Swipe izquierda
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+          navigateLightbox(-1); // Swipe derecha
+        }
       }
-      
-      openLightbox(newIndex);
-    }    
-    if(gallery){
+      }
+
+      // open lightbox
+      function openLightbox(index) {
+        currentLightboxIndex = index;
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImage = document.getElementById('lightboxImage');
+        const lightboxTitle = document.getElementById('lightboxTitle');
+        const lightboxSubtitle = document.getElementById('lightboxSubtitle');
+          
+        lightboxImage.classList.add("changing");
+
+        setTimeout(() =>{
+
+          lightboxImage.src = filteredData[index].image;
+          lightboxImage.alt = filteredData[index].alt;
+          lightboxTitle.textContent = filteredData[index].title;
+          lightboxSubtitle.textContent = filteredData[index].subtitle;
+        
+          setTimeout(() => {
+              lightboxImage.classList.remove('changing');
+          }, 50);
+        }, 250);
+        lightbox.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      // close lightbox
+      function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      // navigation 
+      function navigateLightbox(direction) {
+        let newIndex = currentLightboxIndex + direction;
+        
+        if (newIndex < 0) {
+          newIndex = filteredData.length - 1;
+        } else if (newIndex >= filteredData.length) {
+          newIndex = 0;
+        }
+        
+        openLightbox(newIndex);
+      }    
       initGallery();
     }
     /*  ends previous trainings carrousel */
+
+    /*  11. service-card expanded  */
+    if(document.querySelector(".service-card")){
+        
+      document.querySelectorAll('.service-card').forEach(card => {
+        card.addEventListener('click', function(i) {
+          i.stopPropagation();
+          const desc = this.querySelector('.service-desc');
+          const isExpanded = desc.classList.contains('expanded');
+          // Colapsar todas las demás tarjetas
+          document.querySelectorAll('.service-desc').forEach(p => {
+            p.classList.remove('expanded');
+          });
+              
+        // Si la tarjeta NO estaba expandida, expandirla
+          if (!isExpanded) {
+            desc.classList.add('expanded');
+          }
+        });
+      });
+    }
 
 });
 
