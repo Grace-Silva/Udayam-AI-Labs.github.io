@@ -1047,7 +1047,6 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
   if (bookDemoBtn && bookModal && demoCloseBtn) {
     bookDemoBtn.addEventListener('click', () => {
       bookModal.classList.add("sliding");
-      document.body.style.overflow = 'hidden';
     });
 
     demoCloseBtn.addEventListener('click', () => {
@@ -1058,14 +1057,12 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
     window.addEventListener('click', (e) => {
       if(e.target === bookModal) {
         bookModal.classList.remove("sliding");
-        document.body.style.overflow = '';
       }
     });
     /* clic en la tecla Esc */
       document.addEventListener('keydown', function(event) {
         if (event.key === 'Escape' && bookModal && bookModal.classList.contains('sliding')) {
           bookModal.classList.remove("sliding");
-          document.body.style.overflow = '';
         }
       });
   }
