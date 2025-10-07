@@ -596,38 +596,49 @@
 
 
 
-<!-- Book A Demo -->
-<div id="demo-modal" class="demo-modal">
+<!-- Book A Demo Sliding Window -->
+<div id="demo-modal" class="demo-modal sliding">
+  <!-- Modal Window -->
   <div class="demo-modal-content">
-    <span class="demo-close-btn">&times;</span>
-    <div class="demo-modal-header">
-      <i class="fas fa-user-graduate"></i>
-      <h3>Book Demo Now</h3>
+    <!-- close icon -->
+    <span class="close-btn demo-close-btn"><i class="fa-solid fa-xmark"></i></span>
+
+    <!-- image -->
+     <div class="demo-modal-image">
+      <img src="../docs/assets/images/eva.jpg" alt="">
+     </div>
+
+    <!-- form content -->
+    <div class="demo-modal-form-content">
+      <h3 class="demo-modal-title">Book a Demo</h3>
+      <p class="demo-modal-intro-text">
+        Experience expert-led AI training before you commit. Limited seats available.
+      </p>
+      <!-- form -->
+      <form id="demo-registration-form" class="demo-registration-form">
+        
+        <!-- Name -->
+        <label for="name">Full Name</label>
+        <input type="text" id="name" name="name" placeholder="Enter your name" required />
+
+        <!-- Email -->
+        <label for="email">Email Address</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email" required />
+
+        <!-- Mobile -->
+        <label for="mobile">Mobile Number</label>
+        <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
+    
+        <!-- University/Institute Name -->
+        <label for="university">Institute/Organisation Name</label>
+        <input type="text" id="university" name="university" placeholder="Enter your Institute/Organisation Name" required />
+        
+        <!-- Register Button -->
+        <button class="globalBtn btnGradient demo-submit-btn" type="submit" id="demo-submit-btn">Book a Demo</button>
+      </form>
     </div>
-    <p class="demo-modal-intro-text">
-      Fill in your details below to register for the demo.
-    </p>
-    <form id="demo-registration-form" class="demo-registration-form">
-      
-      <!-- Name -->
-      <label for="name">Full Name</label>
-      <input type="text" id="name" name="name" placeholder="Enter your name" required />
 
-      <!-- Email -->
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter your email" required />
 
-      <!-- Mobile -->
-      <label for="mobile">Mobile Number</label>
-      <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
-  
-      <!-- University/Institute Name -->
-      <label for="university">Institute/Organisation Name</label>
-      <input type="text" id="university" name="university" placeholder="Enter your Institute/Organisation Name" required />
-      
-      <!-- Register Button -->
-      <button type="submit" id="demo-submit-btn">Book Demo</button>
-    </form>
   </div>
 </div> 
 <!-- Scripts -->

@@ -372,6 +372,7 @@ header{
   font-size: 1rem;
   font-weight: 500;
   transition: all ease .3s;
+  overflow: hidden;
 }.globalBtn:hover{
   transform: translateY(-4px);
 }
@@ -926,110 +927,121 @@ header{
 .live-courses .hidden{
   display: none;
 }
-/* Demo Modal */
+
+
+/* Book a Demo Modal */
 .demo-modal {
   display: flex;
   position: fixed;
   z-index: 1001;
-  left: -101%;
   top: 0%;
+  left: 0%;
+  transform: translateX(-100%);
   width: 100vw;
   height: 100vh;
+  padding: 4rem;
   overflow: hidden;
-  background: rgb(71, 63, 197, .4);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
   transition: all ease-in-out .4s;
+  cursor: zoom-out;
 
 } /* sliding window */
   .demo-modal.sliding{
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(0);
   }
 
-/* Modal Content */
-.demo-modal-content {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  width: 400px;
-  max-width: 90%;
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
-  animation: fadeIn 0.3s ease;
-}
-
-/* Header */
-.demo-modal-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-.demo-modal-header i {
-  color: #007BFF;
-  font-size: 20px;
-}
-.demo-modal-header h3 {
-  margin: 0;
-  font-size: 20px;
-  color: var(--secondary-color);
-  font-weight: 600;
-}
-
-/* Close Button */
-.demo-close-btn {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
-  color: #555;
-}
-.demo-close-btn:hover {
-  color: #000;
-}
-
-/* Text */
-.demo-modal-intro-text {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 15px;
-}
-
-/* Form Elements */
-.demo-registration-form label {
-  font-weight: 600;
-  display: block;
-  margin: 10px 0 5px;
-  color: #333;
-}
-.demo-registration-form input, select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-  font-size: 14px;
-  transition: border 0.3s;
-}
-.demo-registration-form input:focus, select:focus {
-  border-color: #007BFF;
-}
-/* Submit Button */
-#demo-submit-btn {
-  width: 100%;
-  background: var(--gradient-mix);
-  color: #fff;
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background 0.3s;
-}
-#demo-submit-btn:hover {
-  background: var(--gradient-secondary);
-}
+  /* Modal Content */
+  .demo-modal-content {
+    width: auto;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    background: var(--light-color);
+    border-radius: 8px;
+    box-shadow: 0 0 24px rgba(0, 0, 0, .5);
+    position: relative;
+    cursor: auto;
+  }
+    /* close btn */
+    .demo-close-btn{
+      z-index: 1002; 
+    }
+    /* image */
+    .demo-modal-image{
+      height: 100%;
+      width: auto;
+    }
+      .demo-modal-image img{
+        width: 100%;
+        height: 100%;
+        border-top-left-radius: 8px;
+        border-bottom-left-radius: 8px;
+      }
+    /* form content */ 
+    .demo-modal-form-content{
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 2rem;
+    } 
+      /* form title */
+      .demo-modal-title {
+        font-size: 2rem;
+        font-weight: 800;
+        line-height: 1.12;
+        background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
+          background-clip: border-box;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+      }
+      /* form paragraph*/
+      .demo-modal-intro-text{
+        font-size: 1rem;
+        color: var(--text-light);
+        width: 400px; 
+        overflow-wrap: break-word;
+          text-align: center;
+      }
+      /* Form Elements */
+      .demo-registration-form label {
+        font-size: 1rem;
+        font-weight: 500;
+        display: block;
+        color: var(--text-light);
+        margin: 4px 0;
+      }
+      .demo-registration-form input {
+        width: 100%;
+        padding: 4px 8px;
+        margin-bottom: 8px;
+        border-radius: 4px;
+        border: 1px solid rgba(51, 51, 51, 0.1);
+        background: transparent;
+        outline: none;
+        font-size: 1rem;
+        color: var(--text-light);
+        transition: all ease-in .2s;
+      } .demo-registration-form input::placeholder{
+        font-size: .9rem;
+        color: rgba(51, 51, 51, 0.4);
+      }
+      .demo-registration-form input:focus{
+        border-color: rgba(140, 60, 255, 1);
+        transform: translateY(-2px);
+      }
+      /* Submit Button */
+      .demo-submit-btn {
+        width: 100%;
+        background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
+        margin: 12px 0;
+        border: none;
+      }
 
 /* Fade-in animation */
 @keyframes fadeIn {
