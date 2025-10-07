@@ -1040,23 +1040,24 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
   });
 }
 
-  // Book A Demo
-  const bookDemoBtn = document.getElementById('book-demo');
+  // Book A Demo (Sliding Window)
   const bookModal = document.getElementById('demo-modal');
   const demoCloseBtn = document.querySelector('.demo-close-btn');
+  const bookDemoBtn = document.getElementById('book-demo');
 
   if (bookDemoBtn && bookModal && demoCloseBtn) {
     bookDemoBtn.addEventListener('click', () => {
-      bookModal.style.display = 'flex';
+      /*bookModal.style.display = 'flex';*/
+      bookModal.classList.add("sliding");
     });
 
     demoCloseBtn.addEventListener('click', () => {
-      bookModal.style.display = 'none';
+      bookModal.classList.remove("sliding");
     });
 
     window.addEventListener('click', (e) => {
       if(e.target === bookModal) {
-        bookModal.style.display = 'none';
+        bookModal.classList.remove("sliding");
       }
     });
   }
