@@ -555,7 +555,6 @@ document.addEventListener('DOMContentLoaded', function () {
     /* 9. starts send data and download brochure with EmailJS */
     // verify if the element exist
       // close modal window when the user clicks off
-    document.addEventListener("DOMContentLoaded", function() {
      const overlay = document.getElementById('modalOverlay');
      if (overlay) {
        overlay.addEventListener('click', function(event) {
@@ -565,12 +564,12 @@ document.addEventListener('DOMContentLoaded', function () {
       });
      }
 
-     document.addEventListener('keydown', function(event) {
-     if (event.key === 'Escape' && overlay && overlay.classList.contains('active')) {
-       closeModal();
-     }
-    });
-});
+      document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && overlay && overlay.classList.contains('active')) {
+        closeModal();
+      }
+      });
+
 
     /* ends send data and download pdf */
 
@@ -1047,19 +1046,28 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
 
   if (bookDemoBtn && bookModal && demoCloseBtn) {
     bookDemoBtn.addEventListener('click', () => {
-      /*bookModal.style.display = 'flex';*/
       bookModal.classList.add("sliding");
+      document.body.style.overflow = 'hidden';
     });
 
     demoCloseBtn.addEventListener('click', () => {
       bookModal.classList.remove("sliding");
+      document.style.overflow = "";
     });
-
+    /* clic en el relleno de la ventana */
     window.addEventListener('click', (e) => {
       if(e.target === bookModal) {
         bookModal.classList.remove("sliding");
+        document.body.style.overflow = '';
       }
     });
+    /* clic en la tecla Esc */
+      document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape' && bookModal && bookModal.classList.contains('sliding')) {
+          bookModal.classList.remove("sliding");
+          document.body.style.overflow = '';
+        }
+      });
   }
 
 
