@@ -271,122 +271,207 @@ document.addEventListener('DOMContentLoaded', function () {
 
     /* 6. Starts send emails function with EmailJS(Contact Form) */
     // verify if the element exist
-    if (document.getElementById('contact-form') && document.getElementById("submitBtn")) {
+/* 6. Starts send emails function with EmailJS(Contact Form + Demo Modal) */
 
-    // Variables to manage the number of submission attempts for the form and a delay while checking:
-    const maxRetries = 2;
-    const delay = 1000;
-    let emailjsInitialized = false;
+// Variables globales compartidas
+const maxRetries = 2;
+const delay = 1000;
+let emailjsInitialized = false;
 
-    // Use the above counters to assist in debugging errors:
-    async function sendEmailWithRetry(formData, retries = maxRetries) {
-      // We initially attempted to send the form (without the user noticing):
-      try{
-        if(!emailjsInitialized){
-          // Inicialite emailJS:
-          emailjs.init("r8071XjnXsbmJjqpz"); // public key 
-          emailjsInitialized = true;
-        }
-
-        // const response = await emailjs.sendForm('service_ID',  'template_ID, form data);
-        const response = await emailjs.sendForm('service_1gtj9qj', 'template_uk7gybo', formData);
-        return response;
-      }
-      // If the delivery fails, start using the retry counter (1 successful delivery + 2 additional attempts):
-      catch(error){
-        if(retries>0){
-          console.log("Reintentando envío... (${maxRetries - retries + 1} / ${maxRetries})");
-          // count 1 second before attempting another send attempt:
-          await new Promise(resolve => setTimeout(resolve, delay));
-          return sendEmailWithRetry(formData, retries - 1); 
-        }
-        //
-        throw error; // if resending attempts fail, a message is displayed to users
-      }
-      //------
+// Función de reintento (compartida)
+async function sendEmailWithRetry(formData, retries = maxRetries) {
+  try {
+    if (!emailjsInitialized) {
+      emailjs.init("9QTiwXB7EElSgyWrN"); // public key
+      emailjsInitialized = true;
     }
-  
-    /* send email without retries or errors */
-    async function showAlert(event) {
 
+    const response = await emailjs.sendForm('service_hyjqhbc', 'template_z994w15', formData);
+    return response;
+  } catch (error) {
+    if (retries > 0) {
+      console.log(`Reintentando envío... (${maxRetries - retries + 1} / ${maxRetries})`);
+      await new Promise(resolve => setTimeout(resolve, delay));
+      return sendEmailWithRetry(formData, retries - 1);
+    }
+    throw error;
+  }
+}
+
+if (document.getElementById('contact-form') && document.getElementById("submitBtn")) {
+
+  /* send email without retries or errors */
+  async function showAlert(event) {
     event.preventDefault(); // website will not reload, post method blocked
 
     /* reject special char and charge send btn */
-      const form = event.target; // get form data
-      const submitBtn = document.getElementById("submitBtn"); // cta button
-      const originalText = submitBtn.innerHTML; // cta inner text
-      let isValid = true;
-      
-      // Validar todos los campos de texto, email y textarea
-    const inputs = form.querySelectorAll('input[type="text"],  textarea');
-      for (let Input of inputs) {
-        if (!validarSinEspeciales(Input.value)) {
-          alert(`The field "${Input.name}" contains unauthorised characters.`);
-          Input.focus();
-          isValid = false;
-          break;
-        }
+    const form = event.target; // get form data
+    const submitBtn = document.getElementById("submitBtn"); // cta button
+    const originalText = submitBtn.innerHTML; // cta inner text
+    let isValid = true;
+
+    // Validar todos los campos de texto, email y textarea
+    const inputs = form.querySelectorAll('input[type="text"], textarea');
+    for (let Input of inputs) {
+      if (!validarSinEspeciales(Input.value)) {
+        alert(`The field "${Input.name}" contains unauthorised characters.`);
+        Input.focus();
+        isValid = false;
+        break;
       }
-        // if validation fails, stop sending
-        if (!isValid) {
-            return false;
-        }
-
-
-      // "sending" animation in the submit button:
-        submitBtn.classList.add('loading');
-        submitBtn.disabled = true;
-        submitBtn.style.opacity = "0.5";
-        submitBtn.style.pointerEvents = "none";
-        submitBtn.style.cursor = "not-allowed";
-
-        await new Promise(resolve => setTimeout(resolve, 50));
-
-      //
-      try{
-        const response = await sendEmailWithRetry(form); // check that there are no errors
-        console.log("success", response.status, response.text);
-        alert(" Your message was sent successfully!! ");
-        form.reset(); // clean all input fields
-
-        // If the email is sent successfully, redirect to the home page:
-        setTimeout(() => {
-          window.location.href = "https://udayam.co.in/index.html#contact";
-        }, 1000);
-      }
-      // show error messages
-      catch(error){
-        console.log("failed", error);
-        let errorMessage = "Sorry, there was an error sending your message. Please try again. ";
-            
-        if (error?.status === 0 || error?.toString().includes('Network')) {
-          errorMessage += " Please check your internet connection and try again.";
-        } else if (error?.status >= 500) {
-          errorMessage += " Our server is having issues. Please try again in a few minutes.";
-        } else {
-          errorMessage += " Please try again or contact us directly at support@udayam.co.in ";
-        }
-            
-        alert(errorMessage);
-      }
-      finally{
-        // Restore original styles to the button submit (in case of success or error):
-        setTimeout(() => {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = "1";
-          submitBtn.style.pointerEvents = "auto";
-          submitBtn.style.cursor = "pointer";
-          submitBtn.classList.remove("loading");
-        }, 500);
-      }
-
+    }
+    // if validation fails, stop sending
+    if (!isValid) {
       return false;
     }
 
-    document.getElementById('contact-form').addEventListener('submit', showAlert);
+    // "sending" animation in the submit button:
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = "0.5";
+    submitBtn.style.pointerEvents = "none";
+    submitBtn.style.cursor = "not-allowed";
+
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    try {
+      const response = await sendEmailWithRetry(form); // check that there are no errors
+      console.log("success", response.status, response.text);
+      alert(" Your message was sent successfully!! ");
+      form.reset(); // clean all input fields
+
+      // If the email is sent successfully, redirect to the home page:
+      setTimeout(() => {
+        window.location.href = "https://udayam.co.in/";
+      }, 1000);
     }
-    /* Ends send emails function with EmailJS(Contact Form) */
+    // show error messages
+    catch (error) {
+      console.log("failed", error);
+      let errorMessage = "Sorry, there was an error sending your message. Please try again. ";
+
+      if (error?.status === 0 || error?.toString().includes('Network')) {
+        errorMessage += " Please check your internet connection and try again.";
+      } else if (error?.status >= 500) {
+        errorMessage += " Our server is having issues. Please try again in a few minutes.";
+      } else {
+        errorMessage += " Please try again or contact us directly at support@udayam.co.in ";
+      }
+
+      alert(errorMessage);
+    }
+    finally {
+      // Restore original styles to the button submit (in case of success or error):
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.style.pointerEvents = "auto";
+        submitBtn.style.cursor = "pointer";
+        submitBtn.classList.remove("loading");
+      }, 500);
+    }
+
+    return false;
+  }
+
+  document.getElementById('contact-form').addEventListener('submit', showAlert);
+}
+
+// ============================================
+// FORMULARIO DEL MODAL (Demo Registration)
+// ============================================
+if (document.getElementById('demo-registration-form') && document.getElementById("demo-submit-btn")) {
+
+  /* send email for demo modal */
+  async function showAlertDemo(event) {
+    event.preventDefault();
+
+    const form = event.target;
+    const submitBtn = document.getElementById("demo-submit-btn");
+    const originalText = submitBtn.innerHTML;
+    let isValid = true;
+
+    // Validar todos los campos (text, email, tel)
+    const textInputs = form.querySelectorAll('input[type="text"], input[type="tel"]');
+    for (let Input of textInputs) {
+      if (!validarSinEspeciales(Input.value)) {
+        alert(`The field "${Input.placeholder || Input.name}" contains unauthorised characters.`);
+        Input.focus();
+        isValid = false;
+        break;
+      }
+    }
+
+    // Validar teléfono por separado
+    if (isValid) {
+      const phoneInput = form.querySelector('input[type="tel"]');
+      if (phoneInput && !validarTelefono(phoneInput.value)) {
+        alert(`The phone number contains unauthorised characters.`);
+        phoneInput.focus();
+        isValid = false;
+      }
+    }
+
+    if (!isValid) {
+      return false;
+    }
+
+    // "sending" animation in the submit button:
+    submitBtn.classList.add('loading');
+    submitBtn.disabled = true;
+    submitBtn.style.opacity = "0.5";
+    submitBtn.style.pointerEvents = "none";
+    submitBtn.style.cursor = "not-allowed";
+
+    await new Promise(resolve => setTimeout(resolve, 50));
+
+    try {
+      const response = await sendEmailWithRetry(form);
+      console.log("success", response.status, response.text);
+      alert(" Your demo request was sent successfully!! We'll contact you soon. ");
+      form.reset();
+
+      // Cerrar el modal después de envío exitoso
+      const modal = document.getElementById('demo-modal');
+      if (modal) {
+        setTimeout(() => {
+          modal.classList.remove('sliding');
+        }, 1500);
+      }
+    }
+    catch (error) {
+      console.log("failed", error);
+      let errorMessage = "Sorry, there was an error sending your request. Please try again. ";
+
+      if (error?.status === 0 || error?.toString().includes('Network')) {
+        errorMessage += " Please check your internet connection and try again.";
+      } else if (error?.status >= 500) {
+        errorMessage += " Our server is having issues. Please try again in a few minutes.";
+      } else {
+        errorMessage += " Please try again or contact us directly at support@udayam.co.in ";
+      }
+
+      alert(errorMessage);
+    }
+    finally {
+      setTimeout(() => {
+        submitBtn.innerHTML = originalText;
+        submitBtn.disabled = false;
+        submitBtn.style.opacity = "1";
+        submitBtn.style.pointerEvents = "auto";
+        submitBtn.style.cursor = "pointer";
+        submitBtn.classList.remove("loading");
+      }, 500);
+    }
+
+    return false;
+  }
+
+  document.getElementById('demo-registration-form').addEventListener('submit', showAlertDemo);
+}
+
+/* Ends send emails function with EmailJS(Contact Form + Demo Modal) */
     
     
     // 7. starts dropdown menu support for mobile
@@ -1039,7 +1124,7 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
   });
 }
 
-  // Book A Demo (Sliding Window)
+  /* Book A Demo (Sliding Window) */
   const bookModal = document.getElementById('demo-modal');
   const demoCloseBtn = document.querySelector('.demo-close-btn');
   const bookDemoBtn = document.getElementById('book-demo');
