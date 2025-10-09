@@ -387,6 +387,7 @@
 
         <!-- form contact -->
         <form class="contact-form" id="contact-form">
+          <!-- important hidden fields !!!-->
           <input
             type="text"
             name="formName"
@@ -398,6 +399,9 @@
             hidden
             value="You have a new message from Udayam AI Labs Website!!"
           />
+          <input type="text" name="mobile" hidden value = "No Required" />
+          <input type="text" name="organisation" hidden value = "No Required" />
+          <!-- normal fields -->
           <input
             type="text"
             placeholder="Full name"
@@ -625,17 +629,19 @@
           </p>
           <!-- form -->
           <form id="demo-registration-form" class="demo-registration-form">
-            <!-- subject -->
+            <!-- important hidden fields !!!! -->
             <input
             type="text"
             name="formName"
             hidden
-            value="Book a Form" />             
+            value="Book a Demo Form" />             
             <input
             type="text"
             name="subject"
             hidden
-            value="You have a new Book Demo Request" />
+            value="You have a New Book Demo Request" />
+            <input type="text" name="message" hidden value = "No Required" />
+            <!-- normal fields -->
             <!-- Name -->
             <label for="demo-name">Full Name</label>
             <input type="text" id="demo-name" name="name" placeholder="Your Name" required />
@@ -646,8 +652,8 @@
             <label for="demo-mobile">Mobile Number</label>
             <input type="tel" id="demo-mobile" name="mobile" placeholder="+1 234 567 8900" required />
             <!-- University/Institute Name -->
-            <label for="demo-university">Institute/Organisation Name</label>
-            <input type="text" id="demo-university" name="university" placeholder="Institute/Organisation" required />   
+            <label for="demo-organisation">Institute/Organisation Name</label>
+            <input type="text" id="demo-organisation" name="organisation" placeholder="Institute/Organisation" required />   
             <!-- Register Button -->
             <button class="globalBtn btnGradient demo-submit-btn" type="submit" id="demo-submit-btn">Book a Demo</button>
           </form>
