@@ -762,6 +762,24 @@ document.addEventListener('DOMContentLoaded', function () {
         subtitle: "Dr. Vikhe Patil Foundation Medical college",
         category: "corporate"
       }, 
+      {
+        image: "./assets/images/gallery/89.jpg",
+        title: "AI in Healthcare WorkShop",
+        subtitle: "ASCOMS & Hospital, Jammu",
+        category: "corporate"
+      }, 
+      {
+        image: "./assets/images/gallery/90.jpg",
+        title: "AI for Young Innovators",
+        subtitle: "Police Public School, Bengaluru",
+        category: "university"
+      }, 
+      {
+        image: "./assets/images/gallery/91.jpg",
+        title: "AI for Young Innovators",
+        subtitle: "KV Sunjuwan, Jammu",
+        category: "school"
+      }, 
       ];    
 
     // Variables globales
