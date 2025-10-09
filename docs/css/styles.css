@@ -1910,8 +1910,44 @@ footer {
     resize: none;
     height: calc(30%);
   }
-  
-  
+  /* cta */
+  .contact-form .cta {
+      padding: 8px 16px;
+      border-radius: 4px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all ease-in-out .2s;
+      color: rgba(255, 255, 255, 1);
+      background: transparent;
+      border: solid 1px rgb(255, 255, 255);
+      height: auto;
+  }
+  .contact-form .cta:hover{
+      color: #111827;
+      background: rgb(255, 255, 255);
+      box-shadow: inset 0 0 0 1px #111827;
+    }
+    /* sending animation */
+    .loading {
+      position: relative;
+      color: transparent !important;
+    }
+    .loading::after {
+      content: '';
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      top: 50%;
+      left: 50%;
+      margin: -10px 0 0 -10px;
+      border: 2px solid rgba(255, 255, 255, 0.5);
+      border-radius: 50%;
+      border-top-color: transparent;
+      animation: spin 1s ease-in infinite;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }  
 
 /* contact info and social media icons */
 .contact-info {
