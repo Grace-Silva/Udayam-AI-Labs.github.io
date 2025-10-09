@@ -280,11 +280,11 @@ document.addEventListener('DOMContentLoaded', function () {
     async function sendEmailWithRetry(formData, retries = maxRetries) {
       try {
         if (!emailjsInitialized) {
-          emailjs.init("9QTiwXB7EElSgyWrN"); // public key
+          emailjs.init("r8071XjnXsbmJjqpz"); // public key
           emailjsInitialized = true;
         }
 
-        const response = await emailjs.sendForm('service_hyjqhbc', 'template_z994w15', formData);
+        const response = await emailjs.sendForm('service_1gtj9qj', 'template_uk7gybo', formData);
         return response;
       } 
         catch (error) {
