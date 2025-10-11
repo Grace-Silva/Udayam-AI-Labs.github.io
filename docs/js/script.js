@@ -6,12 +6,103 @@ function validarSinEspeciales(textDemo) {
     textDemo
   );
 }
+
 function validarTelefono(texto) {
   const regex = /^[0-9\s\-()\+.]+$/;
   return regex.test(texto);
 }
 
+// Brochure Download Modal Functions (Global Scope)
+function openModal() {
+  const modalOverlay = document.getElementById("modalOverlay");
+  if (modalOverlay) {
+    modalOverlay.classList.add("active");
+  }
+}
+
+function closeModal() {
+  const modalOverlay = document.getElementById("modalOverlay");
+  if (modalOverlay) {
+    modalOverlay.classList.remove("active");
+  }
+  resetForm();
+}
+
+function resetForm() {
+  document.getElementById("email").value = "";
+  document.getElementById("phone").value = "";
+  document.getElementById("emailError").classList.remove("active");
+  document.getElementById("phoneError").classList.remove("active");
+  document.getElementById("generalError").classList.remove("active");
+  document.getElementById("generalError").textContent = "";
+  document.getElementById("formContent").style.display = "block";
+  document.getElementById("successContent").style.display = "none";
+  document.getElementById("submitBtn").disabled = false;
+  document.getElementById("submitBtn").textContent = "Enviar y descargar";
+}
+
+function handleSubmit(event) {
+  event.preventDefault();
+  emailjs.init("ilcGOCulCPRqjQQDb");
+  const email = document.getElementById("email").value.trim();
+  const phone = document.getElementById("phone").value.trim();
+  const emailError = document.getElementById("emailError");
+  const phoneError = document.getElementById("phoneError");
+  const generalError = document.getElementById("generalError");
+  const submitBtn = document.getElementById("submitBtn");
+  emailError.classList.remove("active");
+  phoneError.classList.remove("active");
+  generalError.classList.remove("active");
+  let isValid = true;
+  if (!email) {
+    emailError.textContent = "Please type your email";
+    emailError.classList.add("active");
+    isValid = false;
+  } else if (!validarSinEspeciales(email)) {
+    emailError.textContent =
+      "The email address contains unauthorised characters.";
+    emailError.classList.add("active");
+    isValid = false;
+  } else if (!email.includes("@")) {
+    emailError.textContent = "Please enter a valid email";
+    emailError.classList.add("active");
+    isValid = false;
+  }
+  if (!phone) {
+    phoneError.textContent = "Type your phone";
+    phoneError.classList.add("active");
+    isValid = false;
+  } else if (!validarTelefono(phone)) {
+    phoneError.textContent = "This number contains unauthorised characters.";
+    phoneError.classList.add("active");
+    isValid = false;
+  }
+  if (!isValid) return;
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Sending...";
+  const templateParams = {
+    email: email,
+    phone: phone,
+  };
+  emailjs.send("service_vetmuad", "template_p70cppb", templateParams).then(
+    function (response) {
+      console.log("This Email was sended sucessfully:", response);
+      document.getElementById("formContent").style.display = "none";
+      document.getElementById("successContent").style.display = "block";
+    },
+    function (error) {
+      console.error("An error has ocurred:", error);
+      generalError.textContent =
+        "Error while attempting to send the information. Please try again.";
+      generalError.classList.add("active");
+      submitBtn.disabled = false;
+      submitBtn.textContent = "Send and Download";
+    }
+  );
+}
+
 document.addEventListener("DOMContentLoaded", function () {
+  // 1. Animate elements on scroll
   if (
     document.querySelector(".service-card") ||
     document.querySelector(".photo-card") ||
@@ -20,7 +111,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const animatedElements = document.querySelectorAll(
       ".service-card, .photo-card, .about-content p"
     );
-
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
@@ -34,12 +124,12 @@ document.addEventListener("DOMContentLoaded", function () {
         threshold: 0.2,
       }
     );
-
     animatedElements.forEach((element) => {
       observer.observe(element);
       element.classList.add("pre-animation");
     });
-  }
+  } // 2. Training highlights card slider
+
   if (
     document.getElementById("prevBtn") &&
     document.getElementById("nextBtn") &&
@@ -116,12 +206,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function renderCard(index) {
       const data = cardData[index];
-
       document.getElementById("cardImage").src = data.image.src;
       document.getElementById("cardImage").alt = data.image.alt;
       document.getElementById("cardTitle").textContent = data.title;
       document.getElementById("cardDescription").textContent = data.description;
-
       let formattedName = data.reviewer.name;
       if (data.reviewer.designation && data.reviewer.location) {
         formattedName += `, ${data.reviewer.designation} (${data.reviewer.location})`;
@@ -130,18 +218,15 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if (data.reviewer.location) {
         formattedName += ` (${data.reviewer.location})`;
       }
-
       document.getElementById("userName").textContent = formattedName;
       document.getElementById("userComment").textContent =
         data.reviewer.comment;
-
       document.getElementById("userInitials").textContent = data.reviewer.name
         .trim()
         .split(/\s+/)
         .map((w) => w[0].toUpperCase())
         .slice(0, 2)
         .join("");
-
       renderDots();
     }
 
@@ -176,27 +261,21 @@ document.addEventListener("DOMContentLoaded", function () {
         dotsContainer.appendChild(dot);
       });
     }
-    // move to left
     document.getElementById("prevBtn").addEventListener("click", () => {
       currentTrainingCardIndex =
         (currentTrainingCardIndex - 1 + cardData.length) % cardData.length;
       renderCard(currentTrainingCardIndex);
     });
-    // move to right
     document.getElementById("nextBtn").addEventListener("click", () => {
       currentTrainingCardIndex =
         (currentTrainingCardIndex + 1) % cardData.length;
       renderCard(currentTrainingCardIndex);
     });
     renderCard(currentTrainingCardIndex);
-  }
-  // Ends Training highlights card details (swipper)
+  } // 3. Accordion-toggle elements
 
-  // 4. Starts Accordion-toggle elements:
-  // vefiry if the element exist:
   if (document.querySelector(".accordion-item")) {
     const firstItem = document.querySelector(".accordion-item");
-
     if (firstItem) {
       firstItem.classList.add("active");
     }
@@ -204,9 +283,8 @@ document.addEventListener("DOMContentLoaded", function () {
       header.addEventListener("click", () => {
         toggleAccordion(header);
       });
-
       header.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === "") {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           toggleAccordion(header);
         }
@@ -216,7 +294,6 @@ document.addEventListener("DOMContentLoaded", function () {
     function toggleAccordion(header) {
       const item = header.parentElement;
       const isActive = item.classList.contains("active");
-
       document
         .querySelectorAll(".accordion-item")
         .forEach((i) => i.classList.remove("active"));
@@ -224,22 +301,13 @@ document.addEventListener("DOMContentLoaded", function () {
         item.classList.add("active");
       }
     }
-  }
-  // Ends Accordion-toggle elements
+  } // 4. Go up button function
 
-  // 5. Starts go up function:
-  // verify if the element exist
   if (document.getElementById("btnUp")) {
     const btnUp = document.getElementById("btnUp");
-    // Show or hide the button depending on the scroll position:
     window.addEventListener("scroll", function () {
-      if (window.pageYOffset > 300) {
-        btnUp.classList.add("show");
-      } else {
-        btnUp.classList.remove("show");
-      }
+      btnUp.classList.toggle("show", window.pageYOffset > 300);
     });
-    // Smooth upward scroll with delay
     btnUp.addEventListener("click", function () {
       setTimeout(() => {
         window.scrollTo({
@@ -248,295 +316,325 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }, 100);
     });
-  }
-  // Ends go up function
+  } // 5. EmailJS Forms Logic
 
-  /* 6. Starts send emails function with EmailJS(Contact Form) */
-  // verify if the element exist
   if (
-    document.getElementById("contact-form") &&
-    document.getElementById("submitBtn")
+    document.getElementById("contact-form") ||
+    document.getElementById("demo-registration-form")
   ) {
-    // Variables to manage the number of submission attempts for the form and a delay while checking:
     const maxRetries = 2;
     const delay = 1000;
     let emailjsInitialized = false;
 
-    // Use the above counters to assist in debugging errors:
     async function sendEmailWithRetry(formData, retries = maxRetries) {
-      // We initially attempted to send the form (without the user noticing):
       try {
         if (!emailjsInitialized) {
-          // Inicialite emailJS:
-          emailjs.init("r8071XjnXsbmJjqpz"); // public key
+          emailjs.init("r8071XjnXsbmJjqpz");
           emailjsInitialized = true;
         }
-
-        // const response = await emailjs.sendForm('service_ID',  'template_ID, form data);
-        const response = await emailjs.sendForm(
-          "service_1gtj9qj",
-          "template_uk7gybo",
-          formData
-        );
-        return response;
+        const serviceID =
+          formData.id === "contact-form"
+            ? "service_1gtj9qj"
+            : "ANOTHER_SERVICE_ID_FOR_DEMO";
+        const templateID =
+          formData.id === "contact-form"
+            ? "template_uk7gybo"
+            : "ANOTHER_TEMPLATE_ID_FOR_DEMO";
+        return await emailjs.sendForm(serviceID, templateID, formData);
       } catch (error) {
-        // If the delivery fails, start using the retry counter (1 successful delivery + 2 additional attempts):
         if (retries > 0) {
           console.log(
-            "Reintentando envío... (${maxRetries - retries + 1} / ${maxRetries})"
+            `Reintentando envío... (${
+              maxRetries - retries + 1
+            } / ${maxRetries})`
           );
-          // count 1 second before attempting another send attempt:
           await new Promise((resolve) => setTimeout(resolve, delay));
           return sendEmailWithRetry(formData, retries - 1);
         }
-        //
-        throw error; // if resending attempts fail, a message is displayed to users
+        throw error;
       }
-      //------
-    }
+    } // Handler for Contact Form
 
-    /* send email without retries or errors */
-    async function showAlert(event) {
-      event.preventDefault(); // website will not reload, post method blocked
+    if (
+      document.getElementById("contact-form") &&
+      document.getElementById("submitBtn")
+    ) {
+      // Assuming contact form submit is #submitBtn
+      async function showAlert(event) {
+        event.preventDefault();
+        const form = event.target;
+        const contactsubmitBtn = document.getElementById("submitBtn"); // Changed to submitBtn
+        const originalText = contactsubmitBtn.innerHTML;
+        let isFieldValid = true;
+        const inputs = form.querySelectorAll('input[type="text"], textarea');
+        for (let InputField of inputs) {
+          if (!validarSinEspeciales(InputField.value)) {
+            alert(
+              `The field "${InputField.name}" contains unauthorised characters.`
+            );
+            InputField.focus();
+            isFieldValid = false;
+            break;
+          }
+        }
+        if (!isFieldValid) return false;
 
-      /* reject special char and charge send btn */
-      const form = event.target; // get form data
-      const submitBtn = document.getElementById("submitBtn"); // cta button
-      const originalText = submitBtn.innerHTML; // cta inner text
-      let isValid = true;
-
-      // Validar todos los campos de texto, email y textarea
-      const inputs = form.querySelectorAll('input[type="text"],  textarea');
-      for (let Input of inputs) {
-        if (!validarSinEspeciales(Input.value)) {
-          alert(`The field "${Input.name}" contains unauthorised characters.`);
-          Input.focus();
-          isValid = false;
-          break;
+        contactsubmitBtn.classList.add("loading");
+        contactsubmitBtn.disabled = true;
+        try {
+          const response = await sendEmailWithRetry(form);
+          console.log("success", response.status, response.text);
+          alert(" Your message was sent successfully!! ");
+          form.reset();
+          setTimeout(() => {
+            window.location.href = "#";
+          }, 1000);
+        } catch (error) {
+          console.log("failed", error);
+          let errorMessage =
+            "Sorry, there was an error sending your message. Please try again. ";
+          if (error?.status === 0 || error?.toString().includes("Network")) {
+            errorMessage +=
+              " Please check your internet connection and try again.";
+          } else if (error?.status >= 500) {
+            errorMessage +=
+              " Our server is having issues. Please try again in a few minutes.";
+          } else {
+            errorMessage +=
+              " Please try again or contact us directly at support@udayam.co.in ";
+          }
+          alert(errorMessage);
+        } finally {
+          setTimeout(() => {
+            contactsubmitBtn.innerHTML = originalText;
+            contactsubmitBtn.disabled = false;
+            contactsubmitBtn.classList.remove("loading");
+          }, 500);
         }
       }
-      // if validation fails, stop sending
-      if (!isValid) {
-        return false;
-      }
+      document
+        .getElementById("contact-form")
+        .addEventListener("submit", showAlert);
+    } // Handler for Demo Registration Form
 
-      // "sending" animation in the submit button:
-      submitBtn.classList.add("loading");
-      submitBtn.disabled = true;
-      submitBtn.style.opacity = "0.5";
-      submitBtn.style.pointerEvents = "none";
-      submitBtn.style.cursor = "not-allowed";
-
-      await new Promise((resolve) => setTimeout(resolve, 50));
-
-      //
-      try {
-        const response = await sendEmailWithRetry(form); // check that there are no errors
-        console.log("success", response.status, response.text);
-        alert(" Your message was sent successfully!! ");
-        form.reset(); // clean all input fields
-
-        // If the email is sent successfully, redirect to the home page:
-        setTimeout(() => {
-          window.location.href = "https://udayam.co.in/index.html#contact";
-        }, 1000);
-      } catch (error) {
-        // show error messages
-        console.log("failed", error);
-        let errorMessage =
-          "Sorry, there was an error sending your message. Please try again. ";
-
-        if (error?.status === 0 || error?.toString().includes("Network")) {
-          errorMessage +=
-            " Please check your internet connection and try again.";
-        } else if (error?.status >= 500) {
-          errorMessage +=
-            " Our server is having issues. Please try again in a few minutes.";
-        } else {
-          errorMessage +=
-            " Please try again or contact us directly at support@udayam.co.in ";
+    if (
+      document.getElementById("demo-registration-form") &&
+      document.getElementById("demo-submit-btn")
+    ) {
+      async function showAlertDemo(event) {
+        event.preventDefault();
+        const demoForm = event.target;
+        const demoSubmitBtn = document.getElementById("demo-submit-btn");
+        const originalText = demoSubmitBtn.innerHTML;
+        let isValid = true;
+        const textInputs = demoForm.querySelectorAll('input[type="text"]');
+        for (let Input of textInputs) {
+          if (!validarSinEspeciales(Input.value)) {
+            alert(
+              `The field "${Input.name}" contains unauthorised characters.`
+            );
+            Input.focus();
+            isValid = false;
+            break;
+          }
         }
+        if (isValid) {
+          const phoneInput = demoForm.querySelector('input[type="tel"]');
+          if (phoneInput && !validarTelefono(phoneInput.value)) {
+            alert(`The phone number contains unauthorised characters.`);
+            phoneInput.focus();
+            isValid = false;
+          }
+        }
+        if (!isValid) return false;
 
-        alert(errorMessage);
-      } finally {
-        // Restore original styles to the button submit (in case of success or error):
-        setTimeout(() => {
-          submitBtn.innerHTML = originalText;
-          submitBtn.disabled = false;
-          submitBtn.style.opacity = "1";
-          submitBtn.style.pointerEvents = "auto";
-          submitBtn.style.cursor = "pointer";
-          submitBtn.classList.remove("loading");
-        }, 500);
+        demoSubmitBtn.classList.add("loading");
+        demoSubmitBtn.disabled = true;
+        try {
+          const response = await sendEmailWithRetry(demoForm);
+          console.log("success", response.status, response.text);
+          alert(
+            " Your demo request was sent successfully!! We'll contact you soon. "
+          );
+          demoForm.reset();
+          const modal = document.getElementById("demo-modal");
+          if (modal) {
+            setTimeout(() => {
+              modal.classList.remove("sliding");
+            }, 1000);
+          }
+        } catch (error) {
+          console.log("failed", error);
+          let errorMessage =
+            "Sorry, there was an error sending your request. Please try again. ";
+          if (error?.status === 0 || error?.toString().includes("Network")) {
+            errorMessage +=
+              " Please check your internet connection and try again.";
+          } else if (error?.status >= 500) {
+            errorMessage +=
+              " Our server is having issues. Please try again in a few minutes.";
+          } else {
+            errorMessage +=
+              " Please try again or contact us directly at support@udayam.co.in ";
+          }
+          alert(errorMessage);
+        } finally {
+          setTimeout(() => {
+            demoSubmitBtn.innerHTML = originalText;
+            demoSubmitBtn.disabled = false;
+            demoSubmitBtn.classList.remove("loading");
+          }, 500);
+        }
       }
-
-      return false;
+      document
+        .getElementById("demo-registration-form")
+        .addEventListener("submit", showAlertDemo);
     }
+  } // 6. Dropdown menu support for mobile
 
-    document
-      .getElementById("contact-form")
-      .addEventListener("submit", showAlert);
-  }
-  /* Ends send emails function with EmailJS(Contact Form) */
+  const dropdownToggles = document.querySelectorAll(".dropdown-toggle");
+  if (dropdownToggles.length > 0) {
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener("click", function (e) {
+        e.preventDefault();
+        const dropdown = this.closest(".dropdown");
+        if (window.innerWidth <= 992) {
+          const isActive = dropdown.classList.toggle("active");
+          this.setAttribute("aria-expanded", isActive);
+          dropdownToggles.forEach((otherToggle) => {
+            const otherDropDown = otherToggle.closest(".dropdown");
+            if (otherDropDown !== dropdown) {
+              otherDropDown.classList.remove("active");
+              otherToggle.setAttribute("aria-expanded", false);
+            }
+          });
+        }
+      });
+    });
+    document.addEventListener("click", function (e) {
+      if (!e.target.closest(".dropdown")) {
+        dropdownToggles.forEach((toggle) => {
+          const dropdownElement = toggle.closest(".dropdown");
+          dropdownElement.classList.remove("active");
+          toggle.setAttribute("aria-expanded", false);
+        });
+      }
+    });
+    dropdownToggles.forEach((toggle) => {
+      toggle.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          this.click();
+        }
+      });
+    });
+  } // 7. Partners section slider
 
-  // 7. starts dropdown menu support for mobile
-  // verify if the element exis
-
-  // ends dropdown menu support for mobile
-
-  /* 8. starts partners section */
-  // create parteners data:
-  const partners = [
-    {
-      // kaizen engineers
-      name: "Kaizen Engineers",
-      logo: "./assets/images/partners/kaizen.png",
-      url: "https://kaizengroup.co.in/",
-    },
-    {
-      // stempedia
-      name: "STEMpedia",
-      logo: "./assets/images/partners/stempedia.png",
-      url: "https://thestempedia.com/",
-    },
-    {
-      // ramaiah university
-      name: "Ramaiah University of Applied Sciences",
-      logo: "./assets/images/partners/ramaiah.png",
-      url: "https://www.msruas.ac.in/",
-    },
-    {
-      // ambition biology academy
-      name: "Ambition Biology Academy Ahmednagar",
-      logo: "./assets/images/partners/ambitionscience.png",
-      url: "https://www.justdial.com/Ahmednagar/Ambition-Biology-Academy-Near-Morya-Mangal-Karyalaya-Savedi/9999PX241-X241-211211124847-R1E9_BZDET",
-    },
-    {
-      // Dr. Babasaheb Ambedkar Marathwada University
-      name: "Dr. Babasaheb Ambedkar Marathwada University",
-      logo: "./assets/images/partners/dr babasaheb.png",
-      url: "http://bamu.ac.in/",
-    },
-    {
-      //dr vithalrao foundation
-      name: "Dr. Vithalrao Vikhe Patil Foundation's",
-      logo: "./assets/images/partners/dr vithalrao.png",
-      url: "https://www.vimscopt.edu.in/",
-    },
-    {
-      // isbr
-      name: "ISBR Business School,",
-      logo: "./assets/images/partners/isbr.png",
-      url: "https://www.isbr.in/",
-    },
-    {
-      // kolkata
-      name: "National Institute of Pharmaceutical Education and Research, Kolkata",
-      logo: "./assets/images/partners/kolkata.png",
-      url: "https://www.niperkolkata.edu.in/ ",
-    },
-    {
-      // pdea
-      name: "Pune District Education Association, Pune",
-      logo: "./assets/images/partners/pdea.png",
-      url: "https://www.pdeapune.org/",
-    },
-    {
-      // swami university
-      name: "Swami Ramanand Teerth Marathwada University",
-      logo: "./assets/images/partners/swami.png",
-      url: "https://srtmun.ac.in/en/",
-    },
-  ];
-
-  // populate elements:
   const track = document.getElementById("partnersTrack");
-  // verify if the element exist
   if (track) {
-    // create logo containers
+    const partners = [
+      {
+        name: "Kaizen Engineers",
+        logo: "./assets/images/partners/kaizen.png",
+        url: "https://kaizengroup.co.in/",
+      },
+      {
+        name: "STEMpedia",
+        logo: "./assets/images/partners/stempedia.png",
+        url: "https://thestempedia.com/",
+      },
+      {
+        name: "Ramaiah University of Applied Sciences",
+        logo: "./assets/images/partners/ramaiah.png",
+        url: "https://www.msruas.ac.in/",
+      },
+      {
+        name: "Ambition Biology Academy Ahmednagar",
+        logo: "./assets/images/partners/ambitionscience.png",
+        url: "https://www.justdial.com/Ahmednagar/Ambition-Biology-Academy-Near-Morya-Mangal-Karyalaya-Savedi/9999PX241-X241-211211124847-R1E9_BZDET",
+      },
+      {
+        name: "Dr. Babasaheb Ambedkar Marathwada University",
+        logo: "./assets/images/partners/dr babasaheb.png",
+        url: "http://bamu.ac.in/",
+      },
+      {
+        name: "Dr. Vithalrao Vikhe Patil Foundation's",
+        logo: "./assets/images/partners/dr vithalrao.png",
+        url: "https://www.vimscopt.edu.in/",
+      },
+      {
+        name: "ISBR Business School,",
+        logo: "./assets/images/partners/isbr.png",
+        url: "https://www.isbr.in/",
+      },
+      {
+        name: "National Institute of Pharmaceutical Education and Research, Kolkata",
+        logo: "./assets/images/partners/kolkata.png",
+        url: "https://www.niperkolkata.edu.in/ ",
+      },
+      {
+        name: "Pune District Education Association, Pune",
+        logo: "./assets/images/partners/pdea.png",
+        url: "https://www.pdeapune.org/",
+      },
+      {
+        name: "Swami Ramanand Teerth Marathwada University",
+        logo: "./assets/images/partners/swami.png",
+        url: "https://srtmun.ac.in/en/",
+      },
+    ];
     function createLogos(e) {
-      return `
-        <a href="${e.url}" target="_blank" class="partner-logo-image" 
-         aria-label="${e.name}" title="${e.name}">
-          <img src="${e.logo}" alt="${e.name} logo">
-        </a>
-      `;
+      return `<a href="${e.url}" target="_blank" class="partner-logo-image" aria-label="${e.name}" title="${e.name}"><img src="${e.logo}" alt="${e.name} logo"></a>`;
     }
-    // duplicate logos (infinite scroll)
     const logosHTML = partners.map(createLogos).join("");
-    track.innerHTML = logosHTML + logosHTML; // automatic clone
-
-    // stop animation when the user touch/hover:
+    track.innerHTML = logosHTML + logosHTML;
     class PartnersSlider {
       constructor() {
         this.track = document.getElementById("partnersTrack");
         this.isPaused = false;
         this.init();
       }
-
       init() {
-        // stop with mouse:
         this.track.addEventListener("mouseenter", () => this.pause());
         this.track.addEventListener("mouseleave", () => this.resume());
-
-        // stop with touch:
         this.track.addEventListener("touchstart", () => this.pause());
         this.track.addEventListener("touchend", () => this.delayedResume());
       }
-
       pause() {
         if (!this.isPaused) {
           this.track.classList.add("paused");
           this.isPaused = true;
         }
       }
-
       resume() {
         if (this.isPaused) {
           this.track.classList.remove("paused");
           this.isPaused = false;
         }
       }
-      // restart after 2 second if the user dont touch the section
       delayedResume() {
         setTimeout(() => this.resume(), 5000);
       }
     }
-
-    // Init slider
     new PartnersSlider();
-  }
-  /* ends partners section */
+  } // 8. Brochure Modal Listeners
 
-  /* 9. starts send data and download brochure with EmailJS */
-  // verify if the element exist
-  // close modal window when the user clicks off
-  document.addEventListener("DOMContentLoaded", function () {
-    const overlay = document.getElementById("modalOverlay");
-    if (overlay) {
-      overlay.addEventListener("click", function (event) {
-        if (event.target === this) {
-          closeModal();
-        }
-      });
-    }
-
-    document.addEventListener("keydown", function (event) {
-      if (
-        event.key === "Escape" &&
-        overlay &&
-        overlay.classList.contains("active")
-      ) {
+  const overlay = document.getElementById("modalOverlay");
+  if (overlay) {
+    overlay.addEventListener("click", function (event) {
+      if (event.target === this) {
         closeModal();
       }
     });
-  });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && overlay.classList.contains("active")) {
+        closeModal();
+      }
+    });
+  } // 9. Gallery and Lightbox
 
-  /* ends send data and download pdf */
-
-  /* 10. starts previous trainings carrousel */
   const galleryElement = document.querySelector(".gallery");
-  // verify if the element exists:
   if (galleryElement) {
     const cardData = [
       {
@@ -641,50 +739,61 @@ document.addEventListener("DOMContentLoaded", function () {
         subtitle: "Dr. Vikhe Patil Foundation Medical college",
         category: "corporate",
       },
+      {
+        image: "./assets/images/gallery/89.jpg",
+        title: "AI in Healthcare Workshop",
+        subtitle: "ASCOMS & Hospital, Jammu",
+        category: "corporate",
+      },
+      {
+        image: "./assets/images/gallery/90.jpg",
+        title: "AI for Educators",
+        subtitle: "Police Public School, Bengaluru",
+        category: "school",
+      },
+      {
+        image: "./assets/images/gallery/91.jpg",
+        title: "AI for Young Innovators",
+        subtitle: "KV Sunjuwan, Jammu",
+        category: "school",
+      },
     ];
-
-    // Variables globales
     let currentFilter = "all";
     let currentLightboxIndex = 0;
     let filteredData = [];
 
-    // initialize gallery
     function initGallery() {
       renderGallery();
       setupEventListeners();
     }
 
-    // gallery renders
     function renderGallery() {
       const gallery = document.querySelector(".gallery");
       gallery.innerHTML = "";
-
       filteredData =
         currentFilter === "all"
           ? [...cardData]
           : cardData.filter((card) => card.category === currentFilter);
-
       filteredData.forEach((card, index) => {
         const cardElement = document.createElement("div");
         cardElement.className = "training-card";
         cardElement.dataset.index = index;
         cardElement.innerHTML = `
-            <div class="training-card-image">
-                <img src="${card.image}" alt="${card.title}">
-                <div class="institution-badge">${getCategoryName(
-                  card.category
-                )}</div>
-            </div>
-            <div class="training-card-content">
-                <h3 class="training-card-title">${card.title}</h3>
-                <p class="training-card-subtitle">${card.subtitle}</p>
-            </div>
+          <div class="training-card-image">
+            <img src="${card.image}" alt="${card.title}">
+            <div class="institution-badge">${getCategoryName(
+              card.category
+            )}</div>
+          </div>
+          <div class="training-card-content">
+            <h3 class="training-card-title">${card.title}</h3>
+            <p class="training-card-subtitle">${card.subtitle}</p>
+          </div>
         `;
         gallery.appendChild(cardElement);
       });
     }
 
-    // get category
     function getCategoryName(category) {
       const categories = {
         university: "University",
@@ -694,9 +803,7 @@ document.addEventListener("DOMContentLoaded", function () {
       return categories[category] || category;
     }
 
-    // event listener
     function setupEventListeners() {
-      // Filtros
       document.querySelectorAll(".filter-btn").forEach((button) => {
         button.addEventListener("click", () => {
           document
@@ -707,29 +814,21 @@ document.addEventListener("DOMContentLoaded", function () {
           renderGallery();
         });
       });
-
-      // Lightbox - abrir al hacer clic en una tarjeta
       document.addEventListener("click", (e) => {
         const card = e.target.closest(".training-card");
         if (card) {
           openLightbox(parseInt(card.dataset.index));
         }
       });
-
-      // Lightbox - cerrar
       document
         .getElementById("lightboxClose")
         .addEventListener("click", closeLightbox);
-
-      // Lightbox - navegación
       document
         .getElementById("prevBtn")
         .addEventListener("click", () => navigateLightbox(-1));
       document
         .getElementById("nextBtn")
         .addEventListener("click", () => navigateLightbox(1));
-
-      // Lightbox - teclado
       document.addEventListener("keydown", (e) => {
         if (document.getElementById("lightbox").classList.contains("active")) {
           if (e.key === "Escape") closeLightbox();
@@ -737,19 +836,14 @@ document.addEventListener("DOMContentLoaded", function () {
           if (e.key === "ArrowRight") navigateLightbox(1);
         }
       });
-
-      // Lightbox - cerrar al hacer clic en el overlay (fondo negro)
-      document.getElementById("lightbox").addEventListener("click", (i) => {
+      const lightbox = document.getElementById("lightbox");
+      lightbox.addEventListener("click", (i) => {
         if (i.target === lightbox) {
           closeLightbox();
         }
       });
-
-      // Lightbox - swipe para móviles
-      let touchStartX = 0;
-      let touchEndX = 0;
-
-      const lightbox = document.getElementById("lightbox");
+      let touchStartX = 0,
+        touchEndX = 0;
       lightbox.addEventListener(
         "touchstart",
         (e) => {
@@ -757,7 +851,6 @@ document.addEventListener("DOMContentLoaded", function () {
         },
         false
       );
-
       lightbox.addEventListener(
         "touchend",
         (e) => {
@@ -769,31 +862,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
       function handleSwipe() {
         const swipeThreshold = 50;
-        if (touchEndX < touchStartX - swipeThreshold) {
-          navigateLightbox(1); // Swipe izquierda
-        }
-        if (touchEndX > touchStartX + swipeThreshold) {
-          navigateLightbox(-1); // Swipe derecha
-        }
+        if (touchEndX < touchStartX - swipeThreshold) navigateLightbox(1);
+        if (touchEndX > touchStartX + swipeThreshold) navigateLightbox(-1);
       }
     }
 
-    // open lightbox
     function openLightbox(index) {
       currentLightboxIndex = index;
       const lightbox = document.getElementById("lightbox");
       const lightboxImage = document.getElementById("lightboxImage");
       const lightboxTitle = document.getElementById("lightboxTitle");
       const lightboxSubtitle = document.getElementById("lightboxSubtitle");
-
       lightboxImage.classList.add("changing");
-
       setTimeout(() => {
         lightboxImage.src = filteredData[index].image;
         lightboxImage.alt = filteredData[index].alt;
         lightboxTitle.textContent = filteredData[index].title;
         lightboxSubtitle.textContent = filteredData[index].subtitle;
-
         setTimeout(() => {
           lightboxImage.classList.remove("changing");
         }, 50);
@@ -802,238 +887,104 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.style.overflow = "hidden";
     }
 
-    // close lightbox
     function closeLightbox() {
       document.getElementById("lightbox").classList.remove("active");
       document.body.style.overflow = "";
     }
 
-    // navigation
     function navigateLightbox(direction) {
-      let newIndex = currentLightboxIndex + direction;
-
-      if (newIndex < 0) {
-        newIndex = filteredData.length - 1;
-      } else if (newIndex >= filteredData.length) {
-        newIndex = 0;
-      }
-
+      let newIndex =
+        (currentLightboxIndex + direction + filteredData.length) %
+        filteredData.length;
       openLightbox(newIndex);
     }
     initGallery();
-  }
-  /*  ends previous trainings carrousel */
+  } // 10. Service card expanded
 
-  /*  11. service-card expanded  */
   if (document.querySelector(".service-card")) {
     document.querySelectorAll(".service-card").forEach((card) => {
       card.addEventListener("click", function (i) {
         i.stopPropagation();
         const desc = this.querySelector(".service-desc");
         const isExpanded = desc.classList.contains("expanded");
-        // Colapsar todas las demás tarjetas
         document.querySelectorAll(".service-desc").forEach((p) => {
           p.classList.remove("expanded");
         });
-
-        // Si la tarjeta NO estaba expandida, expandirla
         if (!isExpanded) {
           desc.classList.add("expanded");
         }
       });
     });
+  } // 11. Event Registration Form
+
+  const eventModal = document.getElementById("event-registration-modal");
+  const eventCloseBtn = document.querySelector(".event-registration-close-btn");
+  const eventRegisterBtns = document.querySelectorAll(".event-btn");
+  const eventSelect = document.getElementById("event");
+  if (eventModal && eventCloseBtn && eventRegisterBtns.length > 0) {
+    eventRegisterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const course = btn.getAttribute("data-event");
+        eventModal.style.display = "flex";
+        if (eventSelect) eventSelect.value = course;
+      });
+    });
+    eventCloseBtn.addEventListener("click", () => {
+      eventModal.style.display = "none";
+    });
+    window.addEventListener("click", (e) => {
+      if (e.target === eventModal) eventModal.style.display = "none";
+    });
+  } // 12. Course Registration Form
+
+  const courseModal = document.getElementById("course-registration-modal");
+  const courseCloseBtn = document.querySelector(
+    ".course-registration-close-btn"
+  );
+  const courseRegisterBtns = document.querySelectorAll("#course-btn");
+  const courseSelect = document.getElementById("course");
+  if (courseModal && courseCloseBtn && courseRegisterBtns.length > 0) {
+    courseRegisterBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const course = btn.getAttribute("data-course");
+        courseModal.style.display = "flex";
+        if (courseSelect) courseSelect.value = course; // Changed from eventSelect
+      });
+    });
+    courseCloseBtn.addEventListener("click", () => {
+      courseModal.style.display = "none";
+    });
+    window.addEventListener("click", (e) => {
+      if (e.target === courseModal) courseModal.style.display = "none"; // Changed from modal
+    });
+  } // 13. Book A Demo (Sliding Window)
+
+  const bookModal = document.getElementById("demo-modal");
+  const demoCloseBtn = document.querySelector(".demo-close-btn");
+  const bookDemoBtn = document.getElementById("book-demo");
+  if (bookDemoBtn && bookModal && demoCloseBtn) {
+    bookDemoBtn.addEventListener("click", () => {
+      bookModal.classList.add("sliding");
+    });
+    demoCloseBtn.addEventListener("click", () => {
+      bookModal.classList.remove("sliding");
+    });
+    window.addEventListener("click", (e) => {
+      if (e.target === bookModal) bookModal.classList.remove("sliding");
+    });
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && bookModal.classList.contains("sliding")) {
+        bookModal.classList.remove("sliding");
+      }
+    });
+  } // 14. Offline Workshop Location Dropdown
+
+  const findLocationBtn = document.getElementById("find-location-btn");
+  if (findLocationBtn) {
+    findLocationBtn.addEventListener("click", function () {
+      this.classList.add("hidden");
+      const dropdown = document.getElementById("workshop-location");
+      dropdown.classList.remove("hidden");
+    });
   }
 });
-
-/* 8. starts send data and download pdf */
-// global functions
-function openModal() {
-  const modalOverlay = document.getElementById("modalOverlay");
-  // verify if the element exist
-  if (modalOverlay) {
-    modalOverlay.classList.add("active");
-  }
-}
-function closeModal() {
-  const modalOverlay = document.getElementById("modalOverlay");
-  if (modalOverlay) {
-    modalOverlay.classList.remove("active");
-  }
-  resetForm();
-}
-function resetForm() {
-  document.getElementById("email").value = "";
-  document.getElementById("phone").value = "";
-  document.getElementById("emailError").classList.remove("active");
-  document.getElementById("phoneError").classList.remove("active");
-  document.getElementById("generalError").classList.remove("active");
-  document.getElementById("generalError").textContent = "";
-  document.getElementById("formContent").style.display = "block";
-  document.getElementById("successContent").style.display = "none";
-  document.getElementById("submitBtn").disabled = false;
-  document.getElementById("submitBtn").textContent = "Enviar y descargar";
-}
-function handleSubmit(event) {
-  event.preventDefault();
-
-  // init emailJS
-  emailjs.init("ilcGOCulCPRqjQQDb");
-
-  const email = document.getElementById("email").value.trim();
-  const phone = document.getElementById("phone").value.trim();
-  const emailError = document.getElementById("emailError");
-  const phoneError = document.getElementById("phoneError");
-  const generalError = document.getElementById("generalError");
-  const submitBtn = document.getElementById("submitBtn");
-  // errors reset
-  emailError.classList.remove("active");
-  phoneError.classList.remove("active");
-  generalError.classList.remove("active");
-  // validate
-  let isValid = true;
-  if (!email) {
-    emailError.textContent = "Please type your email";
-    emailError.classList.add("active");
-    isValid = false;
-  } else if (!validarSinEspeciales(email)) {
-  /* evitar que se ingresen caracteres especiales */
-    emailError.textContent =
-      "The email address contains unauthorised characters.";
-    emailError.classList.add("active");
-    isValid = false;
-  } else if (!email.includes("@")) {
-    emailError.textContent = "Please enter a valid email";
-    emailError.classList.add("active");
-    isValid = false;
-  }
-
-  if (!phone) {
-    phoneError.textContent = "Type your phone";
-    phoneError.classList.add("active");
-    isValid = false;
-  } else if (!validarTelefono(phone)) {
-  /* evitar que se ingresen caracteres especiales */
-    phoneError.textContent = "This number contains unauthorised characters.";
-    phoneError.classList.add("active");
-    isValid = false;
-  }
-  if (!isValid) return;
-  // Deshabilitar botón y mostrar loading
-  submitBtn.disabled = true;
-  submitBtn.textContent = "Sending...";
-  // Enviar datos con EmailJS
-  const templateParams = {
-    email: email,
-    phone: phone,
-  };
-  emailjs.send("service_vetmuad", "template_p70cppb", templateParams).then(
-    function (response) {
-      console.log("This Email was sended sucessfully:", response);
-      // show succes message
-      document.getElementById("formContent").style.display = "none";
-      document.getElementById("successContent").style.display = "block";
-    },
-    function (error) {
-      console.error("An error has ocurred:", error);
-      generalError.textContent =
-        "Error while attempting to send the information. Please try again.";
-      generalError.classList.add("active");
-      submitBtn.disabled = false;
-      submitBtn.textContent = "Send and Download";
-    }
-  );
-}
-/* ends send data and download pdf */
-
-// Event Registration Form
-const eventModal = document.getElementById("event-registration-modal");
-const eventCloseBtn = document.querySelector(".event-registration-close-btn");
-const eventRegisterBtns = document.querySelectorAll(".event-btn");
-const eventSelect = document.getElementById("event");
-
-// Open modal
-
-if (eventModal && eventCloseBtn && eventRegisterBtns.length > 0) {
-  eventRegisterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const course = btn.getAttribute("data-event");
-      eventModal.style.display = "flex";
-
-      if (eventSelect) {
-        eventSelect.value = course;
-      }
-    });
-  });
-  // Close modal
-  eventCloseBtn.addEventListener("click", () => {
-    eventModal.style.display = "none";
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === eventModal) {
-      eventModal.style.display = "none";
-    }
-  });
-}
-
-// Course Registration Form
-const courseModal = document.getElementById("course-registration-modal");
-const courseCloseBtn = document.querySelector(".course-registration-close-btn");
-const courseRegisterBtns = document.querySelectorAll("#course-btn");
-const courseSelect = document.getElementById("course");
-
-// Open modal
-
-if (courseModal && courseCloseBtn && courseRegisterBtns.length > 0) {
-  courseRegisterBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const course = btn.getAttribute("data-course");
-      courseModal.style.display = "flex";
-      if (eventSelect) {
-        eventSelect.value = course;
-      }
-    });
-  });
-
-  // Close modal
-  courseCloseBtn.addEventListener("click", () => {
-    courseModal.style.display = "none";
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === modal) {
-      courseModal.style.display = "none";
-    }
-  });
-}
-
-// Book A Demo
-const bookDemoBtn = document.getElementById("book-demo");
-const bookModal = document.getElementById("demo-modal");
-const demoCloseBtn = document.querySelector(".demo-close-btn");
-
-if (bookDemoBtn && bookModal && demoCloseBtn) {
-  bookDemoBtn.addEventListener("click", () => {
-    bookModal.style.display = "flex";
-  });
-
-  demoCloseBtn.addEventListener("click", () => {
-    bookModal.style.display = "none";
-  });
-
-  window.addEventListener("click", (e) => {
-    if (e.target === bookModal) {
-      bookModal.style.display = "none";
-    }
-  });
-}
-
-// offline-workshop-location
-document
-  .getElementById("find-location-btn")
-  .addEventListener("click", function () {
-    this.classList.add("hidden");
-
-    const dropdown = document.getElementById("workshop-location");
-    dropdown.classList.remove("hidden");
-  });

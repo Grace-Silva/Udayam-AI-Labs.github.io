@@ -165,22 +165,22 @@
             resources, and expert guidance tailored for students, educators, and
             professionals alike.
           </p>
-          <!-- cta -->
-          <div class="heroBtns">
-            <button class="globalBtn btnGradient">
-              Book a Demo<i class="fa-solid fa-angle-right"></i>
-            </button>
-            <button class="globalBtn" onclick="openModal()">
-              Download Brochure<i class="fa-solid fa-download"></i>
-            </button>
-          </div>
+        <!-- cta -->
+        <div class="heroBtns">
+          <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
+          <button class="globalBtn" onclick="openModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
         </div>
 
-        <div class="about-image">
-          <img src="./assets/images/isometric-robot.png" alt="" />
-        </div>
       </div>
-    </section>
+
+      <div class="about-image">
+        <img src="./assets/images/isometric-robot.png" alt="">
+      </div>
+
+    </div>
+
+  </section>
+  <!-- ends Hero/About Section -->
 
     <!-- starts download brochure modal window -->
     <!-- dark cover -->
@@ -943,6 +943,21 @@
 
         <!-- form contact -->
         <form class="contact-form" id="contact-form">
+          <!-- important hidden fields !!!-->
+          <input
+            type="text"
+            name="formName"
+            hidden
+            value="Contact Form" />  
+          <input
+            type="text"
+            name="subject"
+            hidden
+            value="You have a new message from Udayam AI Labs Website!!"
+          />
+          <input type="text" name="mobile" hidden value = "No Required" />
+          <input type="text" name="organisation" hidden value = "No Required" />
+          <!-- normal fields -->
           <input
             type="text"
             placeholder="Full name"
@@ -967,7 +982,7 @@
             required
           ></textarea>
 
-          <button class="cta" id="submitBtn" type="submit">Send Message</button>
+          <button class="cta" id="contactSubmitBtn" type="submit">Send Message</button>
         </form>
 
         <!-- contact info and social media icons -->
@@ -1130,21 +1145,76 @@
 
     <div id="toast">Callback requested successfully!</div>
 
-    <!-- starts btn Up -->
+    <!-- starts btn Up -->  
     <button id="btnUp" class="upButton" title="Go Up">
       <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
     </button>
-    <!-- ends btn Up-->
-    <!-- Scripts -->
-    <script src="js/script.js" defer></script>
-    <!-- request callback -->
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <!-- email js -->
-    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    <!-- prabha code -->
-    <script src="js/assistant.js" defer></script>
-    <!-- callback request -->
-    <script src="js/callback.js" defer></script>
-    <script src="js/navbar.js" defer></script>
-  </body>
+  <!-- ends btn Up-->
+
+    <!-- 📖📖📖 Start Book A Demo Sliding Window 📖📖📖 -->
+    <div id="demo-modal" class="demo-modal">
+      <!-- Modal Window -->
+      <div class="demo-modal-content">
+        <!-- close icon -->
+        <span class="close-btn demo-close-btn"><i class="fa-solid fa-xmark"></i></span>
+
+        <!-- image -->
+        <div class="demo-modal-image">
+          <img src="./assets/images/book-a-demo.png" alt="">
+        </div>
+        <!-- form content -->
+        <div class="demo-modal-form-content">
+          <h3 class="demo-modal-title">Book a Demo</h3>
+          <p class="demo-modal-intro-text">
+            Experience expert-led AI training before you commit. Limited seats available.
+          </p>
+          <!-- form -->
+          <form id="demo-registration-form" class="demo-registration-form">
+            <!-- important hidden fields !!!! -->
+            <input
+            type="text"
+            name="formName"
+            hidden
+            value="Book a Demo Form" />             
+            <input
+            type="text"
+            name="subject"
+            hidden
+            value="You have a New Book Demo Request" />
+            <input type="text" name="message" hidden value = "No Required" />
+            <!-- normal fields -->
+            <!-- Name -->
+            <label for="demo-name">Full Name</label>
+            <input type="text" id="demo-name" name="name" placeholder="Your Name" required />
+            <!-- Email -->
+            <label for="demo-email">Email Address</label>
+            <input type="text" id="demo-email" name="email" placeholder="yourmail@domain.com" required />
+            <!-- Mobile -->
+            <label for="demo-mobile">Mobile Number</label>
+            <input type="tel" id="demo-mobile" name="mobile" placeholder="+1 234 567 8900" required />
+            <!-- University/Institute Name -->
+            <label for="demo-organisation">Institute/Organisation Name</label>
+            <input type="text" id="demo-organisation" name="organisation" placeholder="Institute/Organisation" required />   
+            <!-- Register Button -->
+            <button class="globalBtn btnGradient demo-submit-btn" type="submit" id="demo-submit-btn">Book a Demo</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <!-- 📖📖📖 Ends Book A Demo Sliding Window 📖📖📖 -->
+
+
+  <!-- Scripts -->
+ <script src="js/script.js" defer></script>
+ <!-- request callback -->
+ <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+ <!-- email js -->
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <!-- prabha code -->
+  <script src="js/assistant.js" defer></script>
+ <!-- callback request -->
+  <script src="js/callback.js" defer></script>
+
+</body>
+
 </html>
