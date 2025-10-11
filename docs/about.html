@@ -92,9 +92,10 @@
           <li><a href="#contact">Contact</a></li>
         </ul>
       </nav>
-    </header>
-    <!-- Hero/About Section -->
-    <section
+  </header>
+
+  <!-- Starts Hero/About Section -->
+  <section
       id="hero-section"
       class="hero-section"
       aria-labelledby="hero-heading"
@@ -103,7 +104,6 @@
         <div class="about-section-text">
           <h2 class="hero-heading">Meet Udayam AI Labs</h2>
           <p>
-            
             Founded with a vision to bridge the gap between academic learning
             and real-world application, we provide comprehensive training,
             resources, and expert guidance tailored for students, educators, and
@@ -111,7 +111,7 @@
           </p>
         <!-- cta -->
         <div class="heroBtns">
-          <button class="globalBtn btnGradient">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
+          <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
           <button class="globalBtn" onclick="openModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
         </div>
 
@@ -124,6 +124,7 @@
     </div>
 
   </section>
+  <!-- ends Hero/About Section -->
 
     <!-- starts download brochure modal window -->
     <!-- dark cover -->
@@ -758,65 +759,123 @@
           <img src="./assets/images/mascota.png" alt="" />
         </div>
 
-      <!-- form contact -->
-      <form class="contact-form" id="contact-form">
-        <input type="text" placeholder="Full name" name="name" class="nameinput" required>
-        <input type="text" name="email" placeholder="yourmail@domain.com" class="emailinput" required>
-        <textarea name="message" id="" cols="30" rows="10" placeholder="Message" class="messageinput" required></textarea>
+        <!-- form contact -->
+        <form class="contact-form" id="contact-form">
+          <!-- important hidden fields !!!-->
+          <input
+            type="text"
+            name="formName"
+            hidden
+            value="Contact Form" />  
+          <input
+            type="text"
+            name="subject"
+            hidden
+            value="You have a new message from Udayam AI Labs Website!!"
+          />
+          <input type="text" name="mobile" hidden value = "No Required" />
+          <input type="text" name="organisation" hidden value = "No Required" />
+          <!-- normal fields -->
+          <input
+            type="text"
+            placeholder="Full name"
+            name="name"
+            class="nameinput"
+            required
+          />
+          <input
+            type="text"
+            name="email"
+            placeholder="yourmail@domain.com"
+            class="emailinput"
+            required
+          />
+          <textarea
+            name="message"
+            id=""
+            cols="30"
+            rows="10"
+            placeholder="Message"
+            class="messageinput"
+            required
+          ></textarea>
 
-        <button class="cta" id="submitBtn" type="submit">Send Message</button>
-   
-      </form>
+          <button class="cta" id="contactSubmitBtn" type="submit">Send Message</button>
+        </form>
 
-      <!-- contact info and social media icons -->
-       <div class="contact-info">
-        <!-- email -->
-         <span class="footer-social info">
-           <i class="fas fa-envelope"></i>
-           <a href="mailto:support@udayam.co.in" target="_blank">support@udayam.co.in</a>
-         </span>
-        <!-- phone -->
-        <span class="footer-social info">
-        <i class="fa-brands fa-whatsapp"></i>            
-        <a href="https://wa.me/918600302429?text=Hello%20Udayam%20AI%20Labs,%20I%20need%20information%20about..." target="_blank">+91-8600302429</a>
-        </span>
-        <section class="footer-social">
-          <span>Follow us</span>
-          <ul class="social-links">
-            <li>
-              <a href="https://www.facebook.com/people/Udayam-AI-labs/61574847474498" target="_blank"
-                rel="noopener noreferrer" aria-label="Udayam AI Labs Facebook Account Link (opens in new tab)">
-                <i class="fa-brands fa-facebook" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/labs_ai31105" target="_blank" rel="noopener noreferrer"
-                aria-label="Udayam AI Labs Twitter/X Account Link (opens in new tab)">
-                <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.linkedin.com/company/udayam-ai-labs" target="_blank" rel="noopener noreferrer"
-                aria-label="Udayam AI Labs LinkedIn Account Link (opens in a new tab)">
-                <i class="fab fa-linkedin" aria-hidden="true"></i>
-              </a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/udayamai/?igsh=NXIwYmlnejN3dW5s#" target="_blank"
-                rel="noopener noreferrer" aria-label="Udayam AI Labs Instagram Account Link (opens in a new tab)">
-                <i class="fab fa-instagram" aria-hidden="true"></i>
-              </a>
-            </li>
-          </ul>
-        </section>
-        <span class="footer-social">
-          <a><i class="fa-regular fa-copyright"></i> 2025 Udayam AI Labs. All rights reserved</a>
-        </span>
+        <!-- contact info and social media icons -->
+        <div class="contact-info">
+          <!-- email -->
+          <span class="footer-social info">
+            <i class="fas fa-envelope"></i>
+            <a href="mailto:support@udayam.co.in" target="_blank"
+              >support@udayam.co.in</a
+            >
+          </span>
+          <!-- phone -->
+          <span class="footer-social info">
+            <i class="fa-brands fa-whatsapp"></i>
+            <a
+              href="https://wa.me/918600302429?text=Hello%20Udayam%20AI%20Labs,%20I%20need%20information%20about..."
+              target="_blank"
+              >+91-8600302429</a
+            >
+          </span>
+          <section class="footer-social">
+            <span>Follow us</span>
+            <ul class="social-links">
+              <li>
+                <a
+                  href="https://www.facebook.com/people/Udayam-AI-labs/61574847474498"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Udayam AI Labs Facebook Account Link (opens in new tab)"
+                >
+                  <i class="fa-brands fa-facebook" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://x.com/labs_ai31105"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Udayam AI Labs Twitter/X Account Link (opens in new tab)"
+                >
+                  <i class="fa-brands fa-x-twitter" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.linkedin.com/company/udayam-ai-labs"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Udayam AI Labs LinkedIn Account Link (opens in a new tab)"
+                >
+                  <i class="fab fa-linkedin" aria-hidden="true"></i>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/udayamai/?igsh=NXIwYmlnejN3dW5s#"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Udayam AI Labs Instagram Account Link (opens in a new tab)"
+                >
+                  <i class="fab fa-instagram" aria-hidden="true"></i>
+                </a>
+              </li>
+            </ul>
+          </section>
+          <span class="footer-social">
+            <a
+              ><i class="fa-regular fa-copyright"></i> 2025 Udayam AI Labs. All
+              rights reserved</a
+            >
+          </span>
+        </div>
       </div>
-
-    </div>
-  </footer>
-  <!-- ends footer -->
+    </footer>
+    <!-- ends footer -->
 
     <!-- chat widget -->
     <div id="chat-widget-container">
@@ -904,11 +963,64 @@
 
     <div id="toast">Callback requested successfully!</div>
 
-  <!-- starts btn Up -->  
-  <button id="btnUp" class="upButton" title="Go Up">
-    <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
- </button>
- <!-- ends btn Up-->
+    <!-- starts btn Up -->  
+    <button id="btnUp" class="upButton" title="Go Up">
+      <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
+    </button>
+  <!-- ends btn Up-->
+
+    <!-- 📖📖📖 Start Book A Demo Sliding Window 📖📖📖 -->
+    <div id="demo-modal" class="demo-modal">
+      <!-- Modal Window -->
+      <div class="demo-modal-content">
+        <!-- close icon -->
+        <span class="close-btn demo-close-btn"><i class="fa-solid fa-xmark"></i></span>
+
+        <!-- image -->
+        <div class="demo-modal-image">
+          <img src="./assets/images/book-a-demo.png" alt="">
+        </div>
+        <!-- form content -->
+        <div class="demo-modal-form-content">
+          <h3 class="demo-modal-title">Book a Demo</h3>
+          <p class="demo-modal-intro-text">
+            Experience expert-led AI training before you commit. Limited seats available.
+          </p>
+          <!-- form -->
+          <form id="demo-registration-form" class="demo-registration-form">
+            <!-- important hidden fields !!!! -->
+            <input
+            type="text"
+            name="formName"
+            hidden
+            value="Book a Demo Form" />             
+            <input
+            type="text"
+            name="subject"
+            hidden
+            value="You have a New Book Demo Request" />
+            <input type="text" name="message" hidden value = "No Required" />
+            <!-- normal fields -->
+            <!-- Name -->
+            <label for="demo-name">Full Name</label>
+            <input type="text" id="demo-name" name="name" placeholder="Your Name" required />
+            <!-- Email -->
+            <label for="demo-email">Email Address</label>
+            <input type="text" id="demo-email" name="email" placeholder="yourmail@domain.com" required />
+            <!-- Mobile -->
+            <label for="demo-mobile">Mobile Number</label>
+            <input type="tel" id="demo-mobile" name="mobile" placeholder="+1 234 567 8900" required />
+            <!-- University/Institute Name -->
+            <label for="demo-organisation">Institute/Organisation Name</label>
+            <input type="text" id="demo-organisation" name="organisation" placeholder="Institute/Organisation" required />   
+            <!-- Register Button -->
+            <button class="globalBtn btnGradient demo-submit-btn" type="submit" id="demo-submit-btn">Book a Demo</button>
+          </form>
+        </div>
+      </div>
+    </div> 
+    <!-- 📖📖📖 Ends Book A Demo Sliding Window 📖📖📖 -->
+
 
   <!-- Scripts -->
  <script src="js/script.js" defer></script>
