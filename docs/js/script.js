@@ -764,15 +764,15 @@ document.addEventListener('DOMContentLoaded', function () {
       }, 
       {
         image: "./assets/images/gallery/89.jpg",
-        title: "AI in Healthcare WorkShop",
+        title: "AI in Healthcare Workshop",
         subtitle: "ASCOMS & Hospital, Jammu",
         category: "corporate"
       }, 
       {
         image: "./assets/images/gallery/90.jpg",
-        title: "AI for Young Innovators",
+        title: "AI for Educators",
         subtitle: "Police Public School, Bengaluru",
-        category: "university"
+        category: "school"
       }, 
       {
         image: "./assets/images/gallery/91.jpg",
