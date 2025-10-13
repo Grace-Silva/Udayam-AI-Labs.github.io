@@ -253,7 +253,7 @@ body {
     cursor: not-allowed;
   }
 /* dark backgrond */
-.modal-overlay {
+.brochure-modal {
   position: fixed;
   top: 0;
   left: 0;
@@ -269,7 +269,7 @@ body {
   padding: 20px;
   transition: all ease-in .2s;
 }
-  .modal-overlay.active {
+  .brochure-modal.active {
     display: flex;
   }
 /* modal window content */
