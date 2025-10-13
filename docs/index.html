@@ -131,9 +131,9 @@
           </svg>
         </button>
       </nav>
-    </header>
+  </header>
+  <div class="nav-overlay" id="nav-overlay"></div>
 
-    <div class="nav-overlay" id="nav-overlay"></div>
   <!-- Hero Section -->
   <section id="hero-section" class="hero-section" aria-labelledby="hero-heading">
     <div class="hero-section-text">
@@ -143,13 +143,63 @@
         Transform learning with cutting-edge AI, robotics, and emerging technologies through comprehensive
         educational programs tailored for every level.
       </p>
-      <!-- cta -->
+      <!-- cta buttons -->
       <div class="heroBtns">
         <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
         <button class="globalBtn" onclick="openModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
       </div>
     </div>
   </section>
+    <!-- starts download brochure modal -->
+    <div class="brochure-modal" id="modalOverlay">
+      <!-- modal window -->
+        <div class="modal" id="modal">
+          <!-- close window icon -->
+          <button class="close-btn" onclick="closeModal()">              
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+            
+          <div id="formContent">
+            <p class="modal-description">
+              Please complete your details to obtain the document.
+            </p>
+            <!-- download form -->      
+            <form id="downloadForm" onsubmit="handleSubmit(event)">
+            <!-- email-->
+              <div>
+                <label for="email"><i class="fa-solid fa-envelope"></i>Email</label>
+                <input type="text" id="email" name="email" placeholder="yourmail@domain.com" required>
+                <!-- if it finds invalid parameters -->
+                <div class="error" id="emailError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter a valid email address.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
+              </div>
+
+            <!-- phone -->   
+              <div>
+                <label for="phone"><i class="fa-solid fa-phone"></i>Phone</label>
+                <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                <!-- if it finds invalid parameters -->
+                <div class="error" id="phoneError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter your phone number.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
+              </div> 
+                
+              <div class="error" id="generalError"></div>
+                    
+              <button type="submit" class="globalBtn btnGradient download-btn" id="submitBtn">Submit</button>
+              </form>
+          </div>
+            
+          <div id="successContent" style="display: none;">
+            <h2 class="modal-title">¡Thank You!</h2>
+
+            <p class="info-text">We have received your details and will send you the file shortly.</p>
+
+            <div class="success-message">¡Please check your inbox!<i class="fa-solid fa-inbox" style="margin: 0 8px"></i></div>
+
+                
+            <button class="download-btn" onclick="closeModal()">Close</button>
+          </div>
+        </div>
+    </div>
+    <!-- ends download brochure modal -->
 
   <!-- starts Partners section -->
   <section id="partners" class="partners">
@@ -167,7 +217,7 @@
   </section>
   <!-- ends partners section -->
 
-    <!-- Our Services  -->
+    <!-- starts Our Services  -->
     <section id="services" class="services">
       <div class="container">
         <h2 class="section-title">Our Services</h2>
@@ -224,63 +274,10 @@
           </div>
         </div>
       </div>
-
-        <!-- modal window --> 
-        <!-- dark cover -->
-        <div class="modal-overlay" id="modalOverlay">
-          <!-- modal window -->
-            <div class="modal" id="modal">
-              <!-- close window icon -->
-              <button class="close-btn" onclick="closeModal()">              
-                <i class="fa-solid fa-xmark"></i>
-              </button>
-                
-              <div id="formContent">
-                <p class="modal-description">
-                  Please complete your details to obtain the document.
-                </p>
-                <!-- download form -->      
-                <form id="downloadForm" onsubmit="handleSubmit(event)">
-                <!-- email-->
-                  <div>
-                    <label for="email"><i class="fa-solid fa-envelope"></i>Email</label>
-                    <input type="text" id="email" name="email" placeholder="yourmail@domain.com" required>
-                    <!-- if it finds invalid parameters -->
-                    <div class="error" id="emailError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter a valid email address.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
-                  </div>
-
-                <!-- phone -->   
-                  <div>
-                    <label for="phone"><i class="fa-solid fa-phone"></i>Phone</label>
-                    <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
-                    <!-- if it finds invalid parameters -->
-                    <div class="error" id="phoneError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter your phone number.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
-                  </div> 
-                    
-                  <div class="error" id="generalError"></div>
-                        
-                  <button type="submit" class="globalBtn btnGradient download-btn" id="submitBtn">Submit</button>
-                  </form>
-              </div>
-                
-              <div id="successContent" style="display: none;">
-                <h2 class="modal-title">¡Thank You!</h2>
-
-                <p class="info-text">We have received your details and will send you the file shortly.</p>
-
-                <div class="success-message">¡Please check your inbox!<i class="fa-solid fa-inbox" style="margin: 0 8px"></i></div>
-
-                    
-                <button class="download-btn" onclick="closeModal()">Close</button>
-              </div>
-            </div>
-        </div>
-      <!-- ends download brochure section -->
-
     </section>
-    
+    <!-- ends Our Services -->
+
     <!-- Training Modules -->
-       
     <section id="training-modules" class="training-modules">
       <div class="training-modules-container">
         <h2 class="section-title">Training Modules</h2>
