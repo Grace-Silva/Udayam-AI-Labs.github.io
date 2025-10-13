@@ -518,17 +518,22 @@ body {
 }
 .popular-courses{
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: flex-start;
   gap: 6rem;
   margin-top: 8rem;
   margin-left: 6rem;
+  margin-right: 6rem;
 }
 .popular-courses .course-header{
-  flex: 1;
+  width: 100%;
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   gap: 4rem;
+  border-left: 6px solid var(--secondary-color);
+  border-radius: 10px;
+  padding-left: 10px;
 }
 .course-header h3{
    font-size: 2rem;
@@ -671,18 +676,16 @@ body {
 .live-courses{
   margin-top: 8rem;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
-  align-items: flex-start;
   gap: 2rem;
-  margin-right: 14rem;
 }
 .live-courses .course-header{
-  flex: 1;
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  text-align: right;
-  order: 2;
+  border-left: 6px solid var(--secondary-color);
+  border-radius: 10px;
+  margin-left: 6rem;
+  padding-left: 10px;
 }
 .live-courses .course-header h3{
    font-size: 2rem;
@@ -698,14 +701,12 @@ body {
 .live-courses .course-cards{
   display: flex;
   flex-wrap: wrap;
-  order: 1;
   position: relative;
   left: 6rem;
 }
 .live-courses .card{
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 .live-courses .course-cards .card .live-card-title{
   font-weight: 600;
@@ -1649,6 +1650,7 @@ footer {
     width: 100%;
     filter: drop-shadow(-4px -2px 2px rgba(0, 0, 0, .1));
   }
+
   @keyframes bounce {
     0%{
       transform: translateY(0px);
@@ -1774,6 +1776,10 @@ footer {
   color: rgb(255, 255, 255);
   text-shadow: 0 0 4px rgba(247, 247, 247, 0.7);
 }
+#lastUpdated{
+  color: rgba(255, 255, 255, .7);
+}
+
 .footer-social i{
   font-size: 1.1rem;
 }
@@ -1883,6 +1889,9 @@ footer {
     margin-left: 2rem;
     gap:4rem;
   }
+  .popular-courses .course-header{
+    border-radius: 5px;  
+  }
  .course-header h3{
    font-size: 1.4rem;
   }
@@ -1905,9 +1914,13 @@ footer {
     padding: 6px 12px;
     font-size: 12px;
   }
+  .live-courses{
+   padding-left: 0;
+   margin-left: 0;
+  }
   .live-courses .course-header{
      position: relative;
-     left: 6rem;
+     border-radius: 5px;
   }
   .live-courses .course-header h3{
     font-size: 1.4rem;
@@ -2237,6 +2250,7 @@ footer {
   }
   .popular-courses .course-header{
     gap: 1rem;
+    border-radius: 6px;
   }
  .course-header h3{
    font-size: 1rem;
@@ -2260,18 +2274,22 @@ footer {
     padding: 6px 12px;
     font-size: 10px;
   }
-  .live-courses{
-    margin-right: 2rem;
-  }
-  .live-courses .course-header{
+ .live-courses{
+    margin-left: 0rem;  
+    padding-left: 0;   
+ }  
+ .live-courses .course-header{
      position: relative;
-     left: 1rem;
+     left: 0rem;
+     border-radius: 6px;     
+     
   }
   .live-courses .course-header h3{
     font-size: 1rem;
   }
   .live-courses .card{
     gap: 0.4rem;
+    left: 0rem;
   }
 }
 /* small phone */
@@ -2413,19 +2431,29 @@ footer {
    /* Training Module  */
    .training-modules-container{
     padding-left: 1rem;
+    width: 100%;
+    padding-right: 0;
+    margin-right: 0;
    }
    .section-title{
     font-size: 1.2rem;
    } 
    .popular-courses{
     display: flex;
-    flex-direction: column;
     margin-top: 5rem;
    }
-   
+   .popular-courses .course-header{
+     width: 100%;
+     padding-right: 0;
+     margin-right: 0;
+   } 
+   .popular-courses .course-header h3{
+      font-size: 0.8rem; 
+   }
    .course-cards .card{
-      width: 130px; 
+      width: 140px; 
       padding: 5px 8px;
+      gap: 1rem;
    }
    .learn-more-btn{
     font-size: 0.5rem;
@@ -2435,7 +2463,6 @@ footer {
     flex-direction: column;
     margin-top: 4rem;
     gap: 2rem;
-    margin-right: 0rem;
   }
   .live-courses .course-cards{
     position: relative;
@@ -2443,6 +2470,8 @@ footer {
   }
   .live-courses .course-header{
     order: 1;
+    margin-left: 1rem;
+    padding-left: 10px;
   }
   .live-courses .course-cards{
     order: 2;
