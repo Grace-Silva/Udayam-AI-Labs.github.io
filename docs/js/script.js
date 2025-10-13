@@ -1097,3 +1097,5 @@ document.getElementById('find-location-btn').addEventListener('click', function(
     const dropdown = document.getElementById('workshop-location');
     dropdown.classList.remove('hidden');
 });
+
+
