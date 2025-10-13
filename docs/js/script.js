@@ -557,22 +557,19 @@ document.addEventListener('DOMContentLoaded', function () {
     /* 9. starts send data and download brochure with EmailJS */
     // verify if the element exist
       // close modal window when the user clicks off
-     const overlay = document.getElementById('modalOverlay');
-     if (overlay) {
-       overlay.addEventListener('click', function(event) {
+     const brochureoverlay = document.getElementById('brochureModalOverlay');
+     if (brochureoverlay) {
+       brochureoverlay.addEventListener('click', function(event) {
        if (event.target === this) {
-        closeModal();
+        closeBrochureModal();
        }
       });
      }
-
       document.addEventListener('keydown', function(event) {
-      if (event.key === 'Escape' && overlay && overlay.classList.contains('active')) {
-        closeModal();
-      }
+        if (event.key === 'Escape' && brochureoverlay && brochureoverlay.classList.contains('active')) {
+          closeBrochureModal();
+        }
       });
-
-
     /* ends send data and download pdf */
 
     /* 10. starts previous trainings carrousel */
@@ -893,101 +890,108 @@ document.addEventListener('DOMContentLoaded', function () {
 
   /* 8. starts send data and download pdf */
     // global functions
-    function openModal() {
-      const modalOverlay = document.getElementById('modalOverlay');
+    function openBrochureModal() {
+      const brochureModalOverlay = document.getElementById('brochureModalOverlay');
       // verify if the element exist
-      if(modalOverlay){
-        modalOverlay.classList.add('active');
+      if(brochureModalOverlay){
+        brochureModalOverlay.classList.add('active');
       }
     }
-    function closeModal() {
-      const modalOverlay = document.getElementById('modalOverlay');
-      if(modalOverlay){
-        modalOverlay.classList.remove('active');
+    function closeBrochureModal() {
+      const brochureModalOverlay = document.getElementById('brochureModalOverlay');
+      if(brochureModalOverlay){
+        brochureModalOverlay.classList.remove('active');
       }
-      resetForm();
+      resetBrochureForm();
     }
-    function resetForm() {
-      document.getElementById('email').value = '';
-      document.getElementById('phone').value = '';
-      document.getElementById('emailError').classList.remove('active');
-      document.getElementById('phoneError').classList.remove('active');
-      document.getElementById('generalError').classList.remove('active');
-      document.getElementById('generalError').textContent = '';
-      document.getElementById('formContent').style.display = 'block';
-      document.getElementById('successContent').style.display = 'none';
-      document.getElementById('submitBtn').disabled = false;
-      document.getElementById('submitBtn').textContent = 'Enviar y descargar';
+    function resetBrochureForm() {
+      document.getElementById('brochure-email').value = '';
+      document.getElementById('brochure-phone').value = '';
+      document.getElementById('brochureEmailError').classList.remove('active');
+      document.getElementById('brochurePhoneError').classList.remove('active');
+      document.getElementById('brochureGeneralError').classList.remove('active');
+      document.getElementById('brochureGeneralError').textContent = '';
+      document.getElementById('brochure-form-content').style.display = 'block';
+      document.getElementById('brochureSuccessContent').style.display = 'none';
+      document.getElementById('downloadBrochureBtn').disabled = false;
+      document.getElementById('downloadBrochureBtn').textContent = 'Submit';
     }
-    function handleSubmit(event) {
-    event.preventDefault();
 
+    function handleSubmit(event) {
+      event.preventDefault();
       // init emailJS
       emailjs.init("ilcGOCulCPRqjQQDb"); 
 
-      const email = document.getElementById('email').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const emailError = document.getElementById('emailError');
-      const phoneError = document.getElementById('phoneError');
-      const generalError = document.getElementById('generalError');
-      const submitBtn = document.getElementById('submitBtn');
-    // errors reset
-    emailError.classList.remove('active');
-    phoneError.classList.remove('active');
-    generalError.classList.remove('active');
-    // validate
-    let isValid = true;
-    if (!email) {
-      emailError.textContent = 'Please type your email';
-      emailError.classList.add('active');
-      isValid = false;
-    } 
-      /* evitar que se ingresen caracteres especiales */
-      else if (!validarSinEspeciales(email)) {
-        emailError.textContent = 'The email address contains unauthorised characters.';
-        emailError.classList.add('active');
+      const brochureEmail = document.getElementById('brochure-email').value.trim();
+      const brochurePhone = document.getElementById('brochure-phone').value.trim();
+      const brochureEmailError = document.getElementById('brochureEmailError');
+      const brochurePhoneError = document.getElementById('brochurePhoneError');
+      const brochureGeneralError = document.getElementById('brochureGeneralError');
+      const downloadBrochureBtn = document.getElementById('downloadBrochureBtn');
+        // errors reset
+        brochureEmailError.classList.remove('active');
+        brochurePhoneError.classList.remove('active');
+        brochureGeneralError.classList.remove('active');
+      // validate
+      let isValid = true;
+      if (!brochureEmail) {
+        brochureEmailError.textContent = 'Please type your email';
+        brochureEmailError.classList.add('active');
         isValid = false;
-      }
-      else if (!email.includes('@')) {
-        emailError.textContent = 'Please enter a valid email';
-        emailError.classList.add('active');
-        isValid = false;
-      }
+      } 
+        /* evitar que se ingresen caracteres especiales */
+        else if (!validarSinEspeciales(brochureEmail)) {
+          brochureEmailError.textContent = 'The email address contains unauthorised characters.';
+          brochureEmailError.classList.add('active');
+          isValid = false;
+        }
+        // si el correo no incluye @
+        else if (!brochureEmail.includes('@')) {
+          brochureEmailError.textContent = 'Please enter a valid email';
+          brochureEmailError.classList.add('active');
+          isValid = false;
+        }
 
-    if (!phone) {
-      phoneError.textContent = 'Type your phone';
-      phoneError.classList.add('active');
-      isValid = false;
-    } 
-      /* evitar que se ingresen caracteres especiales */
-      else if (!validarTelefono(phone)) {
-        phoneError.textContent = 'This number contains unauthorised characters.';
-        phoneError.classList.add('active');
+      if (!brochurePhone) {
+        brochurePhoneError.textContent = 'Type your phone';
+        brochurePhoneError.classList.add('active');
         isValid = false;
-      }
-    if (!isValid) return;
-    // Deshabilitar botón y mostrar loading
-    submitBtn.disabled = true;
-    submitBtn.textContent = 'Sending...';
-    // Enviar datos con EmailJS
-    const templateParams = {
-      email: email,
-      phone: phone,
-    };
-    emailjs.send('service_vetmuad', 'template_p70cppb', templateParams)
-      .then(function(response) {
-        console.log('This Email was sended sucessfully:', response);
-        // show succes message
-        document.getElementById('formContent').style.display = 'none';
-        document.getElementById('successContent').style.display = 'block';
-      }, function(error) {
-          console.error('An error has ocurred:', error);
-          generalError.textContent = 'Error while attempting to send the information. Please try again.';
-          generalError.classList.add('active');
-          submitBtn.disabled = false;
-          submitBtn.textContent = 'Send and Download';
-      });
-    
+      } 
+        /* evitar que se ingresen caracteres especiales */
+        else if (!validarTelefono(brochurePhone)) {
+          brochurePhoneError.textContent = 'This number contains unauthorised characters.';
+          brochurePhoneError.classList.add('active');
+          isValid = false;
+        }
+
+      if (!isValid) return;
+      // Deshabilitar botón y mostrar loading
+      downloadBrochureBtn.disabled = true;
+      downloadBrochureBtn.textContent = 'Sending...';
+      // Enviar datos con EmailJS
+      const templateParams = {
+        email: brochureEmail,
+        phone: brochurePhone,
+      };
+      emailjs.send('service_vetmuad', 'template_p70cppb', templateParams)
+        .then(function(response) {
+          console.log('This Email was sended sucessfully:', response);
+          // show succes message
+
+            document.getElementById('brochure-form-content').style.display = 'none';
+            document.getElementById('brochureSuccessContent').style.display = 'block';
+
+        }, 
+          function(error) {
+            console.error('An error has ocurred:', error);
+
+              brochureGeneralError.textContent = 'Error while attempting to send the information. Please try again.';
+              brochureGeneralError.classList.add('active');
+              downloadBrochureBtn.disabled = false;
+              downloadBrochureBtn.textContent = 'Submit';                
+
+         }
+        );
     }
   /* ends send data and download pdf */    
 

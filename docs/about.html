@@ -186,7 +186,7 @@
 
     <!-- starts download brochure modal window -->
     <!-- dark cover -->
-    <div class="brochure-modal" id="modalOverlay">
+    <div class="brochure-modal" id="brochureModalOverlay">
       <!-- modal window -->
       <div class="modal" id="modal">
         <!-- close window icon -->
@@ -199,7 +199,7 @@
             Please complete your details to obtain the document.
           </p>
           <!-- download form -->
-          <form id="downloadForm" onsubmit="handleSubmit(event)">
+          <form id="downloadBrochureForm" onsubmit="handleSubmit(event)">
             <!-- email-->
             <div>
               <label for="email"
@@ -213,7 +213,7 @@
                 required
               />
               <!-- if it finds invalid parameters -->
-              <div class="error" id="emailError">
+              <div class="error" id="brochureEmailError">
                 <i
                   class="fa-solid fa-triangle-exclamation"
                   style="margin: 0 8px"
@@ -241,7 +241,7 @@
       
     </div>
               
-    <div id="successContent" style="display: none;">
+    <div id="brochureSuccessContent" style="display: none;">
       <h2 class="modal-title">¡Thank You!</h2>
 
           <p class="info-text">

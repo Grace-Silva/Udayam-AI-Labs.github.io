@@ -146,48 +146,56 @@
       <!-- cta buttons -->
       <div class="heroBtns">
         <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
-        <button class="globalBtn" onclick="openModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
+        <button class="globalBtn" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
       </div>
     </div>
   </section>
     <!-- starts download brochure modal -->
-    <div class="brochure-modal" id="modalOverlay">
+    <div class="brochure-modal" id="brochureModalOverlay">
       <!-- modal window -->
-        <div class="modal" id="modal">
+        <div class="brochure-modal-content"">
           <!-- close window icon -->
-          <button class="close-btn" onclick="closeModal()">              
+          <button class="close-btn" onclick="closeBrochureModal()">              
             <i class="fa-solid fa-xmark"></i>
           </button>
-            
-          <div id="formContent">
-            <p class="modal-description">
+          
+          <!-- decorative gradient -->
+          <div class="brochure-modal-gradient">
+            <div class="sign-up-icon">
+              <img width="64" height="64" src="https://img.icons8.com/nolan/64/sign-up.png" alt="sign-up"/>
+            </div>
+          </div>
+
+          <!-- download brochure form content-->
+          <div class="brochure-form-content" id="brochure-form-content">
+            <p class="brochure-modal-description">
               Please complete your details to obtain the document.
             </p>
-            <!-- download form -->      
-            <form id="downloadForm" onsubmit="handleSubmit(event)">
+            <!-- download brochure form -->      
+            <form id="downloadBrochureForm" onsubmit="handleSubmit(event)">
             <!-- email-->
               <div>
-                <label for="email"><i class="fa-solid fa-envelope"></i>Email</label>
-                <input type="text" id="email" name="email" placeholder="yourmail@domain.com" required>
+                <label for="brochure-email"><i class="fa-solid fa-envelope"></i>Email</label>
+                <input type="text" id="brochure-email" name="email" placeholder="yourmail@domain.com" required>
                 <!-- if it finds invalid parameters -->
-                <div class="error" id="emailError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter a valid email address.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
+                <div class="error" id="brochureEmailError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter a valid email address.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
               </div>
 
             <!-- phone -->   
               <div>
-                <label for="phone"><i class="fa-solid fa-phone"></i>Phone</label>
-                <input type="tel" id="phone" name="phone" placeholder="+1 234 567 8900" required>
+                <label for="brochure-phone"><i class="fa-solid fa-phone"></i>Phone</label>
+                <input type="tel" id="brochure-phone" name="phone" placeholder="+1 234 567 8900" required>
                 <!-- if it finds invalid parameters -->
-                <div class="error" id="phoneError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter your phone number.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
+                <div class="error" id="brochurePhoneError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter your phone number.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
               </div> 
-                
-              <div class="error" id="generalError"></div>
+            <!-- brochure general error -->    
+              <div class="error" id="brochureGeneralError"></div>
                     
-              <button type="submit" class="globalBtn btnGradient download-btn" id="submitBtn">Submit</button>
-              </form>
+              <button type="submit" class="globalBtn btnGradient demo-submit-btn" id="downloadBrochureBtn">Submit</button>
+            </form>
           </div>
             
-          <div id="successContent" style="display: none;">
+          <div id="brochureSuccessContent" style="display: none;">
             <h2 class="modal-title">¡Thank You!</h2>
 
             <p class="info-text">We have received your details and will send you the file shortly.</p>
@@ -195,7 +203,7 @@
             <div class="success-message">¡Please check your inbox!<i class="fa-solid fa-inbox" style="margin: 0 8px"></i></div>
 
                 
-            <button class="download-btn" onclick="closeModal()">Close</button>
+            <button class="globalBtn btnGradient demo-submit-btn" onclick="closeBrochureModal()">Close</button>
           </div>
         </div>
     </div>
