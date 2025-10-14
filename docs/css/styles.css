@@ -276,7 +276,7 @@ body {
 }
   /* download brochure modal window content */
   .brochure-modal-content {
-    min-width: 320px;
+    min-width: 360px;
     width: auto;
     background: var(--light-color);
     box-shadow: 0 0 24px rgba(0, 0, 0, .5);
@@ -351,7 +351,7 @@ body {
       }
 
   /** if it finds invalid parameters **/
-  .error, #brochureEmailError, #brochurePhoneError {
+  .error, #brochureEmailError, #brochurePhoneError, .success-message {
     color: rgba(247, 6, 54, 0.8);
     font-size: 14px;
     font-weight: 400;
@@ -365,27 +365,19 @@ body {
 
   /* sucess content */  
   #brochureSuccessContent{
-    display: flex;
+    display: none;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 1rem;
     gap: 1rem;
     text-align: center;
+    cursor: auto;
   }
-    #brochureSuccessContent .modal-title{
-      font-size: 24px;
-      font-weight: 600;
-      color: var(--text-light);
-      text-align: center;
-      margin-bottom: 12px;
-    }
-
     .success-message {
+      display: block;
       text-align: center;
       color: rgba(13, 151, 47, 0.8);
-      font-weight: 500;
-      font-size: 14px;
-      margin-bottom: 12px;
     }
 /* ends download brochure section */
 
@@ -1964,7 +1956,7 @@ footer {
       padding: 4rem 3rem;
     }      
     /* book a demo modal */
-    .demo-modal{
+    .demo-modal, .brochure-modal{
       padding: 3rem;
     }
       .demo-modal-content{
@@ -2032,10 +2024,9 @@ footer {
     margin: 0 2rem;
   } 
   /* book a demo modal */
-  .demo-modal{
+  .demo-modal, .brochure-modal{
     padding: 2rem;
   }
-
   /* book a demo modal */
 
   /* footer */
@@ -2157,7 +2148,7 @@ footer {
   }
 
   /* book a demo modal */
-  .demo-modal{
+  .demo-modal, .brochure-modal{
     padding: 2rem;
   }
     .demo-modal-content{
@@ -2181,7 +2172,7 @@ footer {
       .demo-modal-title {
         font-size: 1.8rem;
       }
-      .demo-registration-form label {
+      .demo-registration-form label{
         display: none;
       }
       .demo-registration-form input::placeholder{
@@ -2376,7 +2367,7 @@ footer {
         width: 100%;
         height: 160px;
       }
-      .demo-modal-intro-text{
+      .demo-modal-intro-text, .brochure-modal-description{
         width: 280px;
       }
   /* book a demo modal */    
