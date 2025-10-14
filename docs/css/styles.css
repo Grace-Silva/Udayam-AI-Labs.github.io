@@ -337,7 +337,6 @@ body {
     /* download form */
     #downloadBrochureForm{
       justify-content: center;
-      gap: 12px;
     }
       /* label and input */
       .label-input{
@@ -345,21 +344,25 @@ body {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        gap: 8px;
+        position: relative;
       }
       /* download form ítems: */
-      #downloadBrochureForm label {
+      #downloadBrochureForm label,  .demo-registration-form label {
         display: inline-flex;
         align-items: center;
+        justify-content: center;
         font-size: 1rem;
         font-weight: 500;
         color: var(--text-light);
-        margin: 4px 0;
         background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
         color: var(--light-color);
-        padding: .6rem;
+        padding: .4rem;
+        width: 36px;
+        height: 36px;
         border-radius: 50%;
-        margin-bottom: 8px;
+        position: absolute;
+        top: 0;
+        left: -24px;
       }
 
 
@@ -781,7 +784,7 @@ body {
       }
     /* form content */ 
     .demo-modal-form-content, .brochure-form-content{
-      padding: 2rem;
+      padding: 2rem 4rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -811,19 +814,13 @@ body {
           display: flex;
           flex-direction: column;
           width: 100%;
+          gap: 1rem;
         }
       /* Form Elements */
-      .demo-registration-form label {
-        font-size: 1rem;
-        font-weight: 500;
-        display: block;
-        color: var(--text-light);
-        margin: 4px 0;
-      }
+
       .demo-registration-form input, #downloadBrochureForm input {
         width: 100%;
-        padding: 4px 8px;
-        margin-bottom: 8px;
+        padding: 4px 24px;
         border-radius: 4px;
         border: 1px solid rgba(51, 51, 51, 0.1);
         background: transparent;
@@ -838,11 +835,12 @@ body {
       .demo-registration-form input:focus, #downloadBrochureForm input:focus{
         border-color: rgba(51, 51, 51, 0.2);
         transform: translateY(-2px);
-      }
+      }       
+
       /* Submit Button */
       .demo-submit-btn {
         background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
-        margin: 12px auto;
+        margin: 0 auto;
         border: none;
       }
 
@@ -2185,9 +2183,7 @@ footer {
       .demo-modal-title {
         font-size: 1.8rem;
       }
-      .demo-registration-form label{
-        display: none;
-      }
+
       .demo-registration-form input::placeholder{
         font-size: 1rem;
       }

@@ -1049,17 +1049,29 @@
             <input type="text" name="message" hidden value = "No Required" />
             <!-- normal fields -->
             <!-- Name -->
-            <label for="demo-name">Full Name</label>
-            <input type="text" id="demo-name" name="name" placeholder="Your Name" required />
+            <div class="label-input">
+              <label for="demo-name"><i class="fa-solid fa-user"></i></label>
+              <input type="text" id="demo-name" name="name" placeholder="Your Name" required />
+            </div>
+
             <!-- Email -->
-            <label for="demo-email">Email Address</label>
-            <input type="text" id="demo-email" name="email" placeholder="yourmail@domain.com" required />
+            <div class="label input">
+              <label for="demo-email"><i class="fa-solid fa-envelope"></i></label>
+              <input type="text" id="demo-email" name="email" placeholder="yourmail@domain.com" required />
+            </div> 
+
             <!-- Mobile -->
-            <label for="demo-mobile">Mobile Number</label>
-            <input type="tel" id="demo-mobile" name="mobile" placeholder="+1 234 567 8900" required />
+            <div class="label-input">
+              <label for="demo-mobile"><i class="fa-solid fa-phone"></i></label>
+              <input type="tel" id="demo-mobile" name="mobile" placeholder="+1 234 567 8900" required />
+            </div> 
+
             <!-- University/Institute Name -->
-            <label for="demo-organisation">Institute/Organisation Name</label>
-            <input type="text" id="demo-organisation" name="organisation" placeholder="Institute/Organisation" required />   
+            <div class="label-input">
+              <label for="demo-organisation"><i class="fa-solid fa-building"></i></label>
+              <input type="text" id="demo-organisation" name="organisation" placeholder="Institute/Organisation" required />  
+            </div> 
+ 
             <!-- Register Button -->
             <button class="globalBtn btnGradient demo-submit-btn" type="submit" id="demo-submit-btn">Book a Demo</button>
           </form>
