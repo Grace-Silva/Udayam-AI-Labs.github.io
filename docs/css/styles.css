@@ -339,16 +339,29 @@ body {
       justify-content: center;
       gap: 12px;
     }
+      /* label and input */
+      .label-input{
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
       /* download form ítems: */
       #downloadBrochureForm label {
         display: inline-flex;
-        gap: 12px;
         align-items: center;
         font-size: 1rem;
         font-weight: 500;
         color: var(--text-light);
         margin: 4px 0;
+        background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
+        color: var(--light-color);
+        padding: .6rem;
+        border-radius: 50%;
+        margin-bottom: 8px;
       }
+
 
   /** if it finds invalid parameters **/
   .error, #brochureEmailError, #brochurePhoneError, .success-message {

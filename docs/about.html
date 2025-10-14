@@ -207,19 +207,26 @@
             <form id="downloadBrochureForm" onsubmit="handleSubmit(event)">
             <!-- email-->
               <div>
-                <label for="brochure-email"><i class="fa-solid fa-envelope"></i>Email</label>
-                <input type="text" id="brochure-email" name="email" placeholder="yourmail@domain.com" required>
+                <div class="label-input">
+                  <label for="brochure-email"><i class="fa-solid fa-envelope"></i></label>
+                  <input type="text" id="brochure-email" name="email" placeholder="yourmail@domain.com" required>
+                </div>
+
                 <!-- if it finds invalid parameters -->
                 <div class="error" id="brochureEmailError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter a valid email address.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
               </div>
 
             <!-- phone -->   
               <div>
-                <label for="brochure-phone"><i class="fa-solid fa-phone"></i>Phone</label>
-                <input type="tel" id="brochure-phone" name="phone" placeholder="+1 234 567 8900" required>
+                <div class="label-input">
+                  <label for="brochure-phone"><i class="fa-solid fa-phone"></i></label>
+                  <input type="tel" id="brochure-phone" name="phone" placeholder="+1 234 567 8900" required>                
+                </div>
+
                 <!-- if it finds invalid parameters -->
                 <div class="error" id="brochurePhoneError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter your phone number.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
               </div> 
+
             <!-- brochure general error -->    
               <div class="error" id="brochureGeneralError"></div>
                     
