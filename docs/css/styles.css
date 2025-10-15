@@ -363,6 +363,8 @@ body {
         position: absolute;
         top: 0;
         left: -24px;
+        z-index: 1002;
+        transition: all ease .3s;
       }
 
 
@@ -790,6 +792,7 @@ body {
       align-items: center;
       justify-content: center;
       gap: 2rem;
+      text-align: center;
     } 
       /* form title */
       .demo-modal-title {
@@ -835,7 +838,8 @@ body {
       .demo-registration-form input:focus, #downloadBrochureForm input:focus{
         border-color: rgba(51, 51, 51, 0.2);
         transform: translateY(-2px);
-      }       
+      }
+       
 
       /* Submit Button */
       .demo-submit-btn {
@@ -2376,7 +2380,7 @@ footer {
         width: 100%;
         height: 160px;
       }
-      .demo-modal-intro-text, .brochure-modal-description{
+      .demo-modal-intro-text, .brochure-modal-description, .info-text{
         width: 280px;
       }
   /* book a demo modal */    
