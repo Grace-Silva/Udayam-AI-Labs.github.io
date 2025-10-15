@@ -911,7 +911,7 @@ document.addEventListener('DOMContentLoaded', function () {
       document.getElementById('brochurePhoneError').classList.remove('active');
       document.getElementById('brochureGeneralError').classList.remove('active');
       document.getElementById('brochureGeneralError').textContent = '';
-      document.getElementById('brochure-form-content').style.display = 'block';
+      document.getElementById('brochure-form-content').style.display = 'flex';
       document.getElementById('brochureSuccessContent').style.display = 'none';
       document.getElementById('downloadBrochureBtn').disabled = false;
       document.getElementById('downloadBrochureBtn').textContent = 'Submit';
@@ -979,7 +979,7 @@ document.addEventListener('DOMContentLoaded', function () {
           // show succes message
 
             document.getElementById('brochure-form-content').style.display = 'none';
-            document.getElementById('brochureSuccessContent').style.display = 'block';
+            document.getElementById('brochureSuccessContent').style.display = 'flex';
 
         }, 
           function(error) {
