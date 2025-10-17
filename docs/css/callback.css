@@ -1,3 +1,4 @@
+/* request callback button 
 #request-callback-btn {
   position: fixed;
   right: -8rem;
@@ -17,18 +18,24 @@
   transform: rotate(-90deg) translateY(100%);
   opacity: 0;
   visibility: hidden;
-  margin: 0;
+  box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
   transition: all ease-in .4s;
-} /* icon animation */
+} /* icon animation 
   #request-callback-btn > i {
     margin: 0 0 0 12px;
     animation: linear infinite 1s phoneRing;
   }
-  @keyframes phoneRing {
-  0%, 100% { transform: rotate(0) scale(1); }
-  25% { transform: rotate(-8deg) scale(1.05); }
-  75% { transform: rotate(8deg) scale(1.05); }
-}
+    @keyframes phoneRing {
+      0%, 100% { 
+        transform: rotate(0) scale(1); 
+      }
+      25% { 
+        transform: rotate(-8deg) scale(1.05); 
+      }
+      75% { 
+        transform: rotate(8deg) scale(1.05); 
+      }
+    }
 
 #request-callback-btn.show {
   opacity: 1;
@@ -40,18 +47,25 @@
 }
 
 .callback-modal {
-  display: none;
+  display: flex;
   position: fixed;
-  z-index: 1000;
-  left: 0;
+  z-index: 1001;
+  right: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.6);
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
+  transition: all ease-in-out .4s;
+  cursor: zoom-out;
 }
+  /* sliding window 
+  .demo-modal.sliding{
+    transform: translateX(0);
+  }
 
 .callback-modal-content {
   background-color: #fff;
@@ -62,7 +76,7 @@
   box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
   position: relative;
   animation: slide-down 0.4s ease-out;
-  font-family: "Poppins", sans-serif;
+  /*font-family: "Poppins", sans-serif;
 }
 
 @keyframes slide-down {

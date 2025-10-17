@@ -38,8 +38,8 @@
   <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
   <link rel="stylesheet" href="css/styles.css" />
   <link rel="stylesheet" href="css/assistant.css" />
- <link rel="stylesheet" href="css/callback.css" />
- <link rel="stylesheet" href="css/navbar.css" />
+  <!--<link rel="stylesheet" href="css/callback.css" />-->
+  <link rel="stylesheet" href="css/navbar.css" />
 </head>
 
 <body>
@@ -606,9 +606,15 @@
 
     <!-- request callback modal window -->
     <button id="request-callback-btn">Request a Callback<i class="fa-solid fa-phone-volume"></i></button>
+    <!-- callback modal -->
     <div id="callback-modal" class="callback-modal">
+
         <div class="callback-modal-content">
-            <span class="callback-close-btn">&times;</span>
+          <!-- close btn -->
+            <button class="close-btn" id="close-callback-btn">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+
             <div class="callback-modal-header">
                 <i class="fas fa-phone-volume"></i>
                 <h3>Request a Callback</h3>
@@ -616,6 +622,7 @@
             <p class="modal-intro-text">
                 Let's connect! Leave your number and one of our specialists will call you back shortly.
             </p>
+            <!-- callback form -->
             <form id="callback-form">
                 <label for="phone-number">Your Phone Number</label>
                 <div class="phone-input-group">

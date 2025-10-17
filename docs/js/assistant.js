@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menu-toggle"); // ADDED THIS BACK
   const callbackBtn = document.getElementById("request-callback-btn");
   const modal = document.getElementById("callback-modal");
-  const closeBtn = document.querySelector(".callback-close-btn");
+  const closeBtn = document.getElementById("close-callback-btn");
   const callbackForm = document.getElementById("callback-form");
   const heroSection = document.getElementById("hero-section");
   const toast = document.getElementById("toast"); // --- State & Constants ---
@@ -23,13 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chatWidget.classList.contains("show")) {
       setTimeout(() => chatInput.focus(), 100);
     }
-  };
-
-  const openCallbackModal = () => {
-    if (modal) modal.style.display = "flex";
-  };
-  const closeCallbackModal = () => {
-    if (modal) modal.style.display = "none";
   };
 
   const showTypingIndicator = () => {
@@ -220,26 +213,43 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } // Callback Modal Listeners
 
-  if (
-    callbackBtn &&
-    modal &&
-    closeBtn &&
-    callbackForm &&
-    heroSection &&
-    toast
-  ) {
+
+
+
+
+/* starts request callback */  
+
+  /* open callback modal window */
+  const openCallbackModal = () => {
+    if (modal) {
+      //modal.style.display = "flex";
+      modal.classList.add("sliding");
+    }
+      
+  };
+  /* close callback modal window  */
+  const closeCallbackModal = () => {
+    if (modal) {
+      modal.classList.remove("sliding");
+    }
+  };
+
+  /* recognize if Request a callback, hero-section and modal callback exist: */
+  if (callbackBtn && modal && heroSection) {
+    /* appear callback butto: */
+    window.addEventListener("scroll", () => {
+      if (heroSection){
+        callbackBtn.classList.toggle("show", window.scrollY > heroSection.offsetHeight);
+      }
+    });
+
     callbackBtn.onclick = openCallbackModal;
     closeBtn.onclick = closeCallbackModal;
+    /* close modal if the user clicks off the modal content: */
     window.onclick = (event) => {
       if (event.target == modal) closeCallbackModal();
     };
-    window.addEventListener("scroll", () => {
-      if (heroSection)
-        callbackBtn.classList.toggle(
-          "show",
-          window.scrollY > heroSection.offsetHeight
-        );
-    });
+    /* send data with email js: */
     callbackForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const submitBtn = document.getElementById("callback-submit-btn"),
