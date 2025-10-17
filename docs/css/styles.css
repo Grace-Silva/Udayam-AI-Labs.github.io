@@ -771,7 +771,7 @@ body {
         border-bottom-left-radius: 8px;
       }
     /* form content */ 
-    .demo-modal-form-content, .brochure-form-content{
+    .demo-modal-form-content, .brochure-form-content, .callback-form-content{
       padding: 2rem 4rem;
       display: flex;
       flex-direction: column;
@@ -781,7 +781,7 @@ body {
       text-align: center;
     } 
       /* form title */
-      .demo-modal-title {
+      .demo-modal-title, .callback-modal-title {
         font-size: 2rem;
         font-weight: 800;
         line-height: 1.12;
@@ -799,7 +799,7 @@ body {
         overflow-wrap: break-word;
         text-align: center;
       }
-        .demo-registration-form, #downloadBrochureForm{
+        .demo-registration-form, #downloadBrochureForm, #callback-form{
           display: flex;
           flex-direction: column;
           width: 100%;
@@ -807,7 +807,7 @@ body {
         }
 
       /* Form Elements */
-      .demo-registration-form input, #downloadBrochureForm input {
+      .demo-registration-form input, #downloadBrochureForm input, #callback-form input{
         width: 100%;
         padding: 4px 24px;
         border-radius: 4px;
@@ -817,7 +817,7 @@ body {
         font-size: 1rem;
         color: var(--text-light);
         transition: all ease .2s;
-      } .demo-registration-form input::placeholder, #downloadBrochureForm input::placeholder{
+      } .demo-registration-form input::placeholder, #downloadBrochureForm input::placeholder, #callback-form input::placeholder{
         font-size: .9rem;
         color: rgba(51, 51, 51, 0.4);
       }
@@ -827,7 +827,7 @@ body {
       }
        
       /* Submit Button */
-      .demo-submit-btn {
+      .demo-submit-btn{
         background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
         margin: 0 auto;
         border: none;
@@ -908,123 +908,73 @@ body {
   transition: all ease-in-out .4s;
   cursor: zoom-out;
 }
-  /* sliding window */
+  /* sliding window (right to left)*/
   .callback-modal.sliding{
     transform: translateX(0);
   }
-  /* modal content 
- .callback-modal-content  {
-    background-color: #fff;
-    padding: 30px 35px;
-    border-radius: 12px;
-    width: 90%;
-    max-width: 420px;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
-    position: relative;
-    animation: slide-down 0.4s ease-out;
-    /*font-family: "Poppins", sans-serif;*/
-  /*}*/
-
-@keyframes slide-down {
-  from {
-    transform: translateY(-50px);
-    opacity: 0;
+ 
+  @keyframes slide-down {
+    from {
+      transform: translateY(-50px);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0);
+      opacity: 1;
+    }
   }
-  to {
-    transform: translateY(0);
-    opacity: 1;
+  /* callback form */
+  .phone-input-group {
+    display: flex;
+    align-items: stretch;
+    gap: 4px;
   }
-}
+  #country-code {
+    appearance: none;
+    width: auto;
+    cursor: pointer;
+    padding: 4px 12px; 
+    border: 1px solid rgba(51, 51, 51, 0.1);
+    border-radius: 0px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    background: var(--light-color);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-light);
+    box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+    cursor: pointer;
+    height: 100%;
+    min-height: 48px;
+    transition: all ease .3s;
+  }  #country-code option{
+    color: var(--text-light);
+    font-size: 1rem;
+    font-weight: 500;
+  }
 
-.callback-modal-header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 15px;
-}
-.callback-modal-header i {
-  font-size: 24px;
-  color: #007bff;
-  margin-right: 12px;
-}
-.callback-modal-header h3 {
-  margin: 0;
-  font-size: 22px;
-  font-weight: 600;
-  color: #333;
-}
-
-.modal-intro-text {
-  font-size: 15px;
-  color: #555;
-  text-align: center;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
+  #callback-form input{
+    height: 100%;
+    min-height: 48px;
+    border-radius: 0px;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  } 
+    #callback-form input:focus{
+      transform: translateY(0);
+      box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+    }
 
 
-#callback-form label {
-  display: block;
-  font-weight: 500;
-  color: #333;
-  margin-bottom: 8px;
-  font-size: 14px;
-}
 
-.phone-input-group {
-  display: flex;
-  gap: 10px;
-  margin-bottom: 25px;
-}
-
-#country-code,
-#phone-number {
-  padding: 12px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  font-size: 16px;
-  transition: border-color 0.3s, box-shadow 0.3s;
-}
-#country-code:focus,
-#phone-number:focus {
-  outline: none;
-  border-color: #007bff;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
-}
-#country-code {
-  width: 7rem;     
-  flex-shrink: 0;   
-}
-#phone-number {
- flex-grow: 1;
-  min-width: 0; 
-}
-#callback-submit-btn {
-  width: 100%;
-  padding: 14px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  font-weight: bold;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-#callback-submit-btn:hover {
-  background-color: #218838;
-  transform: translateY(-2px);
-}
 
 .callback-disclaimer {
   font-size: 12px;
-  color: #888;
-  text-align: center;
-  margin-top: 20px;
+  font-weight: 400;
+  color: var(--text-light);
 }
-.callback-disclaimer i {
-  margin-right: 5px;
+.callback-disclaimer > i {
+  margin: 0 4px;
 }
 
 #toast {
