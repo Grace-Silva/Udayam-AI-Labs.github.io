@@ -2058,13 +2058,7 @@ footer {
 }
 /* phone */
 @media (max-width: 768px) {
-  .nav-container{
-    padding: 0.1rem;
-  }
 
-  .logo-link img{
-    left: 0.5rem;
-  }
   /* about section */      
   .tagline{
     font-size: 0.8rem;
@@ -2292,15 +2286,7 @@ footer {
 }
 /* small phone */
 @media (max-width: 480px) {
-  .nav-container {
-      padding: 0 0.75rem;
-    }
-    .logo-container{
-      margin-left: 5rem; 
-    }
-    .nav-title {
-      font-size: 1.1rem;
-    }
+
     /*
     .hero-section-text {
       padding: 8rem 0.75rem 3rem;
