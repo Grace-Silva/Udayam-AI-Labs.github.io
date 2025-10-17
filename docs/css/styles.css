@@ -134,21 +134,7 @@ body {
   padding: calc(25vh) 4rem 4rem 4rem;
   gap: 2.4rem;
   position: relative;
-}/*
-.tagline {
-  display: inline-block;
-  background: rgba(79, 70, 229, 0.1);
-  border: 1px solid rgba(79, 70, 229, 0.3);
-  color: #4f46e5;
-  padding: 0.5rem 1.5rem;
-  border-radius: 50px;
-  font-size: 0.9rem;
-  font-weight: 600;
-  margin-bottom: 2rem;
-  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-}*/
+}
 
 .heroBtns{
   display: flex;

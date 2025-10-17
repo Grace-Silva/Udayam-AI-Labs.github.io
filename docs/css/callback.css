@@ -1,33 +1,41 @@
 #request-callback-btn {
   position: fixed;
-  right: -6rem;
+  right: -8rem;
   bottom: 1rem;
   background-color: #473fc5;
-  color: white;
-  padding: 15px 20px;
+  color: #f8f9fa;
+  padding: 16px 24px;
   border: none;
   border-top-left-radius: 8px;
   border-top-right-radius: 8px;
   cursor: pointer;
-  font-weight: bold;
-  z-index: 999;
-  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
-  transition: background-color 0.3s;
-
+  z-index: 1000;
+  font-size: 1rem;
+  font-weight: 500;
   white-space: nowrap;
   transform-origin: top left;
   transform: rotate(-90deg) translateY(100%);
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.4s ease, visibility 0.4s ease;
+  margin: 0;
+  transition: all ease-in .4s;
+} /* icon animation */
+  #request-callback-btn > i {
+    margin: 0 0 0 12px;
+    animation: linear infinite 1s phoneRing;
+  }
+  @keyframes phoneRing {
+  0%, 100% { transform: rotate(0) scale(1); }
+  25% { transform: rotate(-8deg) scale(1.05); }
+  75% { transform: rotate(8deg) scale(1.05); }
 }
 
 #request-callback-btn.show {
   opacity: 1;
   visibility: visible;
 }
-
 #request-callback-btn:hover {
+  right: -7.6rem;
   background-color: #3b33a5;
 }
 
