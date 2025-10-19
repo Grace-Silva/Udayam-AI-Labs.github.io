@@ -965,9 +965,6 @@ body {
       box-shadow: 0 0 4px rgba(0, 0, 0, .1);
     }
 
-
-
-
 .callback-disclaimer {
   font-size: 12px;
   font-weight: 400;
@@ -980,17 +977,18 @@ body {
 #toast {
   visibility: hidden;
   min-width: 280px;
-  background-color: #333;
-  color: #fff;
+  background-color: var(--text-dark);
+  color: var(--light-color);
   text-align: center;
-  border-radius: 5px;
-  padding: 16px;
+  border-radius: 4px;
+  padding: 12px 24px;
   position: fixed;
   z-index: 1001;
   left: 50%;
   bottom: 30px;
   transform: translateX(-50%);
-  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 500;
   opacity: 0;
   transition: opacity 0.5s, visibility 0.5s, bottom 0.5s;
 }

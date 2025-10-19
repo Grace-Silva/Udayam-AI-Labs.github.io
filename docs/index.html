@@ -604,7 +604,7 @@
     </button>
 
 
-    <!-- request callback modal window -->
+    <!-- starts request callback modal window -->
     <button id="request-callback-btn">Request a Callback<i class="fa-solid fa-phone-volume"></i></button>
     <!-- callback modal -->
     <div id="callback-modal" class="callback-modal">
@@ -630,8 +630,8 @@
             </p>
             <!-- callback form -->
             <form id="callback-form">
-              <!-- prefix -->
               <div class="phone-input-group">
+                <!-- prefix -->
                 <select id="country-code" name="country-code" required>
                   <option value="+91" selected>🇮🇪 (+91)</option>
                   <option value="+1">🇺🇲 (+1)</option>
@@ -644,16 +644,21 @@
               <!-- submit btn -->
               <button type="submit" id="callback-submit-btn" class="globalBtn btnGradient demo-submit-btn">Get a Call Back</button>
             </form>
-          <p class="callback-disclaimer">
-              <i class="fas fa-lock"></i> Your information is safe with us.
-          </p>
+            <p class="callback-disclaimer">
+                <i class="fas fa-lock"></i> Your information is safe with us.
+            </p>
 
           </div>
-
-
       </div>
     </div>
-    <div id="toast">Callback requested successfully!</div>
+      <!-- succes content -->
+      <div id="toast" class="show">Callback requested successfully!</div>
+    <!-- ends request a callback modal window -->
+
+
+
+
+
 
     <!-- Register Form -->
     <div id="course-registration-modal" class="course-registration-modal">
