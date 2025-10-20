@@ -197,6 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") handleSendMessage();
   }); // --- ADDED THIS BLOCK BACK --- // This new version closes the chat when the nav menu opens, without breaking the icon.
 
+  /* responsive menu */
   if (menuToggle) {
     menuToggle.addEventListener("click", () => {
       // Use a small delay to ensure navbar.js has updated the class first
@@ -214,11 +215,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } // Callback Modal Listeners
 
 
-
-
-
 /* starts request callback */  
-
   /* open callback modal window */
   const openCallbackModal = () => {
     if (modal) {
@@ -278,5 +275,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("One or more callback feature elements were not found.");
   }
+/* end request callback */
+
   showWelcomeMessage();
 });

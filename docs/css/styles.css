@@ -10,6 +10,9 @@
   --text-dark: #333;
   --text-light: #666;
   --text-heading: #222;
+  --success-color: rgba(13, 151, 47, 0.8);
+  --error-color:  rgba(247, 6, 54, 0.8); 
+  --modal-shadow: 0 0 24px rgba(0, 0, 0, .5);
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -251,7 +254,7 @@ body {
   backdrop-filter: blur(8px);
   align-items: center;
   justify-content: center;
-  z-index: 1001;
+  z-index: 1002;
   overflow: hidden;
   padding: 4rem;
   transition: all ease-in .4s;
@@ -274,7 +277,7 @@ body {
     transition: all ease-in .3s;
   }
     /* decorative pattern */
-    .brochure-modal-gradient{
+    .brochure-modal-gradient, .callback-modal-gradient{
       background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
       min-height: 72px;
       border-top-left-radius: 8px;
@@ -282,7 +285,7 @@ body {
       position: relative;
     }
       /* sign-up-icon */
-      .brochure-modal-gradient .sign-up-icon{
+      .brochure-modal-gradient .sign-up-icon, .callback-modal-gradient .sign-up-icon{
         width: 72px;
         height: 72px;
         padding: 4px;
@@ -315,11 +318,19 @@ body {
     padding: 8px;
     border: none;
     font-size: 16px;
+    font-weight: 500;
     cursor: pointer;
     color: var(--light-color);
     z-index: 1002;
     box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
-  }
+  } /* close btn icon */
+    .close-btn > i{
+      opacity: .9;
+      transition: opacity .2s ease;
+    }
+      .close-btn > i:hover{
+        opacity: 1;
+      }
     /* download form */
     #downloadBrochureForm{
       justify-content: center;
@@ -863,7 +874,7 @@ body {
   opacity: 0;
   visibility: hidden;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
-  transition: all ease-in .4s;
+  transition: opacity 0.3s, visibility 0.3s, right 0.3s ease-out, background-color 0.3s ease-out;
 } /* icon animation */
   #request-callback-btn > i {
     margin: 0 0 0 12px;
@@ -952,7 +963,6 @@ body {
     font-size: 1rem;
     font-weight: 500;
   }
-
   #callback-form input{
     height: 100%;
     min-height: 48px;
@@ -964,39 +974,41 @@ body {
       transform: translateY(0);
       box-shadow: 0 0 4px rgba(0, 0, 0, .1);
     }
-
-.callback-disclaimer {
-  font-size: 12px;
-  font-weight: 400;
-  color: var(--text-light);
-}
-.callback-disclaimer > i {
-  margin: 0 4px;
-}
+  .callback-disclaimer {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-light);
+  }
+  .callback-disclaimer > i {
+    margin: 0 4px;
+  }
 
 #toast {
   visibility: hidden;
   min-width: 280px;
-  background-color: var(--text-dark);
-  color: var(--light-color);
+  background-color: var(--light-color);
+  color: var(--success-color);
+  box-shadow: var(--modal-shadow);
   text-align: center;
-  border-radius: 4px;
-  padding: 12px 24px;
+  border-radius: 8px;
+  padding: 16px 24px;
   position: fixed;
-  z-index: 1001;
+  z-index: 1002;
   left: 50%;
-  bottom: 30px;
+  top: -80px;
   transform: translateX(-50%);
   font-size: 1rem;
   font-weight: 500;
   opacity: 0;
-  transition: opacity 0.5s, visibility 0.5s, bottom 0.5s;
+  transition: opacity 0.5s, visibility 0.5s, top 0.5s;
+} #toast > i{
+  margin: 0 8px;
 }
 
 #toast.show {
   visibility: visible;
   opacity: 1;
-  bottom: 50px;
+  top: 20px;
 }
 
 
@@ -2156,14 +2168,14 @@ footer {
     .results-container{
       padding: 4rem 3rem;
     }      
-    /* book a demo modal */
-    .demo-modal, .brochure-modal{
+    /* modal windows */
+    .demo-modal, .brochure-modal, .callback-modal{
       padding: 3rem;
     }
       .demo-modal-content{
         max-width: 900px;
       }
-    /* book a demo modal */
+    /* modal windows */
 
    /* footer */
     /* footer content */
@@ -2224,11 +2236,11 @@ footer {
     padding: 2rem 4rem;
     margin: 0 2rem;
   } 
-  /* book a demo modal */
-  .demo-modal, .brochure-modal{
+  /* modal windows*/
+  .demo-modal, .brochure-modal, .callback-modal{
     padding: 2rem;
   }
-  /* book a demo modal */
+  /* modal windows */
 
   /* footer */
   .footer-content{
@@ -2348,8 +2360,8 @@ footer {
     font-size: 0.8rem;
   }
 
-  /* book a demo modal */
-  .demo-modal, .brochure-modal{
+  /* modal windows */
+  .demo-modal, .brochure-modal, .callback-modal{
     padding: 2rem;
   }
     .demo-modal-content{
@@ -2370,14 +2382,14 @@ footer {
     .demo-modal-form-content{
       gap: 1rem;
     }
-      .demo-modal-title {
+      .demo-modal-title, .callback-modal-title {
         font-size: 1.8rem;
       }
 
       .demo-registration-form input::placeholder{
         font-size: 1rem;
       }
-  /* book a demo modal */
+  /* modal windows */
 
     /* footer */
     /* footer contact */ 
@@ -2553,7 +2565,7 @@ footer {
       font-size: 1.2rem;
     }
 
-/* book a demo modal */
+/* modal windows */
     .demo-modal-content{
       max-width: 360px;
     }
@@ -2569,7 +2581,7 @@ footer {
       .demo-modal-intro-text, .brochure-modal-description, .info-text{
         width: 280px;
       }
-  /* book a demo modal */    
+  /* modal windows */    
 
   /* footer */
     /* footer contact */ 
