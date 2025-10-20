@@ -387,3 +387,9 @@ header.scrolled {
     visibility: visible;
   }
 }
+
+@media (max-width: 768px) {
+  .nav-container{
+    padding: 0 0.5rem;
+  } 
+}
