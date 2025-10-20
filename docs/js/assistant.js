@@ -246,6 +246,11 @@ document.addEventListener("DOMContentLoaded", () => {
     window.onclick = (event) => {
       if (event.target == modal) closeCallbackModal();
     };
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && modal && modal.classList.contains('sliding')) {
+        closeCallbackModal();
+      }
+      });
     /* send data with email js: */
     callbackForm.addEventListener("submit", async (event) => {
       event.preventDefault();
