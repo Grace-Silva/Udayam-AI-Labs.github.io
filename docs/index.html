@@ -25,10 +25,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
- <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    />
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
+ <!-- flags -->
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&family=Noto+Emoji&display=swap" rel="stylesheet">
 
   <link rel="icon" type="image/png" href="assets/images/favicon/favicon-96x96.png" sizes="96x96" />
   <link rel="icon" type="image/svg+xml" href="assets/images/favicon/favicon.svg" />
@@ -630,16 +629,50 @@
             <!-- callback form -->
             <form id="callback-form">
               <div class="phone-input-group">
-                <!-- prefix -->
+                <!-- prefix and caret down -->
                 <div class="select-wrapper">
-                <!-- options -->
+                <!-- hidden options -->
                 <select id="country-code" name="country-code" required>
-                  <option value="+91" selected>🇮🇪 (+91)</option>
-                  <option value="+1">🇺🇲 (+1)</option>
-                  <option value="+44">🇬🇧 (+44)</option>
-                  <option value="+61">🇦🇺 (+61)</option>
-                  <option value="+971">🇦🇪 (+971)</option>
+                  <option selected value="+91" data-flag="🇮🇳"></option>
+                  <option value="+1" data-flag="🇺🇸"></option>
+                  <option value="+44" data-flag="🇬🇧"></option>
+                  <option value="+61" data-flag="🇦🇺"></option>
+                  <option value="+971" data-flag="🇦🇪"></option>
+                  <option value="+57" data-flag="🇨🇴"></option>
                 </select>
+                <!-- visible options -->
+                  <div class="custom-select-trigger" tabindex="0">
+                      <img class="flag">
+                      <span class="code"></span>
+                  </div>
+                  
+                  <!-- La lista de opciones personalizada -->
+                  <div class="custom-options">
+                      <div class="custom-option" data-value="+91">
+                        <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/india-circular.png" alt="india-circular"/>
+                        <span class="code">+91</span>
+                      </div>
+                      <div class="custom-option" data-value="+1">
+                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/usa-circular.png" alt="usa-circular"/>
+                          <span class="code">+1</span>
+                      </div>
+                      <div class="custom-option" data-value="+44">
+                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/great-britain-circular.png" alt="great-britain-circular"/>
+                          <span class="code">+44</span>
+                      </div>
+                      <div class="custom-option" data-value="+61">
+                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/australia-circular.png" alt="australia-circular"/>
+                          <span class="code">+61</span>
+                      </div>
+                      <div class="custom-option" data-value="+971">
+                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/united-arab-emirates-circular.png" alt="united-arab-emirates-circular"/>
+                          <span class="code">+971</span>
+                      </div>
+                      <div class="custom-option" data-value="+57">
+                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/colombia-circular.png" alt="colombia-circular"/>
+                          <span class="code">+57</span>
+                      </div>
+                  </div>
                 <!-- icon -->
                  <i class="fa-solid fa-caret-down"></i>
                 </div>

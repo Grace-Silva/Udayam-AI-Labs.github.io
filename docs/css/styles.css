@@ -23,6 +23,8 @@
   --aurora: linear-gradient(135deg,rgba(29, 146, 217, 0.85) 0%, rgba(71, 63, 197, 0.85) 71%);
 }
 
+/* emojis font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
 
 html{
   scroll-behavior: smooth;
@@ -874,7 +876,7 @@ body {
   opacity: 0;
   visibility: hidden;
   box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
-  transition: opacity 0.3s, visibility 0.3s, right 0.3s ease-out, background-color 0.3s ease-out;
+  transition: visibility 0.3s, opacity 0.3s, right 0.3s ease-out, background-color 0.3s ease-out;
 } /* icon animation */
   #request-callback-btn > i {
     margin: 0 0 0 12px;
@@ -893,8 +895,8 @@ body {
     }
 
   #request-callback-btn.show {
-    opacity: 1;
     visibility: visible;
+    opacity: 1;
   }
   #request-callback-btn:hover {
     right: -7.6rem;
@@ -941,9 +943,10 @@ body {
     gap: 4px;
   }
   .select-wrapper{
+    position: relative;
     display: inline-flex;
     align-items: center;
-    gap: 4px;
+    gap: 24px;
     cursor: pointer;
     color: var(--text-light);
     font-weight: 500;
@@ -956,31 +959,95 @@ body {
     font-size: 1rem;
     font-weight: 500;
     color: var(--text-light);
-    /*box-shadow: 0 0 4px rgba(0, 0, 0, .1);*/
     cursor: pointer;
     height: 100%;
     min-height: 48px;
     transition: all ease .3s;
+    font-weight: 400;
+    font-family: "Noto Color Emoji", sans-serif;
   }
+    /* caret down icon */
+  .select-wrapper i {
+    transition: transform 0.3s ease;
+  }
+    .select-wrapper.open i {
+      transform: rotate(180deg);
+    }
 
   #country-code {
-    appearance: none;
-    width: auto;
-    cursor: pointer;
-    background: none;
-    border: none;
-    background: var(--light-color);
-    font-size: 1rem;
+    display: none;
+  }  
+  
+  /* Estilos para el elemento que siempre se muestra */
+  .custom-select-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      outline: none; /* Eliminar el contorno de foco por defecto */
+      padding: 0;
+      color: var(--text-light);
+      font-weight: 500;
+  }
+  /* flag image */
+  .custom-select-trigger .flag, .custom-option .flag {
+      width: 16px;
+      height: 16px;
+      object-fit: cover;
+      flex-shrink: 0;
+  }
+  /* code */
+  .custom-select-trigger .code,.custom-option .code {
+    font-family: "Poppins", sans-serif;
     font-weight: 500;
-    padding: 0;
-    color: var(--text-light);
-    cursor: pointer;
-    transition: all ease .3s;
-  }  #country-code option{
-    width: 100%;
-    color: var(--text-light);
   }
 
+  /* Estilos para las opciones personalizadas */
+  .custom-options {
+      position: absolute;
+      top: 100%; /* Colocar debajo del trigger */
+      left: 0;
+      width: 100%;
+      min-width: 100%;
+      max-height: 200px; /* Limitar altura para hacer scroll */
+      overflow-y: auto;
+      background: var(--light-color);
+      border: 1px solid rgba(51, 51, 51, 0.1);
+      border-radius: 4px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1002; /* Asegurar que se muestre por encima de otros elementos */
+      display: none; /* Oculto por defecto */
+  }
+  /* Mostrar la lista cuando el contenedor tiene la clase 'open' */
+  .select-wrapper.open .custom-options {
+    display: block;
+  }
+
+/* Estilos para cada opción */
+.custom-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    font-weight: 400;
+}
+  /* ocultar barras de desplazamiento vertical */
+  .custom-options::-webkit-scrollbar {
+      width: 0;
+      background: transparent; /* Oculta la barra de scroll en navegadores basados en Chromium*/
+  } 
+  .custom-options {
+      scrollbar-width: none; /* Oculta la barra de scroll para Firefox */
+  }
+.custom-option:hover {
+    background-color: rgba(51, 51, 51, 0.05);
+}
+
+
+
+/* phone input */
   #callback-form input{
     height: 100%;
     min-height: 48px;
@@ -1000,7 +1067,7 @@ body {
   .callback-disclaimer > i {
     margin: 0 4px;
   }
-
+/* mensaje de confirmación */
 #toast {
   visibility: hidden;
   min-width: 280px;
@@ -1022,7 +1089,6 @@ body {
 } #toast > i{
   margin: 0 8px;
 }
-
 #toast.show {
   visibility: visible;
   opacity: 1;

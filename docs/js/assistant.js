@@ -221,6 +221,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (modal) {
       //modal.style.display = "flex";
       modal.classList.add("sliding");
+      document.body.style.overflow = 'hidden'; // anula scroll y eventos detrás de ella
     }
       
   };
@@ -228,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const closeCallbackModal = () => {
     if (modal) {
       modal.classList.remove("sliding");
+      document.body.style.overflow = ''; // anula scroll y eventos detrás de ella
     }
   };
 
@@ -239,6 +241,69 @@ document.addEventListener("DOMContentLoaded", () => {
         callbackBtn.classList.toggle("show", window.scrollY > heroSection.offsetHeight);
       }
     });
+  
+  /* select phone numbers */  
+
+const selectWrappers = document.querySelectorAll('.select-wrapper');
+    /* if the element exist  */
+    if(selectWrappers){
+      selectWrappers.forEach(wrapper => {
+        const select = wrapper.querySelector('select');
+        const trigger = wrapper.querySelector('.custom-select-trigger');
+        const optionsContainer = wrapper.querySelector('.custom-options');
+        
+        // update trigger
+        function updateTrigger(value) {
+          const customOption = optionsContainer.querySelector(`[data-value="${value}"]`);
+          if (customOption) {
+            const flagImg = customOption.querySelector('.flag');
+            const codeText = customOption.querySelector('.code').textContent;
+            
+            trigger.querySelector('.flag').src = flagImg.src;
+            trigger.querySelector('.flag').alt = flagImg.alt;
+            trigger.querySelector('.code').textContent = codeText;
+          }
+        }
+        
+        // default
+        select.value = '+91';
+        updateTrigger('+91');
+        
+        // open and close phone-menu
+        trigger.addEventListener('click', () => {
+          wrapper.classList.toggle('open');
+        });
+        
+        // select phone options
+        optionsContainer.addEventListener('click', (e) => {
+          const option = e.target.closest('.custom-option');
+          if (option) {
+            const value = option.getAttribute('data-value');
+            select.value = value;
+            updateTrigger(value);
+            wrapper.classList.remove('open');
+          }
+        });
+        
+        // Cerrar el menú si se hace clic fuera
+        document.addEventListener('click', (e) => {
+          if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('open');
+          }
+        });
+        
+        // Manejar la navegación con el teclado
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            wrapper.classList.toggle('open');
+            e.preventDefault();
+          } else if (e.key === 'Escape') {
+            wrapper.classList.remove('open');
+          }
+        });
+      });
+    }
+
 
     callbackBtn.onclick = openCallbackModal;
     closeBtn.onclick = closeCallbackModal;
