@@ -895,12 +895,14 @@ document.addEventListener('DOMContentLoaded', function () {
       // verify if the element exist
       if(brochureModalOverlay){
         brochureModalOverlay.classList.add('active');
+        document.body.style.overflow = 'hidden'; // anula scroll y eventos detrás de ella
       }
     }
     function closeBrochureModal() {
       const brochureModalOverlay = document.getElementById('brochureModalOverlay');
       if(brochureModalOverlay){
         brochureModalOverlay.classList.remove('active');
+        document.body.style.overflow = ''; // anula scroll y eventos detrás de ella
       }
       resetBrochureForm();
     }
@@ -1057,7 +1059,7 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
   });
 
   window.addEventListener('click', (e) => {
-   if(e.target === modal) {
+   if(e.target === courseModal) {
     courseModal.style.display = 'none';
     }
   });
@@ -1071,11 +1073,12 @@ if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
   if (bookDemoBtn && bookModal && demoCloseBtn) {
     bookDemoBtn.addEventListener('click', () => {
       bookModal.classList.add("sliding");
+      document.body.style.overflow = 'hidden'; // anula scroll y eventos detrás de ella
     });
 
     demoCloseBtn.addEventListener('click', () => {
       bookModal.classList.remove("sliding");
-      document.style.overflow = "";
+      document.style.overflow = ""; // anula scroll y eventos detrás de ella
     });
     /* clic en el relleno de la ventana */
     window.addEventListener('click', (e) => {

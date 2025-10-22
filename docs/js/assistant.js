@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const menuToggle = document.getElementById("menu-toggle"); // ADDED THIS BACK
   const callbackBtn = document.getElementById("request-callback-btn");
   const modal = document.getElementById("callback-modal");
-  const closeBtn = document.querySelector(".callback-close-btn");
+  const closeBtn = document.getElementById("close-callback-btn");
   const callbackForm = document.getElementById("callback-form");
   const heroSection = document.getElementById("hero-section");
   const toast = document.getElementById("toast"); // --- State & Constants ---
@@ -23,13 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (chatWidget.classList.contains("show")) {
       setTimeout(() => chatInput.focus(), 100);
     }
-  };
-
-  const openCallbackModal = () => {
-    if (modal) modal.style.display = "flex";
-  };
-  const closeCallbackModal = () => {
-    if (modal) modal.style.display = "none";
   };
 
   const showTypingIndicator = () => {
@@ -204,6 +197,7 @@ document.addEventListener("DOMContentLoaded", () => {
     if (e.key === "Enter") handleSendMessage();
   }); // --- ADDED THIS BLOCK BACK --- // This new version closes the chat when the nav menu opens, without breaking the icon.
 
+  /* responsive menu */
   if (menuToggle) {
     menuToggle.addEventListener("click", () => {
       // Use a small delay to ensure navbar.js has updated the class first
@@ -220,26 +214,109 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   } // Callback Modal Listeners
 
-  if (
-    callbackBtn &&
-    modal &&
-    closeBtn &&
-    callbackForm &&
-    heroSection &&
-    toast
-  ) {
+
+/* starts request callback */  
+  /* open callback modal window */
+  const openCallbackModal = () => {
+    if (modal) {
+      //modal.style.display = "flex";
+      modal.classList.add("sliding");
+      document.body.style.overflow = 'hidden'; // anula scroll y eventos detrás de ella
+    }
+      
+  };
+  /* close callback modal window  */
+  const closeCallbackModal = () => {
+    if (modal) {
+      modal.classList.remove("sliding");
+      document.body.style.overflow = ''; // anula scroll y eventos detrás de ella
+    }
+  };
+
+  /* recognize if Request a callback, hero-section and modal callback exist: */
+  if (callbackBtn && modal && heroSection) {
+    /* appear callback butto: */
+    window.addEventListener("scroll", () => {
+      if (heroSection){
+        callbackBtn.classList.toggle("show", window.scrollY > heroSection.offsetHeight);
+      }
+    });
+  
+  /* select phone numbers */  
+
+const selectWrappers = document.querySelectorAll('.select-wrapper');
+    /* if the element exist  */
+    if(selectWrappers){
+      selectWrappers.forEach(wrapper => {
+        const select = wrapper.querySelector('select');
+        const trigger = wrapper.querySelector('.custom-select-trigger');
+        const optionsContainer = wrapper.querySelector('.custom-options');
+        
+        // update trigger
+        function updateTrigger(value) {
+          const customOption = optionsContainer.querySelector(`[data-value="${value}"]`);
+          if (customOption) {
+            const flagImg = customOption.querySelector('.flag');
+            const codeText = customOption.querySelector('.code').textContent;
+            
+            trigger.querySelector('.flag').src = flagImg.src;
+            trigger.querySelector('.flag').alt = flagImg.alt;
+            trigger.querySelector('.code').textContent = codeText;
+          }
+        }
+        
+        // default
+        select.value = '+91';
+        updateTrigger('+91');
+        
+        // open and close phone-menu
+        trigger.addEventListener('click', () => {
+          wrapper.classList.toggle('open');
+        });
+        
+        // select phone options
+        optionsContainer.addEventListener('click', (e) => {
+          const option = e.target.closest('.custom-option');
+          if (option) {
+            const value = option.getAttribute('data-value');
+            select.value = value;
+            updateTrigger(value);
+            wrapper.classList.remove('open');
+          }
+        });
+        
+        // Cerrar el menú si se hace clic fuera
+        document.addEventListener('click', (e) => {
+          if (!wrapper.contains(e.target)) {
+            wrapper.classList.remove('open');
+          }
+        });
+        
+        // Manejar la navegación con el teclado
+        trigger.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') {
+            wrapper.classList.toggle('open');
+            e.preventDefault();
+          } else if (e.key === 'Escape') {
+            wrapper.classList.remove('open');
+          }
+        });
+      });
+    }
+
+
     callbackBtn.onclick = openCallbackModal;
     closeBtn.onclick = closeCallbackModal;
+    /* close modal if the user clicks off the modal content: */
     window.onclick = (event) => {
       if (event.target == modal) closeCallbackModal();
     };
-    window.addEventListener("scroll", () => {
-      if (heroSection)
-        callbackBtn.classList.toggle(
-          "show",
-          window.scrollY > heroSection.offsetHeight
-        );
-    });
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape' && modal && modal.classList.contains('sliding')) {
+        closeCallbackModal();
+      }
+      });
+    /* send data with email js: */
     callbackForm.addEventListener("submit", async (event) => {
       event.preventDefault();
       const submitBtn = document.getElementById("callback-submit-btn"),
@@ -268,5 +345,7 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     console.error("One or more callback feature elements were not found.");
   }
+/* end request callback */
+
   showWelcomeMessage();
 });
