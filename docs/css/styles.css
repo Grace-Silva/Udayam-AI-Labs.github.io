@@ -12,7 +12,7 @@
   --text-heading: #222;
   --success-color: rgba(13, 151, 47, 0.8);
   --error-color:  rgba(247, 6, 54, 0.8); 
-  --modal-shadow: 0 0 24px rgba(0, 0, 0, .5);
+  --modal-shadow: 0 0 24px rgba(0, 0, 0, .16);
 
   /* Gradients */
   --gradient-primary: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
@@ -151,26 +151,27 @@ body {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 8px;
-  cursor: pointer;
-  border: 1px solid rgba(79, 70, 229, 0.3);
-  background:  rgba(79, 70, 229, 0.1);
-  color: #4f46e5;
   padding: 8px 24px;
+  gap: 12px;
+  cursor: pointer;
+  border: 1px solid rgba(13, 0, 255, 0.1);
   border-radius: 50px;
+  background:  rgba(79, 70, 229, 0.1);
+  backdrop-filter: blur(8px);
+  color: #4f46e5;
   font-size: 1rem;
   font-weight: 500;
-  transition: all ease .3s;
   overflow: hidden;
-}.globalBtn:hover{
-  transform: translateY(-4px);
+  transition: all ease-in .3s;
 }
-  /* #1 btn*/
-  .btnGradient{
-    background: var(--aurora);
-    background-position: center;
-    background-size: cover;
-    color: var(--light-color);
+/* #1 btn*/
+.btnGradient{
+  background: var(--aurora);
+  color: var(--light-color);
+  border: none;
+}
+  .globalBtn:hover, .btnGradient:hover{
+    filter: brightness(1.12);
   }
 
 
@@ -235,169 +236,6 @@ body {
   flex: 2;
   order: 2;
 }
-
-/* starts download brochure section */
-
-/* download brochure btn */ 
-  .download-btn:disabled {
-    background-color: #9ca3af;
-    cursor: not-allowed;
-  }
-/* dark backgrond */
-.brochure-modal {
-  display: flex;
-  position: fixed;
-  width: 100vw;
-  height: 100vh;
-  top: 0%;
-  left: 0%;
-  transform: translateY(-100%);
-  background: rgba(255, 255, 255, 0.4);
-  backdrop-filter: blur(8px);
-  align-items: center;
-  justify-content: center;
-  z-index: 1002;
-  overflow: hidden;
-  padding: 4rem;
-  transition: all ease-in .4s;
-  cursor: zoom-out;
-}
-.brochure-modal.active {
-    transform: translateY(0);
-}
-  /* download brochure modal window content */
-  .brochure-modal-content, .callback-modal-content  {
-    min-width: 360px;
-    width: auto;
-    background: var(--light-color);
-    box-shadow: 0 0 24px rgba(0, 0, 0, .5);
-    border-radius: 8px;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    cursor: auto;
-    transition: all ease-in .3s;
-  }
-    /* decorative pattern */
-    .brochure-modal-gradient, .callback-modal-gradient{
-      background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
-      min-height: 72px;
-      border-top-left-radius: 8px;
-      border-top-right-radius: 8px;
-      position: relative;
-    }
-      /* sign-up-icon */
-      .brochure-modal-gradient .sign-up-icon, .callback-modal-gradient .sign-up-icon{
-        width: 72px;
-        height: 72px;
-        padding: 4px;
-        border: none;
-        border-radius: 50%;
-        margin: 0 auto;
-        background: var(--light-color);
-        box-shadow: 0 0 8px rgba(0, 0, 0, .1);
-        position: absolute;
-        top: -1rem;
-        left: 50%;
-        transform: translateX(-50%);
-      }
-      .brochure-modal-gradient .sign-up-icon img{
-        width: 100%;  
-      }
-
-  /* red rounded button*/
-  .close-btn {
-    position: absolute;
-    top: -8px;
-    right: -8px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: #F70638;
-    padding: 8px;
-    border: none;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--light-color);
-    z-index: 1002;
-    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
-  } /* close btn icon */
-    .close-btn > i{
-      opacity: .9;
-      transition: opacity .2s ease;
-    }
-      .close-btn > i:hover{
-        opacity: 1;
-      }
-    /* download form */
-    #downloadBrochureForm{
-      justify-content: center;
-    }
-      /* label and input */
-      .label-input{
-        width: 100%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-      }
-      /* download form ítems: */
-      #downloadBrochureForm label,  .demo-registration-form label {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1rem;
-        font-weight: 500;
-        color: var(--text-light);
-        background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
-        color: var(--light-color);
-        padding: .4rem;
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        position: absolute;
-        top: 0;
-        left: -24px;
-        z-index: 1002;
-        transition: all ease .3s;
-      }
-
-
-  /** if it finds invalid parameters **/
-  .error, #brochureEmailError, #brochurePhoneError, .success-message {
-    color: rgba(247, 6, 54, 0.8);
-    font-size: 14px;
-    font-weight: 400;
-    margin-bottom: 12px;
-    font-style: italic;
-    display: none;
-  }
-    .error.active, #brochureEmailError.active, #phoneError.active {
-      display: block;
-    }
-
-  /* sucess content */  
-  #brochureSuccessContent{
-    display: none;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    gap: 1rem;
-    text-align: center;
-    cursor: auto;
-  }
-    .success-message {
-      display: block;
-      text-align: center;
-      color: rgba(13, 151, 47, 0.8);
-    }
-/* ends download brochure section */
-
 
 /* Services Section */
 .services {
@@ -542,27 +380,7 @@ body {
    font-size: 2rem;
    font-weight: 800;
 }
-.course-header button{
-   font-size: 1.2rem;
-   font-weight: 600;
-   color: #ffffff;
-   background-color: var(--secondary-color);
-   padding: 12px 20px;
-   border-radius: 10px;
-   width: fit-content;
-}
-.course-header button:hover {
-    background: var(--primary-color);
-    transform: translateY(-2px);
-}
-.course-header button::after {
-    content: "→";
-    transition: transform 0.3s ease;
-    margin-left: 10px;
-}
-.course-header button:hover::after {
-    transform: translateX(5px);
-}
+
 .course-header .curved-line{
     z-index: 99;
     display: block;
@@ -730,8 +548,177 @@ body {
   display: none;
 }
 
+/* //////// MODAL WINDOWS /////////****/
 
-/* Book a Demo Modal */
+/* Starts download brochure section */
+/* download brochure btn */ 
+  .download-btn:disabled {
+    background-color: #9ca3af;
+    cursor: not-allowed;
+  }
+/* Start Download Brochure Modal */
+/* Download Brochure Modal Overlay */
+.brochure-modal {
+  display: flex;
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0%;
+  left: 0%;
+  transform: translateY(-100%);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  align-items: center;
+  justify-content: center;
+  z-index: 1001;
+  overflow: hidden;
+  padding: 4rem;
+  transition: transform ease-in-out .4s;
+  cursor: zoom-out;
+}
+  /* download brochure modal active*/
+  .brochure-modal.active {
+    transform: translateY(0);
+  }
+  /* download brochure, request a callback and course registration modal window content */
+  .brochure-modal-content, .callback-modal-content, .course-registration-modal-content{
+    min-width: 360px;
+    width: auto;
+    background: var(--light-color);
+    box-shadow: var(--modal-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    cursor: auto;
+    transition: all ease-in .3s;
+  }
+    /* decorative pattern */
+    .modal-gradient{
+      background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
+      min-height: 72px;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      position: relative;
+    }
+    /* decorative pattern icons */
+    .modal-gradient .rounded-icon{
+      width: 72px;
+      height: 72px;
+      padding: 4px;
+      border: none;
+      border-radius: 50%;
+      margin: 0 auto;
+      background: var(--light-color);
+      box-shadow: 0 0 8px rgba(0, 0, 0, .1);
+      position: absolute;
+      top: -1rem;
+      left: 50%;
+      transform: translateX(-50%);
+    }
+      .modal-gradient .rounded-icon img{
+        width: 100%;  
+      }
+
+  /* red rounded button - close btn */
+  .close-btn {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: #F70638;
+    padding: 8px;
+    border: none;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--light-color);
+    z-index: 1002;
+    box-shadow: -2px 2px 8px rgba(0, 0, 0, 0.2);
+  } /* close btn icon */
+    .close-btn > i{
+      opacity: .9;
+      transition: opacity .2s ease;
+    }
+      .close-btn > i:hover{
+        opacity: 1;
+      }
+
+    /* download form */
+    #downloadBrochureForm{
+      justify-content: center;
+    }
+      /* label and input */
+      .label-input{
+        width: 100%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      /* modal window form ítems: */
+      #downloadBrochureForm label,  .demo-registration-form label, #course-registration-form label {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1rem;
+        font-weight: 500;
+        color: var(--text-light);
+        background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
+        color: var(--light-color);
+        padding: .4rem;
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        position: absolute;
+        top: 0;
+        left: -24px;
+        z-index: 1002;
+        transition: all ease .3s;
+      }
+
+
+  /** if it finds invalid parameters **/
+  .error, #brochureEmailError, #brochurePhoneError, .success-message {
+    color: rgba(247, 6, 54, 0.8);
+    font-size: 14px;
+    font-weight: 400;
+    margin-bottom: 12px;
+    font-style: italic;
+    display: none;
+  }
+    .error.active, #brochureEmailError.active, #phoneError.active {
+      display: block;
+    }
+
+  /* sucess content */  
+  #brochureSuccessContent{
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 1rem;
+    text-align: center;
+    cursor: auto;
+  }
+    .success-message {
+      display: block;
+      text-align: center;
+      color: rgba(13, 151, 47, 0.8);
+    }
+/* Ends Download Brochure section */
+
+
+
+/* Starts Book a Demo Modal */
+/* book a demo modal overlay*/
 .demo-modal {
   display: flex;
   position: fixed;
@@ -747,34 +734,30 @@ body {
   backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
-  transition: all ease-in-out .4s;
+  transition: transform ease-in-out .4s;
   cursor: zoom-out;
-
 } /* sliding window */
   .demo-modal.sliding{
     transform: translateX(0);
   }
-
   /* Modal Content */
   .demo-modal-content {
     width: auto;
     height: 100%;
+    position: relative;
     display: flex;
     flex-direction: row;
     background: var(--light-color);
+    box-shadow: var(--modal-shadow);
+    border: 1px solid rgba(0, 0, 0, 0.05);
     border-radius: 8px;
-    box-shadow: 0 0 24px rgba(0, 0, 0, .5);
-    position: relative;
     cursor: auto;
   }
-    /* close btn */
-    .demo-close-btn{
-      z-index: 1002; 
-    }
-    /* image */
+    /* robot image */
     .demo-modal-image{
-      height: 100%;
       width: auto;
+      height: 100%;
+      flex-shrink: 0;
     }
       .demo-modal-image img{
         transform: scaleX(-1);
@@ -783,9 +766,21 @@ body {
         border-top-left-radius: 8px;
         border-bottom-left-radius: 8px;
       }
-    /* form content */ 
-    .demo-modal-form-content, .brochure-form-content, .callback-form-content{
-      padding: 2rem 4rem;
+
+    /* demo modal form content, course registration form content */  
+    .demo-modal-form-content, .course-registration-form-content{
+      padding: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      text-align: center;
+    }
+      
+    /* modal form content */ 
+    .brochure-form-content, .callback-form-content{
+      padding: 2rem 3rem;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -793,34 +788,36 @@ body {
       gap: 2rem;
       text-align: center;
     } 
-      /* form title */
-      .demo-modal-title, .callback-modal-title {
+      /* modal form title */
+      .demo-modal-title, .callback-modal-title, .course-registration-modal-title {
         font-size: 2rem;
         font-weight: 800;
-        line-height: 1.12;
+        line-height: 1.3;
         background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
           background-clip: border-box;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         background-clip: text;
       }
-      /* form paragraph*/
-      .demo-modal-intro-text, .brochure-modal-description, .info-text{
+      /* modal paragraphs (info) */
+      .demo-modal-intro-text, .brochure-modal-description, .info-text, .regiter-course-intro-text{
         font-size: 1rem;
         color: var(--text-light);
         width: 400px; 
         overflow-wrap: break-word;
         text-align: center;
       }
-        .demo-registration-form, #downloadBrochureForm, #callback-form{
-          display: flex;
-          flex-direction: column;
-          width: 100%;
-          gap: 1rem;
-        }
 
-      /* Form Elements */
-      .demo-registration-form input, #downloadBrochureForm input, #callback-form input{
+    /* modal forms */
+    .demo-registration-form, #downloadBrochureForm, #callback-form, #course-registration-form{
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: auto;
+      gap: 1rem;
+    }
+      /* modal form inputs */
+      .demo-registration-form input, #downloadBrochureForm input, #callback-form input, #course-registration-form input, #course-registration-form select{
         width: 100%;
         padding: 4px 24px;
         border-radius: 4px;
@@ -829,22 +826,25 @@ body {
         outline: none;
         font-size: 1rem;
         color: var(--text-light);
-        transition: all ease .2s;
-      } .demo-registration-form input::placeholder, #downloadBrochureForm input::placeholder, #callback-form input::placeholder{
+        transition: border .3s, box-shadow .3s;
+      } 
+      /* modal form modal inputs */
+      .demo-registration-form input::placeholder, #downloadBrochureForm input::placeholder, #callback-form input::placeholder, #course-registration-form input::placeholder,       #course-registration-form select{
         font-size: .9rem;
-        color: rgba(51, 51, 51, 0.4);
+        color: rgba(51, 51, 51, 0.6);
       }
-      .demo-registration-form input:focus, #downloadBrochureForm input:focus{
-        border-color: rgba(51, 51, 51, 0.2);
-        transform: translateY(-2px);
-      }
+        .demo-registration-form input:focus, #downloadBrochureForm input:focus,     #callback-form input:focus, #course-registration-form input:focus, #course-registration-form select:focus{
+          border-color: rgba(51, 51, 51, 0.2);
+          box-shadow: 0 0 12px rgba(0, 0, 0, .05);
+        }
        
-      /* Submit Button */
-      .demo-submit-btn{
+      /* modal submit btns */
+      .demo-submit-btn, #course-submit-btn{
         background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
         margin: 0 auto;
         border: none;
       }
+/* Ends Book a Demo* Modal /
 
 /* Fade-in animation */
 @keyframes fadeIn {
@@ -853,35 +853,35 @@ body {
 }
 
 
-/* starts request a callback modal*/
-
-/* request callback button */
-#request-callback-btn {
-  position: fixed;
-  right: -8rem;
-  bottom: 1rem;
-  background-color: #473fc5;
-  color: #f8f9fa;
-  padding: 16px 24px;
-  border: none;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
-  cursor: pointer;
-  z-index: 1001;
-  font-size: 1rem;
-  font-weight: 500;
-  white-space: nowrap;
-  transform-origin: top left;
-  transform: rotate(-90deg) translateY(100%);
-  opacity: 0;
-  visibility: hidden;
-  box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
-  transition: visibility 0.3s, opacity 0.3s, right 0.3s ease-out, background-color 0.3s ease-out;
-} /* icon animation */
-  #request-callback-btn > i {
-    margin: 0 0 0 12px;
-    animation: linear infinite 1s phoneRing;
-  }
+/* Starts request a callback modal*/
+  /* request callback button */
+  #request-callback-btn {
+    position: fixed;
+    right: -8rem;
+    bottom: 1rem;
+    background-color: #473fc5;
+    color: #f8f9fa;
+    padding: 16px 24px;
+    border: none;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    cursor: pointer;
+    z-index: 1001;
+    font-size: 1rem;
+    font-weight: 500;
+    white-space: nowrap;
+    transform-origin: top left;
+    transform: rotate(-90deg) translateY(100%);
+    opacity: 0;
+    visibility: hidden;
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.12);
+    transition: visibility 0.3s, opacity 0.3s, right 0.3s ease-out, background-color 0.3s ease-out;
+  } /* phone icon */
+    #request-callback-btn > i {
+      margin: 0 0 0 12px;
+      animation: linear infinite 1s phoneRing;
+    }
+    /* phone ring animation */
     @keyframes phoneRing {
       0%, 100% { 
         transform: rotate(0) scale(1); 
@@ -893,15 +893,14 @@ body {
         transform: rotate(8deg) scale(1.05); 
       }
     }
-
-  #request-callback-btn.show {
-    visibility: visible;
-    opacity: 1;
-  }
-  #request-callback-btn:hover {
-    right: -7.6rem;
-    background-color: #3b33a5;
-  }
+    #request-callback-btn.show {
+      visibility: visible;
+      opacity: 1;
+    }
+    #request-callback-btn:hover {
+      right: -7.6rem;
+      background-color: #3b33a5;
+    }
 
 /* callback modal overlay */  
 .callback-modal {
@@ -918,156 +917,148 @@ body {
   backdrop-filter: blur(8px);
   justify-content: center;
   align-items: center;
-  transition: all ease-in-out .4s;
+  transition: transform ease-in-out .4s;
   cursor: zoom-out;
 }
-  /* sliding window (right to left)*/
+  /* callback modal sliding window (right to left)*/
   .callback-modal.sliding{
     transform: translateX(0);
   }
- 
-  @keyframes slide-down {
-    from {
-      transform: translateY(-50px);
-      opacity: 0;
+    /* slide animation */
+    @keyframes slide-down {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
-    to {
-      transform: translateY(0);
-      opacity: 1;
+    /* callback form: phone-code selector and input */
+    .phone-input-group {
+      display: flex;
+      align-items: stretch;
+      gap: 4px;
     }
-  }
-  /* callback form */
-  .phone-input-group {
-    display: flex;
-    align-items: stretch;
-    gap: 4px;
-  }
-  .select-wrapper{
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    gap: 24px;
-    cursor: pointer;
-    color: var(--text-light);
-    font-weight: 500;
-    padding: 4px 12px; 
-    border: 1px solid rgba(51, 51, 51, 0.1);
-    border-radius: 0px;
-    border-top-left-radius: 4px;
-    border-bottom-left-radius: 4px;
-    background: var(--light-color);
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-light);
-    cursor: pointer;
-    height: 100%;
-    min-height: 48px;
-    transition: all ease .3s;
-    font-weight: 400;
-    font-family: "Noto Color Emoji", sans-serif;
-  }
-    /* caret down icon */
-  .select-wrapper i {
-    transition: transform 0.3s ease;
-  }
-    .select-wrapper.open i {
-      transform: rotate(180deg);
-    }
-
-  #country-code {
-    display: none;
-  }  
-  
-  /* Estilos para el elemento que siempre se muestra */
-  .custom-select-trigger {
+    /* phone-code and caret down */
+    .select-wrapper{
+      position: relative;
       display: inline-flex;
       align-items: center;
-      gap: 8px;
+      gap: 24px;
       cursor: pointer;
-      outline: none; /* Eliminar el contorno de foco por defecto */
-      padding: 0;
       color: var(--text-light);
       font-weight: 500;
-  }
-  /* flag image */
-  .custom-select-trigger .flag, .custom-option .flag {
-      width: 16px;
-      height: 16px;
-      object-fit: cover;
-      flex-shrink: 0;
-  }
-  /* code */
-  .custom-select-trigger .code,.custom-option .code {
-    font-family: "Poppins", sans-serif;
-    font-weight: 500;
-  }
-
-  /* Estilos para las opciones personalizadas */
-  .custom-options {
-      position: absolute;
-      top: 100%; /* Colocar debajo del trigger */
-      left: 0;
-      width: 100%;
-      min-width: 100%;
-      max-height: 200px; /* Limitar altura para hacer scroll */
-      overflow-y: auto;
-      background: var(--light-color);
+      padding: 4px 12px; 
       border: 1px solid rgba(51, 51, 51, 0.1);
-      border-radius: 4px;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-      z-index: 1002; /* Asegurar que se muestre por encima de otros elementos */
-      display: none; /* Oculto por defecto */
-  }
-  /* Mostrar la lista cuando el contenedor tiene la clase 'open' */
-  .select-wrapper.open .custom-options {
-    display: block;
-  }
-
-/* Estilos para cada opción */
-.custom-option {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 12px;
-    cursor: pointer;
-    transition: background-color 0.2s ease;
-    font-weight: 400;
-}
-  /* ocultar barras de desplazamiento vertical */
-  .custom-options::-webkit-scrollbar {
-      width: 0;
-      background: transparent; /* Oculta la barra de scroll en navegadores basados en Chromium*/
-  } 
-  .custom-options {
-      scrollbar-width: none; /* Oculta la barra de scroll para Firefox */
-  }
-.custom-option:hover {
-    background-color: rgba(51, 51, 51, 0.05);
-}
-
-
-
-/* phone input */
-  #callback-form input{
-    height: 100%;
-    min-height: 48px;
-    border-radius: 0px;
-    border-top-right-radius: 4px;
-    border-bottom-right-radius: 4px;
-  } 
-    #callback-form input:focus{
-      transform: translateY(0);
-      box-shadow: 0 0 4px rgba(0, 0, 0, .1);
+      border-radius: 0px;
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+      background: var(--light-color);
+      font-size: 1rem;
+      font-weight: 500;
+      color: var(--text-light);
+      cursor: pointer;
+      height: 100%;
+      min-height: 48px;
+      transition: all ease .3s;
+      font-weight: 400;
+      font-family: "Noto Color Emoji", sans-serif;
     }
-  .callback-disclaimer {
-    font-size: 12px;
-    font-weight: 400;
-    color: var(--text-light);
-  }
-  .callback-disclaimer > i {
-    margin: 0 4px;
-  }
-/* mensaje de confirmación */
+      /* select: hidden options */  
+      #country-code {
+        display: none;
+      }  
+      /* caret down icon */
+      .select-wrapper i {
+        transition: transform 0.3s ease;
+      }
+        /* open state */
+        .select-wrapper.open i {
+          transform: rotate(180deg);
+        }
+
+      /* this is the element that always */
+      .custom-select-trigger {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        outline: none;
+        padding: 0;
+        color: var(--text-light);
+        font-weight: 500;
+      }
+        /* flag image */
+        .custom-select-trigger .flag, .custom-option .flag {
+            width: 16px;
+            height: 16px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+        /* phone code */
+        .custom-select-trigger .code,.custom-option .code{
+          font-family: "Poppins", sans-serif;
+          font-weight: 500;
+        }
+          /* custom phone options container */
+          .custom-options {
+              position: absolute;
+              top: 100%; 
+              left: 0;
+              width: 100%;
+              min-width: 100%;
+              max-height: 200px; /* Limitar altura para hacer scroll */
+              overflow-y: auto;
+              background: var(--light-color);
+              border: 1px solid rgba(51, 51, 51, 0.1);
+              border-radius: 4px;
+              box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+              z-index: 1002; /* Asegurar que se muestre por encima de otros elementos */
+              display: none; /* Oculto por defecto */
+          }
+          /* phone-code options visible */
+          .select-wrapper.open .custom-options {
+            display: block;
+            scrollbar-width: none;
+          }
+            /* style for each option */
+            .custom-option {
+              display: flex;
+              align-items: center;
+              gap: 8px;
+              padding: 8px 12px;
+              cursor: pointer;
+              transition: background-color 0.2s ease;
+              font-weight: 400;
+            }
+              .custom-option:hover {
+                background-color: rgba(51, 51, 51, 0.05);
+              }
+    /* hidden default scrollbar */
+    .custom-options::-webkit-scrollbar{
+      width: 0;
+      background: transparent;
+    } 
+
+  /* phone input */
+    #callback-form input{
+      height: 100%;
+      min-height: 48px;
+      border-radius: 0px;
+      border-top-right-radius: 4px;
+      border-bottom-right-radius: 4px;
+    } 
+    .callback-disclaimer {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--text-light);
+    }
+    .callback-disclaimer > i {
+      margin: 0 4px;
+    }
+/* success message */
 #toast {
   visibility: hidden;
   min-width: 280px;
@@ -1094,6 +1085,31 @@ body {
   opacity: 1;
   top: 20px;
 }
+
+/* Starts Course Registration Modal */
+.course-registration-modal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem;
+  position: fixed;
+  z-index: 1001;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  top: 0%;
+  left: 0%;
+  transform: translateY(100%);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(8px);
+  transition: transform ease-in-out .4s;
+  cursor: zoom-out;
+} /* active modal */
+  .course-registration-modal.active{
+    transform: translateY(0);
+  }
+/* Ends Course Registration Modal */
 
 
 .share-details-btn {
@@ -1137,113 +1153,13 @@ body {
 }
 /* ends request a callback modal */
 
-/* Course Modal */
-.course-registration-modal {
-  display: none;
-  position: fixed;
-  z-index: 1000;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background: rgba(0,0,0,0.6);
-  justify-content: center;
-  align-items: center;
-}
 
-/* Modal Content */
-.course-registration-modal-content {
-  background: #fff;
-  padding: 25px;
-  border-radius: 12px;
-  width: 400px;
-  max-width: 90%;
-  box-shadow: 0px 6px 15px rgba(0,0,0,0.2);
-  animation: fadeIn 0.3s ease;
-}
-
-/* Header */
-.course-registration-modal-header {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 15px;
-}
-.course-registration-modal-header i {
-  color: #007BFF;
-  font-size: 20px;
-}
-.course-registration-modal-header h3 {
-  margin: 0;
-  font-size: 20px;
-  color: var(--secondary-color);
-  font-weight: 600;
-}
-
-/* Close Button */
-.course-registration-close-btn {
-  float: right;
-  font-size: 22px;
-  cursor: pointer;
-  color: #555;
-}
-.course-registration-close-btn:hover {
-  color: #000;
-}
-
-/* Text */
-.course-modal-intro-text {
-  font-size: 14px;
-  color: #666;
-  margin-bottom: 15px;
-}
-
-/* Form Elements */
-.course-registration-form label {
-  font-weight: 600;
-  display: block;
-  margin: 10px 0 5px;
-  color: #333;
-}
-.course-registration-form input, select {
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-  border: 1px solid #ccc;
-  outline: none;
-  font-size: 14px;
-  transition: border 0.3s;
-}
-.course-registration-form input:focus,select:focus {
-  border-color: #007BFF;
-}
-
-/* Submit Button */
-#course-submit-btn {
-  width: 100%;
-  background: var(--gradient-mix);
-  color: #fff;
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 15px;
-  transition: background 0.3s;
-}
-#course-submit-btn:hover {
-  background: var(--gradient-secondary);
-}
 
 /* Fade-in animation */
 @keyframes fadeIn {
   from {opacity: 0; transform: scale(0.95);}
   to {opacity: 1; transform: scale(1);}
 }
-
-
-
 
   /* Training highlight section */
 .training-highlights {
@@ -2167,7 +2083,7 @@ footer {
   .logo-link img{
     left: 2rem;
   }
-  /* Training Module */
+  /* Training Modules */
   .popular-courses{
     margin-left: 2rem;
     gap:4rem;
@@ -2175,14 +2091,11 @@ footer {
   .popular-courses .course-header{
     border-radius: 5px;  
   }
+  /* live courses */
  .course-header h3{
    font-size: 1.4rem;
   }
-  .course-header button{
-     font-size: 0.8rem;
-     padding: 8px 12px;
-     border-radius: 6px;
-  }
+
   .course-cards{
     gap: 1rem;
   } 
@@ -2252,16 +2165,23 @@ footer {
     .results-container{
       padding: 4rem 3rem;
     }      
-    /* modal windows */
-    .demo-modal, .brochure-modal, .callback-modal{
+    /* ---- STARTS MODAL WINDOWS  */
+    .demo-modal, .course-registration-modal{
+      padding: 1rem 3rem;
+    }
+    .brochure-modal, .callback-modal{
       padding: 3rem;
     }
-      .demo-modal-content{
-        max-width: 900px;
+      .modal-gradient .rounded-icon{
+        width: 60px;
+        height: 60px;
       }
-    /* modal windows */
+      /* modal form title */
+      .demo-modal-title, .callback-modal-title, .course-registration-modal-title {
+        font-size: 1.6rem;
+      }
+    /* ---- ENDS MODAL WINDOWS  */
 
-   /* footer */
     /* footer content */
     .footer-content{
       padding: 3rem 3rem 1rem 3rem;
@@ -2320,11 +2240,23 @@ footer {
     padding: 2rem 4rem;
     margin: 0 2rem;
   } 
-  /* modal windows*/
-  .demo-modal, .brochure-modal, .callback-modal{
+  /* ---- STARTS MODAL WINDOWS  */
+  .demo-modal, .course-registration-modal{
+    padding: 1rem 2rem;
+  }
+  .brochure-modal, .callback-modal{
     padding: 2rem;
   }
-  /* modal windows */
+    .brochure-form-content, .callback-form-content{
+      padding: 2rem 3rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      text-align: center;
+    }
+    /* ----ENDS MODAL WINDOWS  */
 
   /* footer */
   .footer-content{
@@ -2438,39 +2370,34 @@ footer {
     font-size: 0.8rem;
   }
 
-  /* modal windows */
-  .demo-modal, .brochure-modal, .callback-modal{
+/* STARTS MODAL WINDOWS */
+  .demo-modal, .course-registration-modal{
+    padding: 1rem;
+  }
+  .brochure-modal, .callback-modal{
     padding: 2rem;
   }
     .demo-modal-content{
-      max-width: 640px;
       flex-direction: column;
       height: auto;
-      max-height: 90vh;
     }
     .demo-modal-image{
-      height: 240px;
       width: auto;
+      height: 240px;
     } 
       .demo-modal-image img{
         object-fit: contain;
         width: 100%;
         height: 240px;
       }
-    .demo-modal-form-content{
-      gap: 1rem;
-    }
-      .demo-modal-title, .callback-modal-title {
-        font-size: 1.8rem;
-      }
-
-      .demo-registration-form input::placeholder{
+      /* modal form modal inputs */
+      .demo-registration-form input::placeholder, #downloadBrochureForm input::placeholder, #callback-form input::placeholder, #course-registration-form input::placeholder,#course-registration-form select{
         font-size: 1rem;
       }
-  /* modal windows */
+  /* ENDS MODAL WINDOWS */
 
-    /* footer */
-    /* footer contact */ 
+/* starts footer */
+    /* footer content */ 
     .footer-content{
       grid-template-columns: 1fr;
       grid-template-rows: repeat(3, auto);
@@ -2485,7 +2412,6 @@ footer {
     .footer-image{
       width: 200px;
     }
-
     /* contact form */
     .contact-form{
       grid-column: 1;
@@ -2494,7 +2420,6 @@ footer {
       width: 100%;
       height: auto;
     }
- 
     /* contact info and social media icons */
     .footer-social{
       font-size: .9rem;
@@ -2516,7 +2441,7 @@ footer {
       gap: .9rem;
       justify-content: center;
     }
-
+/* ends footer */
   /* Training Module */
   .popular-courses{
     margin-left: 1rem;
@@ -2528,11 +2453,6 @@ footer {
   }
  .course-header h3{
    font-size: 1rem;
-  }
-  .course-header button{
-     font-size: 0.6rem;
-     padding: 6px 10px;
-     border-radius: 6px;
   }
   .course-cards{
     gap: 1rem;
@@ -2556,7 +2476,6 @@ footer {
      position: relative;
      left: 0rem;
      border-radius: 6px;     
-     
   }
   .live-courses .course-header h3{
     font-size: 1rem;
@@ -2635,8 +2554,11 @@ footer {
       font-size: 1.2rem;
     }
 
-/* modal windows */
-    .demo-modal-content{
+/* STARTS MODAL WINDOWS */
+  .brochure-modal, .callback-modal{
+    padding: 1rem;
+  }
+    .demo-modal-content,   .brochure-modal-content, .callback-modal-content, .course-registration-modal-content{
       max-width: 360px;
     }
     .demo-modal-image{
@@ -2648,7 +2570,7 @@ footer {
         width: 100%;
         height: 160px;
       }
-      .demo-modal-intro-text, .brochure-modal-description, .info-text{
+      .demo-modal-intro-text, .brochure-modal-description, .info-text, .regiter-course-intro-text{
         width: 280px;
       }
   /* modal windows */    

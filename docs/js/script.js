@@ -999,101 +999,124 @@ document.addEventListener('DOMContentLoaded', function () {
 
 
 
-// Event Registration Form
-const eventModal = document.getElementById('event-registration-modal');
-const eventCloseBtn = document.querySelector('.event-registration-close-btn');
-const eventRegisterBtns = document.querySelectorAll('.event-btn');
-const eventSelect = document.getElementById('event');
+// Starts Event Registration Modal:
+  /*const Modal = document.getElementById('course-registration-modal'); /* Course Registration Modal Overlay */
+  /*const eventCloseBtn = document.getElementById('course-registration-close-btn'); /* rounded red button */
+  /*const eventRegisterBtns = document.querySelectorAll('#course-btn');/* "register now" buttons */
+  /*const eventSelect = document.getElementById('event');
 
-// Open modal 
+  // Open Event/Course Registration Modal
 
-  if(eventModal && eventCloseBtn && eventRegisterBtns.length > 0){
+    if(eventModal && eventCloseBtn && eventRegisterBtns.length > 0){
+      /* open the modal window */
+    /*eventRegisterBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const course = btn.getAttribute('data-event');
+        eventModal.style.display = 'flex';
+        
+        if(eventSelect) {
+          eventSelect.value = course;
+        }
+      });
+    });
+    // Close modal
+    eventCloseBtn.addEventListener('click', () => {
+      eventModal.style.display = 'none';
+    });
 
-  eventRegisterBtns.forEach(btn => {
+    window.addEventListener('click', (e) => {
+      if(e.target === eventModal) {
+        eventModal.style.display = 'none';
+      }
+    });
+    }
+
+
+
+
+/* Starts "Open/Close Course Registration Modal Window" */
+const courseModal = document.getElementById('course-registration-modal'); /* course registration modal overlay */
+const courseCloseBtn = document.getElementById('course-registration-close-btn'); /* red rounded button */
+const courseRegisterBtns = document.querySelectorAll('#course-btn'); /* "register now" buttons */
+const courseSelect = document.getElementById('course'); /* "select" */
+
+/* if the elements exists */
+/* open course registration modal window */
+if(courseModal && courseRegisterBtns.length > 0){
+  courseRegisterBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      const course = btn.getAttribute('data-event');
-      eventModal.style.display = 'flex';
-      
-      if(eventSelect) {
+      courseModal.classList.add("active");
+      document.body.style.overflow = "hidden"; // stop scroll propagation
+      /* show preselected */
+      const course = btn.getAttribute("data-course");
+      if (eventSelect) {
         eventSelect.value = course;
       }
     });
   });
-  // Close modal
-  eventCloseBtn.addEventListener('click', () => {
-    eventModal.style.display = 'none';
-  });
 
-  window.addEventListener('click', (e) => {
-    if(e.target === eventModal) {
-      eventModal.style.display = 'none';
-    }
-  });
-  }
-
-
-
-
-// Course Registration Form
-const courseModal = document.getElementById('course-registration-modal');
-const courseCloseBtn = document.querySelector('.course-registration-close-btn');
-const courseRegisterBtns = document.querySelectorAll('#course-btn');
-const courseSelect = document.getElementById('course');
-
-// Open modal 
-
-if(courseModal && courseCloseBtn && courseRegisterBtns.length > 0){
-  courseRegisterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
-     const course = btn.getAttribute('data-course');
-     courseModal.style.display = 'flex';
-     if(eventSelect) {
-      eventSelect.value = course;
-     }
-   });
-  });
-
-// Close modal
- courseCloseBtn.addEventListener('click', () => {
-   courseModal.style.display = 'none';
-  });
-
-  window.addEventListener('click', (e) => {
-   if(e.target === courseModal) {
-    courseModal.style.display = 'none';
-    }
-  });
-}
-
-  /* Book A Demo (Sliding Window) */
-  const bookModal = document.getElementById('demo-modal');
-  const demoCloseBtn = document.querySelector('.demo-close-btn');
-  const bookDemoBtn = document.getElementById('book-demo');
-
-  if (bookDemoBtn && bookModal && demoCloseBtn) {
-    bookDemoBtn.addEventListener('click', () => {
-      bookModal.classList.add("sliding");
-      document.body.style.overflow = 'hidden'; // anula scroll y eventos detrás de ella
+  /* close course registration modal window */
+    /* pressing close btn */
+    courseCloseBtn.addEventListener('click', () => {
+    courseModal.classList.remove("active");
+          document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
     });
-
-    demoCloseBtn.addEventListener('click', () => {
-      bookModal.classList.remove("sliding");
-      document.style.overflow = ""; // anula scroll y eventos detrás de ella
-    });
-    /* clic en el relleno de la ventana */
+    /* pressing modal overlay */
     window.addEventListener('click', (e) => {
-      if(e.target === bookModal) {
-        bookModal.classList.remove("sliding");
+      if(e.target === courseModal) {
+        courseModal.classList.remove("active");
+        document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
+      }  
+    });
+    /* pressing esc key */
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && courseModal.classList.contains("active")) {
+        courseModal.classList.remove("active");
+        document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
       }
     });
-    /* clic en la tecla Esc */
-      document.addEventListener('keydown', function(event) {
-        if (event.key === 'Escape' && bookModal && bookModal.classList.contains('sliding')) {
-          bookModal.classList.remove("sliding");
-        }
-      });
-  }
+}
 
+
+// Starts "Open/Close Book a Demo Modal": 
+  /* Book A Demo (Sliding Class) */
+  const bookModal = document.getElementById('demo-modal');/* overlay */
+  const demoCloseBtn = document.getElementById('demo-close-btn'); /* red rounded btn */
+  const bookDemoBtn = document.getElementById('book-demo'); /* book a demo hero btn */
+  /* if the elements exist */
+  if (bookDemoBtn && bookModal && demoCloseBtn) {
+    // open book a demo modal window
+    bookDemoBtn.addEventListener("click", () => {
+      bookModal.classList.add("sliding");
+      document.body.style.overflow = "hidden"; // stop scroll propagation
+    });
+    // close book a demo modal window # 1:
+    demoCloseBtn.addEventListener("click", () => {
+      bookModal.classList.remove("sliding");
+      document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
+    });
+    /* close book a demo window #2: clic on the window overlay */
+    window.addEventListener("click", (e) => {
+      if (e.target === bookModal) {
+        bookModal.classList.remove("sliding");
+        ("active");
+        document.body.style.overflow = "";
+      }
+    });
+    /* close book a demo window #3: if the user press esc key, the window closes */
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.key === "Escape" &&
+        bookModal &&
+        bookModal.classList.contains("sliding")
+      ) {
+        bookModal.classList.remove("sliding");
+        ("active");
+        document.body.style.overflow = "";
+      }
+    });
+  }
+  /* Ends "Open/Close Book a Demo Modal" */
 
 
 

@@ -53,8 +53,8 @@
     />
     <meta name="apple-mobile-web-app-title" content="Udayam AI Labs" />
     <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="css/styles.min.css" />
-    <link rel="stylesheet" href="css/assistant.min.css" />
+    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/assistant.css" />
     <link rel="stylesheet" href="css/navbar.min.css" />
     <script type="application/ld+json">
       {
@@ -189,7 +189,8 @@
         <!-- cta -->
         <div class="heroBtns">
           <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
-          <button class="globalBtn" onclick="openBrochureModal()"">Download Brochure<i class="fa-solid fa-download"></i></button>
+          <button class="globalBtn" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i>
+          </button>
         </div>
 
       </div>
@@ -205,15 +206,15 @@
     <!-- starts download brochure modal -->
     <div class="brochure-modal" id="brochureModalOverlay">
       <!-- modal window -->
-        <div class="brochure-modal-content"">
+        <div class="brochure-modal-content">
           <!-- close window icon -->
           <button class="close-btn" onclick="closeBrochureModal()">              
             <i class="fa-solid fa-xmark"></i>
           </button>
           
           <!-- decorative gradient -->
-          <div class="brochure-modal-gradient">
-            <div class="sign-up-icon">
+          <div class="modal-gradient">
+            <div class="rounded-icon">
               <img width="64" height="64" src="https://img.icons8.com/nolan/64/sign-up.png" alt="sign-up"/>
             </div>
           </div>
@@ -1088,11 +1089,13 @@
   <!-- ends btn Up-->
 
     <!-- 📖📖📖 Start Book A Demo Sliding Window 📖📖📖 -->
-    <div id="demo-modal" class="demo-modal">
+    <div id="demo-modal  " class="demo-modal">
       <!-- Modal Window -->
       <div class="demo-modal-content">
         <!-- close icon -->
-        <span class="close-btn demo-close-btn"><i class="fa-solid fa-xmark"></i></span>
+        <button class="close-btn" id="demo-close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
 
         <!-- image -->
         <div class="demo-modal-image">
@@ -1153,7 +1156,7 @@
 
 
   <!-- Scripts -->
- <script src="js/script.min.js" defer></script>
+ <script src="js/script.js" defer></script>
  <!-- request callback -->
  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
  <!-- email js -->
