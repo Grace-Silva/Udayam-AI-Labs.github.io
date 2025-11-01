@@ -573,8 +573,7 @@ document.addEventListener('DOMContentLoaded', function () {
     /* ends send data and download pdf */
 
     /*  11. service-card expanded  */
-    if(document.querySelector(".service-card")){
-        
+    if(document.querySelector(".service-card")){  
       document.querySelectorAll('.service-card').forEach(card => {
         card.addEventListener('click', function(i) {
           i.stopPropagation();
@@ -582,13 +581,28 @@ document.addEventListener('DOMContentLoaded', function () {
           const isExpanded = desc.classList.contains('expanded');
           // Colapsar todas las demás tarjetas
           document.querySelectorAll('.service-desc').forEach(p => {
-            p.classList.remove('expanded');
+            if(p != desc){
+              p.classList.remove("expanded");
+              p.style.maxHeight = "3.2em"; // Reset height
+            }
           });
               
         // Si la tarjeta NO estaba expandida, expandirla
           if (!isExpanded) {
             desc.classList.add('expanded');
+            desc.style.maxHeight = desc.scrollHeight + "px";
           }
+          else{
+            desc.classList.remove("expanded");
+            desc.style.maxHeight = "3.2em";
+          }
+        });
+      });
+      // close cards when the user press into "services-grid"
+      document.addEventListener("click", function () {
+        document.querySelectorAll(".service-desc").forEach((desc) => {
+          desc.classList.remove("expanded");
+          desc.style.maxHeight = "3.2em";
         });
       });
     }
