@@ -1038,19 +1038,88 @@ document.addEventListener('DOMContentLoaded', function () {
 const courseModal = document.getElementById('course-registration-modal'); /* course registration modal overlay */
 const courseCloseBtn = document.getElementById('course-registration-close-btn'); /* red rounded button */
 const courseRegisterBtns = document.querySelectorAll('#course-btn'); /* "register now" buttons */
+const courseWrappers = document.querySelectorAll(".course-wrapper"); /* custom course select */
 const courseSelect = document.getElementById('course'); /* "select" */
 
 /* if the elements exists */
 /* open course registration modal window */
 if(courseModal && courseRegisterBtns.length > 0){
+  /* select course name with the custom select */
+    courseWrappers.forEach((cWrapper) => {
+      const courseSelect = cWrapper.querySelector("select");
+      const courseTrigger = cWrapper.querySelector(".course-select-trigger");
+      const courseOptions = cWrapper.querySelector(".course-custom-options");
+
+      // update trigger
+      function updateCourseTrigger(value) {
+        const courseCustomOption = courseOptions.querySelector(
+          `[data-value="${value}"]`
+        );
+        if (courseCustomOption) {
+          const courseIcon = courseCustomOption.querySelector(".course-icon");
+          const courseName = courseCustomOption.querySelector(".course-name").textContent;
+
+          courseTrigger.querySelector(".course-icon").src = courseIcon.src;
+          courseTrigger.querySelector(".course-icon").alt = courseIcon.alt;
+          courseTrigger.querySelector(".course-name").textContent = courseName;
+        }
+      }
+
+      // default
+      courseSelect.value = "AI for Beginners";
+      updateCourseTrigger("AI for Beginners");
+
+      // open and close phone-menu
+      courseTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        cWrapper.classList.toggle("open");
+      });
+
+      // select phone options
+      courseOptions.addEventListener("click", (e) => {
+        const courseOption = e.target.closest(".course-custom-option");
+        if (courseOption) {
+          const value = courseOption.getAttribute("data-value");
+          courseSelect.value = value;
+          updateCourseTrigger(value);
+          cWrapper.classList.remove("open");
+        }
+      });
+
+      // Cerrar el menú si se hace clic fuera
+      document.addEventListener("click", (e) => {
+        if (!cWrapper.contains(e.target)) {
+          cWrapper.classList.remove("open");
+        }
+      });
+
+      // Manejar la navegación con el teclado
+      courseTrigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          cWrapper.classList.toggle("open");
+        } else if (e.key === "Escape") {
+          cWrapper.classList.remove("open");
+        }
+      });
+    });
+  
+
   courseRegisterBtns.forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
       courseModal.classList.add("active");
       document.body.style.overflow = "hidden"; // stop scroll propagation
       /* show preselected */
       const course = btn.getAttribute("data-course");
-      if (eventSelect) {
-        eventSelect.value = course;
+      if (course && courseSelect) {
+        courseSelect.value = course;
+        // Update the custom select trigger
+        const wrapper = document.querySelector(".course-wrapper");
+        if (wrapper) {
+          const updateFunc = wrapper.updateCourseTrigger; // Necesitarás exponer esta función
+          if (updateFunc) updateFunc(course);
+        }
       }
     });
   });
@@ -1058,8 +1127,8 @@ if(courseModal && courseRegisterBtns.length > 0){
   /* close course registration modal window */
     /* pressing close btn */
     courseCloseBtn.addEventListener('click', () => {
-    courseModal.classList.remove("active");
-          document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
+      courseModal.classList.remove("active");
+      document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
     });
     /* pressing modal overlay */
     window.addEventListener('click', (e) => {
