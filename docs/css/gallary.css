@@ -1,0 +1,506 @@
+/* === OUR WORK SECTION STYLES === */
+
+/* --- 1. GENERAL --- */
+.work-subtitle {
+  padding: 1em 6em;
+}
+
+/* --- 2. SLIDING FILTER --- */
+.filter-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 50px;
+  padding: 6px;
+  margin: 1rem auto 3rem;
+  max-width: 90%;
+  width: 500px;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filter-indicator {
+  position: absolute;
+  top: 6px;
+  left: 6px; /* Will be set by JS */
+  height: calc(100% - 12px); /* 100% - (padding * 2) */
+  width: 100px; /* Will be set by JS */
+  background: var(--aurora); /* Use existing gradient */
+  border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(71, 63, 197, 0.4);
+  transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.filter-container .filter-btn {
+  background: none;
+  border: none;
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333; /* Default text color */
+  cursor: pointer;
+  z-index: 2; /* Above the indicator */
+  transition: color 0.4s ease;
+  white-space: nowrap;
+}
+
+.filter-container .filter-btn.active {
+  color: white; /* Text color when active (on top of the pill) */
+  background: none; /* Ensure no background */
+}
+
+/* --- 3. FEATURED CAROUSEL (MAIN IMAGE) --- */
+.gallery-featured-slider {
+  position: relative;
+  width: 100%;
+  margin: 0 auto 1.5rem auto;
+  overflow: hidden; /* This clips the slides */
+}
+
+.slider-track {
+  display: flex;
+  transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.slider-slide {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* This centers the card inside the full-width slide */
+.slider-slide .training-card {
+  width: 100%;
+  max-width: 1100px; /* <<< INCREASED WIDTH */
+  margin: 0 auto; /* Center the card */
+}
+
+/* Slider Controls */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 10;
+  transition: background 0.3s ease;
+}
+
+.slider-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.slider-btn.prev {
+  /* Position adjusted for 1100px width */
+  left: calc(50% - min(550px, 45vw) + 10px);
+}
+
+.slider-btn.next {
+  /* Position adjusted for 1100px width */
+  right: calc(50% - min(550px, 45vw) + 10px);
+}
+
+/* --- 4. HORIZONTAL AUTO-SCROLLING STRIP --- */
+/* Keyframe is now injected by JavaScript 
+  to be dynamically sized.
+*/
+
+.gallery-strip-container {
+  width: 100%;
+  max-width: 1500px; /* <<< ADD THIS to match the slider */
+  margin: 0 auto; /* <<< ADD THIS to center the container */
+  box-sizing: border-box;
+  overflow: hidden;
+  padding: 1rem 0;
+  background: #f8f9fa;
+  border-bottom: 1px solid #e0e0e0;
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    white 10%,
+    white 90%,
+    transparent
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    white 10%,
+    white 90%,
+    transparent
+  );
+}
+
+.gallery-strip-track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  /* Animation is applied by JS */
+}
+
+.gallery-strip-container:hover .gallery-strip-track {
+  animation-play-state: paused;
+}
+
+.training-card-small {
+  width: 250px;
+  height: 180px;
+  margin-right: 1.5rem;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.training-card-small:hover {
+  transform: scale(1.05);
+}
+
+.training-card-small img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.training-card-small .card-small-details {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  color: white;
+  padding: 1.5rem 1rem 0.5rem;
+  transform: translateY(100%);
+  transition: transform 0.3s ease-out;
+  opacity: 0;
+}
+
+.training-card-small:hover .card-small-details {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.card-small-details h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.2rem;
+}
+
+.card-small-details p {
+  font-size: 0.85rem;
+  color: #e0e0e0;
+}
+
+/* --- 5. BASE TRAINING CARD (Used by Slider & Lightbox) --- */
+/* --- 5. BASE TRAINING CARD (Used by Slider & Lightbox) --- */
+.training-card {
+  position: relative; /* <<< ADD THIS LINE */
+  background: var(--light-color);
+  border: solid 1px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-shrink: 0;
+  max-width: 320px; /* This is overridden by .slider-slide .training-card */
+}
+.training-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0px 8px rgba(0, 0, 0, 0.2);
+  cursor: zoom-in;
+}
+.training-card-image {
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/9; /* Widescreen aspect ratio */
+}
+.training-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.institution-badge {
+  position: absolute;
+  top: calc(4%);
+  right: calc(4%);
+  padding: 4px 8px;
+  color: var(--light-color);
+  background: rgba(79, 70, 229, 0.85);
+  border-radius: 40px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: all ease 0.3s;
+}
+.training-card-content {
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  flex: 1;
+}
+.training-card-title,
+#lightboxTitle {
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--text-light);
+  display: -webkit-box;
+  line-clamp: 1;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.training-card-subtitle,
+#lightboxSubtitle {
+  color: var(--primary-color);
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* --- 6. LIGHTBOX (IMAGE POPUP) --- */
+.lightbox {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1002;
+  visibility: hidden;
+  cursor: zoom-out;
+}
+.lightbox.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+.lightbox-content {
+  position: relative;
+  max-width: 90%;
+  max-height: 90%;
+  cursor: auto;
+  background: var(--dark-color);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
+  border-radius: 8px;
+  z-index: 1002;
+}
+
+.lightbox-content img {
+  max-width: 100%;
+  height: auto;
+  max-height: 80vh; /* Good for tall images */
+  border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+}
+.lightbox-content img.changing {
+  opacity: 0;
+}
+
+.lightbox-content .lightbox-close {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  color: var(--light-color);
+  font-size: 2rem;
+  transition: all ease 0.2s;
+  z-index: 1003;
+}
+
+.lightbox-nav {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 0.4rem;
+  z-index: 1000;
+}
+
+.lightbox-btn {
+  background: rgba(0, 0, 0, 0.6);
+  color: var(--light-color);
+  border: none;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease;
+}
+.lightbox-btn:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.lightbox-caption {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  background: rgba(0, 0, 0, 0.86);
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+#lightboxTitle {
+  font-size: 1.4rem;
+  color: var(--light-color);
+}
+#lightboxSubtitle {
+  font-size: 1.2rem;
+}
+
+/* --- 7. CLEANUP (Hiding old/unused rules) --- */
+.filter,
+.gallery,
+.gallery-main {
+  display: none;
+}
+/* FIXED: Removed the broken ".filter-btn.active { display: none; }" rule
+  that was causing the filter to "glitch".
+*/
+
+/* --- 5B. FEATURED SLIDER CARD OVERLAY --- */
+/* (This block makes the featured slider text look like the gallery strip) */
+
+/* 1. Make the content block an always-visible overlay */
+.slider-slide .training-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  box-sizing: border-box; /* Ensures padding is included in the width */
+
+  /* The dark gradient background from the strip */
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 60%,
+    transparent 100%
+  );
+
+  /* Update padding for its new position */
+  padding: 2.5rem 1.5rem 1.5rem; /* More padding: (top, horizontal, bottom) */
+
+  /* Override the old flex-box styles */
+  flex: unset;
+  gap: 0.4em;
+}
+
+/* 2. Style the title text to be white and larger */
+.slider-slide .training-card-title {
+  color: #ffffff;
+  font-size: 1.3rem; /* A bit larger for the main slider */
+  font-weight: 600;
+}
+
+/* 3. Style the subtitle text to be light grey */
+.slider-slide .training-card-subtitle {
+  color: #e0e0e0; /* Light grey, just like the strip */
+  font-size: 1rem;
+}
+
+/* --- 8. RESPONSIVE RULES --- */
+@media (max-width: 1200px) {
+  .slider-btn.prev {
+    /* Adjust position based on the 1100px card width */
+    left: calc(50% - 550px + 10px);
+  }
+  .slider-btn.next {
+    /* Adjust position based on the 1100px card width */
+    right: calc(50% - 550px + 10px);
+  }
+}
+
+@media (max-width: 992px) {
+  .work-subtitle {
+    padding: 1em 2em;
+  }
+}
+
+@media (max-width: 768px) {
+  .lightbox-content {
+    max-width: 80%;
+    max-height: 80%;
+  }
+  .lightbox-btn {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .filter-container {
+    width: 90%;
+  }
+  .filter-container .filter-btn {
+    font-size: 0.8rem;
+    padding: 8px 10px;
+  }
+  /* On small screens, move buttons to simple edges */
+  .slider-btn.prev,
+  .slider-btn.next {
+    display: none;
+  }
+
+  .training-card-small {
+    width: 180px;  /* Reduced from 250px */
+    height: 120px; /* Reduced from 180px */
+    margin-right: 1rem; /* Reduced from 1.5rem for tighter spacing */
+  }
+
+  /* Make the hidden details text smaller too */
+  .card-small-details h4 {
+    font-size: 0.9rem;
+  }
+  .card-small-details p {
+    font-size: 0.8rem;
+  }
+  .slider-slide .training-card-title {
+    font-size: 1.1rem; /* Was 1.3rem */
+  }
+
+  .slider-slide .training-card-subtitle {
+    font-size: 0.9rem; /* Was 1rem */
+  }
+}
+
+@media (max-width: 480px) {
+  .lightbox-content {
+    max-width: 90%;
+  }
+}
