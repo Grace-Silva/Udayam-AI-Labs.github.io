@@ -393,7 +393,6 @@ body {
     width: 48px;
     height: 48px;
   }
-
 .course-cards{
   display: flex;
   justify-content: center;
@@ -418,6 +417,11 @@ body {
   cursor: pointer;
   position: relative;
   overflow: hidden;
+}
+.disabled{
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+  opacity: .5;
 }
 /* top line */
 .course-cards .card::before {
