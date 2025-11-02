@@ -374,7 +374,7 @@ body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 2rem;
-  border: solid 1px green;
+  padding: 2rem 0;
 }
 .course-header{
   width: 100%;
@@ -396,20 +396,20 @@ body {
 .course-cards{
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: stretch;
   flex-wrap: wrap;
   gap: 2rem;
-  padding: 0 2rem;
+  padding: 0 1rem;
 }
 .course-cards .card {
   background: var(--light-color);
   border-radius: 8px;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 24px;
-  max-width: 280px;
+  width: 280px;
   height: auto;
   gap: 1rem;
   box-shadow: 0px 0px 12px rgba(0, 0, 0, .2); 
@@ -470,6 +470,7 @@ body {
 .icon-bg {
   width: 68px;
   height: 68px;
+  margin: 0;
   transition: transform 0.3s ease-in;
 }
 .card:hover .icon-bg {
