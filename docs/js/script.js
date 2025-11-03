@@ -665,20 +665,19 @@ document.addEventListener('DOMContentLoaded', function () {
   const coursePrevBtn = document.getElementById("course-prev-btn");
   const courseNextBtn = document.getElementById("course-next-btn");
   const courseCards = document.getElementById("course-cards");
-  
-  coursePrevBtn.addEventListener("click", function () {
-    const card = document.querySelector(".card");
-    // Calcula el ancho de una card + gap
-    const cardWidth = card.offsetWidth + 48; // 32px = gap de 2rem
-    courseCards.scrollLeft -= cardWidth * 2; // Mueve 2 cards
-  });
 
-  courseNextBtn.addEventListener("click", function () {
-    // Calcula el ancho de una card + gap
-    const card = document.querySelector(".card");
-    const cardWidth = card.offsetWidth + 48; // 32px = gap de 2rem
-    courseCards.scrollLeft += cardWidth * 2; // Mueve 2 cards
-  });
+    coursePrevBtn.addEventListener("click", function () {
+      const card = document.querySelector(".card");
+      // Card width + gap
+      const cardWidth = card.offsetWidth + 48; // 48px = 3rem
+      courseCards.scrollLeft -= cardWidth * 2; // move 2 cards
+    });
+    courseNextBtn.addEventListener("click", function () {
+      // Card width + gap
+      const card = document.querySelector(".card");
+      const cardWidth = card.offsetWidth + 48; // 348px = 3rem
+      courseCards.scrollLeft += cardWidth * 2; // move 2 cards
+    });
   /* ENDS COURSE SLIDER */
 
 
@@ -835,7 +834,7 @@ document.addEventListener('DOMContentLoaded', function () {
 /* STARTS OPEN/CLOSE COURSE REGISTRATION MODAL */
 const courseModal = document.getElementById('course-registration-modal'); /* course registration modal overlay */
 const courseCloseBtn = document.getElementById('course-registration-close-btn'); /* red rounded button */
-const courseRegisterBtns = document.querySelectorAll('#course-btn'); /* "register now" buttons */
+const courseRegisterBtns = document.querySelectorAll('.register-btn'); /* "register now" buttons */
 const courseWrappers = document.querySelectorAll(".course-wrapper"); /* custom course select */
 const courseSelect = document.getElementById('course'); /* "select" */
 
