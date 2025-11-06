@@ -1,20 +1,22 @@
-  /* !!important: we prevent special characters from being entered */
-  function validarSinEspeciales(textDemo) {
-    // 1. block code chars
-    if (/[<>\/\\{}[\]$#%^&*|~`]/.test(textDemo)) {
-      return false;
-    }
-    // 2. allow secure characters
-    return /^[\w\s@.,+–\-¡!¿?áéíóúÁÉÍÓÚñÑüÜàèìòùÀÈÌÒÙçÇ:;"'()¿¡\n\r\t]*$/.test(textDemo);
+/* !!important: we prevent special characters from being entered */
+function validarSinEspeciales(textDemo) {
+  // 1. block code chars
+  if (/[<>\/\\{}[\]$#%^&*|~`]/.test(textDemo)) {
+    return false;
   }
-  function validarTelefono(texto) {
-    // Permite solo números, espacios, guiones y paréntesis
-    const regex = /^[0-9\s\-()\+.]+$/;
-    return regex.test(texto);
-  }
+  // 2. allow secure characters
+  return /^[\w\s@.,+–\-¡!¿?áéíóúÁÉÍÓÚñÑüÜàèìòùÀÈÌÒÙçÇ:;"'()¿¡\n\r\t]*$/.test(
+    textDemo
+  );
+}
+function validarTelefono(texto) {
+  // Permite solo números, espacios, guiones y paréntesis
+  const regex = /^[0-9\s\-()\+.]+$/;
+  return regex.test(texto);
+}
 
 /*  unified code to avoid conflicts between events */
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener("DOMContentLoaded", function () {
   // 2. Starts to Add animation classes to elements when they come into view
   // vefiry if the element exist:
   if (
@@ -46,6 +48,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
   // Ends to Add animation classes to elements when they come into
+
 
   // 3. Starts Training highlights card details (swipper)
   // vefiry if the element exist:
@@ -120,6 +123,7 @@ document.addEventListener('DOMContentLoaded', function () {
         },
       },
     ];
+
     const dotsContainer = document.getElementById("dotsContainer");
     let currentTrainingCardIndex = 0;
 
@@ -142,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       document.getElementById("userName").textContent = formattedName;
       document.getElementById("userComment").textContent =
-        data.reviewer.comment;
+      data.reviewer.comment;
 
       document.getElementById("userInitials").textContent = data.reviewer.name
         .trim()
@@ -201,6 +205,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   // Ends Training highlights card details (swipper)
 
+
   // 4. Starts Accordion-toggle elements:
   // vefiry if the element exist:
   if (document.querySelector(".accordion-item")) {
@@ -236,6 +241,7 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   // Ends Accordion-toggle elements
 
+
   // 5. Starts go up function:
   // verify if the element exist
   if (document.getElementById("btnUp")) {
@@ -260,7 +266,49 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   // Ends go up function
 
+
   /* 📧📧📧 6. Starts send emails function with EmailJS(Contact Form + Demo Modal) 📧📧📧*/
+  /* Starts "Open/Close Book a Demo Modal": */
+  /* Book A Demo (Sliding Class) */
+  const bookModal = document.getElementById("demo-modal"); /* overlay */
+  const demoCloseBtn =
+    document.getElementById("demo-close-btn"); /* red rounded btn */
+  const bookDemoBtn =
+    document.getElementById("book-demo"); /* book a demo hero btn */
+  /* if the demo modal elements exist */
+  if (bookDemoBtn && bookModal && demoCloseBtn) {
+    // open book a demo modal window
+    bookDemoBtn.addEventListener("click", () => {
+      bookModal.classList.add("sliding");
+      document.body.style.overflow = "hidden"; // stop scroll propagation
+    });
+    // close book a demo modal window # 1:
+    demoCloseBtn.addEventListener("click", () => {
+      bookModal.classList.remove("sliding");
+      document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
+    });
+    /* close book a demo window #2: clic on the window overlay */
+    window.addEventListener("click", (e) => {
+      if (e.target === bookModal) {
+        bookModal.classList.remove("sliding");
+        ("active");
+        document.body.style.overflow = "";
+      }
+    });
+    /* close book a demo window #3: if the user press esc key, the window closes */
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.key === "Escape" &&
+        bookModal &&
+        bookModal.classList.contains("sliding")
+      ) {
+        bookModal.classList.remove("sliding");
+        ("active");
+        document.body.style.overflow = "";
+      }
+    });
+  }
+  /* Ends "Open/Close Book a Demo Modal" */
 
   // global variables (contact and book a demo form)
   const maxRetries = 2;
@@ -292,8 +340,7 @@ document.addEventListener('DOMContentLoaded', function () {
       throw error;
     }
   }
-
-  // send-email: verify that element exist
+  // contact form: verify if the contact form elements exist:
   if (
     document.getElementById("contact-form") &&
     document.getElementById("contactSubmitBtn")
@@ -301,7 +348,6 @@ document.addEventListener('DOMContentLoaded', function () {
     /* send email without retries or errors */
     async function showAlert(event) {
       event.preventDefault(); // website will not reload, post method blocked
-
       /* reject special char and charge send btn */
       const form = event.target; // get form data
       const contactsubmitBtn = document.getElementById("contactSubmitBtn"); // cta button
@@ -380,8 +426,7 @@ document.addEventListener('DOMContentLoaded', function () {
       .getElementById("contact-form")
       .addEventListener("submit", showAlert);
   }
-
-  //(Demo Registration)
+  // Demo Registration Form: if the demo form elements exists:
   if (
     document.getElementById("demo-registration-form") &&
     document.getElementById("demo-submit-btn")
@@ -389,12 +434,11 @@ document.addEventListener('DOMContentLoaded', function () {
     /* send email for demo modal */
     async function showAlertDemo(event) {
       event.preventDefault();
-
       const demoForm = event.target;
       const demoSubmitBtn = document.getElementById("demo-submit-btn");
       const originalText = demoSubmitBtn.innerHTML;
       let isValid = true;
-
+      
       // Validar todos los campos (text, email, tel)
       const textInputs = demoForm.querySelectorAll('input[type="text"]');
       for (let Input of textInputs) {
@@ -479,8 +523,8 @@ document.addEventListener('DOMContentLoaded', function () {
       .getElementById("demo-registration-form")
       .addEventListener("submit", showAlertDemo);
   }
-
   /*  📧📧📧 Ends send emails function with EmailJS(Contact Form + Demo Modal)  📧📧📧*/
+
 
   /* 8. starts partners section */
   // create parteners data:
@@ -553,11 +597,11 @@ document.addEventListener('DOMContentLoaded', function () {
     // create logo containers
     function createLogos(e) {
       return `
-        <a href="${e.url}" target="_blank" class="partner-logo-image" 
-         aria-label="${e.name}" title="${e.name}">
-          <img src="${e.logo}" alt="${e.name} logo">
-        </a>
-      `;
+          <a href="${e.url}" target="_blank" class="partner-logo-image" 
+          aria-label="${e.name}" title="${e.name}">
+            <img src="${e.logo}" alt="${e.name} logo">
+          </a>
+        `;
     }
     // duplicate logos (infinite scroll)
     const logosHTML = partners.map(createLogos).join("");
@@ -605,9 +649,13 @@ document.addEventListener('DOMContentLoaded', function () {
   }
   /* ends partners section */
 
+
   /* 9. starts send data and download brochure with EmailJS */
   // verify if the element exist
   // close modal window when the user clicks off
+
+  
+
   const brochureoverlay = document.getElementById("brochureModalOverlay");
   if (brochureoverlay) {
     brochureoverlay.addEventListener("click", function (event) {
@@ -627,7 +675,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
   /* ends send data and download pdf */
 
-  /*  11. service-card expanded  */
+
+  /*  STARTS SERVICE-CARDS GROW FUNCTION */
   if (document.querySelector(".service-card")) {
     document.querySelectorAll(".service-card").forEach((card) => {
       card.addEventListener("click", function (i) {
@@ -660,250 +709,104 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   }
+  /* ENDS SERVICE-CARDS GROW FUNCTION */
 
   /* STARTS COURSE SLIDER */
   const coursePrevBtn = document.getElementById("course-prev-btn");
   const courseNextBtn = document.getElementById("course-next-btn");
   const courseCards = document.getElementById("course-cards");
-
-    coursePrevBtn.addEventListener("click", function () {
-      const card = document.querySelector(".card");
-      // Card width + gap
-      const cardWidth = card.offsetWidth + 48; // 48px = 3rem
-      courseCards.scrollLeft -= cardWidth * 2; // move 2 cards
-    });
-    courseNextBtn.addEventListener("click", function () {
-      // Card width + gap
-      const card = document.querySelector(".card");
-      const cardWidth = card.offsetWidth + 48; // 348px = 3rem
-      courseCards.scrollLeft += cardWidth * 2; // move 2 cards
-    });
+  coursePrevBtn.addEventListener("click", function () {
+    const card = document.querySelector(".card");
+    // Card width + gap
+    const cardWidth = card.offsetWidth + 48; // 48px = 3rem
+    courseCards.scrollLeft -= cardWidth * 2; // move 2 cards
+  });
+  courseNextBtn.addEventListener("click", function () {
+    // Card width + gap
+    const card = document.querySelector(".card");
+    const cardWidth = card.offsetWidth + 48; // 348px = 3rem
+    courseCards.scrollLeft += cardWidth * 2; // move 2 cards
+  });
   /* ENDS COURSE SLIDER */
 
-
-});
-
-
-
-  /* 8. starts send data and download pdf */
-    // global functions
-    function openBrochureModal() {
-      const brochureModalOverlay = document.getElementById('brochureModalOverlay');
-      // verify if the element exist
-      if(brochureModalOverlay){
-        brochureModalOverlay.classList.add('active');
-        document.body.style.overflow = 'hidden'; // anula scroll y eventos detrás de ella
-      }
-    }
-    function closeBrochureModal() {
-      const brochureModalOverlay = document.getElementById('brochureModalOverlay');
-      if(brochureModalOverlay){
-        brochureModalOverlay.classList.remove('active');
-        document.body.style.overflow = ''; // anula scroll y eventos detrás de ella
-      }
-      resetBrochureForm();
-    }
-    function resetBrochureForm() {
-      document.getElementById('brochure-email').value = '';
-      document.getElementById('brochure-phone').value = '';
-      document.getElementById('brochureEmailError').classList.remove('active');
-      document.getElementById('brochurePhoneError').classList.remove('active');
-      document.getElementById('brochureGeneralError').classList.remove('active');
-      document.getElementById('brochureGeneralError').textContent = '';
-      document.getElementById('brochure-form-content').style.display = 'flex';
-      document.getElementById('brochureSuccessContent').style.display = 'none';
-      document.getElementById('downloadBrochureBtn').disabled = false;
-      document.getElementById('downloadBrochureBtn').textContent = 'Submit';
-    }
-
-    function handleSubmit(event) {
-      event.preventDefault();
-      // init emailJS
-      emailjs.init("ilcGOCulCPRqjQQDb"); 
-
-      const brochureEmail = document.getElementById('brochure-email').value.trim();
-      const brochurePhone = document.getElementById('brochure-phone').value.trim();
-      const brochureEmailError = document.getElementById('brochureEmailError');
-      const brochurePhoneError = document.getElementById('brochurePhoneError');
-      const brochureGeneralError = document.getElementById('brochureGeneralError');
-      const downloadBrochureBtn = document.getElementById('downloadBrochureBtn');
-        // errors reset
-        brochureEmailError.classList.remove('active');
-        brochurePhoneError.classList.remove('active');
-        brochureGeneralError.classList.remove('active');
-      // validate
-      let isValid = true;
-      if (!brochureEmail) {
-        brochureEmailError.textContent = 'Please type your email';
-        brochureEmailError.classList.add('active');
-        isValid = false;
-      } 
-        /* evitar que se ingresen caracteres especiales */
-        else if (!validarSinEspeciales(brochureEmail)) {
-          brochureEmailError.textContent = 'The email address contains unauthorised characters.';
-          brochureEmailError.classList.add('active');
-          isValid = false;
-        }
-        // si el correo no incluye @
-        else if (!brochureEmail.includes('@')) {
-          brochureEmailError.textContent = 'Please enter a valid email';
-          brochureEmailError.classList.add('active');
-          isValid = false;
-        }
-
-      if (!brochurePhone) {
-        brochurePhoneError.textContent = 'Type your phone';
-        brochurePhoneError.classList.add('active');
-        isValid = false;
-      } 
-        /* evitar que se ingresen caracteres especiales */
-        else if (!validarTelefono(brochurePhone)) {
-          brochurePhoneError.textContent = 'This number contains unauthorised characters.';
-          brochurePhoneError.classList.add('active');
-          isValid = false;
-        }
-
-      if (!isValid) return;
-      // Deshabilitar botón y mostrar loading
-      downloadBrochureBtn.disabled = true;
-      downloadBrochureBtn.textContent = 'Sending...';
-      // Enviar datos con EmailJS
-      const templateParams = {
-        email: brochureEmail,
-        phone: brochurePhone,
-      };
-      emailjs.send('service_vetmuad', 'template_p70cppb', templateParams)
-        .then(function(response) {
-          console.log('This Email was sended sucessfully:', response);
-          // show succes message
-
-            document.getElementById('brochure-form-content').style.display = 'none';
-            document.getElementById('brochureSuccessContent').style.display = 'flex';
-
-        }, 
-          function(error) {
-            console.error('An error has ocurred:', error);
-
-              brochureGeneralError.textContent = 'Error while attempting to send the information. Please try again.';
-              brochureGeneralError.classList.add('active');
-              downloadBrochureBtn.disabled = false;
-              downloadBrochureBtn.textContent = 'Submit';                
-
-         }
-        );
-    }
-  /* ends send data and download pdf */    
-
-
-
-// Starts Event Registration Modal:
-  /*const Modal = document.getElementById('course-registration-modal'); /* Course Registration Modal Overlay */
-  /*const eventCloseBtn = document.getElementById('course-registration-close-btn'); /* rounded red button */
-  /*const eventRegisterBtns = document.querySelectorAll('#course-btn');/* "register now" buttons */
-  /*const eventSelect = document.getElementById('event');
-
-  // Open Event/Course Registration Modal
-
-    if(eventModal && eventCloseBtn && eventRegisterBtns.length > 0){
-      /* open the modal window */
-    /*eventRegisterBtns.forEach(btn => {
-      btn.addEventListener('click', () => {
-        const course = btn.getAttribute('data-event');
-        eventModal.style.display = 'flex';
-        
-        if(eventSelect) {
-          eventSelect.value = course;
-        }
-      });
-    });
-    // Close modal
-    eventCloseBtn.addEventListener('click', () => {
-      eventModal.style.display = 'none';
-    });
-
-    window.addEventListener('click', (e) => {
-      if(e.target === eventModal) {
-        eventModal.style.display = 'none';
-      }
-    });
-    }
-
-
-
-
-/* STARTS OPEN/CLOSE COURSE REGISTRATION MODAL */
-const courseModal = document.getElementById('course-registration-modal'); /* course registration modal overlay */
-const courseCloseBtn = document.getElementById('course-registration-close-btn'); /* red rounded button */
-const courseRegisterBtns = document.querySelectorAll('.register-btn'); /* "register now" buttons */
-const courseWrappers = document.querySelectorAll(".course-wrapper"); /* custom course select */
-const courseSelect = document.getElementById('course'); /* "select" */
-
+  /* STARTS OPEN/CLOSE COURSE REGISTRATION MODAL */
+  const courseModal = document.getElementById(
+    "course-registration-modal"
+  ); /* course registration modal overlay */
+  const courseCloseBtn = document.getElementById(
+    "course-registration-close-btn"
+  ); /* red rounded button */
+  const courseRegisterBtns =
+    document.querySelectorAll(".register-btn"); /* "register now" buttons */
+  const courseWrappers =
+    document.querySelectorAll(".course-wrapper"); /* custom course select */
+  const courseSelect = document.getElementById("course"); /* "select" */
   /* if the elements exists */
   /* open course registration modal window */
-  if(courseModal && courseRegisterBtns.length > 0){
+  if (courseModal && courseRegisterBtns.length > 0) {
     /* select course name with the custom select */
-      courseWrappers.forEach((cWrapper) => {
-        const courseSelect = cWrapper.querySelector("select");
-        const courseTrigger = cWrapper.querySelector(".course-select-trigger");
-        const courseOptions = cWrapper.querySelector(".course-custom-options");
+    courseWrappers.forEach((cWrapper) => {
+      const courseSelect = cWrapper.querySelector("select");
+      const courseTrigger = cWrapper.querySelector(".course-select-trigger");
+      const courseOptions = cWrapper.querySelector(".course-custom-options");
 
-        // update trigger
-        function updateCourseTrigger(value) {
-          const courseCustomOption = courseOptions.querySelector(
-            `[data-value="${value}"]`
-          );
-          if (courseCustomOption) {
-            const courseIcon = courseCustomOption.querySelector(".course-icon");
-            const courseName = courseCustomOption.querySelector(".course-name").textContent;
+      // update trigger
+      function updateCourseTrigger(value) {
+        const courseCustomOption = courseOptions.querySelector(
+          `[data-value="${value}"]`
+        );
+        if (courseCustomOption) {
+          const courseIcon = courseCustomOption.querySelector(".course-icon");
+          const courseName =
+            courseCustomOption.querySelector(".course-name").textContent;
 
-            courseTrigger.querySelector(".course-icon").src = courseIcon.src;
-            courseTrigger.querySelector(".course-icon").alt = courseIcon.alt;
-            courseTrigger.querySelector(".course-name").textContent = courseName;
-          }
+          courseTrigger.querySelector(".course-icon").src = courseIcon.src;
+          courseTrigger.querySelector(".course-icon").alt = courseIcon.alt;
+          courseTrigger.querySelector(".course-name").textContent = courseName;
         }
+      }
 
-        // default
-        courseSelect.value = "AI for Beginners";
-        updateCourseTrigger("AI for Beginners");
+      // default
+      courseSelect.value = "AI for Beginners";
+      updateCourseTrigger("AI for Beginners");
 
-        // open and close phone-menu
-        courseTrigger.addEventListener("click", (e) => {
-          e.stopPropagation();
-          cWrapper.classList.toggle("open");
-        });
-
-        // select phone options
-        courseOptions.addEventListener("click", (e) => {
-          const courseOption = e.target.closest(".course-custom-option");
-          if (courseOption) {
-            const value = courseOption.getAttribute("data-value");
-            courseSelect.value = value;
-            updateCourseTrigger(value);
-            cWrapper.classList.remove("open");
-          }
-        });
-
-        // Cerrar el menú si se hace clic fuera
-        document.addEventListener("click", (e) => {
-          if (!cWrapper.contains(e.target)) {
-            cWrapper.classList.remove("open");
-          }
-        });
-
-        // Manejar la navegación con el teclado
-        courseTrigger.addEventListener("keydown", (e) => {
-          if (e.key === "Enter" || e.key === " ") {
-            e.preventDefault();
-            cWrapper.classList.toggle("open");
-          } else if (e.key === "Escape") {
-            cWrapper.classList.remove("open");
-          }
-        });
+      // open and close phone-menu
+      courseTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        cWrapper.classList.toggle("open");
       });
-    
 
-    courseRegisterBtns.forEach(btn => {
-      btn.addEventListener('click', (e) => {
+      // select phone options
+      courseOptions.addEventListener("click", (e) => {
+        const courseOption = e.target.closest(".course-custom-option");
+        if (courseOption) {
+          const value = courseOption.getAttribute("data-value");
+          courseSelect.value = value;
+          updateCourseTrigger(value);
+          cWrapper.classList.remove("open");
+        }
+      });
+
+      // Cerrar el menú si se hace clic fuera
+      document.addEventListener("click", (e) => {
+        if (!cWrapper.contains(e.target)) {
+          cWrapper.classList.remove("open");
+        }
+      });
+
+      // Manejar la navegación con el teclado
+      courseTrigger.addEventListener("keydown", (e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          cWrapper.classList.toggle("open");
+        } else if (e.key === "Escape") {
+          cWrapper.classList.remove("open");
+        }
+      });
+    });
+
+    courseRegisterBtns.forEach((btn) => {
+      btn.addEventListener("click", (e) => {
         e.preventDefault();
         courseModal.classList.add("active");
         document.body.style.overflow = "hidden"; // stop scroll propagation
@@ -922,77 +825,191 @@ const courseSelect = document.getElementById('course'); /* "select" */
     });
 
     /* close course registration modal window */
-      /* pressing close btn */
-      courseCloseBtn.addEventListener('click', () => {
-        courseModal.classList.remove("active");
-        document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
-      });
-      /* pressing modal overlay */
-      window.addEventListener('click', (e) => {
-        if(e.target === courseModal) {
-          courseModal.classList.remove("active");
-          document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
-        }  
-      });
-      /* pressing esc key */
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && courseModal.classList.contains("active")) {
-          courseModal.classList.remove("active");
-          document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
-        }
-      });
-  }
-/* ENDS OPEN/CLOSE COURSE REGISTRATION MODAL */
-
-
-/* Starts "Open/Close Book a Demo Modal": */
-  /* Book A Demo (Sliding Class) */
-  const bookModal = document.getElementById('demo-modal');/* overlay */
-  const demoCloseBtn = document.getElementById('demo-close-btn'); /* red rounded btn */
-  const bookDemoBtn = document.getElementById('book-demo'); /* book a demo hero btn */
-  /* if the elements exist */
-  if (bookDemoBtn && bookModal && demoCloseBtn) {
-    // open book a demo modal window
-    bookDemoBtn.addEventListener("click", () => {
-      bookModal.classList.add("sliding");
-      document.body.style.overflow = "hidden"; // stop scroll propagation
-    });
-    // close book a demo modal window # 1:
-    demoCloseBtn.addEventListener("click", () => {
-      bookModal.classList.remove("sliding");
+    /* pressing close btn */
+    courseCloseBtn.addEventListener("click", () => {
+      courseModal.classList.remove("active");
       document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
     });
-    /* close book a demo window #2: clic on the window overlay */
+    /* pressing modal overlay */
     window.addEventListener("click", (e) => {
-      if (e.target === bookModal) {
-        bookModal.classList.remove("sliding");
-        ("active");
-        document.body.style.overflow = "";
+      if (e.target === courseModal) {
+        courseModal.classList.remove("active");
+        document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
       }
     });
-    /* close book a demo window #3: if the user press esc key, the window closes */
-    document.addEventListener("keydown", function (event) {
-      if (
-        event.key === "Escape" &&
-        bookModal &&
-        bookModal.classList.contains("sliding")
-      ) {
-        bookModal.classList.remove("sliding");
-        ("active");
-        document.body.style.overflow = "";
+    /* pressing esc key */
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && courseModal.classList.contains("active")) {
+        courseModal.classList.remove("active");
+        document.body.style.overflow = ""; // when the window closes the document reactives other pointer events
       }
     });
   }
-/* Ends "Open/Close Book a Demo Modal" */
+  /* ENDS OPEN/CLOSE COURSE REGISTRATION MODAL */
 
+  /* STARTS LOCATION WRAPPER */
+  const locationWrappers = document.querySelectorAll(".location-wrapper");
+  /* select course name with the custom select */
+  locationWrappers.forEach((lWrapper) => {
+    const locationSelect = lWrapper.querySelector("select");
+    const locationTrigger = lWrapper.querySelector(".location-select-trigger");
+    const locationOptions = lWrapper.querySelector(".location-custom-options");
+    // update trigger
+    function updateLocationTrigger(value) {
+      const locationCustomOption = locationOptions.querySelector(
+        `[data-value="${value}"]`
+      );
+      if (locationCustomOption) {
+        const locationName =
+          locationCustomOption.querySelector(".location-name").textContent;
+        locationTrigger.querySelector(".location-name").textContent =
+          locationName;
+      }
+    }
+    // default
+    locationSelect.value = "Bengaluru";
+    updateLocationTrigger("Bengaluru");
+    // open and location menu
+    locationTrigger.addEventListener("click", (e) => {
+      e.stopPropagation();
+      lWrapper.classList.toggle("open");
+    });
 
+    // select location options
+    locationOptions.addEventListener("click", (e) => {
+      const locationOption = e.target.closest(".location-custom-option");
+      if (locationOption) {
+        const value = locationOption.getAttribute("data-value");
+        locationSelect.value = value;
+        updateLocationTrigger(value);
+        lWrapper.classList.remove("open");
+      }
+    });
+    // Cerrar el menú si se hace clic fuera
+    document.addEventListener("click", (e) => {
+      if (!lWrapper.contains(e.target)) {
+        lWrapper.classList.remove("open");
+      }
+    });
 
-// offline-workshop-location
-document.getElementById('find-location-btn').addEventListener('click', function(){
-    this.classList.add('hidden');
-    
-    const dropdown = document.getElementById('workshop-location');
-    dropdown.classList.remove('hidden');
+    // Manejar la navegación con el teclado
+    locationTrigger.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        lWrapper.classList.toggle("open");
+      } else if (e.key === "Escape") {
+        lWrapper.classList.remove("open");
+      }
+    });
+  });
+  /* ENDS LOCATION WRAPPER */
 });
 
+/* 8. starts send data and download pdf */
+// global functions
+function openBrochureModal() {
+  const brochureModalOverlay = document.getElementById("brochureModalOverlay");
+  // verify if the element exist
+  if (brochureModalOverlay) {
+    brochureModalOverlay.classList.add("active");
+    document.body.style.overflow = "hidden"; // anula scroll y eventos detrás de ella
+  }
+}
+function closeBrochureModal() {
+  const brochureModalOverlay = document.getElementById("brochureModalOverlay");
+  if (brochureModalOverlay) {
+    brochureModalOverlay.classList.remove("active");
+    document.body.style.overflow = ""; // anula scroll y eventos detrás de ella
+  }
+  resetBrochureForm();
+}
+function resetBrochureForm() {
+  document.getElementById("brochure-email").value = "";
+  document.getElementById("brochure-phone").value = "";
+  document.getElementById("brochureEmailError").classList.remove("active");
+  document.getElementById("brochurePhoneError").classList.remove("active");
+  document.getElementById("brochureGeneralError").classList.remove("active");
+  document.getElementById("brochureGeneralError").textContent = "";
+  document.getElementById("brochure-form-content").style.display = "flex";
+  document.getElementById("brochureSuccessContent").style.display = "none";
+  document.getElementById("downloadBrochureBtn").disabled = false;
+  document.getElementById("downloadBrochureBtn").textContent = "Submit";
+}
 
+/* send email and phone  */
+function handleSubmit(event) {
+  event.preventDefault();
+  // init emailJS
+  emailjs.init("ilcGOCulCPRqjQQDb");
+
+  const brochureEmail = document.getElementById("brochure-email").value.trim();
+  const brochurePhone = document.getElementById("brochure-phone").value.trim();
+  const brochureEmailError = document.getElementById("brochureEmailError");
+  const brochurePhoneError = document.getElementById("brochurePhoneError");
+  const brochureGeneralError = document.getElementById("brochureGeneralError");
+  const downloadBrochureBtn = document.getElementById("downloadBrochureBtn");
+  // errors reset
+  brochureEmailError.classList.remove("active");
+  brochurePhoneError.classList.remove("active");
+  brochureGeneralError.classList.remove("active");
+  // validate
+  let isValid = true;
+  if (!brochureEmail) {
+    brochureEmailError.textContent = "Please type your email";
+    brochureEmailError.classList.add("active");
+    isValid = false;
+  } else if (!validarSinEspeciales(brochureEmail)) {
+  /* evitar que se ingresen caracteres especiales */
+    brochureEmailError.textContent =
+      "The email address contains unauthorised characters.";
+    brochureEmailError.classList.add("active");
+    isValid = false;
+  }
+  // si el correo no incluye @
+  else if (!brochureEmail.includes("@")) {
+    brochureEmailError.textContent = "Please enter a valid email";
+    brochureEmailError.classList.add("active");
+    isValid = false;
+  }
+
+  if (!brochurePhone) {
+    brochurePhoneError.textContent = "Type your phone";
+    brochurePhoneError.classList.add("active");
+    isValid = false;
+  } else if (!validarTelefono(brochurePhone)) {
+  /* evitar que se ingresen caracteres especiales */
+    brochurePhoneError.textContent =
+      "This number contains unauthorised characters.";
+    brochurePhoneError.classList.add("active");
+    isValid = false;
+  }
+
+  if (!isValid) return;
+  // Deshabilitar botón y mostrar loading
+  downloadBrochureBtn.disabled = true;
+  downloadBrochureBtn.textContent = "Sending...";
+  // Enviar datos con EmailJS
+  const templateParams = {
+    email: brochureEmail,
+    phone: brochurePhone,
+  };
+  emailjs.send("service_vetmuad", "template_p70cppb", templateParams).then(
+    function (response) {
+      console.log("This Email was sended sucessfully:", response);
+      // show succes message
+
+      document.getElementById("brochure-form-content").style.display = "none";
+      document.getElementById("brochureSuccessContent").style.display = "flex";
+    },
+    function (error) {
+      console.error("An error has ocurred:", error);
+
+      brochureGeneralError.textContent =
+        "Error while attempting to send the information. Please try again.";
+      brochureGeneralError.classList.add("active");
+      downloadBrochureBtn.disabled = false;
+      downloadBrochureBtn.textContent = "Submit";
+    }
+  );
+}
+/* ends send data and download pdf */

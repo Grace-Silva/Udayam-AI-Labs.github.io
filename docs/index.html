@@ -583,7 +583,7 @@
               </button>
             </div>
           </div>          
-          <!-- card -->
+          <!-- lve courses card -->
           <div class="card live-courses-card">
             <!-- cover -->
             <div class="course-cover">
@@ -596,33 +596,47 @@
               <h3 class="card-title">
                 Offline Workshops        
               </h3>
-              <!-- smt btn -->
-              <button class="globalBtn btnGradient course-card-btn" id="find-location-btn">
-                Find Locations
+              <!-- smt btn, find locations btn -->
+
+             <div class="location-wrapper">
+
+              <!-- hidden options -->
+              <select id="workshop-location" name="workshops-location">
+                <option value="" disabled selected>See Locations</option>
+                <option value="Bengaluru" ></option>
+                <option value="Mumbai"  ></option>
+                <option value="Kolkata"  ></option>
+                <option value="Pune"></option>
+                <option value="Puducherry"></option>
+              </select>
+            <!-- option always visible -->
+              <div class="location-select-trigger" tabindex="0">
+                <span class="location-name"></span>
+              </div>                  
+              <!-- custom options -->
+              <div class="location-custom-options">
+                <div class="location-custom-option" data-value="Bengaluru">
+                  <span class="location-name">Bengaluru</span>
+                </div>
+                <div class="location-custom-option" data-value="Mumbai">
+                  <span class="location-name">Mumbai</span>
+                </div>
+                <div class="location-custom-option" data-value="Kolkata">  
+                  <span class="location-name">Kolkata</span>
+                </div>
+                <div class="location-custom-option" data-value="Pune">
+                  <span class="location-name">Pune</span>
+                </div>
+                <div class="location-custom-option" data-value="Puducherry">
+                  <span class="location-name">Puducherry</span>
+                </div>
+              </div>
+
               <i class="fa-solid fa-location-dot"></i>
-              </button>
+
             </div>
           </div>
 
-
-
-        <!-- course card 
-        <div class="card">
-          <h3 class="card-title">Offline Workshops</h3>
-          <div class="course-img">
-            <img id="offline-workshops" src="./assets/images/udayam-ai-offline-workshops.jpg" alt="offline-workshops-img"/>
-          </div>
-          <button class="learn-more-btn" id="find-location-btn">Find Locations</button>
-          <select class="learn-more-btn hidden" id="workshop-location" name="workshops-location">
-            <option value="" disabled selected>Click to see locations</option>
-            <option value="Bengaluru" >Bengaluru</option>
-            <option value="Mumbai"  >Mumbai</option>
-            <option value="Kolkata"  >Kolkata</option>
-            <option value="Pune"  >Pune</option>
-            <option value="Puducherry">Puducherry</option>
-        </select>
-        </div>
-      -->
         </div>
       </div>
     </div>
