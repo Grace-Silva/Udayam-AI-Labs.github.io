@@ -651,28 +651,25 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   /* 9. starts send data and download brochure with EmailJS */
-  // verify if the element exist
-  // close modal window when the user clicks off
-
-  
-
   const brochureoverlay = document.getElementById("brochureModalOverlay");
+  // verify if the element exist
   if (brochureoverlay) {
+    // close modal window when the user clicks off
     brochureoverlay.addEventListener("click", function (event) {
       if (event.target === this) {
         closeBrochureModal();
       }
     });
   }
-  document.addEventListener("keydown", function (event) {
-    if (
-      event.key === "Escape" &&
-      brochureoverlay &&
-      brochureoverlay.classList.contains("active")
-    ) {
-      closeBrochureModal();
-    }
-  });
+    document.addEventListener("keydown", function (event) {
+      if (
+        event.key === "Escape" &&
+        brochureoverlay &&
+        brochureoverlay.classList.contains("active")
+      ) {
+        closeBrochureModal();
+      }
+    });
   /* ends send data and download pdf */
 
 
@@ -711,23 +708,29 @@ document.addEventListener("DOMContentLoaded", function () {
   }
   /* ENDS SERVICE-CARDS GROW FUNCTION */
 
+
   /* STARTS COURSE SLIDER */
+  const courseSlider = document.getElementById("slider-contain");
   const coursePrevBtn = document.getElementById("course-prev-btn");
   const courseNextBtn = document.getElementById("course-next-btn");
   const courseCards = document.getElementById("course-cards");
-  coursePrevBtn.addEventListener("click", function () {
-    const card = document.querySelector(".card");
-    // Card width + gap
-    const cardWidth = card.offsetWidth + 48; // 48px = 3rem
-    courseCards.scrollLeft -= cardWidth * 2; // move 2 cards
-  });
-  courseNextBtn.addEventListener("click", function () {
-    // Card width + gap
-    const card = document.querySelector(".card");
-    const cardWidth = card.offsetWidth + 48; // 348px = 3rem
-    courseCards.scrollLeft += cardWidth * 2; // move 2 cards
-  });
+  /* verify if the element exist */
+    if(courseSlider){
+      coursePrevBtn.addEventListener("click", function () {
+        const card = document.querySelector(".card");
+        // Card width + gap
+        const cardWidth = card.offsetWidth + 48; // 48px = 3rem
+        courseCards.scrollLeft -= cardWidth * 2; // move 2 cards
+      });
+      courseNextBtn.addEventListener("click", function () {
+        // Card width + gap
+        const card = document.querySelector(".card");
+        const cardWidth = card.offsetWidth + 48; // 348px = 3rem
+        courseCards.scrollLeft += cardWidth * 2; // move 2 cards
+      });
+    }
   /* ENDS COURSE SLIDER */
+
 
   /* STARTS OPEN/CLOSE COURSE REGISTRATION MODAL */
   const courseModal = document.getElementById(
@@ -765,17 +768,14 @@ document.addEventListener("DOMContentLoaded", function () {
           courseTrigger.querySelector(".course-name").textContent = courseName;
         }
       }
-
       // default
       courseSelect.value = "AI for Beginners";
       updateCourseTrigger("AI for Beginners");
-
-      // open and close phone-menu
+      // open and close options
       courseTrigger.addEventListener("click", (e) => {
         e.stopPropagation();
         cWrapper.classList.toggle("open");
       });
-
       // select phone options
       courseOptions.addEventListener("click", (e) => {
         const courseOption = e.target.closest(".course-custom-option");
@@ -846,6 +846,7 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
   /* ENDS OPEN/CLOSE COURSE REGISTRATION MODAL */
+
 
   /* STARTS LOCATION WRAPPER */
   const locationWrappers = document.querySelectorAll(".location-wrapper");

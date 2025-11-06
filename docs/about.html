@@ -189,7 +189,7 @@
           </p>
         <!-- cta -->
         <div class="heroBtns">
-          <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
+          <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-book-open"></i></button>
           <button class="globalBtn" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i>
           </button>
         </div>
@@ -979,34 +979,38 @@
     </div>
 
   <!-- starts request callback modal window -->
-  <button id="request-callback-btn">Request a Callback<i class="fa-solid fa-phone-volume"></i></button>
+  <button id="request-callback-btn">Request a Callback
+    <i class="fa-solid fa-phone-volume"></i>
+  </button>
   <!-- callback modal -->
   <div id="callback-modal" class="callback-modal">
     <!-- callback modal content -->
     <div class="callback-modal-content">
       <!-- close btn -->
-        <button class="close-btn" id="close-callback-btn">
-          <i class="fa-solid fa-xmark"></i>
-        </button>
-        <!-- decorative gradient -->
-        <div class="callback-modal-gradient">
-          <div class="sign-up-icon">
-            <img width="64" height="64" src="https://img.icons8.com/nolan/64/ringer-volume.png" alt="ringer-volume"/>
-          </div>
+      <button class="close-btn" id="close-callback-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <!-- decorative gradient -->
+      <div class="modal-gradient">
+        <div class="rounded-icon">
+          <img width="64" height="64" src="https://img.icons8.com/nolan/64/ringer-volume.png" alt="ringer-volume"/>
         </div>
-        <!-- callback form content -->
-        <div class="callback-form-content">
-          <!-- title -->
-          <h3 class="callback-modal-title">Request a Callback</h3>
-          <!-- info text -->
-          <p class="info-text">
-            This isn't a sales call. It's a <strong>Strategic Conversation</strong>.
-          </p>
-          <!-- callback form -->
-          <form id="callback-form">
-            <div class="phone-input-group">
-              <!-- prefix and caret down -->
-              <div class="select-wrapper">
+      </div>
+      <!-- callback form content -->
+      <div class="callback-form-content">
+        <!-- title -->
+        <h3 class="callback-modal-title">Request a Callback
+        </h3>
+        <!-- info text -->
+        <p class="info-text">
+          This isn't a sales call. It's a <strong>Strategic Conversation</strong>.
+        </p>
+        <!-- callback form -->
+        <form id="callback-form">
+          <!-- phone-code selector and input-->
+          <div class="phone-input-group">
+            <!-- prefix and caret down -->
+            <div class="select-wrapper">
               <!-- hidden options -->
               <select id="country-code" name="country-code" required>
                 <option selected value="+91" data-flag="🇮🇳"></option>
@@ -1016,53 +1020,51 @@
                 <option value="+971" data-flag="🇦🇪"></option>
                 <option value="+57" data-flag="🇨🇴"></option>
               </select>
-              <!-- visible options -->
-                <div class="custom-select-trigger" tabindex="0">
-                    <img class="flag">
-                    <span class="code"></span>
-                </div>
-                
-                <!-- La lista de opciones personalizada -->
-                <div class="custom-options">
-                    <div class="custom-option" data-value="+91">
-                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/india-circular.png" alt="india-circular"/>
-                      <span class="code">+91</span>
-                    </div>
-                    <div class="custom-option" data-value="+1">
-                        <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/usa-circular.png" alt="usa-circular"/>
-                        <span class="code">+1</span>
-                    </div>
-                    <div class="custom-option" data-value="+44">
-                        <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/great-britain-circular.png" alt="great-britain-circular"/>
-                        <span class="code">+44</span>
-                    </div>
-                    <div class="custom-option" data-value="+61">
-                        <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/australia-circular.png" alt="australia-circular"/>
-                        <span class="code">+61</span>
-                    </div>
-                    <div class="custom-option" data-value="+971">
-                        <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/united-arab-emirates-circular.png" alt="united-arab-emirates-circular"/>
-                        <span class="code">+971</span>
-                    </div>
-                    <div class="custom-option" data-value="+57">
-                        <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/colombia-circular.png" alt="colombia-circular"/>
-                        <span class="code">+57</span>
-                    </div>
-                </div>
-              <!-- icon -->
-                <i class="fa-solid fa-caret-down"></i>
+            <!-- option always visible -->
+              <div class="custom-select-trigger" tabindex="0">
+                  <img class="flag">
+                  <span class="code"></span>
+              </div>                  
+              <!-- custom options: flag + code -->
+              <div class="custom-options">
+                  <div class="custom-option" data-value="+91">
+                    <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/india-circular.png" alt="india-circular"/>
+                    <span class="code">+91</span>
+                  </div>
+                  <div class="custom-option" data-value="+1">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/usa-circular.png" alt="usa-circular"/>
+                      <span class="code">+1</span>
+                  </div>
+                  <div class="custom-option" data-value="+44">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/great-britain-circular.png" alt="great-britain-circular"/>
+                      <span class="code">+44</span>
+                  </div>
+                  <div class="custom-option" data-value="+61">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/australia-circular.png" alt="australia-circular"/>
+                      <span class="code">+61</span>
+                  </div>
+                  <div class="custom-option" data-value="+971">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/united-arab-emirates-circular.png" alt="united-arab-emirates-circular"/>
+                      <span class="code">+971</span>
+                  </div>
+                  <div class="custom-option" data-value="+57">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/colombia-circular.png" alt="colombia-circular"/>
+                      <span class="code">+57</span>
+                  </div>
               </div>
-
-              <input type="tel" id="phone-number" name="phone-number" placeholder="123 456 7890" pattern="[0-9]{10,15}" required>
+            <!-- caret down icon -->
+            <i class="fa-solid fa-caret-down"></i>
             </div>
-            <!-- submit btn -->
-            <button type="submit" id="callback-submit-btn" class="globalBtn btnGradient demo-submit-btn">Get a Call Back</button>
-          </form>
-          <p class="callback-disclaimer">
-              <i class="fas fa-lock"></i> Your information is safe with us.
-          </p>
-
-        </div>
+            <!-- input -->
+            <input type="tel" id="phone-number" name="phone-number" placeholder="123 456 7890" pattern="[0-9]{10,15}" required>
+          </div>
+          <!-- submit btn -->
+          <button type="submit" id="callback-submit-btn" class="globalBtn btnGradient demo-submit-btn">Get a Call Back</button>
+        </form>
+        <p class="callback-disclaimer">
+          <i class="fas fa-lock"></i> Your information is safe with us.
+        </p>
+      </div>
     </div>
   </div>
     <!-- succes content -->
@@ -1079,7 +1081,7 @@
   <!-- ends btn Up-->
 
     <!-- 📖📖📖 Start Book A Demo Sliding Window 📖📖📖 -->
-    <div id="demo-modal  " class="demo-modal">
+    <div id="demo-modal" class="demo-modal">
       <!-- Modal Window -->
       <div class="demo-modal-content">
         <!-- close icon -->
@@ -1146,16 +1148,16 @@
 
 
   <!-- Scripts -->
- <script src="js/script.js" defer></script>
+ <script src="js/script.js"></script>
  <!-- request callback -->
  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
  <!-- email js -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <!-- prabha code -->
-  <script src="js/assistant.min.js" defer></script>
+  <script src="js/assistant.js"></script>
  <!-- callback request -->
-  <script src="js/callback.min.js" defer></script>
-  <script src="js/navbar.min.js" defer></script>
-  <script src="js/gallary.js" defer></script>
+  <script src="js/callback.js"></script>
+  <script src="js/navbar.js"></script>
+  <script src="js/gallary.js"></script>
 </body>
 </html>
