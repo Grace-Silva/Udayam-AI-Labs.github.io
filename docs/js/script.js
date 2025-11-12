@@ -125,37 +125,46 @@ document.addEventListener("DOMContentLoaded", function () {
     ];
 
     const dotsContainer = document.getElementById("dotsContainer");
+    const cardElement = document.getElementById("card");
     let currentTrainingCardIndex = 0;
 
     function renderCard(index) {
+
       const data = cardData[index];
+      cardElement.style.opacity = "0";
 
-      document.getElementById("cardImage").src = data.image.src;
-      document.getElementById("cardImage").alt = data.image.alt;
-      document.getElementById("cardTitle").textContent = data.title;
-      document.getElementById("cardDescription").textContent = data.description;
+      setTimeout(() => {    
+        document.getElementById("cardImage").src = data.image.src;
+        document.getElementById("cardImage").alt = data.image.alt;
+        document.getElementById("cardTitle").textContent = data.title;
+        document.getElementById("cardDescription").textContent = data.description;
 
-      let formattedName = data.reviewer.name;
-      if (data.reviewer.designation && data.reviewer.location) {
-        formattedName += `, ${data.reviewer.designation} (${data.reviewer.location})`;
-      } else if (data.reviewer.designation) {
-        formattedName += `, ${data.reviewer.designation}`;
-      } else if (data.reviewer.location) {
-        formattedName += ` (${data.reviewer.location})`;
-      }
+        let formattedName = data.reviewer.name;
+        if (data.reviewer.designation && data.reviewer.location) {
+          formattedName += `, ${data.reviewer.designation} (${data.reviewer.location})`;
+        } else if (data.reviewer.designation) {
+          formattedName += `, ${data.reviewer.designation}`;
+        } else if (data.reviewer.location) {
+          formattedName += ` (${data.reviewer.location})`;
+        }
 
-      document.getElementById("userName").textContent = formattedName;
-      document.getElementById("userComment").textContent =
-      data.reviewer.comment;
+        document.getElementById("userName").textContent = formattedName;
+        document.getElementById("userComment").textContent = data.reviewer.comment;
 
-      document.getElementById("userInitials").textContent = data.reviewer.name
+        document.getElementById("userInitials").textContent = data.reviewer.name
         .trim()
         .split(/\s+/)
         .map((w) => w[0].toUpperCase())
         .slice(0, 2)
         .join("");
 
-      renderDots();
+        renderDots();
+
+        setTimeout(() => { cardElement.style.opacity = "1";
+        }, 250);
+
+      }, 250);
+
     }
 
     function renderDots() {
@@ -718,15 +727,58 @@ document.addEventListener("DOMContentLoaded", function () {
     if(courseSlider){
       coursePrevBtn.addEventListener("click", function () {
         const card = document.querySelector(".card");
+        const screenWidth = window.innerWidth;
+
+        let gap;
+        let cardsToMove;
+
+        if (screenWidth <= 480) {
+          // UNA tarjeta visible
+          gap = 16; // 1rem
+          cardsToMove = 1;
+        } else if (screenWidth <= 768) {
+          // DOS tarjetas visibles
+          gap = 24; // 1.5rem
+          cardsToMove = 1;
+        } else if (screenWidth <= 992) {
+          gap = 32; // 2rem
+          cardsToMove = 2;
+        } else {
+          // Desktop normal
+          gap = 48; // 3rem
+          cardsToMove = 2;
+        }
         // Card width + gap
-        const cardWidth = card.offsetWidth + 48; // 48px = 3rem
-        courseCards.scrollLeft -= cardWidth * 2; // move 2 cards
+        const cardWidth = card.offsetWidth + gap; 
+        courseCards.scrollLeft -= cardWidth * cardsToMove; 
       });
       courseNextBtn.addEventListener("click", function () {
-        // Card width + gap
+
         const card = document.querySelector(".card");
-        const cardWidth = card.offsetWidth + 48; // 348px = 3rem
-        courseCards.scrollLeft += cardWidth * 2; // move 2 cards
+        const screenWidth = window.innerWidth;
+
+        let gap;
+        let cardsToMove;
+
+        if (screenWidth <= 480) {
+          // UNA tarjeta visible
+          gap = 16; // 1rem
+          cardsToMove = 1;
+        } else if (screenWidth <= 768) {
+          // DOS tarjetas visibles
+          gap = 24; // 1.5rem
+          cardsToMove = 1;
+        } else if (screenWidth <= 992) {
+          gap = 32; // 2rem
+          cardsToMove = 2;
+        } else {
+          // Desktop normal
+          gap = 48; // 3rem
+          cardsToMove = 2;
+        }
+        // Card width + gap
+        const cardWidth = card.offsetWidth + gap;
+        courseCards.scrollLeft += cardWidth * cardsToMove;
       });
     }
   /* ENDS COURSE SLIDER */
