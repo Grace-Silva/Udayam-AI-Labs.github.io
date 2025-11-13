@@ -60,7 +60,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const cardData = [
       {
         image: {
-          src: "assets/images/udayam-school-ai-training.webp",
+          src: "assets/images/udayam-school-ai-training.png",
           alt: "School Trainings Img",
         },
         title: "School Trainings",
@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         image: {
-          src: "assets/images/udayam-faculty-development-program.webp",
+          src: "assets/images/udayam-faculty-development-program.png",
           alt: "Faculty Development Programs Img",
         },
         title: "Faculty Development Programs",
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         image: {
-          src: "assets/images/udayam-corporate-ai-training.webp",
+          src: "assets/images/udayam-corporate-ai-training.png",
           alt: "Corporate Trainings Img",
         },
         title: "Corporate Trainings",
@@ -108,7 +108,7 @@ document.addEventListener("DOMContentLoaded", function () {
       },
       {
         image: {
-          src: "assets/images/udayam-advanced-ai-techniques-training.webp",
+          src: "assets/images/udayam-advanced-ai-techniques-training.png",
           alt: "Advanced Techniques Img",
         },
         title: "Advanced Techniques",
