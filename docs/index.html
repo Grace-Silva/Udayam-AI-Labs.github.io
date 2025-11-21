@@ -35,7 +35,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Udayam AI Labs" />
   <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-  <link rel="stylesheet" href="css/styles.min.css" />
+  <!--<link rel="stylesheet" href="css/styles.min.css" />-->
+  <link rel="stylesheet" href="css/styles.css">
   <link rel="stylesheet" href="css/assistant.min.css" />
   <!--<link rel="stylesheet" href="css/callback.css" />-->
   <link rel="stylesheet" href="css/navbar.min.css" />
@@ -165,7 +166,7 @@
       </p>
       <!-- cta buttons -->
       <div class="heroBtns">
-        <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-angle-right"></i></button>
+        <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-book-open"></i></button>
         <button class="globalBtn" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
       </div>
     </div>
@@ -173,65 +174,65 @@
     <!-- starts download brochure modal -->
     <div class="brochure-modal" id="brochureModalOverlay">
       <!-- modal window -->
-        <div class="brochure-modal-content"">
-          <!-- close window icon -->
-          <button class="close-btn" onclick="closeBrochureModal()">              
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-          
-          <!-- decorative gradient -->
-          <div class="brochure-modal-gradient">
-            <div class="sign-up-icon">
-              <img width="64" height="64" src="https://img.icons8.com/nolan/64/sign-up.png" alt="sign-up"/>
-            </div>
+      <div class="brochure-modal-content"">
+        <!-- close window icon -->
+        <button class="close-btn" onclick="closeBrochureModal()">              
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        
+        <!-- decorative gradient -->
+        <div class="modal-gradient">
+          <div class="rounded-icon">
+            <img width="64" height="64" src="https://img.icons8.com/nolan/64/sign-up.png" alt="sign-up"/>
           </div>
+        </div>
 
-          <!-- download brochure form content-->
-          <div class="brochure-form-content" id="brochure-form-content">
-            <p class="brochure-modal-description">
-              Please complete your details to obtain the document.
-            </p>
-            <!-- download brochure form -->      
-            <form id="downloadBrochureForm" onsubmit="handleSubmit(event)">
-            <!-- email-->
-              <div>
-                <div class="label-input">
-                  <label for="brochure-email"><i class="fa-solid fa-envelope"></i></label>
-                  <input type="text" id="brochure-email" name="email" placeholder="yourmail@domain.com" required>
-                </div>
-
-                <!-- if it finds invalid parameters -->
-                <div class="error" id="brochureEmailError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter a valid email address.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
+        <!-- download brochure form content-->
+        <div class="brochure-form-content" id="brochure-form-content">
+          <p class="brochure-modal-description">
+            Please complete your details to obtain the document.
+          </p>
+          <!-- download brochure form -->      
+          <form id="downloadBrochureForm" onsubmit="handleSubmit(event)">
+          <!-- email-->
+            <div>
+              <div class="label-input">
+                <label for="brochure-email"><i class="fa-solid fa-envelope"></i></label>
+                <input type="text" id="brochure-email" name="email" placeholder="yourmail@domain.com" required>
               </div>
 
-            <!-- phone -->   
-              <div>
-                <div class="label-input">
-                  <label for="brochure-phone"><i class="fa-solid fa-phone"></i></label>
-                  <input type="tel" id="brochure-phone" name="phone" placeholder="+1 234 567 8900" required>
-                </div>
+              <!-- if it finds invalid parameters -->
+              <div class="error" id="brochureEmailError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter a valid email address.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
+            </div>
 
-                <!-- if it finds invalid parameters -->
-                <div class="error" id="brochurePhoneError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter your phone number.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
-              </div> 
-            <!-- brochure general error -->    
-              <div class="error" id="brochureGeneralError"></div>
-                    
-              <button type="submit" class="globalBtn btnGradient demo-submit-btn" id="downloadBrochureBtn">Submit</button>
-            </form>
-          </div>
-            
-          <div id="brochureSuccessContent">
+          <!-- phone -->   
+            <div>
+              <div class="label-input">
+                <label for="brochure-phone"><i class="fa-solid fa-phone"></i></label>
+                <input type="tel" id="brochure-phone" name="phone" placeholder="+1 234 567 8900" required>
+              </div>
 
-            <p class="info-text">We have received your details and will send you the file shortly.</p>
-
-            <div class="success-message">¡Please check your inbox!<i class="fa-solid fa-inbox" style="margin: 0 8px"></i></div>
-
-                
-            <button class="globalBtn btnGradient demo-submit-btn" onclick="closeBrochureModal()">Close</button>
-          </div>
-
+              <!-- if it finds invalid parameters -->
+              <div class="error" id="brochurePhoneError"><i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i>Please enter your phone number.<i class="fa-solid fa-triangle-exclamation" style="margin: 0 8px;"></i></div>
+            </div> 
+          <!-- brochure general error -->    
+            <div class="error" id="brochureGeneralError"></div>
+                  
+            <button type="submit" class="globalBtn btnGradient demo-submit-btn" id="downloadBrochureBtn">Submit</button>
+          </form>
         </div>
+          
+        <div id="brochureSuccessContent">
+
+          <p class="info-text">We have received your details and will send you the file shortly.</p>
+
+          <div class="success-message">¡Please check your inbox!<i class="fa-solid fa-inbox" style="margin: 0 8px"></i></div>
+
+              
+          <button class="globalBtn btnGradient demo-submit-btn" onclick="closeBrochureModal()">Close</button>
+        </div>
+
+      </div>
     </div>
     <!-- ends download brochure modal -->
 
@@ -335,75 +336,347 @@
   </section>
   <!-- ends Our Services -->
 
-  <!-- Training Modules -->
+  <!-- Courses: Training Modules -->
   <section id="training-modules" class="training-modules">
-    <div class="training-modules-container">
-      <h2 class="section-title">Training Modules</h2>
+    <div class="container">
+      <h2 class="section-title">
+        Training Modules
+      </h2>
+      <p class="section-subtitle">
+        Explore our courses and workshops.
+      </p>
       <div class="service-underline"></div>
-        <!-- Popular courses -->
-        <div class="popular-courses">
-          <div class="course-header">
-            <h3>Explore Our Courses</h3>
-            <button id="course-btn">Register Now</button>
+      <!-- Popular courses -->
+      <div class="popular-courses">
+        <div class="course-header">
+          <!-- icon -->
+          <span class="c-h-icon">
+            <img width="60" height="60" src="https://img.icons8.com/papercut/60/fire.png" alt="fire"/>
+          </span>
+          <!-- title -->
+          <span class="c-h-title">Popular Courses </span>
+        </div>
+        <!-- slider contain -->
+        <div class="slider-contain" id="slider-contain">
+          <!-- left btn -->
+          <button class="course-slider-btn" id="course-prev-btn">
+            <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+          </button> 
+          <!-- slider -->
+          <div class="courses-slider">
+            <!-- cards -->            
+            <div class="course-cards" id="course-cards">
+              <!-- card -->
+              <div class="card">
+                <!-- cover -->
+                <div class="course-cover">
+                  <!-- image -->
+                  <img src="https://img-c.udemycdn.com/course/240x135/6418257_5e36_2.jpg" alt="">
+                  <!-- animated icon -->
+                  <div class="icon-bg">
+                    <img width="64" height="64" src="https://img.icons8.com/nolan/64/for-experienced.png" alt="for-experienced" class="course-icon"/>
+                  </div>
+                </div>
+                <!-- stats -->
+                <div class="course-stats">
+                  <span class="stat">
+                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/star.png" alt="star"/>
+                    4.8
+                  </span>
+                  <span class="stat"> 
+                  <img width="100" height="100" src="https://img.icons8.com/3d-fluent/100/user-2.png" alt="user-2"/>
+                  +31
+                  </span>
+                </div>
+                <!-- course info and smt btn --> 
+                <div class="card-content">
+                  <!-- title -->
+                  <h3 class="card-title">
+                    AI Mastery Course 2025 for Beginners        
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn"  onclick="window.open('https://www.udemy.com/course/ai-mastery-course/?referralCode=27D3E13D47A9B864723B&couponCode=KEEPLEARNING','_blank')">
+                  Learn More
+                  <i class="fa-solid fa-arrow-right btn-icon"></i>
+                </button>
+                </div>
+              </div>
+              <!-- card -->
+              <div class="card">
+                <!-- cover -->
+                <div class="course-cover">
+                  <!-- image -->
+                  <img src="https://img-c.udemycdn.com/course/240x135/6418257_5e36_2.jpg" alt="">
+                  <!-- animated icon -->
+                  <div class="icon-bg">
+                    <img width="64" height="64" src="https://img.icons8.com/nolan/96/artificial-intelligence.png" alt="for-experienced" class="course-icon"/>
+                  </div>
+                </div>
+                <!-- stats -->
+                <div class="course-stats">
+                  <span class="stat">
+                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/star.png" alt="star"/>
+                    4.8
+                  </span>
+                  <span class="stat"> 
+                  <img width="100" height="100" src="https://img.icons8.com/3d-fluent/100/user-2.png" alt="user-2"/>
+                  +28
+                  </span>
+                </div>
+                <!-- card content -->
+                <div class="card-content">
+                  <!-- title -->
+                  <h3 class="card-title">
+                    AI Mastery Course 2025 for Experts        
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn"  onclick="window.open('https://udayamailabs-my.sharepoint.com/:i:/g/personal/support_udayam_co_in/ERpRErbbiG9MmdwQp6VzTTYB9MT9vg7w5gOO6E-D3CfCdw?e=8nmprp','_blank')">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right btn-icon"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- card -->
+              <div class="card">
+                <!-- cover -->
+                <div class="course-cover">
+                  <!-- image -->
+                  <img src="https://img-c.udemycdn.com/course/240x135/6418257_5e36_2.jpg" alt="">
+                  <!-- animated icon -->
+                  <div class="icon-bg">
+                    <img width="64" height="64" src="https://img.icons8.com/nolan/64/robot.png" alt="for-experienced" class="course-icon" alt="for-experienced" class="course-icon"/>
+                  </div>
+                </div>
+                <!-- stats -->
+                <div class="course-stats">
+                  <span class="stat">
+                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/star.png" alt="star"/>
+                    4.8
+                  </span>
+                  <span class="stat"> 
+                  <img width="100" height="100" src="https://img.icons8.com/3d-fluent/100/user-2.png" alt="user-2"/>
+                  +28
+                  </span>
+                </div>
+                <!-- card content -->
+                <div class="card-content">
+                  <!-- title -->
+                  <h3 class="card-title">
+                    Robotics        
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right btn-icon"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- card -->
+              <div class="card">
+                <!-- cover -->
+                <div class="course-cover">
+                  <!-- image -->
+                  <img src="./assets/images/game-development-thumbnail.png" alt="">
+                  <!-- animated icon -->
+                  <div class="icon-bg">
+                    <img width="64" height="64" src="https://img.icons8.com/nolan/64/unity.png" alt="unity" class="course-icon"/>
+                  </div>
+                </div>
+                <!-- stats -->
+                <div class="course-stats">
+                  <span class="stat">
+                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/star.png" alt="star"/>
+                    4.8
+                  </span>
+                  <span class="stat"> 
+                  <img width="100" height="100" src="https://img.icons8.com/3d-fluent/100/user-2.png" alt="user-2"/>
+                  +28
+                  </span>
+                </div>
+                <!-- card content -->
+                <div class="card-content">
+                  <!-- title -->
+                  <h3 class="card-title">
+                    Game Development       
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn">
+                  <a href="https://www.youtube.com/watch?v=3z8ZRSKbpKY&list=PLgWMzyXkqw53PjXncTgdCpxtZzbGPvKp2" target="_blank">
+                    Free
+                  </a>
+                    <i class="fa-solid fa-gift"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- card -->
+              <div class="card">
+                <!-- cover -->
+                <div class="course-cover">
+                  <!-- image -->
+                  <img src="./assets/images/drones-thumbnail.png" alt="">
+                  <!-- animated icon -->
+                  <div class="icon-bg">
+                    <img width="64" height="64" src="https://img.icons8.com/nolan/64/drone.png" alt="for-experienced" class="course-icon" alt="for-experienced" class="course-icon"/>
+                  </div>
+                </div>
+                <!-- stats -->
+                <div class="course-stats">
+                  <span class="stat">
+                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/star.png" alt="star"/>
+                    4.8
+                  </span>
+                  <span class="stat"> 
+                  <img width="100" height="100" src="https://img.icons8.com/3d-fluent/100/user-2.png" alt="user-2"/>
+                  +28
+                  </span>
+                </div>
+                <!-- card content -->
+                <div class="card-content">
+                  <!-- title -->
+                  <h3 class="card-title">
+                    Drones       
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right btn-icon"></i>
+                  </button>
+                </div>
+              </div>
+              <!-- card -->
+              <div class="card">
+                <!-- cover -->
+                <div class="course-cover">
+                  <!-- image -->
+                  <img src="./assets/images/cibersecurity-thumbnail.png" alt="">
+                  <!-- animated icon -->
+                  <div class="icon-bg">
+                    <img width="64" height="64" src="https://img.icons8.com/nolan/64/cyber-security.png" alt="for-experienced" class="course-icon" alt="for-experienced" class="course-icon"/>
+                  </div>
+                </div>
+                <!-- stats -->
+                <div class="course-stats">
+                  <span class="stat">
+                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/star.png" alt="star"/>
+                    4.8
+                  </span>
+                  <span class="stat"> 
+                  <img width="100" height="100" src="https://img.icons8.com/3d-fluent/100/user-2.png" alt="user-2"/>
+                  +28
+                  </span>
+                </div>
+                <!-- card content -->
+                <div class="card-content">
+                  <!-- title -->
+                  <h3 class="card-title">
+                    Cibersecurity       
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn">
+                  Learn More
+                  <i class="fa-solid fa-arrow-right btn-icon"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="course-cards">
-            <div class="card">
-              <div class="course-stats">
-                  <span class="stat">⭐ 4.8</span>
-                  <span class="stat">👥 31</span>
-              </div>
-              <div class="course-icon">
-                <div class="icon-bg">🤖</div>
-              </div>
-              <h3 class="card-title">AI Mastery Course 2025 for Beginners</h3>
-              <button class="learn-more-btn"  onclick="window.open('https://www.udemy.com/course/ai-mastery-course/?referralCode=27D3E13D47A9B864723B&couponCode=KEEPLEARNING','_blank')">LEARN MORE</button>
+          <!-- right btn -->
+          <button class="course-slider-btn" id="course-next-btn">
+            <i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+          </button>  
+        </div>
+ 
+      </div> 
+      <!-- offline workshops -->
+      <div class="live-courses">
+        <div class="course-header">
+          <!-- icon -->
+          <span class="c-h-icon">
+          <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/online.png" alt="online"/>
+          </span>
+          <!-- title -->
+          <span class="c-h-title">Live Classes</span>
+        </div>
+        <!-- course cards container -->
+        <div class="course-cards">
+        <!-- course card -->
+          <!-- card -->
+          <div class="card live-courses-card">
+            <!-- cover -->
+            <div class="course-cover">
+              <!-- image -->
+              <img src="./assets/images/udayam-ai-live-classes.jpg" alt="">
             </div>
-            <div class="card">
-              <div class="course-stats">
-                  <span class="stat">⭐ 4.8</span>
-                  <span class="stat">👥 28</span>
+            <!-- course info and smt btn --> 
+            <div class="card-content">
+              <!-- title -->
+              <h3 class="card-title">
+                Live Classes        
+              </h3>
+              <!-- smt btn -->
+              <button class="globalBtn btnGradient course-card-btn">
+                Learn More
+                <i class="fa-solid fa-arrow-right btn-icon"></i>
+              </button>
+            </div>
+          </div>          
+          <!-- lve courses card -->
+          <div class="card live-courses-card" style="display: none;">
+            <!-- cover -->
+            <div class="course-cover">
+              <!-- image -->
+              <img src="./assets/images/udayam-ai-offline-workshops.jpg" alt="">
+            </div>
+            <!-- course info and smt btn --> 
+            <div class="card-content">
+              <!-- title -->
+              <h3 class="card-title">
+                Offline Workshops        
+              </h3>
+              <!-- smt btn, find locations btn -->
+
+             <div class="location-wrapper">
+
+              <!-- hidden options -->
+              <select id="workshop-location" name="workshops-location">
+                <option value="" disabled selected>See Locations</option>
+                <option value="Bengaluru" ></option>
+                <option value="Mumbai"  ></option>
+                <option value="Kolkata"  ></option>
+                <option value="Pune"></option>
+                <option value="Puducherry"></option>
+              </select>
+            <!-- option always visible -->
+              <div class="location-select-trigger" tabindex="0">
+                <span class="location-name"></span>
+              </div>                  
+              <!-- custom options -->
+              <div class="location-custom-options">
+                <div class="location-custom-option" data-value="Bengaluru">
+                  <span class="location-name">Bengaluru</span>
+                </div>
+                <div class="location-custom-option" data-value="Mumbai">
+                  <span class="location-name">Mumbai</span>
+                </div>
+                <div class="location-custom-option" data-value="Kolkata">  
+                  <span class="location-name">Kolkata</span>
+                </div>
+                <div class="location-custom-option" data-value="Pune">
+                  <span class="location-name">Pune</span>
+                </div>
+                <div class="location-custom-option" data-value="Puducherry">
+                  <span class="location-name">Puducherry</span>
+                </div>
               </div>
-              <div class="course-icon">
-                <div class="icon-bg">💻</div>
-              </div>
-              <h3 class="card-title">AI Mastery Course 2025 for Experts</h3>
-              <button class="learn-more-btn" onclick="window.open('https://udayamailabs-my.sharepoint.com/:i:/g/personal/support_udayam_co_in/ERpRErbbiG9MmdwQp6VzTTYB9MT9vg7w5gOO6E-D3CfCdw?e=8nmprp','_blank')">LEARN MORE</button>
+
+              <i class="fa-solid fa-location-dot"></i>
+
             </div>
           </div>
-        </div> 
-        <div class="live-courses">
-          <div class="course-header">
-            <h3>Live Classes</h3>
-          </div>
-            <div class="course-cards">
-            <div class="card">
-              <h3 class="card-title">Live Classes</h3>
-              <div class="course-img">
-                <img id="lived-classes-img" src="./assets/images/udayam-ai-live-classes.jpg" alt="live-classes-img"/>
-              </div>
-              <button class="learn-more-btn" id="course-btn" data-course="Live Classes">Register Now</button>
-            </div>
-            <div class="card">
-              <h3 class="card-title">Offline Workshops</h3>
-              <div class="course-img">
-                <img id="offline-workshops" src="./assets/images/udayam-ai-offline-workshops.jpg" alt="offline-workshops-img"/>
-              </div>
-              <button class="learn-more-btn" id="find-location-btn">Find Locations</button>
-              <select class="learn-more-btn hidden" id="workshop-location" name="workshops-location">
-                <option value="" disabled selected>Click to see locations</option>
-                <option value="Bengaluru" >Bengaluru</option>
-                <option value="Mumbai"  >Mumbai</option>
-                <option value="Kolkata"  >Kolkata</option>
-                <option value="Pune"  >Pune</option>
-                <option value="Puducherry">Puducherry</option>
-            </select>
-            </div>
-            </div>
+
+        </div>
         </div>
     </div>
-
-
-
   </section>
  
   <!-- Training Highlights -->
@@ -413,9 +686,10 @@
       <h2 class="section-title">Training Highlights</h2>
       <div class="service-underline"></div>
       <div class="card-wrapper">
-        <button class="card-btn" id="prevBtn" aria-label="Previous Slide">
-          <i class="fa-solid fa-angles-left" aria-hidden="true"></i>
-        </button>
+      <!-- prev btn -->  
+      <button class="card-btn t-h-prev-btn" id="prevBtn" aria-label="Previous Slide">
+        <i class="fa-solid fa-angle-left" aria-hidden="true"></i>
+      </button>
         <article class="card" id="card" aria-live="polite">
           <figure class="card-media">
             <img id="cardImage" src="" alt="" />
@@ -432,9 +706,9 @@
             </div>
           </section>
         </article>
-        <button class="card-btn" id="nextBtn" aria-label="Next Slide">
-          <i class="fa-solid fa-angles-right" aria-hidden="true"></i>
-        </button>
+      <button class="card-btn t-h-next-btn" id="nextBtn" aria-label="Next Slide">
+        <i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+      </button>
       </div>
 
       <div class="dots" id="dotsContainer" aria-label="Slide indicators"></div> 
@@ -478,12 +752,6 @@
 
         </div>   
         <!-- ends results container --> 
-
-          
-
-
-
-
   </section>
 
   <!-- starts Footer -->
@@ -641,230 +909,284 @@
   </div>
   <!-- ends chat widget -->
 
-    <!-- go up button -->
-    <button id="btnUp" class="upButton" title="Go Up">
-      <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
-    </button>
+  <!-- go up button -->
+  <button id="btnUp" class="upButton" title="Go Up">
+    <i class="fa-solid fa-angle-up" aria-hidden="true"></i>
+  </button>
 
-
-    <!-- starts request callback modal window -->
-    <button id="request-callback-btn">Request a Callback<i class="fa-solid fa-phone-volume"></i></button>
-    <!-- callback modal -->
-    <div id="callback-modal" class="callback-modal">
-      <!-- callback modal content -->
-      <div class="callback-modal-content">
-        <!-- close btn -->
-          <button class="close-btn" id="close-callback-btn">
-            <i class="fa-solid fa-xmark"></i>
-          </button>
-          <!-- decorative gradient -->
-          <div class="callback-modal-gradient">
-            <div class="sign-up-icon">
-              <img width="64" height="64" src="https://img.icons8.com/nolan/64/ringer-volume.png" alt="ringer-volume"/>
-            </div>
-          </div>
-          <!-- callback form content -->
-          <div class="callback-form-content">
-            <!-- title -->
-            <h3 class="callback-modal-title">Request a Callback</h3>
-            <!-- info text -->
-            <p class="info-text">
-              This isn't a sales call. It's a <strong>Strategic Conversation</strong>.
-            </p>
-            <!-- callback form -->
-            <form id="callback-form">
-              <div class="phone-input-group">
-                <!-- prefix and caret down -->
-                <div class="select-wrapper">
-                <!-- hidden options -->
-                <select id="country-code" name="country-code" required>
-                  <option selected value="+91" data-flag="🇮🇳"></option>
-                  <option value="+1" data-flag="🇺🇸"></option>
-                  <option value="+44" data-flag="🇬🇧"></option>
-                  <option value="+61" data-flag="🇦🇺"></option>
-                  <option value="+971" data-flag="🇦🇪"></option>
-                  <option value="+57" data-flag="🇨🇴"></option>
-                </select>
-                <!-- visible options -->
-                  <div class="custom-select-trigger" tabindex="0">
-                      <img class="flag">
-                      <span class="code"></span>
+  <!-- starts request callback modal window -->
+  <button id="request-callback-btn">Request a Callback
+    <i class="fa-solid fa-phone-volume"></i>
+  </button>
+  <!-- callback modal -->
+  <div id="callback-modal" class="callback-modal">
+    <!-- callback modal content -->
+    <div class="callback-modal-content">
+      <!-- close btn -->
+      <button class="close-btn" id="close-callback-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <!-- decorative gradient -->
+      <div class="modal-gradient">
+        <div class="rounded-icon">
+          <img width="64" height="64" src="https://img.icons8.com/nolan/64/ringer-volume.png" alt="ringer-volume"/>
+        </div>
+      </div>
+      <!-- callback form content -->
+      <div class="callback-form-content">
+        <!-- title -->
+        <h3 class="callback-modal-title">Request a Callback
+        </h3>
+        <!-- info text -->
+        <p class="info-text">
+          This isn't a sales call. It's a <strong>Strategic Conversation</strong>.
+        </p>
+        <!-- callback form -->
+        <form id="callback-form">
+          <!-- phone-code selector and input-->
+          <div class="phone-input-group">
+            <!-- prefix and caret down -->
+            <div class="select-wrapper">
+              <!-- hidden options -->
+              <select id="country-code" name="country-code" required>
+                <option selected value="+91" data-flag="🇮🇳"></option>
+                <option value="+1" data-flag="🇺🇸"></option>
+                <option value="+44" data-flag="🇬🇧"></option>
+                <option value="+61" data-flag="🇦🇺"></option>
+                <option value="+971" data-flag="🇦🇪"></option>
+                <option value="+57" data-flag="🇨🇴"></option>
+              </select>
+            <!-- option always visible -->
+              <div class="custom-select-trigger" tabindex="0">
+                  <img class="flag">
+                  <span class="code"></span>
+              </div>                  
+              <!-- custom options: flag + code -->
+              <div class="custom-options">
+                  <div class="custom-option" data-value="+91">
+                    <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/india-circular.png" alt="india-circular"/>
+                    <span class="code">+91</span>
                   </div>
-                  
-                  <!-- La lista de opciones personalizada -->
-                  <div class="custom-options">
-                      <div class="custom-option" data-value="+91">
-                        <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/india-circular.png" alt="india-circular"/>
-                        <span class="code">+91</span>
-                      </div>
-                      <div class="custom-option" data-value="+1">
-                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/usa-circular.png" alt="usa-circular"/>
-                          <span class="code">+1</span>
-                      </div>
-                      <div class="custom-option" data-value="+44">
-                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/great-britain-circular.png" alt="great-britain-circular"/>
-                          <span class="code">+44</span>
-                      </div>
-                      <div class="custom-option" data-value="+61">
-                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/australia-circular.png" alt="australia-circular"/>
-                          <span class="code">+61</span>
-                      </div>
-                      <div class="custom-option" data-value="+971">
-                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/united-arab-emirates-circular.png" alt="united-arab-emirates-circular"/>
-                          <span class="code">+971</span>
-                      </div>
-                      <div class="custom-option" data-value="+57">
-                          <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/colombia-circular.png" alt="colombia-circular"/>
-                          <span class="code">+57</span>
-                      </div>
+                  <div class="custom-option" data-value="+1">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/usa-circular.png" alt="usa-circular"/>
+                      <span class="code">+1</span>
                   </div>
-                <!-- icon -->
-                 <i class="fa-solid fa-caret-down"></i>
-                </div>
-
-                <input type="tel" id="phone-number" name="phone-number" placeholder="123 456 7890" pattern="[0-9]{10,15}" required>
+                  <div class="custom-option" data-value="+44">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/great-britain-circular.png" alt="great-britain-circular"/>
+                      <span class="code">+44</span>
+                  </div>
+                  <div class="custom-option" data-value="+61">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/australia-circular.png" alt="australia-circular"/>
+                      <span class="code">+61</span>
+                  </div>
+                  <div class="custom-option" data-value="+971">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/united-arab-emirates-circular.png" alt="united-arab-emirates-circular"/>
+                      <span class="code">+971</span>
+                  </div>
+                  <div class="custom-option" data-value="+57">
+                      <img class="flag" width="48" height="48" src="https://img.icons8.com/color/48/colombia-circular.png" alt="colombia-circular"/>
+                      <span class="code">+57</span>
+                  </div>
               </div>
-              <!-- submit btn -->
-              <button type="submit" id="callback-submit-btn" class="globalBtn btnGradient demo-submit-btn">Get a Call Back</button>
-            </form>
-            <p class="callback-disclaimer">
-                <i class="fas fa-lock"></i> Your information is safe with us.
-            </p>
-
+            <!-- caret down icon -->
+            <i class="fa-solid fa-caret-down"></i>
+            </div>
+            <!-- input -->
+            <input type="tel" id="phone-number" name="phone-number" placeholder="123 456 7890" pattern="[0-9]{10,15}" required>
           </div>
+          <!-- submit btn -->
+          <button type="submit" id="callback-submit-btn" class="globalBtn btnGradient demo-submit-btn">Get a Call Back</button>
+        </form>
+        <p class="callback-disclaimer">
+          <i class="fas fa-lock"></i> Your information is safe with us.
+        </p>
       </div>
     </div>
-      <!-- succes content -->
-      <div id="toast">
-        Consultation Booked Successfully!
-        <i class="fa-regular fa-circle-check"></i>
-      </div>
-    <!-- ends request a callback modal window -->
+  </div>
+    <!-- succes content -->
+    <div id="toast">
+      Consultation Booked Successfully!
+      <i class="fa-regular fa-circle-check"></i>
+    </div>
+  <!-- ends request a callback modal window -->
 
 
-
-
-
-
-    <!-- Register Form -->
-    <div id="course-registration-modal" class="course-registration-modal">
-      <div class="course-registration-modal-content">
-        <span class="course-registration-close-btn">&times;</span>
-        <div class="course-registration-modal-header">
-          <i class="fas fa-user-graduate"></i>
-          <h3>Register Now</h3>
-        </div>
-        <p class="course-modal-intro-text">
+  <!-- Starts Course Registration Modal -->
+  <div id="course-registration-modal" class="course-registration-modal">
+    <div class="course-registration-modal-content">
+        <!-- close icon -->
+        <button class="close-btn" id="course-registration-close-btn">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      <!-- course registration form content -->  
+      <div class="course-registration-form-content">
+      <!-- title -->  
+        <h3 class="course-registration-modal-title">
+        Register Now
+        </h3>
+      <!-- info text -->
+        <p class="regiter-course-intro-text">
           Fill in your details below to register for your preferred course.
         </p>
-        <form id="course-registration-form" class="course-registration-form">
-          
+      <!-- course registration form -->  
+      <form id="course-registration-form">
+        
+        <!-- Name -->
+        <div class="label-input">
+          <label for="user-name"><i class="fa-solid fa-user"></i>
+          </label>
+          <input type="text" id="user-name" name="user-name" placeholder="Your Name" required />
+        </div>
+
+        <!-- Email -->
+        <div class="label-input">
+          <label for="user-email"><i class="fa-solid fa-envelope"></i>
+          </label>
+          <input type="text" id="user-email" name="user-email" placeholder="yourmail@domain.com" required />
+        </div>
+
+        <!-- Mobile -->
+        <div class="label-input">
+          <label for="user-mobile"><i class="fa-solid fa-phone"></i></label>
+          <input type="tel" id="user-mobile" name="user-mobile"placeholder="+1 234 567 8900" required />
+        </div> 
+
+        <!-- Course Selection -->
+        <div class="course-wrapper">
+          <!-- hidden options -->
+          <select id="course" name="selected-course" required>
+            <option selected value="AI for Beginners"></option>
+            <option value="AI for Experts"></option>
+            <option value="Robotic"></option>
+            <option value="Drones Technology"></option>
+            <option value="Cybersecurity"></option>
+          </select>
+          <!-- option always visible -->
+          <div class="course-select-trigger" tabindex="0">
+            <img class="course-icon" alt="course icon">
+            <span class="course-name"></span>
+          </div>
+          <!-- custom options: icon + course name -->
+          <div class="course-custom-options">
+            <div class="course-custom-option" data-value="AI for Beginners">
+              <img width="64" height="64" src="https://img.icons8.com/nolan/64/for-experienced.png" alt="for-experienced" class="course-icon"/>
+              <span class="course-name">AI for Begginers</span>
+            </div>
+            <div class="course-custom-option" data-value="AI for Experts">
+              <img width="64" height="64" src="https://img.icons8.com/nolan/64/critical-thinking.png" alt="critical-thinking" class="course-icon" />
+              <span class="course-name">AI for Experts</span>
+            </div>
+            <div class="course-custom-option" data-value="Robotic">
+              <img width="64" height="64" src="https://img.icons8.com/nolan/64/robot.png" alt="robot" class="course-icon"/>
+              <span class="course-name">Robotic</span>
+            </div>
+            <div class="course-custom-option" data-value="Drones Technology">
+              <img width="64" height="64" src="https://img.icons8.com/nolan/64/drone.png" alt="drone" class="course-icon"/>
+              <span class="course-name">Drones Technology</span>
+            </div>
+            <div class="course-custom-option" data-value="Cibersecurity">
+              <img width="64" height="64" src="https://img.icons8.com/nolan/64/cyber-security.png" alt="cyber-security" class="course-icon" />
+              <span class="course-name">Cibersecurity</span>
+            </div>
+          </div>
+          <!-- caret down icon -->
+          <i class="fa-solid fa-caret-down"></i>
+        </div> 
+
+        <!-- Register Button -->
+        <button type="submit" id="course-submit-btn" class="globalBtn btnGradient">
+          Register
+        </button>
+      </form>
+      </div>
+  
+
+    </div>
+  </div>  
+  <!-- ends Course Registration Modal -->
+
+  <!-- 📖📖📖 Start Book A Demo Sliding Window 📖📖📖 -->
+  <div id="demo-modal" class="demo-modal">
+    <!-- Modal Window -->
+    <div class="demo-modal-content">
+      <!-- close icon -->
+      <button class="close-btn" id="demo-close-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+      <!-- image -->
+      <div class="demo-modal-image">
+        <img src="./assets/images/udayam-book-a-demo-illustration.png" alt="">
+      </div>
+      <!-- form content -->
+      <div class="demo-modal-form-content">
+        <h3 class="demo-modal-title">Book a Demo</h3>
+        <p class="demo-modal-intro-text">
+          Experience expert-led AI training before you commit. Limited seats available.
+        </p>
+        <!-- form -->
+        <form id="demo-registration-form" class="demo-registration-form">
+          <!-- important hidden fields !!!! -->
+          <input
+          type="text"
+          name="formName"
+          hidden
+          value="Book a Demo Form" />             
+          <input
+          type="text"
+          name="subject"
+          hidden
+          value="You have a New Book Demo Request" />
+          <input type="text" name="message" hidden value = "No Required" />
+          <!-- normal fields -->
           <!-- Name -->
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Enter your name" required />
+          <div class="label-input">
+            <label for="demo-name"><i class="fa-solid fa-user"></i></label>
+            <input type="text" id="demo-name" name="name" placeholder="Your Name" required />
+          </div>
 
           <!-- Email -->
-          <label for="email">Email Address</label>
-          <input type="email" id="email" name="email" placeholder="Enter your email" required />
+          <div class="label-input">
+            <label for="demo-email"><i class="fa-solid fa-envelope"></i></label>
+            <input type="text" id="demo-email" name="email" placeholder="yourmail@domain.com" required />
+          </div>
 
           <!-- Mobile -->
-          <label for="mobile">Mobile Number</label>
-          <input type="tel" id="mobile" name="mobile" placeholder="Enter your mobile number" required />
+          <div class="label-input">
+            <label for="demo-mobile"><i class="fa-solid fa-phone"></i></label>
+            <input type="tel" id="demo-mobile" name="mobile" placeholder="+1 234 567 8900" required />
+          </div> 
 
-          <!-- Course Selection -->
-          <label for="course">Select Course</label>
-          <select id="course" name="course" required>
-            <option value="" disabled selected>Select a course</option>
-            <option value="AI for Beginners">AI for Beginners</option>
-            <option value="AI for Experts">AI for Experts</option>
-            <option value="Robotics">Robotics</option>
-            <option value="Drones Technology">Drones Technology</option>
-            <option value="Cybersecurity">Cybersecurity</option>
-          </select>
+          <!-- University/Institute Name -->
+          <div class="label-input">
+            <label for="demo-organisation"><i class="fa-solid fa-building"></i></label>
+            <input type="text" id="demo-organisation" name="organisation" placeholder="Institute/Organisation" required /> 
+          </div> 
 
           <!-- Register Button -->
-          <button type="submit" id="course-submit-btn">Register</button>
+          <button class="globalBtn btnGradient demo-submit-btn" type="submit" id="demo-submit-btn">Book a Demo
+          </button>
         </form>
       </div>
-    </div>  
-
-
-    <!-- 📖📖📖 Start Book A Demo Sliding Window 📖📖📖 -->
-    <div id="demo-modal" class="demo-modal">
-      <!-- Modal Window -->
-      <div class="demo-modal-content">
-        <!-- close icon -->
-        <span class="close-btn demo-close-btn"><i class="fa-solid fa-xmark"></i></span>
-
-        <!-- image -->
-        <div class="demo-modal-image">
-          <img src="./assets/images/udayam-book-a-demo-illustration.png" alt="">
-        </div>
-        <!-- form content -->
-        <div class="demo-modal-form-content">
-          <h3 class="demo-modal-title">Book a Demo</h3>
-          <p class="demo-modal-intro-text">
-            Experience expert-led AI training before you commit. Limited seats available.
-          </p>
-          <!-- form -->
-          <form id="demo-registration-form" class="demo-registration-form">
-            <!-- important hidden fields !!!! -->
-            <input
-            type="text"
-            name="formName"
-            hidden
-            value="Book a Demo Form" />             
-            <input
-            type="text"
-            name="subject"
-            hidden
-            value="You have a New Book Demo Request" />
-            <input type="text" name="message" hidden value = "No Required" />
-            <!-- normal fields -->
-            <!-- Name -->
-            <div class="label-input">
-              <label for="demo-name"><i class="fa-solid fa-user"></i></label>
-              <input type="text" id="demo-name" name="name" placeholder="Your Name" required />
-            </div>
-
-            <!-- Email -->
-            <div class="label-input">
-              <label for="demo-email"><i class="fa-solid fa-envelope"></i></label>
-              <input type="text" id="demo-email" name="email" placeholder="yourmail@domain.com" required />
-            </div>
-
-            <!-- Mobile -->
-            <div class="label-input">
-              <label for="demo-mobile"><i class="fa-solid fa-phone"></i></label>
-              <input type="tel" id="demo-mobile" name="mobile" placeholder="+1 234 567 8900" required />
-            </div> 
-
-            <!-- University/Institute Name -->
-            <div class="label-input">
-              <label for="demo-organisation"><i class="fa-solid fa-building"></i></label>
-              <input type="text" id="demo-organisation" name="organisation" placeholder="Institute/Organisation" required /> 
-            </div> 
-  
-            <!-- Register Button -->
-            <button class="globalBtn btnGradient demo-submit-btn" type="submit" id="demo-submit-btn">Book a Demo</button>
-          </form>
-        </div>
-      </div>
     </div> 
-    <!-- 📖📖📖 Ends Book A Demo Sliding Window 📖📖📖 -->
+  </div>  
+  <!-- 📖📖📖 Ends Book A Demo Sliding Window 📖📖📖 -->
 
 <!-- Scripts -->
 
     <!-- main js-->
-    <script src="js/script.min.js" defer></script>
+    <!--<script src="js/script.min.js" defer></script>-->
+    <script src="js/script.js"></script>
     <!-- email js -->
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <!-- email js -->
       <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-      <!-- prabha code -->
-      <script src="js/assistant.min.js" defer></script>
+      <!-- prabha code 
+      <script src="js/assistant.min.js" defer></script> -->
+      <script src="js/assistant.js"></script>
     <!-- callback request -->
-      <script src="js/callback.min.js" defer></script>
-      <script src="js/navbar.min.js" defer></script>
+      <!--<script src="js/callback.min.js" defer></script>-->
+      <script src="js/callback.js"></script>
+      <!--<script src="js/navbar.min.js" defer></script>-->
+    <script src="js/navbar.js"></script>
 </body>
 </html>
