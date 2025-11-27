@@ -16,7 +16,9 @@
   padding: 6px;
   margin: 1rem auto 3rem;
   max-width: 90%;
-  width: 500px;
+  max-width: 90%;
+  width: fit-content;
+  min-width: 500px;
   box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
 }
 
@@ -37,7 +39,7 @@
 .filter-container .filter-btn {
   background: none;
   border: none;
-  flex: 1;
+  /* flex: 1; Removed to allow natural width */
   padding: 10px 16px;
   border-radius: 50px;
   font-size: 0.9rem;
