@@ -19,6 +19,7 @@ header {
   transition: background-color var(--transition-speed) ease,
     box-shadow var(--transition-speed) ease,
     border-bottom var(--transition-speed) ease;
+  background-color: var(--bg-light);
 }
 
 header.scrolled {

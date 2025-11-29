@@ -107,25 +107,60 @@ body {
   }
 }
 
+@keyframes zoomOut {
+  0% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 /* Hero Section */
 .hero-section {
-  margin: 0;
+  margin-top: 70px;
   width: 100vw;
   height: 100vh;
   background-color:var(--light-color); 
-  background-image: radial-gradient(rgba(0,0,0,0.15) 1px, transparent 1px);
-  background-size: 24px 24px;  
+  background-image: radial-gradient(rgba(0,0,0,0.15) 1px, transparent 1px), linear-gradient(135deg, #eef2ff 0%, #f5f3ff 100%);
+  background-size: 24px 24px, 100% 100%;  
   position: relative;
   overflow: hidden; 
   min-height: 100vh;
   z-index: 999;
 }
-.hero-section::before {
+
+.hero-section.about-hero-section {
+  margin-top: 0;
+}
+
+.hero-section.about-hero-section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.25), transparent 60%),
+              radial-gradient(circle at 70% 70%, rgba(139,92,246,0.25), transparent 60%);
+  z-index: 2;
+}
+
+.hero-section.home-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url('../assets/images/hero-section-bg.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 1;
+  animation: zoomOut 10s ease-out forwards;
+}
+.hero-section.home-hero::before {
   content: "";
   position: absolute;
   inset: 0;
   background: radial-gradient(circle at 30% 30%, rgba(59,130,246,0.25), transparent 60%),
   radial-gradient(circle at 70% 70%, rgba(139,92,246,0.25), transparent 60%);
+  z-index: 2;
 }
 .hero-section-text {
   max-width: calc(80vw);
@@ -139,6 +174,7 @@ body {
   padding: calc(25vh) 4rem 4rem 4rem;
   gap: 2.4rem;
   position: relative;
+  z-index: 3;
 }
 
 .heroBtns{
@@ -171,6 +207,17 @@ body {
   color: var(--light-color);
   border: none;
 }
+.btnWhite {
+  background: #ffffff;
+  color: var(--primary-color);
+  border: none;
+}
+
+.btnLightBlue {
+  background: rgba(79, 70, 229, 0.1);
+  color: var(--primary-color);
+  border: none;
+}
   .globalBtn:hover, .btnGradient:hover{
     opacity: 1;
   }
@@ -180,14 +227,17 @@ body {
   font-size: 3.2rem;
   font-weight: 800;
   line-height: 1.12;
-  background: linear-gradient(135deg, #1a1a1a 0%, #4f46e5 50%, #06b6d4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: var(--light-color);
   animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.2s both;
   letter-spacing: -0.02em;
 }
-.hero-section-text p, .about-section-text p {
+.hero-section-text p {
+  font-size: 1.2rem;
+  color: var(--light-color);
+  line-height: 1.6;
+  animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) 0.4s both;
+}
+.about-section-text p {
   font-size: 1.2rem;
   color:var(--text-light);
   line-height: 1.6;
@@ -204,18 +254,31 @@ body {
   }
 }
 /* hero section (about.html) */
-.about-content{
-  max-width: calc(80vw);
-  height: 100vh;
-  min-height: 100vh;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  flex-direction: row;
-  justify-content:flex-end;
-  align-items: center;
-  padding-top: calc(25vh);
-  gap: 2.4rem;
+
+.about-content {
+    max-width: calc(80vw);
+    height: 100vh;
+    min-height: 100vh;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    padding-top: calc(25vh);
+    gap: 2.4rem;
+}
+
+
+.about-content .hero-heading {
+  background: linear-gradient(135deg, #1a1a1a 0%, #4f46e5 50%, #06b6d4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.about-content p {
+  color: var(--text-light);
 }
 
 .about-content .about-section-text{
@@ -259,12 +322,11 @@ body {
 }
 
 .service-grid {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
   justify-content: center;  
   gap: 4rem 2rem;
-  padding: 4rem 2rem 2rem 2rem;
-  align-items: start;
+  padding: 0rem 2rem 2rem 2rem;
   transition: all 0.4s ease-in-out;
 }
 
@@ -277,11 +339,8 @@ body {
   background: rgb(71, 63, 197, .01);
   box-shadow: 0 0 12px rgba(0, 0, 0, .1);
   cursor: pointer;
-  height: auto;
+  height: 100%;
   z-index: 0;
-  flex: 0 1 calc(33.333% - 2rem); /* 3 columnas en desktop */
-  min-width: 280px; /* Un poco más ancho para 3 columnas */
-  max-width: 320px;
   box-sizing: border-box;
   transition: all 0.4s ease-in-out; 
 } .service-card:hover {
@@ -2275,7 +2334,7 @@ footer {
 
     /* starts services section */
     .service-grid{
-      padding: 4rem 2rem;
+      padding: 0rem 2rem;
     }
       .service-card{
         padding: 2rem;
@@ -2366,10 +2425,12 @@ footer {
     flex: none;
   }
   .about-content .about-image{
-    max-width: 440px;
+    max-width: 350px;
     order: 1;
-    flex: none
+    flex: none;
+    overflow: hidden;
   }
+
   /* our work section*/
   .work-subtitle{
     padding: 1em 2em;
@@ -2496,6 +2557,12 @@ footer {
   }
   .hero-section-text p, .about-section-text p {
     font-size: 1rem;
+  }
+
+  /* Make hero background responsive for mobile */
+  .hero-section.home-hero::after {
+    background-size: cover;
+    background-position: center bottom;
   }
 
   /* our work section */
@@ -2701,7 +2768,7 @@ footer {
       font-size: 1rem;
       font-weight: 600;
     }
-    /* about section */
+    /* about content */
     .about-content{
       flex-direction: column;
       padding: 8rem 1rem 4rem 1rem;
@@ -2712,7 +2779,10 @@ footer {
       .about-content .about-image{
         order: 1;
         flex: none;
-        max-width: 320px;
+        max-width: 250px;
+      }
+      .about-content .about-image img{
+        width: 100%;
       }
 
   /* gallery: our work section */
@@ -2850,4 +2920,72 @@ footer {
       justify-content: center;
     }
    
+}
+
+/* Sliding Pill Filter Styles (Restored) */
+.filter-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-radius: 50px;
+  padding: 6px;
+  margin: 1rem auto 3rem;
+  max-width: 90%;
+  width: fit-content;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filter-indicator {
+  position: absolute;
+  top: 6px;
+  left: 6px; /* Will be set by JS */
+  height: calc(100% - 12px); /* 100% - (padding * 2) */
+  width: 100px; /* Will be set by JS */
+  background: var(--aurora); /* Use existing gradient */
+  border-radius: 50px;
+  box-shadow: 0 2px 5px rgba(71, 63, 197, 0.4);
+  transition: left 0.4s cubic-bezier(0.23, 1, 0.32, 1),
+    width 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+}
+
+.filter-container .filter-btn {
+  background: none;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #333; /* Default text color */
+  cursor: pointer;
+  z-index: 2; /* Above the indicator */
+  transition: color 0.4s ease;
+  white-space: nowrap;
+}
+
+.filter-container .filter-btn.active {
+  color: white; /* Text color when active (on top of the pill) */
+  background: none; /* Ensure no background */
+}
+
+/* Mobile Responsive Filter UI */
+@media (max-width: 600px) {
+  .filter-container {
+    width: 95%;
+    padding: 4px;
+    overflow-x: auto;
+    justify-content: flex-start; /* Prevent clipping on left if overflow */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; /* Firefox */
+  }
+  .filter-container::-webkit-scrollbar {
+    display: none; /* Chrome/Safari */
+  }
+  
+  .filter-container .filter-btn {
+    font-size: 0.75rem;
+    padding: 8px 12px;
+  }
 }

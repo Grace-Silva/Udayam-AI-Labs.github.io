@@ -53,10 +53,10 @@
     />
     <meta name="apple-mobile-web-app-title" content="Udayam AI Labs" />
     <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-    <link rel="stylesheet" href="css/styles.css" />
+    <link rel="stylesheet" href="css/styles.min.css" />
     <link rel="stylesheet" href="css/assistant.css" />
     <link rel="stylesheet" href="css/navbar.min.css" />
-    <link rel="stylesheet" href="css/gallary.css" />
+    <link rel="stylesheet" href="css/gallary.min.css" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -81,7 +81,7 @@
   </head>
 
 <body>
-  <header id="main-header">
+  <header id="main-header" class="transparent-nav">
       <nav class="nav-container">
         <a href="/" class="logo-link">
           <img
@@ -175,7 +175,7 @@
   <!-- Starts Hero/About Section -->
   <section
       id="hero-section"
-      class="hero-section"
+      class="hero-section about-hero-section"
       aria-labelledby="hero-heading"
     >
       <div class="about-content" id="about-content">
@@ -190,7 +190,7 @@
         <!-- cta -->
         <div class="heroBtns">
           <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-book-open"></i></button>
-          <button class="globalBtn" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i>
+          <button class="globalBtn btnWhite" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i>
           </button>
         </div>
 
@@ -404,7 +404,7 @@
    <!-- Team Section -->
 
   <!-- starts Our Work section -->
-<section id="ourWork" class="workSection">
+<section id="ourWork" class="workSection" style="padding-top: 40px;">
   <div class="container">
     <h2 class="section-title">Our Work</h2>
     <div class="service-underline"></div>
@@ -448,7 +448,7 @@
       <h2 class="section-title">Business Solutions</h2>
       <div class="service-underline"></div>
       <p class="section-subtitle">
-        Tailored AI solutions driving business growth and innovation.
+        We provide comprehensive business solutions designed to accelerate your business growth and innovation.
       </p>
 
       <!-- Filter Buttons -->
@@ -457,7 +457,7 @@
         <button class="filter-btn active" data-filter="all">View All</button>
         <button class="filter-btn" data-filter="web">Web Development</button>
         <button class="filter-btn" data-filter="app">App Development</button>
-        <button class="filter-btn" data-filter="ai">AI Solutions</button>
+        <button class="filter-btn" data-filter="ai">AI Tech Solutions Design</button>
       </div>
 
       <!-- Grid Container -->
@@ -1185,6 +1185,6 @@
   <script src="js/callback.js"></script>
   <script src="js/navbar.js"></script>
   <script src="js/gallary.js"></script>
-  <script src="js/business-solutions.js"></script>
+  <script src="js/business-solutions.min.js"></script>
 </body>
 </html>

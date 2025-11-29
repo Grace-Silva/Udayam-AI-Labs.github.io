@@ -35,8 +35,8 @@
   <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-icon.png" />
   <meta name="apple-mobile-web-app-title" content="Udayam AI Labs" />
   <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
-  <!--<link rel="stylesheet" href="css/styles.min.css" />-->
-  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/styles.min.css" />
+  <!-- <link rel="stylesheet" href="css/styles.css"> -->
   <link rel="stylesheet" href="css/assistant.min.css" />
   <!--<link rel="stylesheet" href="css/callback.css" />-->
   <link rel="stylesheet" href="css/navbar.min.css" />
@@ -156,7 +156,7 @@
     <div class="nav-overlay" id="nav-overlay"></div>
 
   <!-- Hero Section -->
-  <section id="hero-section" class="hero-section" aria-labelledby="hero-heading">
+  <section id="hero-section" class="hero-section home-hero" aria-labelledby="hero-heading">
     <div class="hero-section-text">
       <!--<span class="tagline">Udayam AI Labs - Empowering the NextGen with Cutting Edge Solutions</span>-->
       <h2 class="hero-heading">AI & Technology Services for Schools, Universities & Corporates</h2>
@@ -167,7 +167,7 @@
       <!-- cta buttons -->
       <div class="heroBtns">
         <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-book-open"></i></button>
-        <button class="globalBtn" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
+        <button class="globalBtn btnWhite" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i></button>
       </div>
     </div>
   </section>
@@ -391,20 +391,52 @@
                 <!-- course info and smt btn --> 
                 <div class="card-content">
                   <!-- title -->
-              <h3 class="card-title">AI Mastery Course 2025 for Beginners</h3>
-              <button class="learn-more-btn"  onclick="window.location.href='learn_more.html?course=beginners'">LEARN MORE</button>
-            </div>
-            <div class="card">
-              <div class="course-stats">
-                  <span class="stat">⭐ 4.8</span>
-                  <span class="stat">👥 28</span>
+                  <!-- title -->
+                  <h3 class="card-title">
+                    AI Mastery Course 2025 for Beginners        
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn"  onclick="window.location.href='learn_more.html?course=beginners'">
+                  Learn More
+                  <i class="fa-solid fa-arrow-right btn-icon"></i>
+                </button>
+                </div>
               </div>
-              <div class="course-icon">
-                <div class="icon-bg">💻</div>
+              <!-- card -->
+              <div class="card">
+                <!-- cover -->
+                <div class="course-cover">
+                  <!-- image -->
+                  <img src="https://img-c.udemycdn.com/course/240x135/6418257_5e36_2.jpg" alt="">
+                  <!-- animated icon -->
+                  <div class="icon-bg">
+                    <img width="64" height="64" src="https://img.icons8.com/nolan/96/artificial-intelligence.png" alt="for-experienced" class="course-icon"/>
+                  </div>
+                </div>
+                <!-- stats -->
+                <div class="course-stats">
+                  <span class="stat">
+                    <img width="94" height="94" src="https://img.icons8.com/3d-fluency/94/star.png" alt="star"/>
+                    4.8
+                  </span>
+                  <span class="stat"> 
+                  <img width="100" height="100" src="https://img.icons8.com/3d-fluent/100/user-2.png" alt="user-2"/>
+                  +28
+                  </span>
+                </div>
+                <!-- card content -->
+                <div class="card-content">
+                  <!-- title -->
+                  <h3 class="card-title">
+                    AI Mastery Course 2025 for Experts        
+                  </h3>
+                  <!-- smt btn -->
+                  <button class="globalBtn btnGradient course-card-btn"  onclick="window.location.href='learn_more.html?course=experts'">
+                    Learn More
+                    <i class="fa-solid fa-arrow-right btn-icon"></i>
+                  </button>
+                </div>
               </div>
-              <h3 class="card-title">AI Mastery Course 2025 for Experts</h3>
-              <button class="learn-more-btn" onclick="window.location.href='learn_more.html?course=experts'">LEARN MORE</button>
-            </div>
               <!-- card -->
               <div class="card">
                 <!-- cover -->
