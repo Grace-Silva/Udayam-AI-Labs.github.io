@@ -456,7 +456,7 @@ body {
     height: 48px;
   }
 
-.course-cards {
+.course-cards, #free-course-container{
   width: 100%;
   display: flex;
   gap: 3rem;
@@ -474,7 +474,7 @@ body {
   display: none;
 }
 
-.course-cards .card {
+.course-cards .card, .free-course-card{
   background: var(--light-color);
   border-radius: 8px;
   display: flex;
@@ -497,12 +497,12 @@ body {
   pointer-events: none !important;
   opacity: .5;
 }
-.live-courses-card{
+.live-courses-card, .free-course-card{
   max-width: 300px;
   width: 100%;
 }
 /* top line */
-.course-cards .card::before {
+.course-cards .card, .free-course-card::before {
   content: '';
   position: absolute;
   z-index: 10000;
@@ -517,7 +517,7 @@ body {
   transform: scaleX(0);
   transition: transform 0.3s ease-in;
 }
-  .course-cards .card:hover::before {
+  .course-cards .card, .free-course-card:hover::before {
     transform: scaleX(1);
   }
   /* card cover */
@@ -596,7 +596,7 @@ body {
   transform: translateX(4px);
 }
 
-.live-courses > .course-cards{
+.live-courses > .course-cards,  #free-courses-container{
   display: flex;
   flex-wrap: wrap;
   position: relative;
@@ -720,7 +720,7 @@ body {
         position: relative;
       }
       /* modal window form ítems: */
-      #downloadBrochureForm label,  .demo-registration-form label, #course-registration-form label {
+      #downloadBrochureForm label,  .demo-registration-form label, #course-registration-form label, #downloadCertificateForm label {
         display: inline-flex;
         align-items: center;
         justify-content: center;
@@ -836,7 +836,7 @@ body {
     }
       
     /* modal form content */ 
-    .brochure-form-content, .callback-form-content{
+    .brochure-form-content, .callback-form-content, .certificate-form-content{
       padding: 2rem 3rem;
       display: flex;
       flex-direction: column;
@@ -857,7 +857,7 @@ body {
         background-clip: text;
       }
       /* modal paragraphs (info) */
-      .demo-modal-intro-text, .brochure-modal-description, .info-text, .regiter-course-intro-text{
+      .demo-modal-intro-text, .brochure-modal-description, .info-text, .register-course-intro-text{
         font-size: 1rem;
         color: var(--text-light);
         width: 400px; 
@@ -866,7 +866,7 @@ body {
       }
 
     /* modal forms */
-    .demo-registration-form, #downloadBrochureForm, #callback-form, #course-registration-form{
+    .demo-registration-form, #downloadBrochureForm, #callback-form, #course-registration-form, #downloadCertificateForm{
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -874,7 +874,7 @@ body {
       gap: 1rem;
     }
       /* modal form inputs */
-      .demo-registration-form input, #downloadBrochureForm input, #callback-form input, #course-registration-form input{
+      .demo-registration-form input, #downloadBrochureForm input, #callback-form input, #course-registration-form input, #downloadCertificateForm input{
         width: 100%;
         padding: 4px 24px;
         border-radius: 4px;
@@ -896,7 +896,7 @@ body {
         }
        
       /* modal submit btns */
-      .demo-submit-btn, #course-submit-btn, .course-card-btn{
+      .demo-submit-btn, #course-submit-btn, .course-card-btn, .download-certificate-btn{
         background: linear-gradient(180deg,rgba(34, 103, 250, 1) 0%, rgba(91, 77, 245, 1) 25%, rgba(140, 60, 255, 1) 50%, rgba(192, 37, 255, 1) 100%);
         margin: 0 auto;
         border: none;

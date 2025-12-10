@@ -59,7 +59,11 @@
         "https://www.instagram.com/udayamai/?igsh=NXIwYmlnejN3dW5s#"
       ]
     }
-    </script>
+  </script>
+  <!-- free courses apis-->
+  <script src="https://www.youtube.com/iframe_api"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 </head>
 
 
@@ -188,106 +192,7 @@
         <!-- course cards container -->
         <div class="course-cards" id="free-courses-container">
         <!-- course card -->
-          <!-- card -->
-          <div class="card live-courses-card free-course-card">
-          <!-- cover -->
-          <div class="course-cover">
-            <!-- image -->
-            <img src="./assets/images/game-development-thumbnail.png" alt="">
-          </div>
-          <!-- course info and smt btn --> 
-          <div class="card-content">
-            <!-- title -->
-            <h3 class="card-title">
-            Game Development
-            </h3>
-            <div class="free-course-details">
-              <div class="course-info">
-                <!-- duration -->
-                <span class="course-info-item">
-                  <i class="fa-solid fa-clock"></i>12 Hours
-                </span>
-                <!-- language -->
-                <span class="course-info-item">
-                  <i class="fa-solid fa-language"></i> English
-                </span>
-              </div>
-              <!-- advance percentage -->
-              <div class="free-course-progress-container">
-                <div class="free-course-progress-bar"></div>
-              </div>
-              <!-- viewed videos -->
-              <p class="viewed-videos">0/0 videos</p>
-            </div>
 
-          </div>
-          </div> 
-
-          <!-- card -->
-          <div class="card live-courses-card free-course-card">
-            <!-- cover -->
-            <div class="course-cover">
-                <!-- image -->
-                <img src="./assets/images/data-science-python.png" alt="">
-            </div>
-            <!-- course info and smt btn --> 
-            <div class="card-content">
-              <!-- title -->
-              <h3 class="card-title">
-              Introduction to Data science and Machine learning (मराठी)       
-              </h3>
-              <!-- duration, language and advance percentage -->
-              <div class="free-course-details">
-                <div class="course-info">
-                  <span class="course-info-item">
-                    <i class="fa-solid fa-clock"></i> 12 Hours
-                  </span>
-                  <span class="course-info-item">
-                    <i class="fa-solid fa-language"></i> (मराठी)
-                  </span>
-                </div>
-                <!-- advance percentage -->
-                <div class="free-course-progress-container">
-                  <div class="free-course-progress-bar"></div>
-                </div>
-                <!-- viewed videos -->
-                <p class="viewed-videos">0/0 videos</p>
-              </div>
-            </div>
-          </div>
-
-          <!-- card -->
-          <div class="card live-courses-card free-course-card">
-            <!-- cover -->
-            <div class="course-cover">
-                <!-- image -->
-                <img src="./assets/images/ml-thumbnail.png" alt="">
-            </div>
-            <!-- course info and smt btn --> 
-            <div class="card-content">
-              <!-- title -->
-              <h3 class="card-title">
-              Machine Learning      
-              </h3>
-              <!-- duration, language and advance percentage -->
-              <div class="free-course-details">
-                <div class="course-info">
-                  <span class="course-info-item">
-                    <i class="fa-solid fa-clock"></i> 12 Hours
-                  </span>
-                  <span class="course-info-item">
-                    <i class="fa-solid fa-language"></i> (मराठी)
-                  </span>
-                </div>
-                <!-- advance percentage -->
-                <div class="free-course-progress-container">
-                  <div class="free-course-progress-bar"></div>
-                </div>
-                <!-- viewed videos -->
-                <p class="viewed-videos">0/0 videos</p>
-              </div>
-            </div>
-          </div>
 
 
         </div>
@@ -295,12 +200,46 @@
 
 </section>
 
+<!-- Modal windows -->
+  <!-- modal video --> 
+  <div id="videoModal" class="free-courses-modal-window">
+    <div class="free-courses-modal-content">
+      <!-- close btn -->
+      <button class="close-btn" id="close-free-course-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+        <div id="videoPlayerContainer">
+            <!-- El reproductor se cargará aquí dinámicamente -->
+        </div>
+    </div>
+  </div>
+
+<!-- modal certificate -->
+  <div id="certificateModal" class="free-courses-modal-window">
+      <div class="free-courses-modal-content">
+      <!-- close btn -->
+      <button class="close-btn" id="close-free-course-btn">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+        <div id="certificateContainer">
+              <!-- El certificado se generará aquí -->
+        </div>
+      </div>
+  </div>
 
 <!-- scripts -->
 <script src="js/script.js"></script>
 <script src="js/navbar.js"></script>
 <script src="js/free-courses-data.js"></script>
 <script src="js/free-courses.js"></script>
+
+<script>
+  // Inicialización después de cargar todo
+  document.addEventListener('DOMContentLoaded', function() {
+      console.log('DOM cargado, inicializando gestor...');
+      window.gestorCursos = new GestorCOURSES();
+  });
+</script>
 
 </body>
 
