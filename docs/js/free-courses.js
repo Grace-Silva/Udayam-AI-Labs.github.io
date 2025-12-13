@@ -84,6 +84,7 @@ class GestorCOURSES {
         freeCloseBtn.addEventListener("click", (e) => {
           this.destroyPlayer();
           e.target.closest(".free-courses-modal-window").style.display = "none";
+          document.body.style.overflow = "";
         });
       });
 
@@ -92,6 +93,7 @@ class GestorCOURSES {
       if (e.target.classList.contains("free-courses-modal-window")) {
         this.destroyPlayer();
         e.target.style.display = "none";
+        document.body.style.overflow = "";
       }
     });
     // stops player when the user clicks off window
@@ -455,7 +457,6 @@ class GestorCOURSES {
       btnCertificado.addEventListener("click", () => {
         if (!btnCertificado.disabled) {
           this.mostrarFormularioCertificado();
-          document.getElementById("");
         }
       });
     }
@@ -604,6 +605,7 @@ class GestorCOURSES {
             .querySelectorAll(".free-courses-modal-window")
             .forEach((modal) => {
               modal.style.display = "none";
+              document.body.style.overflow = "";
             });
         }, 3000);
       });
@@ -726,6 +728,7 @@ class GestorCOURSES {
             .querySelectorAll(".free-courses-modal-window")
             .forEach((modal) => {
               modal.style.display = "none";
+              document.body.style.overflow = "";
             });
         }, 3000);
       });
