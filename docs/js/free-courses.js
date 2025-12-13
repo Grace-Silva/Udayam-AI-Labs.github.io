@@ -115,6 +115,7 @@ class GestorCOURSES {
 
     this.showPlayer();
     document.getElementById("videoModal").style.display = "flex";
+    document.body.style.overflow = "hidden"; // stop scroll propagation
   }
 
   showPlayer() {
@@ -181,7 +182,7 @@ class GestorCOURSES {
         },
       });
     } catch (error) {
-      console.error("Error creando reproductor:", error);
+      console.error("Error creating player:", error);
     }
   }
 
@@ -454,6 +455,7 @@ class GestorCOURSES {
       btnCertificado.addEventListener("click", () => {
         if (!btnCertificado.disabled) {
           this.mostrarFormularioCertificado();
+          document.getElementById("");
         }
       });
     }

@@ -237,12 +237,12 @@
   font-size: .9rem;
 }
     .btn:disabled {
-    opacity: 0.2;
-    cursor: not-allowed;
-    transform: none;
+      opacity: 0.2;
+      cursor: not-allowed;
+      transform: none;
     }
     .btn.completado {
-    background: rgb(13, 151, 47);
+      background: rgb(13, 151, 47);
     }
 
 /* certificate form */
