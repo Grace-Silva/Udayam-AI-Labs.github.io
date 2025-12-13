@@ -2860,6 +2860,15 @@ footer {
     transform: translateY(-50%);
     right: -1.1rem;
     }
+
+    .live-courses > .course-cards,  #free-courses-container{
+      display: flex;
+      flex-wrap: wrap;
+      position: relative;
+      align-items: center;
+      justify-content: stretch;
+    }
+
   /* ends training highlights */
 
   /* ---- STARTS MODAL WINDOWS  */
