@@ -87,18 +87,16 @@ const COURSES = {
       },
     ],
   },
-  "python-introduccion": {
+  "Game Development": {
     id: "python-introduccion",
     language: "English",
-    courseTitle: "Python para Todos",
-    courseDescription:
-      "Introducción a la programación con Python, desde cero hasta tus primeros proyectos.",
-    courseImage:
-      "https://images.unsplash.com/photo-1526379879527-8559ecfcaec0?w=400&h=200&fit=crop",
-    courseDuration: "6 hours",
+    courseTitle: "Game Development",
+    courseDescription: "",
+    courseImage: "./assets/images/game-development-thumbnail.png",
+    courseDuration: "16 hours",
     courseVideos: [
       {
-        id: "py1",
+        id: "gd1",
         title: "Instalación y primer programa",
         youtubeId: "kqtD5dpn9C8",
         youtubeImage: "https://img.youtube.com/vi/kqtD5dpn9C8/hqdefault.jpg",
