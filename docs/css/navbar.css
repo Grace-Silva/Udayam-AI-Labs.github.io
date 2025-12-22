@@ -9,7 +9,7 @@
   --transition-speed: 0.3s;
 }
 
-header {
+header, .transparent-nav{
   position: fixed;
   top: 0;
   left: 0;
@@ -17,12 +17,12 @@ header {
   z-index: 1000;
   height: var(--header-height);
   transition: background-color var(--transition-speed) ease,
-    box-shadow var(--transition-speed) ease,
-    border-bottom var(--transition-speed) ease;
+  box-shadow var(--transition-speed) ease,
+  border-bottom var(--transition-speed) ease;
   background-color: var(--bg-light);
 }
 
-header.scrolled {
+header.scrolled{
   background: rgba(255, 255, 255, 0.85);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);

@@ -54,7 +54,7 @@
     <meta name="apple-mobile-web-app-title" content="Udayam AI Labs" />
     <link rel="manifest" href="assets/images/favicon/site.webmanifest" />
     <link rel="stylesheet" href="css/styles.min.css" />
-    <link rel="stylesheet" href="css/assistant.css" />
+    <link rel="stylesheet" href="css/assistant.min.css" />
     <link rel="stylesheet" href="css/navbar.min.css" />
     <link rel="stylesheet" href="css/gallary.min.css" />
     <script type="application/ld+json">
@@ -81,94 +81,94 @@
   </head>
 
 <body>
-  <header id="main-header" class="transparent-nav">
-      <nav class="nav-container">
-        <a href="/" class="logo-link">
-          <img
-            src="assets/images/udayam-ai-labs-logo.png"
-            alt="Udayam AI Labs logo"
-            class="logo-img"
-          />
-          <span class="nav-title">Udayam AI Labs</span>
-        </a>
+  <header class="transparent-nav" id="main-header">
+    <nav class="nav-container">
+      <a href="/" class="logo-link">
+        <img
+          src="assets/images/udayam-ai-labs-logo.png"
+          alt="Udayam AI Labs logo"
+          class="logo-img"
+        />
+        <span class="nav-title">Udayam AI Labs</span>
+      </a>
 
-        <div class="nav-menu">
-          <ul class="nav-links" id="nav-links">
-            <li><a href="/#services">Services</a></li>
-            <li><a href="/#training-modules">Courses</a></li>
-            <li><a href="/events">Events</a></li>
-            <li class="dropdown">
-              <a
-                href="#"
-                class="dropdown-toggle"
-                aria-expanded="false"
-                aria-haspopup="true"
-              >
-                About Us <i class="fa-solid fa-chevron-down dropdown-icon"></i>
-              </a>
-              <ul class="dropdown-menu">
-                <li>
-                  <a href="/about#about-content"
-                    ><i class="fa-solid fa-user-group"></i> Meet Us</a
-                  >
-                </li>
-                <li>
-                  <a href="/about#ourWork"
-                    ><i class="fa-solid fa-briefcase"></i> Our Work</a
-                  >
-                </li>
-                <li>
-                  <a href="/about#team"
-                    ><i class="fa-solid fa-users"></i> Our Team</a
-                  >
-                </li>
-                
-                <li>
-                  <a href="/about#interns"
-                    ><i class="fa-solid fa-graduation-cap"></i> Our Interns</a
-                  >
-                </li>
-                <li>
-                  <a href="/about#partners"
-                    ><i class="fa-solid fa-handshake"></i> Our Partners</a
-                  >
-                </li>
-              </ul>
-            </li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </div>
+      <div class="nav-menu">
+        <ul class="nav-links" id="nav-links">
+          <li><a href="/#services">Services</a></li>
+          <li><a href="/#training-modules">Courses</a></li>
+          <li><a href="/events">Events</a></li>
+          <li class="dropdown">
+            <a
+              href="#"
+              class="dropdown-toggle"
+              aria-expanded="false"
+              aria-haspopup="true"
+            >
+              About Us <i class="fa-solid fa-chevron-down dropdown-icon"></i>
+            </a>
+            <ul class="dropdown-menu">
+              <li>
+                <a href="/about#about-content"
+                  ><i class="fa-solid fa-user-group"></i> Meet Us</a
+                >
+              </li>
+              <li>
+                <a href="/about#ourWork"
+                  ><i class="fa-solid fa-briefcase"></i> Our Work</a
+                >
+              </li>
+              <li>
+                <a href="/about#team"
+                  ><i class="fa-solid fa-users"></i> Our Team</a
+                >
+              </li>
+              
+              <li>
+                <a href="/about#interns"
+                  ><i class="fa-solid fa-graduation-cap"></i> Our Interns</a
+                >
+              </li>
+              <li>
+                <a href="/about#partners"
+                  ><i class="fa-solid fa-handshake"></i> Our Partners</a
+                >
+              </li>
+            </ul>
+          </li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
 
-        <button
-          class="menu-toggle"
-          id="menu-toggle"
-          aria-controls="nav-links"
-          aria-expanded="false"
-          aria-label="Toggle navigation menu"
+      <button
+        class="menu-toggle"
+        id="menu-toggle"
+        aria-controls="nav-links"
+        aria-expanded="false"
+        aria-label="Toggle navigation menu"
+      >
+        <svg
+          class="hamburger"
+          viewBox="0 0 32 32"
+          xmlns="http://www.w3.org/2000/svg"
         >
-          <svg
-            class="hamburger"
-            viewBox="0 0 32 32"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <line class="line line-top" x1="4" y1="8" x2="28" y2="8"></line>
-            <line
-              class="line line-middle"
-              x1="4"
-              y1="16"
-              x2="28"
-              y2="16"
-            ></line>
-            <line
-              class="line line-bottom"
-              x1="4"
-              y1="24"
-              x2="28"
-              y2="24"
-            ></line>
-          </svg>
-        </button>
-      </nav>
+          <line class="line line-top" x1="4" y1="8" x2="28" y2="8"></line>
+          <line
+            class="line line-middle"
+            x1="4"
+            y1="16"
+            x2="28"
+            y2="16"
+          ></line>
+          <line
+            class="line line-bottom"
+            x1="4"
+            y1="24"
+            x2="28"
+            y2="24"
+          ></line>
+        </svg>
+      </button>
+    </nav>
   </header>
   <div class="nav-overlay" id="nav-overlay"></div>
 
@@ -190,7 +190,7 @@
         <!-- cta -->
         <div class="heroBtns">
           <button class="globalBtn btnGradient" id="book-demo">Book a Demo<i class="fa-solid fa-book-open"></i></button>
-          <button class="globalBtn btnWhite" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i>
+          <button class="globalBtn" onclick="openBrochureModal()">Download Brochure<i class="fa-solid fa-download"></i>
           </button>
         </div>
 
@@ -950,7 +950,7 @@
             </ul>
           </section>
         <!-- last updated -->
-        <p id="lastUpdated">Website last updated on October 13, 2025</p>
+        <p id="lastUpdated">Website last updated on December 22, 2025</p>
           <span class="footer-social">
             <a
               ><i class="fa-regular fa-copyright"></i> 2025 Udayam AI Labs. All
@@ -1174,17 +1174,17 @@
 
 
   <!-- Scripts -->
- <script src="js/script.js"></script>
+ <script src="js/script.min.js" defer></script>
  <!-- request callback -->
  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
  <!-- email js -->
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <!-- prabha code -->
-  <script src="js/assistant.js"></script>
+  <script src="js/assistant.min.js" defer></script>
  <!-- callback request -->
-  <script src="js/callback.js"></script>
-  <script src="js/navbar.js"></script>
-  <script src="js/gallary.js"></script>
-  <script src="js/business-solutions.min.js"></script>
+  <script src="js/callback.js" defer></script>
+  <script src="js/navbar.min.js" defer></script>
+  <script src="js/gallary.js" defer></script>
+  <script src="js/business-solutions.min.js" defer></script>
 </body>
 </html>
