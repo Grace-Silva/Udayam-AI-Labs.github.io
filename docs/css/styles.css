@@ -132,6 +132,7 @@ body {
 
 .hero-section.about-hero-section {
   margin-top: 0;
+  z-index: 999;
 }
 
 .hero-section.about-hero-section::before {
@@ -267,10 +268,11 @@ body {
     align-items: center;
     padding-top: calc(25vh);
     gap: 2.4rem;
+    z-index: 1000;
 }
 
 
-.about-content .hero-heading {
+.about-content .hero-heading, .free-courses-hero .hero-heading {
   background: linear-gradient(135deg, #1a1a1a 0%, #4f46e5 50%, #06b6d4 100%);
   -webkit-background-clip: text;
   background-clip: text;
