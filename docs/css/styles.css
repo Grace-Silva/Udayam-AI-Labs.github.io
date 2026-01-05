@@ -324,6 +324,7 @@ body {
 }
 
 .service-grid {
+  margin-top:100px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 320px));
   justify-content: center;  
